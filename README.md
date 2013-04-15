@@ -1,15 +1,15 @@
-KAFBOX - Kernel Adaptive Filtering Toolbox
-==========================================
+Kernel Adaptive Filtering Toolbox
+=================================
 
 A Matlab benchmarking toolbox for kernel adaptive filtering.
 
-KAFBOX contains straightforward (non-optimized) implementations of all major kernel adaptive filtering algorithms. 
+The KAFBOX contains implementations of all major kernel adaptive filtering algorithms, and tools to compare their performance.
 
-Author: Steven Van Vaerenbergh
-Contact: steven at gtas dot dicom dot unican dot es
-Contributors: Miguel Lazaro-Gredilla, Sohan Seth
-Project web: https://github.com/steven2358/kafbox
-Major versions are also released on https://sourceforge.net/projects/kafbox
+Author: Steven Van Vaerenbergh  
+Contact: steven at gtas dot dicom dot unican dot es  
+Contributors: Miguel Lazaro-Gredilla, Sohan Seth  
+Project web: https://github.com/steven2358/kafbox  
+Major versions are also released on https://sourceforge.net/projects/kafbox  
 
 Directories included in the toolbox
 -----------------------------------
