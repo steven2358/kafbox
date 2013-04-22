@@ -2,6 +2,7 @@
 
 disp('Adding KAFBOX folders to MATLAB path...')
 
+addpath(genpath([pwd '/data']));
 addpath(genpath([pwd '/demo']));
 addpath(genpath([pwd '/lib']));
 
