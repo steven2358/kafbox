@@ -3,7 +3,7 @@
 
 A Matlab benchmarking toolbox for kernel adaptive filtering.
 
-The KAFBOX contains implementations of all major kernel adaptive filtering algorithms, and tools to compare their performance.
+The KAFBOX contains implementations of all major kernel adaptive filtering algorithms and tools to compare their performance.
 
 Author: Steven Van Vaerenbergh  
 Contact: steven at gtas dot dicom dot unican dot es  
@@ -13,6 +13,8 @@ Major versions are also released on https://sourceforge.net/projects/kafbox
 
 Directories included in the toolbox
 -----------------------------------
+
+`data/` - data sets
 
 `demo/` - demos and test files
 
@@ -25,6 +27,7 @@ Run install.m
 
 Included algorithms
 -------------------
+[Note: all present in previous version on sourceforge, some missing in github]
 
 - Approximate Linear Dependency Kernel Recursive Least-Squares (ALD-KRLS), as proposed in Y. Engel, S. Mannor, and R. Meir. "The kernel recursive least- squares algorithm", IEEE Transactions on Signal Processing, volume 52, no. 8, pages 2275-2285, 2004.
 - Sliding-Window Kernel Recursive Least-Squares (SW-KRLS), as proposed in S. Van Vaerenbergh, J. Via, and I. Santamaria. "A sliding-window kernel RLS algorithm and its application to nonlinear channel identification", 2006 IEEE International Conference on Acoustics, Speech, and Signal Processing (ICASSP), Toulouse, France, 2006.

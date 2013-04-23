@@ -51,8 +51,7 @@ classdef swkrls
             knn = k(end) + kaf.c;
             kaf.Kinv = kaf.inverse_addrowcol(kn,knn,kaf.Kinv); % extend kernel matrix
             
-            if (m>kaf.M)
-                % prune dictionary
+            if (m>kaf.M) % prune dictionary
                 kaf.dict(1,:) = [];
                 kaf.dicty(1) = [];
                 kaf.Kinv = kaf.inverse_removerowcol(kaf.Kinv);
