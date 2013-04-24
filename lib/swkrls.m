@@ -14,7 +14,7 @@ classdef swkrls
         kernelpar = 1; % kernel parameter
     end
     
-    properties (GetAccess = 'private', SetAccess = 'private')
+    properties (GetAccess = 'public', SetAccess = 'private')
         dict = []; % dictionary
         dicty = []; % output dictionary
         alpha = []; % expansion coefficients
@@ -49,39 +49,39 @@ classdef swkrls
             m = size(kaf.dict,1);
             kn = k(1:m-1);
             knn = k(end) + kaf.c;
-            kaf.Kinv = kaf.inverse_addrowcol(kn,knn,kaf.Kinv); % extend kernel matrix
+            kaf = kaf.inverse_addrowcol(kn,knn); % extend kernel matrix
             
             if (m>kaf.M) % prune dictionary
                 kaf.dict(1,:) = [];
                 kaf.dicty(1) = [];
-                kaf.Kinv = kaf.inverse_removerowcol(kaf.Kinv);
+                kaf = kaf.inverse_removerowcol();
             end
             kaf.alpha = kaf.Kinv*kaf.dicty;
         end
     end
     
-    methods (Static = true, Access = private)
+    methods (Access = 'private')
         
-        function K_inv = inverse_addrowcol(b,d,A_inv)
-            % returns the inverse of K = [A b;b' d]
+        function kaf = inverse_addrowcol(kaf,b,d)
+            % returns the inverse of K = [K_inv b;b' d]
             if numel(b)>1
-                g_inv = d - b'*A_inv*b;
+                g_inv = d - b'*kaf.Kinv*b;
                 g = 1/g_inv;
-                f = -A_inv*b*g;
-                E = A_inv - A_inv*b*f';
-                K_inv = [E f;f' g];
+                f = -kaf.Kinv*b*g;
+                E = kaf.Kinv - kaf.Kinv*b*f';
+                kaf.Kinv = [E f;f' g];
             else
-                K_inv = 1/d;
+                kaf.Kinv = 1/d;
             end
         end
         
-        function D_inv = inverse_removerowcol(K_inv)
+        function kaf = inverse_removerowcol(kaf)
             % calculates the inverse of D with K = [a b';b D]
-            m = size(K_inv,1);
-            G = K_inv(2:m,2:m);
-            f = K_inv(2:m,1);
-            e = K_inv(1,1);
-            D_inv = G - f*f'/e;
+            m = size(kaf.Kinv,1);
+            G = kaf.Kinv(2:m,2:m);
+            f = kaf.Kinv(2:m,1);
+            e = kaf.Kinv(1,1);
+            kaf.Kinv = G - f*f'/e;
         end
     end
 end

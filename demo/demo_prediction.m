@@ -7,20 +7,21 @@ clear all;
 
 %% PARAMETERS
 
-swkrls_pars = struct('c',1E-6,'M',100,'kerneltype','gauss','kernelpar',32);
 datafile = 'lorenz.dat'; L = 6; N = 10000; horizon = 1;
+kaf = swkrls(struct('c',1E-6,'M',100,'kerneltype','gauss','kernelpar',32));
+
+% datafile = 'mg30.dat'; L = 11; N = 5000; horizon = 1;
+% kaf = swkrls(struct('c',1E-6,'M',200,'kerneltype','gauss','kernelpar',0.6));
 
 %% PROGRAM
 tic
 
-data = load(datafile); data = data(:);
+data = load(datafile); data = data(:); N = min(N,length(data)-1);
 x = data(1:N); X = zeros(N,L);
 for i = 1:L, X(i:N,i) = x(1:N-i+1); end % time embedding
 Y = data(1+horizon:N+horizon); % desired output
 
-kaf = swkrls(swkrls_pars);
-
-fprintf(1,'Running prediction algorithm...\n')
+fprintf(1,'Running prediction algorithm')
 Y_est = zeros(N,1);
 for i=1:N,
     if ~mod(i,floor(N/10)), fprintf('.'); end
@@ -37,4 +38,7 @@ toc
 
 fprintf('MSE after first 1000: %.2fdB\n\n',10*log10(mean(SE(1001:end))));
 
-figure; hold all; plot(Y); plot(Y_est); legend('original','prediction')
+figure; plot(10*log10(SE)); xlabel('samples'); ylabel('squared error (dB)');
+
+figure; hold all; plot(Y); plot(Y_est);
+legend('original','prediction'); title(datafile);
