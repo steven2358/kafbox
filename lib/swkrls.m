@@ -63,7 +63,7 @@ classdef swkrls
             kaf.alpha = kaf.Kinv*kaf.dicty;
         end
         
-        function flops = flops(kaf) % flops for last iteration
+        function flops = getflops(kaf) % flops for last iteration
             m = size(kaf.dict,1);
             floptions = struct(...
                 'sum',2*m^2+2*m+2,...
@@ -78,7 +78,7 @@ classdef swkrls
             flops = kflops(floptions);
         end
         
-        function bytes = bytes(kaf) % bytes used
+        function bytes = getbytes(kaf) % bytes used
             m = size(kaf.dict,1);
             bytes = 8*m*(m+2+size(x,2)); % 8 bytes for double precision
         end
@@ -87,7 +87,7 @@ classdef swkrls
     methods (Access = 'private')
         
         function kaf = inverse_addrowcol(kaf,b,d)
-            % returns the inverse of K = [K_inv b;b' d]
+            % inverse of K = [K_inv b;b' d]
             if numel(b)>1
                 g_inv = d - b'*kaf.Kinv*b;
                 g = 1/g_inv;
@@ -100,7 +100,7 @@ classdef swkrls
         end
         
         function kaf = inverse_removerowcol(kaf)
-            % calculates the inverse of D with K = [a b';b D]
+            % inverse of D with K = [a b';b D]
             m = size(kaf.Kinv,1);
             G = kaf.Kinv(2:m,2:m);
             f = kaf.Kinv(2:m,1);
