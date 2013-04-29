@@ -19,6 +19,7 @@ classdef swkrls
         dicty = []; % output dictionary
         alpha = []; % expansion coefficients
         Kinv = []; % inverse kernel matrix
+        prune = false; %
     end
     
     methods
@@ -52,11 +53,22 @@ classdef swkrls
             kaf = kaf.inverse_addrowcol(kn,knn); % extend kernel matrix
             
             if (m>kaf.M) % prune dictionary
+                kaf.prune = true;
                 kaf.dict(1,:) = [];
                 kaf.dicty(1) = [];
                 kaf = kaf.inverse_removerowcol();
+            else
+                kaf.prune = false;
             end
             kaf.alpha = kaf.Kinv*kaf.dicty;
+        end
+        
+        function flops = flops(kaf) % flops in latest iteration
+            flops = 0;
+        end
+        
+        function bytes = bytes(kaf) % bytes in latest iteration
+            bytes = 0;
         end
     end
     
