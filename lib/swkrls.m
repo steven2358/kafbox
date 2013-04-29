@@ -63,12 +63,14 @@ classdef swkrls
             kaf.alpha = kaf.Kinv*kaf.dicty;
         end
         
-        function flops = flops(kaf) % flops in latest iteration
-            flops = 0;
+        function flops = flops(kaf) % flops for latest iteration
+            m = size(kaf.dict,1);
+            flops = kflops(struct('multiplications',2*m,'sums',4*m));
         end
         
-        function bytes = bytes(kaf) % bytes in latest iteration
-            bytes = 0;
+        function bytes = bytes(kaf) % bytes used
+            m = size(kaf.dict,1);
+            bytes = 8*m*(m+2+size(x,2)); % 8 bytes for double precision
         end
     end
     
