@@ -63,9 +63,19 @@ classdef swkrls
             kaf.alpha = kaf.Kinv*kaf.dicty;
         end
         
-        function flops = flops(kaf) % flops for latest iteration
+        function flops = flops(kaf) % flops for last iteration
             m = size(kaf.dict,1);
-            flops = kflops(struct('multiplications',2*m,'sums',4*m));
+            floptions = struct(...
+                'sum',2*m^2+2*m+2,...
+                'mult',3*m^2+2*m,...
+                'div',1,...
+                'kernel',[kaf.kerneltype,m,size(x,2)]);
+            if kaf.prune
+                floptions.sum = floptions.sum + m^2;
+                floptions.mult = floptions.mult + m^2 + m;
+                floptions.div = floptions.div + 1;
+            end
+            flops = kflops(floptions);
         end
         
         function bytes = bytes(kaf) % bytes used
