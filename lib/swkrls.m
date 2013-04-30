@@ -33,7 +33,7 @@ classdef swkrls
             end
         end
         
-        function y_est = evaluate(kaf,x) % evaluate method
+        function y_est = evaluate(kaf,x) % evaluate the algorithm
             if size(kaf.dict,1)>0
                 k = kernel(kaf.dict,x,kaf.kerneltype,kaf.kernelpar);
                 y_est = k'*kaf.alpha;
@@ -42,7 +42,7 @@ classdef swkrls
             end
         end
         
-        function kaf = train(kaf,x,y) % train method
+        function kaf = train(kaf,x,y) % train the algorithm
             kaf.dict = [kaf.dict; x]; % expand dictionary with row vector
             kaf.dicty = [kaf.dicty; y];	% store subset labels
             
@@ -52,7 +52,7 @@ classdef swkrls
             knn = k(end) + kaf.c;
             kaf = kaf.inverse_addrowcol(kn,knn); % extend kernel matrix
             
-            if (m>kaf.M) % prune dictionary
+            if (m > kaf.M) % prune dictionary
                 kaf.prune = true;
                 kaf.dict(1,:) = [];
                 kaf.dicty(1) = [];
