@@ -25,5 +25,4 @@ classdef swkrls_profiler < swkrls
         end
         
     end
-    
 end
