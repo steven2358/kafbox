@@ -44,26 +44,21 @@ classdef swkrls
         
         function kaf = train(kaf,x,y) % train the algorithm
             kaf.dict = [kaf.dict; x]; % expand dictionary with row vector
-            kaf.dicty = [kaf.dicty; y];	% store subset labels
+            kaf.dicty = [kaf.dicty; y];	% expand stored labels
+            kaf = kaf.grow_kernel_matrix(x); % expand inverse kernel matrix
             
-            k = kernel(kaf.dict,x,kaf.kerneltype,kaf.kernelpar);
-            m = size(kaf.dict,1);
-            kn = k(1:m-1);
-            knn = k(end) + kaf.c;
-            kaf = kaf.inverse_addrowcol(kn,knn); % extend kernel matrix
-            
-            if (m > kaf.M) % prune dictionary
+            kaf.prune = false;
+            if (m > kaf.M)
                 kaf.prune = true;
                 kaf.dict(1,:) = [];
                 kaf.dicty(1) = [];
-                kaf = kaf.inverse_removerowcol();
-            else
-                kaf.prune = false;
+                kaf = kaf.prune_kernel_matrix();
             end
+            
             kaf.alpha = kaf.Kinv*kaf.dicty;
         end
         
-        function flops = getflops(kaf) % flops for last iteration
+        function flops = lastflops(kaf) % flops for last iteration
             m = size(kaf.dict,1);
             if ~kaf.prune, m = m-1; end
             floptions = struct(...
@@ -74,7 +69,7 @@ classdef swkrls
             flops = kflops(floptions);
         end
         
-        function bytes = getbytes(kaf) % bytes used
+        function bytes = lastbytes(kaf) % bytes used in last iteration
             m = size(kaf.dict,1);
             bytes = 8*m*(m+2+size(x,2)); % 8 bytes for double precision
         end
@@ -82,8 +77,11 @@ classdef swkrls
     
     methods (Access = 'private')
         
-        function kaf = inverse_addrowcol(kaf,b,d)
-            % inverse of K = [K_inv b;b' d]
+        function kaf = grow_kernel_matrix(kaf,x)
+            % calculate inverse of expanded matrix K = [K_inv b;b' d]
+            k = kernel(kaf.dict,x,kaf.kerneltype,kaf.kernelpar);
+            b = k(1:end-1);
+            d = k(end) + kaf.c; % add regularization
             if numel(b)>1
                 g_inv = d - b'*kaf.Kinv*b;
                 g = 1/g_inv;
@@ -95,8 +93,8 @@ classdef swkrls
             end
         end
         
-        function kaf = inverse_removerowcol(kaf)
-            % inverse of D with K = [a b';b D]
+        function kaf = prune_kernel_matrix(kaf)
+            % calculate inverse of pruned kernel matrix Kp, K = [a b';b Kp]
             m = size(kaf.Kinv,1);
             G = kaf.Kinv(2:m,2:m);
             f = kaf.Kinv(2:m,1);
