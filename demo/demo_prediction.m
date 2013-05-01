@@ -6,12 +6,15 @@
 clear all;
 
 %% PARAMETERS
+% Instructions: 1. Uncomment one datafile and one algorithm 2. Execute.
 
 datafile = 'lorenz.dat'; L = 6; N = 10000; horizon = 1;
 kaf = swkrls(struct('c',1E-6,'M',100,'kerneltype','gauss','kernelpar',32));
+% kaf = fbkrls(struct('lambda',1E-6,'M',100,'kerneltype','gauss','kernelpar',32));
 
 % datafile = 'mg30.dat'; L = 11; N = 5000; horizon = 1;
 % kaf = swkrls(struct('c',1E-6,'M',200,'kerneltype','gauss','kernelpar',0.6));
+% kaf = fbkrls(struct('lambda',1E-6,'M',200,'kerneltype','gauss','kernelpar',0.6));
 
 %% PROGRAM
 tic

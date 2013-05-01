@@ -1,15 +1,16 @@
-% Sliding-Window Kernel Recursive Least Squares algorithm
+% Fixed-Budget Kernel Recursive Least Squares algorithm
 % Author: Steven Van Vaerenbergh, 2013
-% Reference: http://dx.doi.org/10.1109/ICASSP.2006.1661394
+% Reference: http://dx.doi.org/10.1109/ICASSP.2010.5495350
+% Comment: label update is not implemented (mu=0)
 %
 % This file is part of the Kernel Adaptive Filtering Toolbox for Matlab.
 % http://sourceforge.net/projects/kafbox/
 
-classdef swkrls
+classdef fbkrls
     
     properties (GetAccess = 'public', SetAccess = 'private')
         M = 100; % memory size
-        c = 1E-4; % regularization parameter
+        lambda = 1E-4; % regularization parameter
         kerneltype = 'gauss'; % kernel type
         kernelpar = 1; % kernel parameter
     end
@@ -24,10 +25,10 @@ classdef swkrls
     
     methods
         
-        function kaf = swkrls(parameters) % constructor
+        function kaf = fbkrls(parameters) % constructor
             if(nargin > 0)
                 kaf.M = parameters.M;
-                kaf.c = parameters.c;
+                kaf.lambda = parameters.lambda;
                 kaf.kerneltype = parameters.kerneltype;
                 kaf.kernelpar = parameters.kernelpar;
             end
@@ -47,12 +48,16 @@ classdef swkrls
             kaf.dicty = [kaf.dicty; y];	% expand stored labels
             kaf = kaf.grow_kernel_matrix(x); % expand inverse kernel matrix
             
+            kaf.alpha = kaf.Kinv*kaf.dicty;
             kaf.prune = false;
             if (size(kaf.dict,1) > kaf.M)
                 kaf.prune = true;
-                kaf.dict(1,:) = [];
-                kaf.dicty(1) = [];
-                kaf = kaf.prune_kernel_matrix();
+                err_ap = abs(kaf.alpha)./diag(kaf.Kinv); % a posteriori
+                [~,ind] = min(err_ap);
+                
+                kaf.dict(ind,:) = [];
+                kaf.dicty(ind) = [];
+                kaf = kaf.prune_kernel_matrix(ind);
             end
             
             kaf.alpha = kaf.Kinv*kaf.dicty;
@@ -66,7 +71,7 @@ classdef swkrls
             % calculate inverse of expanded matrix K = [K_inv b;b' d]
             k = kernel(kaf.dict,x,kaf.kerneltype,kaf.kernelpar);
             b = k(1:end-1);
-            d = k(end) + kaf.c; % add regularization
+            d = k(end) + kaf.lambda; % add regularization
             if numel(b)>1
                 g_inv = d - b'*kaf.Kinv*b;
                 g = 1/g_inv;
@@ -78,14 +83,15 @@ classdef swkrls
             end
         end
         
-        function kaf = prune_kernel_matrix(kaf)
-            % calculate inverse of pruned kernel matrix Kp, K = [a b';b Kp]
+        function kaf = prune_kernel_matrix(kaf,ind)
+            % calculate inverse of pruned kernel matrix
             m = size(kaf.Kinv,1);
-            G = kaf.Kinv(2:m,2:m);
-            f = kaf.Kinv(2:m,1);
-            e = kaf.Kinv(1,1);
+            noind = 1:m;
+            noind(ind) = [];
+            G = kaf.Kinv(noind,noind);
+            f = kaf.Kinv(noind,ind);
+            e = kaf.Kinv(ind,ind);
             kaf.Kinv = G - f*f'/e;
         end
-        
     end
 end

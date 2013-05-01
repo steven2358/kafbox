@@ -1,10 +1,10 @@
-% Profiler extension for Sliding-Window Kernel Recursive Least Squares
+% Profiler extension for Fixed-Budget Kernel Recursive Least Squares
 % Author: Steven Van Vaerenbergh, 2013
 %
 % This file is part of the Kernel Adaptive Filtering Toolbox for Matlab.
 % http://sourceforge.net/projects/kafbox/
 
-classdef swkrls_profiler < swkrls
+classdef fbkrls_profiler < fbkrls
     
     methods
         
@@ -12,9 +12,9 @@ classdef swkrls_profiler < swkrls
             m = size(kaf.dict,1);
             if ~kaf.prune, m = m-1; end
             floptions = struct(...
-                'sum',3*m^2-m+1 + kaf.prune*(m^2),...
-                'mult',3*m^2+m+1 + kaf.prune*(m^2+m),...
-                'div',1 + kaf.prune*(1),...
+                'sum',4*m^2+2 + kaf.prune*(m^2),...
+                'mult',4*m^2+3*m+2 + kaf.prune*(m^2+m),...
+                'div',1 + kaf.prune*(m+2),...
                 'kernel',[kaf.kerneltype,m+1,size(kaf.dict,2)]);
             flops = kflops(floptions);
         end
@@ -25,5 +25,4 @@ classdef swkrls_profiler < swkrls
         end
         
     end
-    
 end
