@@ -49,7 +49,7 @@ classdef swkrls
             k = kernel(kaf.dict,x,kaf.kerneltype,kaf.kernelpar);
             m = size(kaf.dict,1);
             kn = k(1:m-1);
-            knn = k(end) + kaf.c;                                 % fl{s:1}
+            knn = k(end) + kaf.c;
             kaf = kaf.inverse_addrowcol(kn,knn); % extend kernel matrix
             
             if (m > kaf.M) % prune dictionary
@@ -60,15 +60,15 @@ classdef swkrls
             else
                 kaf.prune = false;
             end
-            kaf.alpha = kaf.Kinv*kaf.dicty;              %fl{s:n^2-n,m:n^2}
+            kaf.alpha = kaf.Kinv*kaf.dicty;
         end
         
         function flops = getflops(kaf) % flops for last iteration
-            m = size(kaf.dict,1); % final dictionary size
-            n = m - 1;
+            m = size(kaf.dict,1);
+            if ~kaf.prune, m = m-1; end
             floptions = struct(...
-                'sum',3*m^2-2*m+2 + kaf.prune*(n^2),...
-                'mult',3*m^2+2*m + kaf.prune*(n^2+n),...
+                'sum',3*m^2-m+1 + kaf.prune*(m^2),...
+                'mult',3*m^2+m+1 + kaf.prune*(m^2+m),...
                 'div',1 + kaf.prune*(1),...
                 'kernel',[kaf.kerneltype,m,size(x,2)]);
             flops = kflops(floptions);
@@ -85,10 +85,10 @@ classdef swkrls
         function kaf = inverse_addrowcol(kaf,b,d)
             % inverse of K = [K_inv b;b' d]
             if numel(b)>1
-                g_inv = d - b'*kaf.Kinv*b;     %fl{s:n^2-n+1,n:2*n^2},m=n-1
-                g = 1/g_inv;                                       %fl{d:1}
-                f = -kaf.Kinv*b*g;                     %fl{s:n^2-n,n:n^2+1}
-                E = kaf.Kinv - kaf.Kinv*b*f';              %fl{s:n^2,n:n^2}
+                g_inv = d - b'*kaf.Kinv*b;
+                g = 1/g_inv;
+                f = -kaf.Kinv*b*g;
+                E = kaf.Kinv - kaf.Kinv*b*f';
                 kaf.Kinv = [E f;f' g];
             else
                 kaf.Kinv = 1/d;
@@ -101,7 +101,7 @@ classdef swkrls
             G = kaf.Kinv(2:m,2:m);
             f = kaf.Kinv(2:m,1);
             e = kaf.Kinv(1,1);
-            kaf.Kinv = G - f*f'/e;             %fl{s:n^2,n:n^2+n,d:1},n=m-1
+            kaf.Kinv = G - f*f'/e;
         end
     end
 end
