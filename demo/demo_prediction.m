@@ -3,14 +3,17 @@
 %
 % This file is part of the Kernel Adaptive Filtering Toolbox for Matlab.
 % http://sourceforge.net/projects/kafbox/
+
+close all;
 clear all;
 
 %% PARAMETERS
 % Instructions: 1. Uncomment one datafile and one algorithm 2. Execute.
 
 datafile = 'lorenz.dat'; L = 6; N = 10000; horizon = 1;
-kaf = swkrls(struct('c',1E-6,'M',100,'kerneltype','gauss','kernelpar',32));
-% kaf = fbkrls(struct('lambda',1E-6,'M',100,'kerneltype','gauss','kernelpar',32));
+% kaf = aldkrls(struct('nu',1E-4,'M',Inf,'kerneltype','gauss','kernelpar',32));
+% kaf = swkrls(struct('c',1E-6,'M',100,'kerneltype','gauss','kernelpar',32));
+kaf = fbkrls(struct('lambda',1E-6,'M',100,'kerneltype','gauss','kernelpar',32));
 
 % datafile = 'mg30.dat'; L = 11; N = 5000; horizon = 1;
 % kaf = swkrls(struct('c',1E-6,'M',200,'kerneltype','gauss','kernelpar',0.6));

@@ -68,7 +68,7 @@ classdef swkrls_profiler < swkrls
         
         function bytes = lastbytes(kaf) % bytes used in last iteration
             m = size(kaf.dict,1);
-            bytes = 8*m*(m+2+size(kaf.dict,2)); % 8 bytes (double precision)
+            bytes = 8*m*(m + 2 + size(kaf.dict,2)); % 8 bytes for double precision
         end
         
     end

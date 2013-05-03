@@ -9,7 +9,7 @@
 classdef fbkrls
     
     properties (GetAccess = 'public', SetAccess = 'private')
-        M = 100; % memory size
+        M = 100; % dictionary size
         lambda = 1E-4; % regularization parameter
         kerneltype = 'gauss'; % kernel type
         kernelpar = 1; % kernel parameter
@@ -26,7 +26,7 @@ classdef fbkrls
     methods
         
         function kaf = fbkrls(parameters) % constructor
-            if(nargin > 0)
+            if (nargin > 0)
                 kaf.M = parameters.M;
                 kaf.lambda = parameters.lambda;
                 kaf.kerneltype = parameters.kerneltype;
