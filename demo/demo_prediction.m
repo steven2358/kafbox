@@ -8,7 +8,7 @@ close all;
 clear all;
 
 %% PARAMETERS
-% Instructions: 1. Uncomment one datafile and one algorithm 2. Execute.
+% Instructions: 1. Uncomment one datafile and one algorithm; 2. Execute.
 
 datafile = 'lorenz.dat'; L = 6; N = 10000; horizon = 1;
 kaf = aldkrls(struct('nu',1E-4,'M',Inf,'kerneltype','gauss','kernelpar',32));

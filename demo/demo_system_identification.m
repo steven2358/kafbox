@@ -8,7 +8,7 @@ close all;
 clear all;
 
 %% PARAMETERS
-% Instructions: 1. Uncomment one datafile and one algorithm 2. Execute.
+% Instructions: 1. Uncomment one datafile and one algorithm; 2. Execute.
 
 datafile = 'mimotestbed8K.dat'; L = 4; N = 8000;
 kaf = swkrls(struct('c',0.015,'M',70,'kerneltype','gauss','kernelpar',3.1));
