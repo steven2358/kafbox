@@ -20,7 +20,7 @@ classdef fbkrls
         dicty = []; % output dictionary
         alpha = []; % expansion coefficients
         Kinv = []; % inverse kernel matrix
-        prune = false; %
+        prune = false; % flag
     end
     
     methods

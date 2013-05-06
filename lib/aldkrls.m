@@ -21,7 +21,7 @@ classdef aldkrls
         alpha = []; % expansion coefficients
         P = []; % inverse A'*A
         Kinv = []; % inverse kernel matrix
-        grow = false; %
+        grow = false; % flag
     end
     
     methods
