@@ -44,20 +44,20 @@ classdef fbkrls
         end
         
         function kaf = train(kaf,x,y) % train the algorithm
-            kaf.dict = [kaf.dict; x]; % expand dictionary with row vector
-            kaf.dicty = [kaf.dicty; y];	% expand stored labels
-            kaf = kaf.grow_kernel_matrix(x); % expand inverse kernel matrix
+            kaf.dict = [kaf.dict; x]; % grow
+            kaf.dicty = [kaf.dicty; y];	% grow
+            kaf = kaf.grow_kernel_matrix(x); % grow
             
             kaf.alpha = kaf.Kinv*kaf.dicty;
             kaf.prune = false;
             if (size(kaf.dict,1) > kaf.M)
                 kaf.prune = true;
-                err_ap = abs(kaf.alpha)./diag(kaf.Kinv); % a posteriori
-                [~,ind] = min(err_ap);
+                ape = abs(kaf.alpha)./diag(kaf.Kinv); % a posteriori error
+                [~,ind] = min(ape);
                 
-                kaf.dict(ind,:) = [];
-                kaf.dicty(ind) = [];
-                kaf = kaf.prune_kernel_matrix(ind);
+                kaf.dict(ind,:) = []; % prune
+                kaf.dicty(ind) = []; % prune
+                kaf = kaf.prune_kernel_matrix(ind); % prune
             end
             
             kaf.alpha = kaf.Kinv*kaf.dicty;

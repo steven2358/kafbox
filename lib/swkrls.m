@@ -43,16 +43,16 @@ classdef swkrls
         end
         
         function kaf = train(kaf,x,y) % train the algorithm
-            kaf.dict = [kaf.dict; x]; % expand dictionary with row vector
-            kaf.dicty = [kaf.dicty; y];	% expand stored labels
-            kaf = kaf.grow_kernel_matrix(x); % expand inverse kernel matrix
+            kaf.dict = [kaf.dict; x]; % grow
+            kaf.dicty = [kaf.dicty; y];	% grow
+            kaf = kaf.grow_kernel_matrix(x); % grow
             
             kaf.prune = false;
             if (size(kaf.dict,1) > kaf.M)
                 kaf.prune = true;
-                kaf.dict(1,:) = [];
-                kaf.dicty(1) = [];
-                kaf = kaf.prune_kernel_matrix();
+                kaf.dict(1,:) = []; % prune
+                kaf.dicty(1) = []; % prune
+                kaf = kaf.prune_kernel_matrix(); % prune
             end
             
             kaf.alpha = kaf.Kinv*kaf.dicty;

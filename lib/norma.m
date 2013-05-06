@@ -20,7 +20,7 @@ classdef norma
         mem = []; % memory
         alpha = []; % expansion coefficients
         beta = []; % forgetting coefficients
-        prune = false; %
+        prune = false; % flag
     end
     
     methods

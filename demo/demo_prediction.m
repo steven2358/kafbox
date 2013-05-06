@@ -1,4 +1,4 @@
-% Run a kernel adaptive filtering algorithm for time series prediction.
+% Time-series prediction with a kernel adaptive filtering algorithm.
 % Author: Steven Van Vaerenbergh, 2013
 %
 % This file is part of the Kernel Adaptive Filtering Toolbox for Matlab.
