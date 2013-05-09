@@ -2,7 +2,7 @@
 % Dependency
 % Author: Steven Van Vaerenbergh, 2013
 % Reference: http://dx.doi.org/10.1109/TSP.2004.830985
-% Comment: includes a maximum dictionary size M
+% Comment: implementation includes a maximum dictionary size M
 %
 % This file is part of the Kernel Adaptive Filtering Toolbox for Matlab.
 % http://sourceforge.net/projects/kafbox/
