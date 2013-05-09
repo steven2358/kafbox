@@ -8,7 +8,7 @@ close all;
 clear all;
 
 %% PARAMETERS
-% Instructions: 1. Uncomment one datafile and one algorithm; 2. Execute.
+% Instructions: 1. Uncomment one datafile and one kaf algorithm; 2. Execute.
 
 datafile = 'lorenz.dat'; L = 6; N = 10000; horizon = 1;
 % kaf = fbkrls(struct('lambda',1E-6,'M',100,'kerneltype','gauss','kernelpar',32)); % achieves -54.71dB
@@ -16,6 +16,7 @@ datafile = 'lorenz.dat'; L = 6; N = 10000; horizon = 1;
 kaf = aldkrls(struct('nu',1E-4,'kerneltype','gauss','kernelpar',32)); % achieves -40.17dB
 % kaf = swkrls(struct('c',1E-6,'M',100,'kerneltype','gauss','kernelpar',32)); % achieves -37.85dB
 % kaf = klms(struct('mu',0.1,'M',5000,'kerneltype','gauss','kernelpar',32)); % achieves -3.07dB
+% kaf = knlmscc(struct('mu0',0.9,'eta',0.5,'eps',1E-6,'kerneltype','gauss','kernelpar',32)); % achieves -1.17dB
 % kaf = norma(struct('lambda',1E-4,'tau',500,'mu',0.1,'kerneltype','gauss','kernelpar',32)); % achieves 10.96dB
 
 % datafile = 'mg30.dat'; L = 11; N = 5000; horizon = 1;
