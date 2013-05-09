@@ -18,7 +18,7 @@ Directories included in the toolbox
 
 `demo/` - demos and test files
 
-`lib/` - algorithm libraries and helper functions
+`lib/` - algorithm libraries and utilities
 
 Setup
 -----
