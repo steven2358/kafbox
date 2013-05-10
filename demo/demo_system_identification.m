@@ -40,6 +40,8 @@ toc
 fprintf('MSE after first 1000: %.2fdB\n\n',10*log10(mean(SE(1001:end))));
 
 figure; plot(10*log10(SE)); xlabel('samples'); ylabel('squared error (dB)');
+title(sprintf('%s on %s',upper(class(kaf)),datafile));
 
 figure; hold all; plot(Y); plot(Y_est);
-legend('original','estimation'); title(datafile);
+legend('original','prediction');
+title(sprintf('%s on %s',upper(class(kaf)),datafile));

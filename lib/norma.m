@@ -11,7 +11,7 @@ classdef norma
     properties (GetAccess = 'public', SetAccess = 'private')
         tau = 200; % memory size (terms retained in truncation)
         lambda = 1E-4; % regularization parameter
-        mu = 0.5; % learning rate
+        eta = .5; % learning rate
         kerneltype = 'gauss'; % kernel type
         kernelpar = 1; % kernel parameter
     end
@@ -29,11 +29,11 @@ classdef norma
             if (nargin > 0)
                 kaf.tau = parameters.tau;
                 kaf.lambda = parameters.lambda;
-                kaf.mu = parameters.mu;
+                kaf.eta = parameters.eta;
                 kaf.kerneltype = parameters.kerneltype;
                 kaf.kernelpar = parameters.kernelpar;
             end
-            kaf.beta = (1-kaf.mu*kaf.lambda).^(0:kaf.tau-1)';
+            kaf.beta = (1-kaf.eta*kaf.lambda).^(0:kaf.tau-1)';
         end
         
         function y_est = evaluate(kaf,x) % evaluate the algorithm
@@ -49,7 +49,7 @@ classdef norma
             y_est = kaf.evaluate(x);
             err = y - y_est;
             
-            kaf.alpha = [kaf.alpha; kaf.mu*err]; % grow
+            kaf.alpha = [kaf.alpha; kaf.eta*err]; % grow
             kaf.mem = [kaf.mem; x]; % grow
             kaf.prune = false;
             if length(kaf.alpha)>kaf.tau

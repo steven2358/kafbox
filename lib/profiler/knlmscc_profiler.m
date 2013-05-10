@@ -13,16 +13,16 @@ classdef knlmscc_profiler < klms
             m = size(kaf.dict,1);
             if kaf.grow
                 m1 = m - 1;
-                m2 = 1;
+                n2 = 1;
             else
                 m1 = m;
-                m2 = 0;
+                n2 = 0;
             end
             m3 = m;
             floptions = struct(...
                 'sum', 3*m3, ...
                 'mult', 3*m3 + 1, ...
-                'kernel', [kaf.kerneltype, m1+m2, size(kaf.dict,2)]);
+                'kernel', [kaf.kerneltype, m1+n2, size(kaf.dict,2)]);
             
             flops = kflops(floptions);
         end
@@ -33,7 +33,7 @@ classdef knlmscc_profiler < klms
         % kernel: m1
         
         % h = kernel(x,kaf.dict,kaf.kerneltype,kaf.kernelpar);
-        % kernel: m2 % 1 element when growing, 0 when not
+        % kernel: n2 % 1 element when growing, 0 when not
         
         % kaf.alpha = kaf.alpha + kaf.eta / (kaf.eps + h*h') * (y - h*kaf.alpha) * h';
         % sum: 3*m3

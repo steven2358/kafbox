@@ -1,31 +1,31 @@
-% Kernel Least-Mean-Square algorithm
+% Quantized Kernel Least Mean Square algorithm
 % Author: Steven Van Vaerenbergh, 2013
-% Reference: http://dx.doi.org/10.1109/TSP.2007.907881
-% Comment: implementation includes a maximum dictionary size M
+% Reference: http://dx.doi.org/10.1109/TNNLS.2011.2178446
 %
 % This file is part of the Kernel Adaptive Filtering Toolbox for Matlab.
 % http://sourceforge.net/projects/kafbox/
 
-classdef klms
+classdef qklms
     
     properties (GetAccess = 'public', SetAccess = 'private')
         eta = .5; % learning rate
-        M = 1000; % maximum dictionary size
+        epsu = 1;
         kerneltype = 'gauss'; % kernel type
         kernelpar = 1; % kernel parameter
     end
     
     properties (GetAccess = 'public', SetAccess = 'private')
-        mem = []; % memory
+        mem = []; % codebook
         alpha = []; % expansion coefficients
+        grow = false; % flag
     end
     
     methods
         
-        function kaf = klms(parameters) % constructor
+        function kaf = qklms(parameters) % constructor
             if (nargin > 0)
                 kaf.eta = parameters.eta;
-                kaf.M = parameters.M;
+                kaf.epsu = parameters.epsu;
                 kaf.kerneltype = parameters.kerneltype;
                 kaf.kernelpar = parameters.kernelpar;
             end
@@ -43,10 +43,20 @@ classdef klms
         function kaf = train(kaf,x,y) % train the algorithm
             y_est = kaf.evaluate(x);
             err = y - y_est;
-            
-            if (size(kaf.mem,1)<kaf.M),
-                kaf.alpha = [kaf.alpha; kaf.eta*err]; % grow
-                kaf.mem = [kaf.mem; x]; % grow
+          
+            m = size(kaf.mem,1);
+            if m==0
+                d2 = kaf.epsu^2 + 1;
+            else
+                [d2,j] = min(sum((kaf.mem - repmat(x,m,1)).^2,2));
+            end
+            if d2 <= kaf.epsu^2, 
+                kaf.grow = false;
+                kaf.alpha(j) = kaf.alpha(j) + kaf.eta*err;
+            else
+                kaf.grow = true;
+                kaf.mem = [kaf.mem; x]; % add to codebook
+                kaf.alpha = [kaf.alpha; kaf.eta*err];
             end
         end
         

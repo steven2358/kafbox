@@ -8,8 +8,8 @@ The Kernel Adaptive Filtering Toolbox contains implementations of kernel adaptiv
 Author: Steven Van Vaerenbergh  
 Contact: steven at gtas dot dicom dot unican dot es  
 Contributors: Miguel Lazaro-Gredilla, Sohan Seth  
-Project web: https://github.com/steven2358/kafbox  
-Major versions are also released on https://sourceforge.net/projects/kafbox  
+Development web: https://github.com/steven2358/kafbox  
+Major versions are released on https://sourceforge.net/projects/kafbox  
 
 Directories included in the toolbox
 -----------------------------------

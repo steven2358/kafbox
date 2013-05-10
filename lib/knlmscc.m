@@ -10,7 +10,7 @@ classdef knlmscc
     
     properties (GetAccess = 'public', SetAccess = 'private')
         mu0 = 1; % coherence criterion threshold
-        eta = 0.1; % step size
+        eta = .1; % step size
         eps = 1E-4; % regularization
         kerneltype = 'gauss'; % kernel type
         kernelpar = 1; % kernel parameter
