@@ -9,14 +9,17 @@ classdef klms_profiler < klms
     methods
         
         function flops = lastflops(kaf) % flops for last iteration
-            m = size(kaf.dict,1);
-            m1 = m - 1; % only valid when growing, otherwise small error of 1 flop in summation only
-            floptions = struct(...
-                'sum', m1 - 1, ...
-                'mult', m1 + 1, ...
-                'kernel', [kaf.kerneltype,m1,size(kaf.dict,2)]);
-            
-            flops = kflops(floptions);
+            if kaf.grow
+                m = size(kaf.dict,1);
+                m1 = m - 1;
+                floptions = struct(...
+                    'sum', m1 - 1, ...
+                    'mult', m1 + 1, ...
+                    'kernel', [kaf.kerneltype,m1,size(kaf.dict,2)]);
+                flops = kflops(floptions);
+            else
+                flops = 0;
+            end
         end
         
         %% flops breakdown

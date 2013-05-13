@@ -3,7 +3,7 @@
 
 A Matlab benchmarking toolbox for kernel adaptive filtering.
 
-The Kernel Adaptive Filtering Toolbox contains implementations of kernel adaptive filtering algorithms and tools to compare their performance.
+The Kernel Adaptive Filtering Toolbox contains implementations of many kernel adaptive filtering algorithms and tools to compare their performance.
 
 Author: Steven Van Vaerenbergh  
 Contact: steven at gtas dot dicom dot unican dot es  
@@ -24,6 +24,11 @@ Setup
 -----
 
 Run install.m
+
+Octave / Matlab pre-2008a
+-------------------------
+This toolbox uses the `classdef` command which is not supported in Matlab pre-2008a and not yet in Octave. The older 0.x versions of this toolbox do not use `classdef` and can be used with all versions of Matlab and Octave. http://sourceforge.net/projects/kafbox/files/
+
 
 Included algorithms
 -------------------
