@@ -27,7 +27,7 @@ Run install.m
 
 Octave / Matlab pre-2008a
 -------------------------
-This toolbox uses the `classdef` command which is not supported in Matlab pre-2008a and not yet in Octave. The older 0.x versions of this toolbox do not use `classdef` and can be used with all versions of Matlab and Octave. http://sourceforge.net/projects/kafbox/files/
+This toolbox uses the `classdef` command which is not supported in Matlab pre-2008a and not yet in Octave. The older 0.x versions of this toolbox do not use `classdef` and can therefore be used with all versions of Matlab and Octave. http://sourceforge.net/projects/kafbox/files/
 
 
 Included algorithms
