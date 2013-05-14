@@ -1,4 +1,4 @@
-% Fixed-Budget Kernel Recursive Least-Squares Tracker algorithm
+% Kernel Recursive Least-Squares Tracker algorithm
 % Authors: Miguel Lazaro-Gredilla and Steven Van Vaerenbergh, 2013
 % Reference: http://dx.doi.org/10.1109/TNNLS.2012.2200500
 % Comment: using back-to-the-prior forgetting
@@ -26,6 +26,7 @@ classdef krlst
         dens02ML = 0;
         s02 = 0; % signal power, adaptively estimated
         prune = false; % flag
+        reduced = false; % flag
     end
     
     methods
@@ -106,30 +107,34 @@ classdef krlst
                 kaf.dens02ML = kaf.dens02ML + kaf.lambda;
                 kaf.s02 = kaf.nums02ML/kaf.dens02ML;
                 
+                kaf.prune = false;
                 % delete a basis if necessary
-                if m>kaf.M  || gamma2<kaf.jitter
+                if (m>kaf.M  || gamma2<kaf.jitter)
                     if gamma2<kaf.jitter, % to avoid roundoff error
                         if gamma2<kaf.jitter/10
                             warning('Numerical roundoff error too high, you should increase jitter noise') %#ok<WNTAG>
                         end
                         criterion = [ones(1,m-1) 0];
-                    else    % MSE pruning criterion
+                    else % MSE pruning criterion
                         errors = (kaf.Q*kaf.mu)./diag(kaf.Q);
                         criterion = abs(errors);
                     end
-                    [~, r] = min(criterion); % Remove element r, which incurs in the minimum error
+                    [~, r] = min(criterion); % remove element r, which incurs in the minimum error
                     smaller = 1:m; smaller(r) = [];
                     
                     if r == m, % if we must remove the element we just added, perform reduced update instead
                         kaf.Q = Qold;
+                        kaf.reduced = true;
                     else
                         Qs = kaf.Q(smaller, r);
                         qs = kaf.Q(r,r); kaf.Q = kaf.Q(smaller, smaller);
                         kaf.Q = kaf.Q - (Qs*Qs')/qs;
+                        kaf.reduced = false;
                     end
                     kaf.mu = kaf.mu(smaller);
                     kaf.Sigma = kaf.Sigma(smaller, smaller);
                     kaf.dict = kaf.dict(smaller,:);
+                    kaf.prune = true;
                 end
             end
         end
