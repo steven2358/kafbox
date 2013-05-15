@@ -29,11 +29,29 @@ Octave / Matlab pre-2008a
 -------------------------
 This toolbox uses the `classdef` command which is not supported in Matlab pre-2008a and not yet in Octave. The older 0.x versions of this toolbox do not use `classdef` and can therefore be used with all versions of Matlab and Octave. http://sourceforge.net/projects/kafbox/files/
 
+Usage
+-----
+Each kernel adaptive filtering algorithm is implemented as a Matlab class. To use one, first define its options:
+```matlab
+options = struct('nu',1E-4,'kerneltype','gauss','kernelpar',32);
+```
+Next, create an instance of the filter:
+```matlab
+kaf = aldkrls(options);
+```
+Training is done by feeding one input-output data pair to the filter:
+```matlab
+kaf = kaf.train(x,y);
+```
+The outputs for one or more test inputs are evaluated as follows:
+```matlab
+y_test = kaf.evaluate(x_test);
+```
+
 Example: time-series prediction
 -------------------------------
-Usage demo from `demos/demo_prediction.m`
+Usage demo from `demo/demo_prediction.m`
 ```matlab
-
 %% PARAMETERS
 datafile = 'lorenz.dat'; % Lorenz attractor time-series data
 L = 6; % length of time-embedding
@@ -65,7 +83,6 @@ SE = (Y-Y_est).^2; % test error
 
 %% OUTPUT
 fprintf('MSE after first 1000 samples: %.2fdB\n\n',10*log10(mean(SE(1001:end))));
-
 ```
 Result:
 
