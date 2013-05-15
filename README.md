@@ -45,12 +45,12 @@ kaf = kaf.train(x,y);
 ```
 The outputs for one or more test inputs are evaluated as follows:
 ```matlab
-y_test = kaf.evaluate(x_test);
+Y_test = kaf.evaluate(X_test);
 ```
 
 Example: time-series prediction
 -------------------------------
-Usage demo from `demo/demo_prediction.m`
+Code from `demo/demo_prediction.m`
 ```matlab
 %% PARAMETERS
 datafile = 'lorenz.dat'; % Lorenz attractor time-series data
