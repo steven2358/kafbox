@@ -68,6 +68,7 @@ fprintf('MSE after first 1000 samples: %.2fdB\n\n',10*log10(mean(SE(1001:end))))
 
 ```
 Result:
+
     MSE after first 1000 samples: -40.17dB
 
 Included algorithms
