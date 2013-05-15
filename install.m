@@ -1,4 +1,4 @@
-% KAFBOX installation file. Adds local folders to path.
+% Installation file. Adds local folders to path.
 
 disp('Adding KAFBOX folders to Matlab path...')
 
@@ -8,5 +8,4 @@ addpath(genpath([pwd '/lib']));
 addpath(genpath([pwd '/lib/util']));
 
 disp('Saving Matlab path...')
-
 savepath;

@@ -45,7 +45,7 @@ classdef aldkrls
             k = kernel([kaf.dict; x],x,kaf.kerneltype,kaf.kernelpar);
             kt = k(1:end-1);
             ktt = k(end);
-            if numel(kt)==0 % initialize
+            if numel(kt)==0, % initialize
                 kaf.Kinv = 1/ktt;
                 kaf.alpha = y/ktt;
                 kaf.P = 1;
