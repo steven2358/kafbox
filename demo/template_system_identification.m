@@ -10,16 +10,18 @@ clear all;
 %% PARAMETERS
 % Instructions: 1. Uncomment one datafile and one algorithm; 2. Execute.
 
-datafile = 'mimotestbed8K.dat'; L = 4; N = 8000;
-kaf = swkrls(struct('c',0.015,'M',70,'kerneltype','gauss','kernelpar',3.1));
-% kaf = norma(struct('lambda',1E-4,'tau',500,'mu',0.1,'kerneltype','gauss','kernelpar',3));
+datafile = 'mimotestbed8K.dat'; L = 4;
+% kaf = krlst(struct('lambda',.995,'M',100,'sn2',0.015,'kerneltype','gauss','kernelpar',3.1)); % achieves -10.41 dB
+kaf = swkrls(struct('c',0.015,'M',70,'kerneltype','gauss','kernelpar',3.1)); % achieves -9.13 dB
+% kaf = norma(struct('lambda',1E-4,'tau',500,'eta',0.4,'kerneltype','gauss','kernelpar',3.1)); % achieves -8.58 dB
 
 %% PROGRAM
 tic
 
 data = load(datafile); % input and output data are 2 columns
-x = data(1:N,1); X = zeros(N,L);
-for i = 1:L, X(i:N,i) = x(1:N-i+1); end % time-embedding
+N = size(data,1);
+X = zeros(N,L);
+for i = 1:L, X(i:N,i) = data(1:N-i+1); end % time-embedding
 Y = data(:,2); % desired output
 
 fprintf(1,'Running system identification algorithm')

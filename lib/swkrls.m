@@ -67,7 +67,7 @@ classdef swkrls
             k = kernel(kaf.dict,x,kaf.kerneltype,kaf.kernelpar);
             b = k(1:end-1);
             d = k(end) + kaf.c; % add regularization
-            if numel(b)>1
+            if numel(b)>0
                 g_inv = d - b'*kaf.Kinv*b;
                 g = 1/g_inv;
                 f = -kaf.Kinv*b*g;
