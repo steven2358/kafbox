@@ -1,7 +1,9 @@
 % Kernel Recursive Least Squares algorithm with Approximate Linear
 % Dependency criterion
-% Author: Steven Van Vaerenbergh, 2013
-% Reference: http://dx.doi.org/10.1109/TSP.2004.830985
+%
+% Y. Engel, S. Mannor, and R. Meir, "The kernel recursive least-squares
+% algorithm," IEEE Transactions on Signal Processing, vol. 52, no. 8, pp. 
+% 2275-2285, Aug. 2004, http://dx.doi.org/10.1109/TSP.2004.830985
 %
 % This file is part of the Kernel Adaptive Filtering Toolbox for Matlab.
 % http://sourceforge.net/projects/kafbox/

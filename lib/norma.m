@@ -1,6 +1,9 @@
 % Naive Online regularized Risk Minimization Algorithm
-% Author: Steven Van Vaerenbergh, 2013
-% Reference: http://dx.doi.org/10.1109/TSP.2004.830991
+%
+% J. Kivinen, A.J. Smola, and R.C. Williamson, "Online learning with
+% kernels," IEEE Transactions on Signal Processing, vol. 52, no. 8,
+% pp. 2165-2176, Aug. 2004, http://dx.doi.org/10.1109/TSP.2004.830991   
+%
 % Comment: using squared loss function
 %
 % This file is part of the Kernel Adaptive Filtering Toolbox for Matlab.

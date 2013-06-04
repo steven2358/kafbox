@@ -13,6 +13,7 @@ clear all;
 datafile = 'lorenz.dat'; L = 6; horizon = 1; % 10000 points
 % kaf = krlst(struct('lambda',1,'M',100,'sn2',1E-6,'kerneltype','gauss','kernelpar',32)); % achieves -65.07 dB
 % kaf = fbkrls(struct('lambda',1E-6,'M',100,'kerneltype','gauss','kernelpar',32)); % achieves -54.71 dB
+% kaf = rls(struct('lambda',.99,'c',1E-6)); % achieves -48.16 dB
 % kaf = kapcc(struct('mu0',0.995,'eta',0.95,'eps',1E-6,'p',8,'kerneltype','gauss','kernelpar',32)); % achieves -40.40 dB
 kaf = aldkrls(struct('nu',1E-4,'kerneltype','gauss','kernelpar',32)); % achieves -40.17 dB
 % kaf = swkrls(struct('c',1E-6,'M',100,'kerneltype','gauss','kernelpar',32)); % achieves -37.85dB
@@ -29,10 +30,11 @@ kaf = aldkrls(struct('nu',1E-4,'kerneltype','gauss','kernelpar',32)); % achieves
 % kaf = swkrls(struct('c',1E-6,'M',200,'kerneltype','gauss','kernelpar',.6)); % achieves -35.43 dB
 % kaf = norma(struct('lambda',1E-2,'tau',500,'eta',0.5,'kerneltype','gauss','kernelpar',.6)); % achieves -20.08 dB
 
-% datafile = 'santafe.dat'; L = 20; horizon = 1;
+% datafile = 'santafe.dat'; L = 20; horizon = 1; % Santa Fe chaotic laser time-series (data set A)
 % kaf = krlst(struct('lambda',1,'M',100,'sn2',1E-5,'kerneltype','gauss','kernelpar',100)); % achieves 15.83 dB
 % kaf = aldkrls(struct('nu',9E-1,'kerneltype','gauss','kernelpar',50)); % achieves 22.06 dB
 % kaf = fbkrls(struct('lambda',1E-5,'M',150,'kerneltype','gauss','kernelpar',50)); % achieves 23.68 dB
+% kaf = rls(struct('lambda',.999,'c',1E-4)); % achieves 26.33 dB
 % kaf = knlmscc(struct('mu0',.1,'eta',0.5,'eps',1E-6,'kerneltype','gauss','kernelpar',50)); % achieves 27.36 dB
 
 %% PROGRAM

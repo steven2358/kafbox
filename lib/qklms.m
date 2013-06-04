@@ -1,6 +1,9 @@
 % Quantized Kernel Least Mean Square algorithm
-% Author: Steven Van Vaerenbergh, 2013
-% Reference: http://dx.doi.org/10.1109/TNNLS.2011.2178446
+%
+% B. Chen, S. Zhao, P. Zhu, and J.C. Principe, "Quantized Kernel Least Mean
+% Square Algorithm," IEEE Transactions on Neural Networks and Learning
+% Systems, vol. 23, no. 1, pp. 22-32, Jan. 2012,
+% http://dx.doi.org/10.1109/TNNLS.2011.2178446
 %
 % This file is part of the Kernel Adaptive Filtering Toolbox for Matlab.
 % http://sourceforge.net/projects/kafbox/

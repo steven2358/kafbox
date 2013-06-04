@@ -1,6 +1,9 @@
 % Kernel Least-Mean-Square algorithm
-% Author: Steven Van Vaerenbergh, 2013
-% Reference: http://dx.doi.org/10.1109/TSP.2007.907881
+%
+% W. Liu, P.P. Pokharel, and J.C. Principe, "The Kernel Least-Mean-Square
+% Algorithm," IEEE Transactions on Signal Processing, vol. 56, no. 2, pp.
+% 543-554, Feb. 2008, http://dx.doi.org/10.1109/TSP.2007.907881
+%
 % Comment: implementation includes a maximum dictionary size M
 %
 % This file is part of the Kernel Adaptive Filtering Toolbox for Matlab.

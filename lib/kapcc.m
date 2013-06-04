@@ -1,6 +1,10 @@
 % Kernel Affine Projection algorithm with Coherence Criterion
-% Author: Steven Van Vaerenbergh, 2013
-% Reference: http://dx.doi.org/10.1109/TSP.2008.2009895
+%
+% C. Richard, J.C.M. Bermudez, and P. Honeine, "Online Prediction of Time
+% Series Data With Kernels," IEEE Transactions on Signal Processing,
+% vol. 57, no. 3, pp. 1058-1067, March 2009,
+% http://dx.doi.org/10.1109/TSP.2008.2009895 
+%
 % Comment: memories are initialized empty in this implementation
 %
 % This file is part of the Kernel Adaptive Filtering Toolbox for Matlab.

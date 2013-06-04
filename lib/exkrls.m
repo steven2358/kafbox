@@ -1,6 +1,10 @@
 % Extended Kernel Recursive Least Squares algorithm
-% Author: Steven Van Vaerenbergh, 2013
-% Reference: http://dx.doi.org/10.1109/TSP.2009.2022007
+%
+% W. Liu, I.M. Park. Y. Wang, and J.C. Principe, "Extended Kernel Recursive 
+% Least Squares Algorithm," IEEE Transactions on Signal Processing, vol.
+% 57, no. 10, pp. 3801-3814, Oct. 2009, 
+% http://dx.doi.org/10.1109/TSP.2009.2022007
+%
 % Comment: implementation of the tracking model, includes a maximum
 % dictionary size M
 %

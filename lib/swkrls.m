@@ -1,6 +1,10 @@
 % Sliding-Window Kernel Recursive Least Squares algorithm
-% Author: Steven Van Vaerenbergh, 2013
-% Reference: http://dx.doi.org/10.1109/ICASSP.2006.1661394
+%
+% S. Van Vaerenbergh, J. Via, and I. Santamaria, "A Sliding-Window Kernel
+% RLS Algorithm and Its Application to Nonlinear Channel Identification,"
+% 2006 IEEE International Conference on Acoustics, Speech and Signal
+% Processing (ICASSP), May 2006,
+% http://dx.doi.org/10.1109/ICASSP.2006.1661394
 %
 % This file is part of the Kernel Adaptive Filtering Toolbox for Matlab.
 % http://sourceforge.net/projects/kafbox/

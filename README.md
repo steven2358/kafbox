@@ -39,7 +39,7 @@ Next, create an instance of the filter:
 ```matlab
 kaf = aldkrls(options);
 ```
-Training is done by feeding one input-output data pair to the filter:
+One iteration of training is performed by feeding one input-output data pair to the filter:
 ```matlab
 kaf = kaf.train(x,y);
 ```
@@ -102,3 +102,4 @@ Included algorithms
 - Gaussian-Process based estimation of the parameters of KRLS-T, as proposed in Steven Van Vaerenbergh, Ignacio Santamaria, and Miguel Lazaro-Gredilla, "Estimation of the forgetting factor in kernel recursive least squares," 2012 IEEE International Workshop on Machine Learning for Signal Processing (MLSP), 2012.
 - Kernel Affine Projection algorithm with Coherence Criterion, as proposed in C. Richard, J.C.M. Bermudez, P. Honeine, "Online Prediction of Time Series Data With Kernels," IEEE Transactions on Signal Processing, vol.57, no.3, pp.1058,1067, March 2009.
 - Kernel Normalized Least-Mean-Square algorithm with Coherence Criterion, as proposed in C. Richard, J.C.M. Bermudez, P. Honeine, "Online Prediction of Time Series Data With Kernels," IEEE Transactions on Signal Processing, vol.57, no.3, pp.1058,1067, March 2009.
+- Recursive Least-Squares algorithm with exponential weighting (RLS), as described in S. Haykin, "Adaptive Filtering Theory (3rd Ed.)", Prentice Hall, Chapter 13.

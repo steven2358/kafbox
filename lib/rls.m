@@ -1,4 +1,4 @@
-% Recursive Least-Squares Algorithm with Forgetting Factor
+% Recursive Least-Squares Algorithm with exponential weighting
 %
 % From S. Haykin, "Adaptive Filtering Theory (3rd Ed.)", Prentice Hall,
 % Chapter 13.
@@ -10,7 +10,7 @@ classdef rls
     
     properties (GetAccess = 'public', SetAccess = 'private')
         lambda = .99; % forgetting factor
-        c = 1E-6; % regularization
+        c = 1E-4; % regularization
     end
     
     properties (GetAccess = 'public', SetAccess = 'private')

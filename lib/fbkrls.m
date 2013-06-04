@@ -1,6 +1,10 @@
 % Fixed-Budget Kernel Recursive Least Squares algorithm
-% Author: Steven Van Vaerenbergh, 2013
-% Reference: http://dx.doi.org/10.1109/ICASSP.2010.5495350
+%
+% S. Van Vaerenbergh, I. Santamaria, W. Liu, and J.C. Principe, "Fixed-
+% budget kernel recursive least-squares," 2010 IEEE International
+% Conference on Acoustics Speech and Signal Processing (ICASSP), pp. 1882-
+% 1885, 14-19 March 2010, http://dx.doi.org/10.1109/ICASSP.2010.5495350
+%
 % Comment: label update is not implemented (mu=0)
 %
 % This file is part of the Kernel Adaptive Filtering Toolbox for Matlab.
