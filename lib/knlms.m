@@ -10,7 +10,7 @@
 % This file is part of the Kernel Adaptive Filtering Toolbox for Matlab.
 % http://sourceforge.net/projects/kafbox/
 
-classdef knlmscc
+classdef knlms
     
     properties (GetAccess = 'public', SetAccess = 'private')
         mu0 = .9; % coherence criterion threshold
@@ -28,7 +28,7 @@ classdef knlmscc
     
     methods
         
-        function kaf = knlmscc(parameters) % constructor
+        function kaf = knlms(parameters) % constructor
             if (nargin > 0)
                 kaf.mu0 = parameters.mu0;
                 kaf.eta = parameters.eta;

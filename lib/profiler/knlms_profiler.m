@@ -5,7 +5,7 @@
 % This file is part of the Kernel Adaptive Filtering Toolbox for Matlab.
 % http://sourceforge.net/projects/kafbox/
 
-classdef knlmscc_profiler < klms
+classdef knlms_profiler < knlms
     
     methods
         
