@@ -80,7 +80,7 @@ classdef krlst
             else
                 % forget
                 K = kernel(kaf.dict,kaf.dict,kaf.kerneltype,kaf.kernelpar);
-                kaf.Sigma = kaf.lambda*kaf.Sigma + (1-kaf.lambda)*K + kaf.jitter*eye(m); % forget
+                kaf.Sigma = kaf.lambda*kaf.Sigma + (1-kaf.lambda)*K; % forget
                 kaf.mu = sqrt(kaf.lambda)*kaf.mu; % forget
                 
                 % predict

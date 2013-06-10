@@ -5,7 +5,15 @@
 
 classdef rls_profiler < rls
     
+    properties (GetAccess = 'public', SetAccess = 'public')
+        elapsed = 0;
+    end
+    
     methods
+        
+        function kaf = rls_profiler(parameters) % constructor
+            kaf = kaf@rls(parameters);
+        end
         
         function flops = lastflops(kaf) % flops for last iteration
             m = size(kaf.w,1);
@@ -37,6 +45,16 @@ classdef rls_profiler < rls
         % div: 1
         
         %%
+        
+        function kaf = train_elapsed(kaf,x,y) % measures elapsed time of training
+%             kaf.elapsed
+%             t1 = tic;
+%             kaf = kaf.train(x,y);
+%             t2 = toc(t1);
+            kaf.elapsed = 6
+%             kaf.elapsed = kaf.elapsed + t2;
+%             kaf.elapsed
+        end
         
         function bytes = lastbytes(kaf) % bytes used in last iteration
             m = size(kaf.w,1);

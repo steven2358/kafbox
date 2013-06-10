@@ -8,7 +8,8 @@
 %    >> algoname = 'aldkrls';
 % 2. Write a structure containing all the options of the algorithm. E.g.:
 %    >> options = struct('nu',.1,'kerneltype','gauss','kernelpar',.2);
-% 3. Run this test.
+% 3. Run this test:
+%    >> unit_test;
 
 clearvars -except algoname options
 close all
