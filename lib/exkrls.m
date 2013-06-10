@@ -35,7 +35,7 @@ classdef exkrls
     methods
         
         function kaf = exkrls(parameters) % constructor
-            allpars = {'alphaf','beta','q','kerneltype','kernelpar','M'};
+            allpars = {'alphaf','lambda','beta','q','kerneltype','kernelpar','M'};
             if (nargin > 0)
                 for j=1:length(allpars),
                     p = allpars{j};
