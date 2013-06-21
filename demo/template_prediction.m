@@ -23,6 +23,12 @@ kaf = aldkrls(struct('nu',1E-4,'kerneltype','gauss','kernelpar',32)); % achieves
 % kaf = knlmscc(struct('mu0',0.9,'eta',0.5,'eps',1E-6,'kerneltype','gauss','kernelpar',32)); % achieves -1.17 dB
 % kaf = norma(struct('lambda',1E-4,'tau',500,'eta',0.1,'kerneltype','gauss','kernelpar',32)); % achieves 10.96 dB
 
+kaf = kapsm(struct('epsilon',10^(-10),'Delta',5,...
+    'thresh1',0.1,'thresh2',0.1,'Q',200,...
+    'loss_params',2,'loss_type','l2',...
+    'kerneltype','gauss','kernelpar',.2,...
+    'sparse_flag',0,'sparse_params',5));
+
 % datafile = 'mg30.dat'; L = 11; horizon = 1; % 5000 points
 % kaf = aldkrls(struct('nu',5E-3,'kerneltype','gauss','kernelpar',.6)); % achieves -45.61 dB
 % kaf = krlst(struct('lambda',1,'M',200,'sn2',1E-5,'kerneltype','gauss','kernelpar',.6)); % achieves -44.26 dB
@@ -40,7 +46,7 @@ kaf = aldkrls(struct('nu',1E-4,'kerneltype','gauss','kernelpar',32)); % achieves
 %% PROGRAM
 tic
 
-data = load(datafile); data = data(:); N = length(data)-horizon;
+data = load(datafile); data = data(:); N = 1200;%length(data)-horizon;
 X = zeros(N,L);
 for i = 1:L, X(i:N,i) = data(1:N-i+1); end % time embedding
 Y = data(1+horizon:N+horizon); % desired output

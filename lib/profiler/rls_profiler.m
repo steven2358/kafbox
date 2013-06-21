@@ -18,8 +18,8 @@ classdef rls_profiler < rls
         function flops = lastflops(kaf) % flops for last iteration
             m = size(kaf.w,1);
             floptions = struct(...
-                'sum', 2*m^2 - m + m + m + 2*m^2 - m, ...
-                'mult', 2*m^2 + m + m + m + 3*m^2, ...
+                'sum', 2*m^2 - m + m + 2*m - 1 + 2*m^2 - m, ...
+                'mult', m + m + m + 3*m^2, ...
                 'div', 1 + 1);
             flops = kflops(floptions);
         end
@@ -28,7 +28,7 @@ classdef rls_profiler < rls
         
         % k = kaf.P*x'/(kaf.lambda+x*kaf.P*x');
         % sum: 2*m^2 - m
-        % mult: 2*m^2 + m
+        % mult: m
         % div: 1
         
         % z = y - x*kaf.w;
@@ -36,7 +36,7 @@ classdef rls_profiler < rls
         % mult: m
         
         % kaf.w = kaf.w + k*z;
-        % sum: m
+        % sum: 2*m - 1
         % mult: m
         
         % kaf.P = kaf.lambda\(kaf.P - k*x*kaf.P);
@@ -47,13 +47,10 @@ classdef rls_profiler < rls
         %%
         
         function kaf = train_elapsed(kaf,x,y) % measures elapsed time of training
-%             kaf.elapsed
-%             t1 = tic;
-%             kaf = kaf.train(x,y);
-%             t2 = toc(t1);
-            kaf.elapsed = 6
-%             kaf.elapsed = kaf.elapsed + t2;
-%             kaf.elapsed
+            t1 = tic;
+            kaf = kaf.train(x,y);
+            t2 = toc(t1);
+            kaf.elapsed = kaf.elapsed + t2;
         end
         
         function bytes = lastbytes(kaf) % bytes used in last iteration
