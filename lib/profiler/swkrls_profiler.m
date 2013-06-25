@@ -1,5 +1,4 @@
 % Profiler extension for Sliding-Window Kernel Recursive Least Squares
-% Author: Steven Van Vaerenbergh, 2013
 %
 % This file is part of the Kernel Adaptive Filtering Toolbox for Matlab.
 % http://sourceforge.net/projects/kafbox/
@@ -7,6 +6,10 @@
 classdef swkrls_profiler < swkrls
     
     methods
+        
+        function kaf = swkrls_profiler(parameters) % constructor
+            kaf = kaf@swkrls(parameters);
+        end
         
         function flops = lastflops(kaf) % flops for last iteration
             m = size(kaf.dict,1);
@@ -17,7 +20,7 @@ classdef swkrls_profiler < swkrls
                     'sum', m2^2 + m2^2 - m2 + m2^2 + m^2 - m, ...
                     'mult', m2^2 + m2 + m2^2 + m^2, ...
                     'div', 1, ...
-                    'kernel', [kaf.kerneltype,m1,size(kaf.dict,2)]);
+                   sprintf('%s_kernel',kaf.kerneltype), [m1,1,size(kaf.dict,2)]);
             else
                 m1 = m + 1;
                 m2 = m;
@@ -26,9 +29,9 @@ classdef swkrls_profiler < swkrls
                     'sum', m2^2 + m2^2 - m2 + m2^2 + m3^2 + m^2 - m, ...
                     'mult', m2^2 + m2 + m2^2 + m3^2 + m3 + m^2, ...
                     'div', 1 + 1, ...
-                    'kernel', [kaf.kerneltype,m1,size(kaf.dict,2)]);
+                    sprintf('%s_kernel',kaf.kerneltype), [m1,1,size(kaf.dict,2)]);
             end
-
+            
             flops = kflops(floptions);
         end
         
@@ -65,6 +68,13 @@ classdef swkrls_profiler < swkrls
         % prod: m^2
         
         %%
+        
+        function kaf = train_elapsed(kaf,x,y) % measures elapsed time of training
+            t1 = tic;
+            kaf = kaf.train(x,y);
+            t2 = toc(t1);
+            kaf.elapsed = kaf.elapsed + t2;
+        end
         
         function bytes = lastbytes(kaf) % bytes used in last iteration
             m = size(kaf.dict,1);

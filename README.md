@@ -5,11 +5,11 @@ A Matlab benchmarking toolbox for kernel adaptive filtering.
 
 The Kernel Adaptive Filtering Toolbox contains implementations of kernel adaptive filtering algorithms and tools to compare their performance.
 
-Author: Steven Van Vaerenbergh  
-Contact: steven at gtas dot dicom dot unican dot es  
+Maintainer: Steven Van Vaerenbergh  (steven at gtas dot dicom dot unican dot es)
 Contributors: Miguel Lazaro-Gredilla, Sohan Seth  
-Development web: https://github.com/steven2358/kafbox  
-Major versions are released on https://sourceforge.net/projects/kafbox  
+Official web: https://sourceforge.net/projects/kafbox  
+
+This toolbox is a collaborative effort: every developer wishing to contribute code or suggestions can do so through https://github.com/steven2358/kafbox
 
 Directories included in the toolbox
 -----------------------------------
@@ -103,3 +103,11 @@ Included algorithms
 - Kernel Affine Projection algorithm with Coherence Criterion, as proposed in C. Richard, J.C.M. Bermudez, P. Honeine, "Online Prediction of Time Series Data With Kernels," IEEE Transactions on Signal Processing, vol.57, no.3, pp.1058,1067, March 2009.
 - Kernel Normalized Least-Mean-Square algorithm with Coherence Criterion, as proposed in C. Richard, J.C.M. Bermudez, P. Honeine, "Online Prediction of Time Series Data With Kernels," IEEE Transactions on Signal Processing, vol.57, no.3, pp.1058,1067, March 2009.
 - Recursive Least-Squares algorithm with exponential weighting (RLS), as described in S. Haykin, "Adaptive Filtering Theory (3rd Ed.)", Prentice Hall, Chapter 13.
+
+Contributing
+------------
+If you wish to contribute to the toolbox, please [fork it on GitHub](https://github.com/steven2358/kafbox), push your change to a named branch, then send me a pull request.
+
+License
+-------
+This source code is released under the FreeBSD License.

@@ -1,6 +1,5 @@
 % Profiler extension for Kernel Affine Projection algorithm with Coherence
 % Criterion
-% Author: Steven Van Vaerenbergh, 2013
 %
 % This file is part of the Kernel Adaptive Filtering Toolbox for Matlab.
 % http://sourceforge.net/projects/kafbox/

@@ -23,9 +23,10 @@ c = 5;
 N = 1000;
 x = rand(N,2)*c;
 y = sin(3*x(:,1)).*cos(x(:,1)+x(:,2));
-for i=1:N,
+for i=1:N-1,
     if ~mod(i,floor(N/10)), fprintf('.'); end
     kaf = kaf.train(x(i,:),y(i));
+    % y_test = kaf.evaluate(x(i+1,:));
 end
 fprintf('\n')
 

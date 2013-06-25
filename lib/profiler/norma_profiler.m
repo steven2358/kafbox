@@ -1,6 +1,5 @@
 % Profiler extension for Naive Online regularized Risk Minimization
 % Algorithm
-% Author: Steven Van Vaerenbergh, 2013
 %
 % This file is part of the Kernel Adaptive Filtering Toolbox for Matlab.
 % http://sourceforge.net/projects/kafbox/
@@ -9,8 +8,12 @@ classdef norma_profiler < norma
     
     methods
         
+        function kaf = norma_profiler(parameters) % constructor
+            kaf = kaf@norma(parameters);
+        end
+        
         function flops = lastflops(kaf) % flops for last iteration
-            m = size(kaf.dict,1);
+            m = size(kaf.mem,1);
             if ~kaf.prune
                 m1 = m-1;
             else
@@ -19,7 +22,7 @@ classdef norma_profiler < norma
             floptions = struct(...
                 'sum', m1 - 1 + 1, ...
                 'mult', 2*m1 + 1, ...
-                'kernel', [kaf.kerneltype,m1,size(kaf.dict,2)]);
+                sprintf('%s_kernel',kaf.kerneltype), [m1,1,size(kaf.mem,2)]);
             
             flops = kflops(floptions);
         end
@@ -41,9 +44,16 @@ classdef norma_profiler < norma
         
         %%
         
+        function kaf = train_elapsed(kaf,x,y) % measures elapsed time of training
+            t1 = tic;
+            kaf = kaf.train(x,y);
+            t2 = toc(t1);
+            kaf.elapsed = kaf.elapsed + t2;
+        end
+        
         function bytes = lastbytes(kaf) % bytes used in last iteration
-            m = size(kaf.dict,1);
-            bytes = 8*(m + m*size(kaf.dict,2) + kaf.tau); % 8 bytes for double precision
+            m = size(kaf.mem,1);
+            bytes = 8*(m + m*size(kaf.mem,2) + kaf.tau); % 8 bytes for double precision
         end
         
     end

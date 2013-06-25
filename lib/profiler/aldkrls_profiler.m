@@ -1,6 +1,5 @@
 % Profiler extension for Kernel Recursive Least Squares with Approximate
 % Linear Dependency
-% Author: Steven Van Vaerenbergh, 2013
 %
 % This file is part of the Kernel Adaptive Filtering Toolbox for Matlab.
 % http://sourceforge.net/projects/kafbox/
@@ -8,6 +7,10 @@
 classdef aldkrls_profiler < aldkrls
     
     methods
+        
+        function kaf = aldkrls_profiler(parameters) % constructor
+            kaf = kaf@aldkrls(parameters);
+        end
         
         function flops = lastflops(kaf) % flops for last iteration
             m = size(kaf.dict,1);
@@ -19,7 +22,7 @@ classdef aldkrls_profiler < aldkrls
                     'sum', m2^2 - m2 + m2 + m3^2 + m3 + m3, ...
                     'mult', m2^2 + m2 + m3^2 + m3 + m3 + 1 + m3, ...
                     'div', 1, ...
-                    'kernel', [kaf.kerneltype,m1,size(kaf.dict,2)]);
+                    sprintf('%s_kernel',kaf.kerneltype), [m1,1,size(kaf.dict,2)]);
             else
                 m1 = m + 1;
                 m2 = m;
@@ -28,9 +31,9 @@ classdef aldkrls_profiler < aldkrls
                     'sum', m2^2 - m2 + m2 + m4^2 + 2*m4^2 - m4 + m4^2 + m4, ...
                     'mult', m2^2 + m2 + 2*m4^2 + m4 + 2*m4^2 + m4^2 + 2*m4, ...
                     'div', 1, ...
-                    'kernel', [kaf.kerneltype,m1,size(kaf.dict,2)]);
+                    sprintf('%s_kernel',kaf.kerneltype), [m1,1,size(kaf.dict,2)]);
             end
-
+            
             flops = kflops(floptions);
         end
         
@@ -38,7 +41,7 @@ classdef aldkrls_profiler < aldkrls
         
         % k = kernel([kaf.dict; x],x,kaf.kerneltype,kaf.kernelpar);
         % kernel: m1
-
+        
         % at = kaf.Kinv*kt; % check linear dependency
         % sum: m2^2 - m2
         % mult: m2^2
@@ -54,7 +57,7 @@ classdef aldkrls_profiler < aldkrls
         
         % ode = 1/delta*(y-kt'*kaf.alpha); % grow Kinv
         % sum: m3
-        % mult: m3 + 1 
+        % mult: m3 + 1
         
         % kaf.alpha = [kaf.alpha - at*ode; ode]; % grow Kinv
         % sum: m3
@@ -74,6 +77,13 @@ classdef aldkrls_profiler < aldkrls
         % mult: m4^2 + 2*m4
         
         %%
+        
+        function kaf = train_elapsed(kaf,x,y) % measures elapsed time of training
+            t1 = tic;
+            kaf = kaf.train(x,y);
+            t2 = toc(t1);
+            kaf.elapsed = kaf.elapsed + t2;
+        end
         
         function bytes = lastbytes(kaf) % bytes used in last iteration
             m = size(kaf.dict,1);

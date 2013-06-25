@@ -1,5 +1,4 @@
 % Profiler extension for Kernel Recursive Least-Squares Tracker algorithm
-% Author: Steven Van Vaerenbergh, 2013
 %
 % This file is part of the Kernel Adaptive Filtering Toolbox for Matlab.
 % http://sourceforge.net/projects/kafbox/
@@ -7,6 +6,10 @@
 classdef krlst_profiler < krlst
     
     methods
+        
+        function kaf = krlst_profiler(parameters) % constructor
+            kaf = kaf@krlst(parameters);
+        end
         
         function flops = lastflops(kaf) % flops for last iteration
             m = size(kaf.dict,1);
@@ -26,7 +29,7 @@ classdef krlst_profiler < krlst
                 'sum', m1^2 + m1 + 1 + m1^2 - m1 + m1 - 1 + m1 + m1 - 1 + m1 + 1 + m2^2 + m2 + 1 + m2^2 + 2 + 1 + m2^2 - m2 + m3^2, ...
                 'mult', 2*m1^2 + m1^2 + m1 + m1 + m1 + m1 + m2^2 + 1 + 1 + m2^2 + 3 + m2^2 + m3^2, ...
                 'div', 1 + 1 + 2 + m2 + m3, ...
-                'kernel', [kaf.kerneltype, m1^2 + 1,size(kaf.dict,2)]);
+                sprintf('%s_kernel',kaf.kerneltype), [m1^2 + 1,1,size(kaf.dict,2)]);
             
             flops = kflops(floptions);
         end
@@ -104,6 +107,13 @@ classdef krlst_profiler < krlst
         % div: m3
         
         %%
+        
+        function kaf = train_elapsed(kaf,x,y) % measures elapsed time of training
+            t1 = tic;
+            kaf = kaf.train(x,y);
+            t2 = toc(t1);
+            kaf.elapsed = kaf.elapsed + t2;
+        end
         
         function bytes = lastbytes(kaf) % bytes used in last iteration
             m = size(kaf.dict,1);

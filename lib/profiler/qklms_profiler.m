@@ -1,5 +1,4 @@
 % Profiler extension for Kernel Least-Mean-Square algorithm
-% Author: Steven Van Vaerenbergh, 2013
 %
 % This file is part of the Kernel Adaptive Filtering Toolbox for Matlab.
 % http://sourceforge.net/projects/kafbox/
@@ -8,8 +7,12 @@ classdef qklms_profiler < qklms
     
     methods
         
+        function kaf = qklms_profiler(parameters) % constructor
+            kaf = kaf@qklms(parameters);
+        end
+        
         function flops = lastflops(kaf) % flops for last iteration
-            m = size(kaf.dict,1);
+            m = size(kaf.mem,1);
             
             if kaf.grow
                 m1 = m-1;
@@ -24,13 +27,13 @@ classdef qklms_profiler < qklms
             if strcmp('kaf.kernel','gauss')
                 m2 = 0; m3 = 0; % quantization criterion can use values calculated by kernel
             else
-                m2 = m1; m3 = size(kaf.dict,2);
+                m2 = m1; m3 = size(kaf.mem,2);
             end
             
             floptions = struct(...
                 'sum', m1 - 1 + 1 + (2*m2-1)*m3 + n4 + n5, ...
                 'mult', m1 + m2*m3 + n4 + n5, ...
-                'kernel', [kaf.kerneltype,m1,size(kaf.dict,2)]);
+                sprintf('%s_kernel',kaf.kerneltype), [m1,1,size(kaf.mem,2)]);
             
             flops = kflops(floptions);
         end
@@ -60,9 +63,16 @@ classdef qklms_profiler < qklms
         
         %%
         
+        function kaf = train_elapsed(kaf,x,y) % measures elapsed time of training
+            t1 = tic;
+            kaf = kaf.train(x,y);
+            t2 = toc(t1);
+            kaf.elapsed = kaf.elapsed + t2;
+        end
+        
         function bytes = lastbytes(kaf) % bytes used in last iteration
-            m = size(kaf.dict,1);
-            bytes = 8*(m + m*size(kaf.dict,2)); % 8 bytes for double precision
+            m = size(kaf.mem,1);
+            bytes = 8*(m + m*size(kaf.mem,2)); % 8 bytes for double precision
         end
         
     end
