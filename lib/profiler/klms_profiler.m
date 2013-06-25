@@ -14,7 +14,8 @@ classdef klms_profiler < klms
                 floptions = struct(...
                     'sum', m1 - 1, ...
                     'mult', m1 + 1, ...
-                    'kernel', [kaf.kerneltype,m1,size(kaf.dict,2)]);
+                    sprintf('%s_kernel',kaf.kerneltype), [m1, 1, size(kaf.dict,2)]);
+                
                 flops = kflops(floptions);
             else
                 flops = 0;
