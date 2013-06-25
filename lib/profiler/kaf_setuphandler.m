@@ -24,7 +24,7 @@ for i = 1:length(fn),
     end
 end
 
-skiplist = {'sw_par','sw_val'};
+skiplist = {'sweep_par','sweep_val'};
 for i=1:length(skiplist),
     my_setup = rmfield(my_setup,skiplist{i});
 end

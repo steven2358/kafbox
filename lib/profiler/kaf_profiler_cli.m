@@ -10,13 +10,6 @@ function [results,setups] = kaf_profiler_cli(config_file,output_dir) %#ok<STOUT>
 fprintf(sprintf('Sweep on %s configuration.\n',config_file));
 eval(sprintf('%s',config_file));
 
-if nargin < 2
-    savedata = 0;
-else
-    savedata = 1;
-end
-
-
 num_setup = length(setups);
 % titles = cell(num_setup,1);
 results.flops = cell(num_setup,1);
@@ -27,19 +20,19 @@ for setup_ind = 1:length(setups)
     
     setup = setups{setup_ind};
     %     titles{setup_ind} = setup.algo.name;
-    sw_par = setup.algo.options.sw_par;
-    sw_val = setup.algo.options.sw_val;
-    num_sw = length(sw_val);	% number of iterations in sweep
+    sweep_par = setup.algo.options.sweep_par;
+    sweep_val = setup.algo.options.sweep_val;
+    num_sw = length(sweep_val);	% number of iterations in sweep
     
     flops = zeros(num_sw,1);
     bytes = zeros(num_sw,1);
     msedb = zeros(num_sw,1);
     
     for sw_ind = 1:num_sw,
-        fprintf('%s %s=%.3f ',setup.algo.name,sw_par,sw_val(sw_ind));
+        fprintf('%s %s=%.3f ',setup.algo.name,sweep_par,sweep_val(sw_ind));
         % pd = setup.data;
         
-        eval(sprintf('setup.algo.options.%s = sw_val(sw_ind);',sw_par));
+        eval(sprintf('setup.algo.options.%s = sweep_val(sw_ind);',sweep_par));
         
         % check if results for this setup have been stored before
         setupresults = kaf_setuphandler(setup,output_dir);
@@ -95,4 +88,3 @@ for setup_ind = 1:length(setups)
     results.bytes{setup_ind} = bytes;
     results.msedb{setup_ind} = msedb;
 end
-
