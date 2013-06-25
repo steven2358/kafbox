@@ -63,7 +63,7 @@ for i=1:length(setups),
     identical = true;
 
     for f = 1:length(fields)
-        if isfield(setup,fields{f})
+        if isfield(setupi,fields{f})
             field = sprintf('setup.%s',fields{f});
             fieldi = sprintf('setupi.%s',fields{f});
             if eval(field) ~= eval(fieldi)
@@ -75,7 +75,7 @@ for i=1:length(setups),
     end
     
     for fi = 1:length(fieldsi)
-        if isfield(setupi,fieldsi{fi})
+        if isfield(setup,fieldsi{fi})
             field = sprintf('setup.%s',fieldsi{fi});
             fieldi = sprintf('setupi.%s',fieldsi{fi});
             if eval(field) ~= eval(fieldi)
