@@ -5,8 +5,8 @@ A Matlab benchmarking toolbox for kernel adaptive filtering.
 
 The Kernel Adaptive Filtering Toolbox contains implementations of kernel adaptive filtering algorithms and tools to compare their performance.
 
-Maintainer: Steven Van Vaerenbergh  (steven at gtas dot dicom dot unican dot es)  
-Contributors: Miguel Lazaro-Gredilla, Sohan Seth  
+Maintainer: [Steven Van Vaerenbergh](http://gtas.unican.es/people/steven) (steven at gtas dot dicom dot unican dot es)  
+Contributors: [Miguel Lazaro-Gredilla](http://www.tsc.uc3m.es/~miguel), [Sohan Seth](http://www.sohanseth.com/)  
 Official web: https://sourceforge.net/projects/kafbox  
 
 This toolbox is a collaborative effort: every developer wishing to contribute code or suggestions can do so through https://github.com/steven2358/kafbox

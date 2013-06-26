@@ -1,4 +1,4 @@
-% Checks if the results for a given setup were stored before, and save new
+% Checks if the results for a given setup were stored before, and saves new
 % results if necessary.
 %
 % This file is part of the Kernel Adaptive Filtering Toolbox for Matlab.

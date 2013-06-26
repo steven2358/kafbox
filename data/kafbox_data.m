@@ -24,11 +24,6 @@ if isfield(options,'file')
     
     L = options.embedding;
     X = zeros(N,L);
-    
-%     if strcmp(options.load,'respiratorymotion3')
-%         raw = raw-mean(raw);
-%     end
-    
     for i = 1:L,
         X(i:N,i) = raw(1:N-i+1,1); % time embedding
     end
