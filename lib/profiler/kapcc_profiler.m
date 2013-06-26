@@ -53,7 +53,8 @@ classdef kapcc_profiler < kapcc
         
         function bytes = lastbytes(kaf) % bytes used in last iteration
             m = size(kaf.dict,1);
-            bytes = 8*(m + size(kaf.dict,2)) + 8*kaf.p(1 + size(kaf.mem,2)); % 8 bytes for double precision
+            bytes = 8*(m + m*size(kaf.dict,2) + kaf.p + kaf.p*size(kaf.mem,2)); % 8 bytes for double precision
+            % alpha, dict, d, mem
         end
         
     end

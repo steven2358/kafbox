@@ -1,10 +1,10 @@
-% Check if the results for a given setup were stored before, and save new
+% Checks if the results for a given setup were stored before, and save new
 % results if necessary.
 %
 % This file is part of the Kernel Adaptive Filtering Toolbox for Matlab.
 % http://sourceforge.net/projects/kafbox/
 
-function setupresults = kaf_setuphandler(setup,output_dir,setupresults)
+function setupresults = kafbox_setuphandler(setup,output_dir,setupresults)
 % store all results for one algorithm in a single file
 
 if nargin<3
@@ -13,7 +13,8 @@ else
     option = 'save';
 end
 
-fname = sprintf('%s/%s_%s.mat',output_dir,setup.data.name,setup.algo.name);
+[pathstr,dataset] = fileparts(setup.data.file); %#ok<ASGLU>
+fname = sprintf('%s/%s_%s.mat',output_dir,dataset,setup.algo.name);
 
 % all relevant values in one array
 my_setup = setup.algo.options;

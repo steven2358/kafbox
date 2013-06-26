@@ -88,7 +88,8 @@ classdef fbkrls_profiler < fbkrls
         
         function bytes = lastbytes(kaf) % bytes used in last iteration
             m = size(kaf.dict,1);
-            bytes = 8*m*(m + 2 + size(kaf.dict,2)); % 8 bytes for double precision
+            bytes = 8*(m^2 + m + m + m*size(kaf.dict,2)); % 8 bytes for double precision
+            % Kinv, alpha, dicty, dict
         end
         
     end

@@ -73,6 +73,7 @@ classdef qklms_profiler < qklms
         function bytes = lastbytes(kaf) % bytes used in last iteration
             m = size(kaf.mem,1);
             bytes = 8*(m + m*size(kaf.mem,2)); % 8 bytes for double precision
+            % alpha, mem
         end
         
     end

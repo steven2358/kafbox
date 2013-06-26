@@ -87,7 +87,8 @@ classdef aldkrls_profiler < aldkrls
         
         function bytes = lastbytes(kaf) % bytes used in last iteration
             m = size(kaf.dict,1);
-            bytes = 8*m*(2*m + 1 + size(kaf.dict,2)); % 8 bytes for double precision
+            bytes = 8*(m^2 + m^2 + m + m*size(kaf.dict,2)); % 8 bytes for double precision
+            % Kinv, P, alpha, dict
         end
         
     end

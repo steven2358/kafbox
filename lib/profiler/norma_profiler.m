@@ -54,6 +54,7 @@ classdef norma_profiler < norma
         function bytes = lastbytes(kaf) % bytes used in last iteration
             m = size(kaf.mem,1);
             bytes = 8*(m + m*size(kaf.mem,2) + kaf.tau); % 8 bytes for double precision
+            % alpha, mem, tau
         end
         
     end

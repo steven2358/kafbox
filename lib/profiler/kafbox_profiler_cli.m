@@ -3,7 +3,7 @@
 % This file is part of the Kernel Adaptive Filtering Toolbox for Matlab.
 % http://sourceforge.net/projects/kafbox/
 
-function [results,setups] = kaf_profiler_cli(config_file,output_dir) %#ok<STOUT>
+function [results,setups] = kafbox_profiler_cli(config_file,output_dir) %#ok<STOUT>
 % KAF_PROFILER_CLI Summary
 %   Details
 
@@ -35,10 +35,10 @@ for setup_ind = 1:length(setups)
         eval(sprintf('setup.algo.options.%s = sweep_val(sw_ind);',sweep_par));
         
         % check if results for this setup have been stored before
-        setupresults = kaf_setuphandler(setup,output_dir);
+        setupresults = kafbox_setuphandler(setup,output_dir);
         
         if isempty(setupresults), % perform simulation
-            [X,Y] = kaf_getdata(setup.data); % load data
+            [X,Y] = kafbox_data(setup.data); % load data
             
             N = size(X,1);
             
@@ -64,7 +64,7 @@ for setup_ind = 1:length(setups)
             setupresults.bytes = max(all_bytes);
             setupresults.msedb = 10*log10(mean(SE(1000:end)));
             
-            kaf_setuphandler(setup,output_dir,setupresults);
+            kafbox_setuphandler(setup,output_dir,setupresults);
             
             t2 = toc(t1);
             fprintf(1,' %.2fs.' ,t2);

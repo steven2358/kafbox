@@ -34,39 +34,13 @@ for op = f'
             fl = fl + kflops(struct('sum',n1*n2*(2*m-1),...
                 'mult',n1*n2*(m+1),'exp',n1*n2));
             
+            % breakdown:
             % fl = kaf_flops('sum',N1*N2*M) + ... % all X1(i,:)-X(2(j,:)
             % kaf_flops('mult',N1*N2*M) + ... % square all elements
             % kaf_flops('sum',N1*N2*(M-1)) + ... % sum M-1 elements per entry
             % kaf_flops('mult',N1*N2) + ... % multiply by 1/(2*sgm^2)
             % kaf_flops('exp',N1*N2);
             
-            
-            %
-            %
-            %                 case 'gauss-diag'
-            %                     %             sgm = kpar;	% kernel width
-            %                     %             K = exp(-sum((X1-X2).^2,2)/(2*sgm^2));
-            %                     %
-            %                     %             fl = kaf_flops('sum',N1*(2*M-1)) + ...
-            %                     %                 kaf_flops('mult',N1*(M+1)) + ...
-            %                     %                 kaf_flops('exp',N1); % similar calculation as 'gauss'
-            %                     %
-            %                 case 'poly'
-            %                     %             p = kpar(1);	% polynome order
-            %                     %             c = kpar(2);	% additive constant
-            %                     %
-            %                     %             K = (X1*X2' + c).^p;
-            %                     %
-            %                     %             fl = kaf_flops('mult',N1,M,N2) + ... % X1*X2'
-            %                     %                 kaf_flops('sum',N1*N2) + ... % add c
-            %                     %                 kaf_flops('pow',N1*N2,p); % power p
-            %                     %
-            %                 case 'linear'
-            %                     %             K = X1*X2';
-            %                     %
-            %                     %
-            %                     %             fl = fl + kflops(struct'mult',N1,M,N2);
-            %             end
         otherwise
             error('unknown option')
     end

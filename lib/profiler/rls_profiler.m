@@ -56,6 +56,7 @@ classdef rls_profiler < rls
         function bytes = lastbytes(kaf) % bytes used in last iteration
             m = size(kaf.w,1);
             bytes = 8*(m + m^2); % 8 bytes for double precision
+            % w, P
         end
         
     end

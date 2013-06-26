@@ -44,6 +44,7 @@ classdef knlms_profiler < knlms
         function bytes = lastbytes(kaf) % bytes used in last iteration
             m = size(kaf.dict,1);
             bytes = 8*(m + m*size(kaf.dict,2)); % 8 bytes for double precision
+            % alpha, dict
         end
         
     end

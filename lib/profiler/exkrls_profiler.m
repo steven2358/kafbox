@@ -65,7 +65,8 @@ classdef exkrls_profiler < exkrls
         
         function bytes = lastbytes(kaf) % bytes used in last iteration
             m = size(kaf.dict,1);
-            bytes = 8*(m^2 + m + 1 + m*size(kaf.dict,2)); % 8 bytes for double precision
+            bytes = 8*(m^2 + m + 1 + m*size(kaf.dict,2)) + 4; % 8 bytes for double precision, 4 for uint32
+            % Q, alpha, rho, mem, i
         end
         
     end
