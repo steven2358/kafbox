@@ -13,7 +13,11 @@ else
     option = 'save';
 end
 
-[pathstr,dataset] = fileparts(setup.data.file); %#ok<ASGLU>
+if isfield(setup.data,'file')
+    [pathstr,dataset] = fileparts(setup.data.file); %#ok<ASGLU>
+elseif isfield(setup.data,'generate')
+    dataset = setup.data.generate;
+end
 fname = sprintf('%s/%s_%s.mat',output_dir,dataset,setup.algo.name);
 
 % all relevant values in one array

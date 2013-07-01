@@ -30,5 +30,8 @@ if isfield(options,'file')
     Y = raw(1+horizon:N+horizon,ydim); % desired output
    
 elseif isfield(options,'generate')
+    
+    eval(sprintf('[X,Y] = generate_%s(options);',options.generate));
+    
 end
 
