@@ -20,32 +20,32 @@ classdef rls
     
     methods
         
-        function kaf = rls(parameters) % constructor
+        function obj = rls(parameters) % constructor
             if (nargin > 0)
-                kaf.lambda = parameters.lambda;
-                kaf.c = parameters.c;
+                obj.lambda = parameters.lambda;
+                obj.c = parameters.c;
             end
         end
         
-        function y_est = evaluate(kaf,x) % evaluate the algorithm
-            if numel(kaf.w)>0
-                y_est = x*kaf.w;
+        function y_est = evaluate(obj,x) % evaluate the algorithm
+            if numel(obj.w)>0
+                y_est = x*obj.w;
             else
                 y_est = 0;
             end
         end
         
-        function kaf = train(kaf,x,y) % train the algorithm
-            if numel(kaf.w)==0, % initialize
+        function obj = train(obj,x,y) % train the algorithm
+            if numel(obj.w)==0, % initialize
                 m = length(x);
-                kaf.w = zeros(m,1);
-                kaf.P = kaf.c\eye(m);
+                obj.w = zeros(m,1);
+                obj.P = obj.c\eye(m);
             end
             
-            k = kaf.P*x'/(kaf.lambda+x*kaf.P*x');
-            z = y - x*kaf.w;
-            kaf.w = kaf.w + k*z;
-            kaf.P = kaf.lambda\(kaf.P - k*x*kaf.P);
+            k = obj.P*x'/(obj.lambda+x*obj.P*x');
+            z = y - x*obj.w;
+            obj.w = obj.w + k*z;
+            obj.P = obj.lambda\(obj.P - k*x*obj.P);
         end
         
     end
