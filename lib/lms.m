@@ -1,4 +1,4 @@
-% Normalized Least Mean Squares algorithm
+% Least Mean Squares algorithm
 %
 % From A. H. Sayed, "Fundamentals of adaptive filtering}", Wiley-IEEE
 % Press, 2003, Chapter 5.
@@ -6,23 +6,21 @@
 % This file is part of the Kernel Adaptive Filtering Toolbox for Matlab.
 % http://sourceforge.net/projects/kafbox/
 
-classdef nlms
+classdef lms
     
     properties (GetAccess = 'public', SetAccess = 'private')
-        mu = .9; % step size
-        eps = 1E-6; % regularization
+        mu = 0.2; % learning rate
     end
     
     properties (GetAccess = 'public', SetAccess = 'private')
-        w = [];
+        w = []; % filter coefficients
     end
     
     methods
         
-        function obj = nlms(parameters) % constructor
+        function obj = lms(parameters) % constructor
             if (nargin > 0)
                 obj.mu = parameters.mu;
-                obj.eps = parameters.eps;
             end
         end
         
@@ -38,10 +36,10 @@ classdef nlms
             if numel(obj.w)==0, % initialize
                 obj.w = zeros(length(x),1);
             end
-            
-            % Algorithm 5.6.1 in reference
-            err = (y-x*obj.w);
-            obj.w = obj.w + obj.mu/(obj.eps + x*x')*x'*err;
+
+            % Algorithm 5.2.1 in reference
+            err = y - x*obj.w;
+            obj.w = obj.w + obj.mu*x'*err;
         end
         
     end
