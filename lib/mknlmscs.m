@@ -11,7 +11,7 @@
 classdef mknlmscs
     
     properties (GetAccess = 'public', SetAccess = 'private')
-        mu0 = .9; % coherence criterion threshold
+        delta = .9; % coherence criterion threshold
         eta = .1; % step size
         rho = 1E-4; % regularization
         kerneltype = 'gauss'; % kernel type
@@ -28,7 +28,7 @@ classdef mknlmscs
         
         function kaf = mknlmscs(parameters) % constructor
             if (nargin > 0)
-                kaf.mu0 = parameters.mu0;
+                kaf.delta = parameters.delta;
                 kaf.eta = parameters.eta;
                 kaf.rho = parameters.rho;
                 kaf.kerneltype = parameters.kerneltype;
@@ -36,12 +36,13 @@ classdef mknlmscs
             end
         end
         
-        function y_est = evaluate(kaf,x) % evaluate the algorithm
+        function y_est = evaluate(kaf,X) % evaluate the algorithm
+            N = size(X,1);
             if size(kaf.dict,1)>0
-                K = multikernel_dict(kaf,x);
-                y_est = K(:)'*kaf.h(:);
+                K = multikernel_dict(kaf,X);
+                y_est = reshape(K,N,[])*kaf.h(:);
             else
-                y_est = 0;
+                y_est = zeros(N,1);
             end
         end
         
@@ -49,12 +50,12 @@ classdef mknlmscs
             M = length(kaf.kernelpars); % number of distinct kernels
             if size(kaf.dict,2)==0 % initialize
                 kaf.dict = x;
-                kaf.h = zeros(1,M); % coefficients of all kernels as row (vs. column as in publication)
+                kaf.h = zeros(1,M); % coefficients of all kernels as a row
                 kaf.grow = true;
             else
                 kaf.grow = false;
                 K = multikernel_dict(kaf,x);
-                if (max(K(:)) <= kaf.mu0), % coherence criterion
+                if (max(K(:)) <= kaf.delta), % coherence criterion
                     kaf.grow = true;
                     kaf.dict = [kaf.dict; x]; % order increase
                     kaf.h = [kaf.h; zeros(1,M)]; % order increase
@@ -66,11 +67,13 @@ classdef mknlmscs
                 kaf.eta / (kaf.rho + K(:)'*K(:)) * (y - K(:)'*kaf.h(:)) * K;
         end
         
-        function K = multikernel_dict(kaf,x) % multikernel for dictionary
+        function K = multikernel_dict(kaf,X) % multikernel for dictionary
             M = length(kaf.kernelpars); % number of distinct kernels
-            K = zeros(size(kaf.dict,1),M);
+            N = size(X,1);
+            K = zeros(size(kaf.dict,1)*N,M);
             for m=1:M,
-                K(:,m) = kernel(x,kaf.dict,kaf.kerneltype,kaf.kernelpars(m));
+                k = kernel(X,kaf.dict,kaf.kerneltype,kaf.kernelpars(m));
+                K(:,m) = k(:);
             end
         end
     end
