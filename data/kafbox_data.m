@@ -1,3 +1,17 @@
+% KAFBOX_DATA Returns input-output data specified in the options. Either
+% load a raw data file or synthetically generate a data set.
+%
+% The single input argument is a structure that contains the options as
+% fields. Possible options:
+%   - file: if present, its value is the filename of the data to load.
+%   - generate: if present, its value is the name of the function used to
+%   generate the data.
+%   - horizon: prediction horizon
+%   - N: number of data to load. Limited by the number of data available
+%
+% This file is part of the Kernel Adaptive Filtering Toolbox for Matlab.
+% http://sourceforge.net/projects/kafbox/
+
 function [X,Y] = kafbox_data(options)
 
 if isfield(options,'file')
@@ -34,4 +48,5 @@ elseif isfield(options,'generate')
     eval(sprintf('[X,Y] = generate_%s(options);',options.generate));
     
 end
+
 
