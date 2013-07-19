@@ -6,6 +6,10 @@
 
 classdef exkrls_profiler < exkrls
     
+    properties (GetAccess = 'public', SetAccess = 'private')
+        elapsed = 0; % elapsed time
+    end
+    
     methods
         
         function flops = lastflops(kaf) % flops for last iteration

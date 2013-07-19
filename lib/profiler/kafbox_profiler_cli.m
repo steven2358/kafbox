@@ -24,6 +24,7 @@ for setup_ind = 1:length(setups)
     sweep_val = setup.algo.options.sweep_val;
     num_sw = length(sweep_val);	% number of iterations in sweep
     
+    elapsed = zeros(num_sw,1);
     flops = zeros(num_sw,1);
     bytes = zeros(num_sw,1);
     msedb = zeros(num_sw,1);
@@ -48,11 +49,10 @@ for setup_ind = 1:length(setups)
             
             kaf = feval(sprintf('%s_profiler',setup.algo.name),setup.algo.options);
             
-            t1 = tic;
             for i=1:N,
                 if ~mod(i,floor(N/10)), fprintf('.'); end
                 y_est = kaf.evaluate(X(i,:)); % evaluate
-                kaf = kaf.train(X(i,:),Y(i)); % train
+                kaf = kaf.train_elapsed(X(i,:),Y(i)); % train
                 
                 all_fl(i) = kaf.lastflops();
                 all_bytes(i) = kaf.lastbytes();
@@ -60,30 +60,30 @@ for setup_ind = 1:length(setups)
                 SE(i) = (Y(i)-y_est)^2; % calcalate test error
             end
             
+            setupresults.elapsed = kaf.elapsed;
             setupresults.flops = mean(all_fl);
             setupresults.bytes = max(all_bytes);
             setupresults.msedb = 10*log10(mean(SE(1000:end)));
             
             kafbox_setuphandler(setup,output_dir,setupresults);
             
-            t2 = toc(t1);
-            fprintf(1,' %.2fs.' ,t2);
+            fprintf(1,' %.2fs.',kaf.elapsed);
         else
             fprintf(' _______');
         end
         
+        elapsed(sw_ind) = setupresults.elapsed;
         flops(sw_ind) = setupresults.flops;
         bytes(sw_ind) = setupresults.bytes;
         msedb(sw_ind) = setupresults.msedb;
         
         fprintf(1,' Average:');
         fprintf(1,' %.2f KFLOPS',flops(sw_ind)/1000);
-        fprintf(1,' %d bytes max',bytes(sw_ind));
-        
-        fprintf(1,', MSE=%.2fdB\n',msedb(sw_ind));
-        
+        fprintf(1,' %d bytes max',bytes(sw_ind));        
+        fprintf(1,', MSE=%.2fdB\n',msedb(sw_ind));        
     end
     fprintf('\n');
+    results.elapsed{setup_ind} = elapsed;
     results.flops{setup_ind} = flops;
     results.bytes{setup_ind} = bytes;
     results.msedb{setup_ind} = msedb;

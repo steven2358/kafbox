@@ -5,8 +5,8 @@
 
 classdef nlms_profiler < nlms
     
-    properties (GetAccess = 'public', SetAccess = 'public')
-        elapsed = 0;
+    properties (GetAccess = 'public', SetAccess = 'private')
+        elapsed = 0; % elapsed time
     end
     
     methods

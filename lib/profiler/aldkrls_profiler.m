@@ -6,6 +6,10 @@
 
 classdef aldkrls_profiler < aldkrls
     
+    properties (GetAccess = 'public', SetAccess = 'private')
+        elapsed = 0; % elapsed time
+    end
+    
     methods
         
         function kaf = aldkrls_profiler(parameters) % constructor

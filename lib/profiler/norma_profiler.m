@@ -6,6 +6,10 @@
 
 classdef norma_profiler < norma
     
+    properties (GetAccess = 'public', SetAccess = 'private')
+        elapsed = 0; % elapsed time
+    end
+    
     methods
         
         function kaf = norma_profiler(parameters) % constructor

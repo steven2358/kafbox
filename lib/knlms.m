@@ -12,7 +12,7 @@
 
 classdef knlms
     
-    properties (GetAccess = 'public', SetAccess = 'private')
+    properties (GetAccess = 'public', SetAccess = 'private') % parameters
         mu0 = .9; % coherence criterion threshold
         eta = .1; % step size
         eps = 1E-4; % regularization
@@ -20,7 +20,7 @@ classdef knlms
         kernelpar = 1; % kernel parameter
     end
     
-    properties (GetAccess = 'public', SetAccess = 'private')
+    properties (GetAccess = 'public', SetAccess = 'private') % variables
         dict = []; % dictionary
         alpha = []; % expansion coefficients
         grow = false; % flag

@@ -5,6 +5,10 @@
 
 classdef swkrls_profiler < swkrls
     
+    properties (GetAccess = 'public', SetAccess = 'private')
+        elapsed = 0; % elapsed time
+    end
+    
     methods
         
         function kaf = swkrls_profiler(parameters) % constructor

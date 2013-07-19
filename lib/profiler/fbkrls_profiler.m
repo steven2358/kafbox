@@ -5,6 +5,10 @@
 
 classdef fbkrls_profiler < fbkrls
     
+    properties (GetAccess = 'public', SetAccess = 'private')
+        elapsed = 0; % elapsed time
+    end
+    
     methods
         
         function kaf = fbkrls_profiler(parameters) % constructor

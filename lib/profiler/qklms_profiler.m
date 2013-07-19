@@ -5,6 +5,10 @@
 
 classdef qklms_profiler < qklms
     
+    properties (GetAccess = 'public', SetAccess = 'private')
+        elapsed = 0; % elapsed time
+    end
+    
     methods
         
         function kaf = qklms_profiler(parameters) % constructor

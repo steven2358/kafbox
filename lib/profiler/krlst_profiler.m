@@ -5,6 +5,10 @@
 
 classdef krlst_profiler < krlst
     
+    properties (GetAccess = 'public', SetAccess = 'private')
+        elapsed = 0; % elapsed time
+    end
+    
     methods
         
         function kaf = krlst_profiler(parameters) % constructor
