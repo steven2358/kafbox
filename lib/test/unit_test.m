@@ -1,42 +1,66 @@
-% Test script for kernel adaptive filtering algorithms.
+% UNIT_TEST Test function for kernel adaptive filtering algorithms.
 %
-% This file tests if the kernel adaptive filtering algorithm is correctly
-% implemented.
+% The input arguments contains the algorithms to be tested, as separate
+% strings. If no argument is porovided, or a single 'all' argument, all
+% algorithms are tested.
+% USAGE: unit_test('klms','krlst')
 %
-% Instructions:
-% 1. Write the name of the algorithm in "algoname". E.g.:
-%    >> algoname = 'aldkrls';
-% 2. Write a structure containing all the options of the algorithm. E.g.:
-%    >> options = struct('nu',.1,'kerneltype','gauss','kernelpar',.2);
-% 3. Run this test:
-%    >> unit_test;
+% This file is part of the Kernel Adaptive Filtering Toolbox for Matlab.
+% http://sourceforge.net/projects/kafbox/
 
-clearvars -except algoname options
-close all
-clc
+function unit_test(varargin)
 
-fprintf('Constructing %s object...\n',algoname)
-kaf = feval(algoname,options);
+% get list of all algorithms
+files = dir(fullfile('../','*.m'));
+[~,files] = cellfun(@fileparts, {files.name}, 'UniformOutput',false);
 
-fprintf('Testing training phase')
-c = 5;
-N = 1000;
-x = rand(N,2)*c;
-y = sin(3*x(:,1)).*cos(x(:,1)+x(:,2));
-for i=1:N-1,
-    if ~mod(i,floor(N/10)), fprintf('.'); end
-    kaf = kaf.train(x(i,:),y(i));
-    % y_test = kaf.evaluate(x(i+1,:));
+% convert into list of algorithms
+if isempty(varargin) || (length(varargin)==1 && strcmp(varargin{1},'all'))
+    algorithms = files;
+else
+    algorithms = lower(varargin);
 end
+
+% check for invalid names
+for a=algorithms,
+    unexisting = isempty(find(ismember(files,a{1}),1));
+    if unexisting
+        error('Wrong algorithm acronym: %s',a{1});
+    end
+end
+
 fprintf('\n')
+for i=1:length(algorithms)
+    algorithm = algorithms{i};
+    
+    fprintf('%d. %s:\n',i,upper(algorithm));
+    fprintf('Constructing object...\n')
+    kaf = feval(algorithm);
 
-fprintf('Testing evaluation phase...\n')
-[x1,x2] = meshgrid(0:.1:c, 0:.1:c);
-yt = kaf.evaluate([x1(:) x2(:)]);
-z = reshape(yt,size(x1,1),size(x2,1));
-figure;
-surf(x1,x2,z);
-colormap('spring');
-view(20,70)
+    fprintf('Testing training phase')
+    c = 5;
+    N = 1000;
+    x = rand(N,2)*c;
+    y = sin(3*x(:,1)).*cos(x(:,1)+x(:,2));
+    for i=1:N-1,
+        if ~mod(i,floor(N/10)), fprintf('.'); end
+        kaf = kaf.train(x(i,:),y(i));
+        % y_test = kaf.evaluate(x(i+1,:));
+    end
+    fprintf('\n')
 
+    fprintf('Testing evaluation phase...\n')
+    [x1,x2] = meshgrid(0:.1:c, 0:.1:c);
+    yt = kaf.evaluate([x1(:) x2(:)]);
+    
+    z = reshape(yt,size(x1,1),size(x2,1));
+    close; figure;
+    surf(x1,x2,z);
+    title(sprintf('%s',upper(algorithm)));
+    colormap('spring'); view(20,70);
+    drawnow;
+    
+    fprintf('OK.\n\n');
+end
+    
 fprintf('All OK.\n\n')
