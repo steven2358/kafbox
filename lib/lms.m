@@ -9,7 +9,7 @@
 classdef lms
     
     properties (GetAccess = 'public', SetAccess = 'private')
-        mu = 0.2; % learning rate
+        mu = 0.001; % learning rate
     end
     
     properties (GetAccess = 'public', SetAccess = 'private')
