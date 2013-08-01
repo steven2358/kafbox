@@ -8,7 +8,7 @@
 % This file is part of the Kernel Adaptive Filtering Toolbox for Matlab.
 % http://sourceforge.net/projects/kafbox/
 
-classdef kaf_template % replace this with the algorithm acryonym
+classdef dummy % replace this with the algorithm acryonym
     
     properties (GetAccess = 'public', SetAccess = 'private') % parameters with their default values
         param1 = 1;
@@ -24,7 +24,7 @@ classdef kaf_template % replace this with the algorithm acryonym
     
     methods
         
-        function kaf = kaf_template(parameters) % constructor, replace this with the algorithm acryonym
+        function kaf = dummy(parameters) % constructor, replace this with the algorithm acryonym
             if (nargin > 0) % replace with parameters
                 kaf.param1 = parameters.param1;
                 kaf.param2 = parameters.param2;
