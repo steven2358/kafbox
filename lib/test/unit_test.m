@@ -30,16 +30,16 @@ for a=algorithms,
 end
 
 fprintf('\n')
-for i=1:length(algorithms)
-    algorithm = algorithms{i};
+for ii=1:length(algorithms)
+    algorithm = algorithms{ii};
     
-    fprintf('%d. %s:\n',i,upper(algorithm));
+    fprintf('%d. %s:\n',ii,upper(algorithm));
     fprintf('Constructing object...\n')
     kaf = feval(algorithm);
 
     fprintf('Testing training phase')
-    c = 5;
-    N = 1000;
+    c = 10;
+    N = 10000;
     x = rand(N,2)*c;
     y = sin(3*x(:,1)).*cos(x(:,1)+x(:,2));
     for i=1:N-1,
@@ -50,7 +50,7 @@ for i=1:length(algorithms)
     fprintf('\n')
 
     fprintf('Testing evaluation phase...\n')
-    [x1,x2] = meshgrid(0:.1:c, 0:.1:c);
+    [x1,x2] = meshgrid(0:.2:c, 0:.2:c);
     yt = kaf.evaluate([x1(:) x2(:)]);
     
     z = reshape(yt,size(x1,1),size(x2,1));
