@@ -1,7 +1,7 @@
 % UNIT_TEST Test function for kernel adaptive filtering algorithms.
 %
 % The input arguments contains the algorithms to be tested, as separate
-% strings. If no argument is porovided, or a single 'all' argument, all
+% strings. If no argument is provided, or a single 'all' argument, all
 % algorithms are tested.
 % USAGE: unit_test('klms','krlst')
 %
@@ -29,6 +29,7 @@ for a=algorithms,
     end
 end
 
+% perform test for each specified algorithm
 fprintf('\n')
 for ii=1:length(algorithms)
     algorithm = algorithms{ii};
@@ -62,5 +63,7 @@ for ii=1:length(algorithms)
     
     fprintf('OK.\n\n');
 end
-    
-fprintf('All OK.\n\n')
+
+if length(algorithms)>1
+    fprintf('All OK.\n\n')
+end
