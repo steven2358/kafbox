@@ -3,7 +3,7 @@
 
 A Matlab benchmarking toolbox for kernel adaptive filtering.
 
-The Kernel Adaptive Filtering Toolbox contains implementations of kernel adaptive filtering algorithms and tools to compare their performance.
+This toolbox focuses on online and adaptive algorithms that use kernel methods to perform nonlinear regression. It includes algorithms, demos and tools to compare their performance. 
 
 Maintainer: [Steven Van Vaerenbergh](http://gtas.unican.es/people/steven) (steven at gtas dot dicom dot unican dot es)  
 Contributors:
