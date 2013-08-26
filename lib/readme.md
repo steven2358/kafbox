@@ -1,5 +1,5 @@
-How to format an algorithm
---------------------------
+How to code an algorithm in the toolbox' format
+-----------------------------------------------
 
 1. Make a copy of lib/dummy.m and name it MY_ALGORITHM.m
 2. Open the file and replace all mentions of "dummy" to MY_ALGORITHM
