@@ -10,6 +10,7 @@ Contributors:
 - [Miguel Lazaro-Gredilla](http://www.tsc.uc3m.es/~miguel)
 - [Sohan Seth](http://www.sohanseth.com/)
 - [Masahiro Yukawa](http://www.ykw.elec.keio.ac.jp/yukawa/)
+
 Official web: https://sourceforge.net/projects/kafbox  
 
 This toolbox is a collaborative effort: every developer wishing to contribute code or suggestions can do so through https://github.com/steven2358/kafbox
