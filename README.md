@@ -13,7 +13,7 @@ Contributors:
 
 Official web: https://sourceforge.net/projects/kafbox  
 
-This toolbox is a collaborative effort: every developer wishing to contribute code or suggestions can do so through https://github.com/steven2358/kafbox
+This toolbox is a collaborative effort: every developer wishing to contribute code or suggestions can do so. More info below.
 
 Directories included in the toolbox
 -----------------------------------
@@ -99,9 +99,11 @@ Included algorithms
 - Multikernel Normalized Least Mean Square algorithm with Coherence-based Sparsification (MKNLMS-CS), as proposed in M. Yukawa, "Multikernel Adaptive Filtering", IEEE Transactions on Signal Processing, vol.60, no.9, pp.4672-4682, Sept. 2012.
 - Parallel HYperslab Projection along Affine SubSpace (PHYPASS) algorithm, as described in M. Takizawa and M. Yukawa, "An Efficient Data-Reusing Kernel Adaptive Filtering Algorithm Based on Parallel Hyperslab Projection Along Affine Subspace," 2013 IEEE International Conference on Acoustics, Speech, and Signal Processing (ICASSP), pp.3557-3561, May 2013.
 
-Contributing
-------------
-If you wish to contribute to the toolbox, please [fork it on GitHub](https://github.com/steven2358/kafbox), push your change to a named branch, then send me a pull request.
+How to contribute code to the toolbox
+-------------------------------------
+Option 1: email it to me (steven@gtas.dicom.unican.es)
+
+Option 2: [Fork the toolbox on GitHub](https://github.com/steven2358/kafbox), push your change to a named branch, then send me a pull request.
 
 License
 -------
