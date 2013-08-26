@@ -25,7 +25,7 @@ end
 for a=algorithms,
     unexisting = isempty(find(ismember(files,a{1}),1));
     if unexisting
-        error('Wrong algorithm acronym: %s',a{1});
+        error('Algorithm not found: %s. \nBe sure to run this script from the /test folder.',a{1});
     end
 end
 

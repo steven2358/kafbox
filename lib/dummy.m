@@ -10,26 +10,27 @@
 
 classdef dummy % replace this with the algorithm acryonym
     
-    properties (GetAccess = 'public', SetAccess = 'private') % parameters with their default values
+    properties (GetAccess = 'public', SetAccess = 'private') % parameters
         param1 = 1;
         param2 = 2;
         kerneltype = 'gauss'; % kernel type
         kernelpar = 1; % kernel parameter
     end
     
-    properties (GetAccess = 'public', SetAccess = 'private') % internal variables
+    properties (GetAccess = 'private', SetAccess = 'private') % variables
         dict = []; % dictionary
         alpha = []; % expansion coefficients
     end
     
     methods
         
-        function kaf = dummy(parameters) % constructor, replace this with the algorithm acryonym
-            if (nargin > 0) % replace with parameters
-                kaf.param1 = parameters.param1;
-                kaf.param2 = parameters.param2;
-                kaf.kerneltype = parameters.kerneltype;
-                kaf.kernelpar = parameters.kernelpar;
+        function kaf = dummy(parameters) % constructor
+            if (nargin > 0)
+                for fn = fieldnames(parameters)',
+                    if strmatch(fn,fieldnames(kaf)),
+                        kaf.(fn{1}) = parameters.(fn{1});
+                    end
+                end
             end
         end
         
@@ -43,14 +44,15 @@ classdef dummy % replace this with the algorithm acryonym
         end
         
         function kaf = train(kaf,x,y) % train the algorithm
-            if size(kaf.dict,2)==0 % initialize if necessary
+            if size(kaf.dict,2)==0 % initialize
                 kaf.dict = x;
                 kaf.alpha = 0;
             else
                 
                 % main algorithm training goes here
                 
-                kaf = helper1(kaf,x,y); % example of a helper function to keep code modular
+                % example of a helper function
+                kaf = helper1(kaf,x,y);
             end
             
         end
