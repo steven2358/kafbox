@@ -1,7 +1,7 @@
 Algorithm code structure
 ------------------------
 - Each algorithm is contained in a single file in the `/lib` folder. 
-- Each algorithm is implemented as objects in matlab, using the classdef syntax.
+- Each algorithm is implemented as an object in matlab, using the `classdef` syntax.
 - Each algorithm has two basic public methods: `evaluate` and `train`
 - The object code contains only one iteration of the algorithm. The for-loop over the time index that governs the online operation should go in an external script.
 
