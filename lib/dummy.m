@@ -25,7 +25,7 @@ classdef dummy % replace this with the algorithm acryonym
     methods
         
         function kaf = dummy(parameters) % constructor
-            if (nargin > 0)
+            if (nargin > 0) % copy valid parameters
                 for fn = fieldnames(parameters)',
                     if strmatch(fn,fieldnames(kaf)),
                         kaf.(fn{1}) = parameters.(fn{1});
