@@ -35,4 +35,4 @@ Coding style
 
 **Variable naming** should correspond to the nomenclature used in the corresponding publication whenever possible.
 
-**Comments** should be used sparingly. Throughout the code body, comments should only appear to avoid confusion wherever said confusion mought arise.
+**Comments** should be used sparingly. Throughout the code body, comments should only appear to avoid confusion wherever said confusion may arise.
