@@ -8,7 +8,7 @@
 % This file is part of the Kernel Adaptive Filtering Toolbox for Matlab.
 % http://sourceforge.net/projects/kafbox/
 
-classdef dummy % replace this with the algorithm acryonym
+classdef dummy
     
     properties (GetAccess = 'public', SetAccess = 'private') % parameters
         param1 = 1;
@@ -27,7 +27,7 @@ classdef dummy % replace this with the algorithm acryonym
         function kaf = dummy(parameters) % constructor
             if (nargin > 0) % copy valid parameters
                 for fn = fieldnames(parameters)',
-                    if strmatch(fn,fieldnames(kaf)),
+                    if strmatch(fn,fieldnames(kaf),'exact'),
                         kaf.(fn{1}) = parameters.(fn{1});
                     end
                 end

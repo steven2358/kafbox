@@ -14,6 +14,7 @@ Quick steps to code an algorithm in the toolbox' format
 4. In the second properties section, fill in the variables that will be calculated by the algorithm.
 5. [optional] Adjust the `evaluate` method.
 6. Add the code for training the algorithm to the `train` method. It may be useful to rely on "helper" functions to keep the code modular. For coding style, see below.
+7. Clean up the file header.
 
 Check if the code is formatted correctly by running the script `unit_test('MY_ALGORITHM')` in the folder `lib/test/`.
 
@@ -35,4 +36,4 @@ Coding style
 
 **Variable naming** should correspond to the nomenclature used in the corresponding publication whenever possible.
 
-**Comments** should be used sparingly. Throughout the code body, comments should only appear to avoid confusion wherever said confusion may arise.
+**Comments** should be used sparingly. Document the design and purpose of the code rather than its mechanics.

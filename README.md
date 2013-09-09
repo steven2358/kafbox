@@ -1,15 +1,15 @@
 ﻿Kernel Adaptive Filtering Toolbox
 =================================
 
-A Matlab benchmarking toolbox for kernel adaptive filtering.
+A Matlab benchmarking toolbox for kernel adaptive filtering. 
 
-This toolbox focuses on online and adaptive algorithms that use kernel methods to perform nonlinear regression. It includes algorithms, demos and tools to compare their performance. 
+Kernel adaptive filtering algorithms are online and adaptive regression algorithms based on kernels. They are suitable for nonlinear filtering, prediction, tracking and nonlinear regression in general. This toolbox includes algorithms, demos, and tools to compare their performance.
 
-Maintainer: [Steven Van Vaerenbergh](http://gtas.unican.es/people/steven) (steven at gtas dot dicom dot unican dot es)  
-Contributors:
-- [Miguel Lazaro-Gredilla](http://www.tsc.uc3m.es/~miguel)
-- [Sohan Seth](http://www.sohanseth.com/)
-- [Masahiro Yukawa](http://www.ykw.elec.keio.ac.jp/yukawa/)
+Maintainer: [Steven Van Vaerenbergh](http://gtas.unican.es/people/steven)
+Contributors:  
+- [Miguel Lazaro-Gredilla](http://www.tsc.uc3m.es/~miguel)  
+- [Sohan Seth](http://www.sohanseth.com/)  
+- [Masahiro Yukawa](http://www.ykw.elec.keio.ac.jp/yukawa/)  
 
 Official web: https://sourceforge.net/projects/kafbox  
 
@@ -17,7 +17,6 @@ This toolbox is a collaborative effort: every developer wishing to contribute co
 
 Directories included in the toolbox
 -----------------------------------
-
 `data/` - data sets
 
 `demo/` - demos and test files
@@ -39,7 +38,7 @@ Each kernel adaptive filtering algorithm is implemented as a Matlab class. To us
 ```matlab
 options = struct('nu',1E-4,'kerneltype','gauss','kernelpar',32);
 ```
-Next, create an instance of the filter:
+Next, create an instance of the filter. E.g., for an instance of the KRLS algorithm that uses the ALD criterion run:
 ```matlab
 kaf = aldkrls(options);
 ```
