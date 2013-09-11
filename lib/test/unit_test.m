@@ -32,7 +32,6 @@ for a=algorithms,
     end
 end
 
-
 % perform test for each specified algorithm
 fprintf('\n')
 for ii=1:length(algorithms)
@@ -47,7 +46,7 @@ for ii=1:length(algorithms)
             upper(algorithm), err.message);
     end
     
-    fprintf('Testing arguments..............\n') % bogus arguments
+    fprintf('Testing arguments..............\n') % constructor test 1
     opts = struct();
     try
         kaf = feval(algorithm, opts);
@@ -61,8 +60,8 @@ for ii=1:length(algorithms)
             err.message);
     end
     
-    % test if bogus args are processed
-    opts = struct('shmaloombah',5,'ker',4);
+    % constructor test 2: test if bogus arguments are processed
+    opts = struct('shmaloombah',5,'ker',4); 
     try
         kaf = feval(algorithm, opts);
     catch err
