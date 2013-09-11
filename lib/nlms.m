@@ -20,9 +20,12 @@ classdef nlms
     methods
         
         function obj = nlms(parameters) % constructor
-            if (nargin > 0)
-                obj.mu = parameters.mu;
-                obj.eps = parameters.eps;
+            if (nargin > 0) % copy valid parameters
+                for fn = fieldnames(parameters)',
+                    if strmatch(fn,fieldnames(obj),'exact'),
+                        obj.(fn{1}) = parameters.(fn{1});
+                    end
+                end
             end
         end
         

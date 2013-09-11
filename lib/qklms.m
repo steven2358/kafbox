@@ -26,11 +26,12 @@ classdef qklms
     methods
         
         function kaf = qklms(parameters) % constructor
-            if (nargin > 0)
-                kaf.eta = parameters.eta;
-                kaf.epsu = parameters.epsu;
-                kaf.kerneltype = parameters.kerneltype;
-                kaf.kernelpar = parameters.kernelpar;
+            if (nargin > 0) % copy valid parameters
+                for fn = fieldnames(parameters)',
+                    if strmatch(fn,fieldnames(kaf),'exact'),
+                        kaf.(fn{1}) = parameters.(fn{1});
+                    end
+                end
             end
         end
         

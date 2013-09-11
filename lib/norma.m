@@ -29,12 +29,12 @@ classdef norma
     methods
         
         function kaf = norma(parameters) % constructor
-            if (nargin > 0)
-                kaf.tau = parameters.tau;
-                kaf.lambda = parameters.lambda;
-                kaf.eta = parameters.eta;
-                kaf.kerneltype = parameters.kerneltype;
-                kaf.kernelpar = parameters.kernelpar;
+            if (nargin > 0) % copy valid parameters
+                for fn = fieldnames(parameters)',
+                    if strmatch(fn,fieldnames(kaf),'exact'),
+                        kaf.(fn{1}) = parameters.(fn{1});
+                    end
+                end
             end
             kaf.beta = (1-kaf.eta*kaf.lambda).^(0:kaf.tau-1)';
         end

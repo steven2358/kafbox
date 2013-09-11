@@ -36,12 +36,12 @@ classdef krlst
     methods
         
         function kaf = krlst(parameters) % constructor
-            if (nargin > 0)
-                kaf.lambda = parameters.lambda;
-                kaf.sn2 = parameters.sn2;
-                kaf.M = parameters.M;
-                kaf.kerneltype = parameters.kerneltype;
-                kaf.kernelpar = parameters.kernelpar;
+            if (nargin > 0) % copy valid parameters
+                for fn = fieldnames(parameters)',
+                    if strmatch(fn,fieldnames(kaf),'exact'),
+                        kaf.(fn{1}) = parameters.(fn{1});
+                    end
+                end
             end
         end
         

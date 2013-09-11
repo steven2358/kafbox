@@ -21,9 +21,12 @@ classdef rls
     methods
         
         function obj = rls(parameters) % constructor
-            if (nargin > 0)
-                obj.lambda = parameters.lambda;
-                obj.c = parameters.c;
+            if (nargin > 0) % copy valid parameters
+                for fn = fieldnames(parameters)',
+                    if strmatch(fn,fieldnames(obj),'exact'),
+                        obj.(fn{1}) = parameters.(fn{1});
+                    end
+                end
             end
         end
         

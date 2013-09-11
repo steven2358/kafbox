@@ -11,14 +11,14 @@
 
 classdef swkrls
     
-    properties (GetAccess = 'public', SetAccess = 'private')
+    properties (GetAccess = 'public', SetAccess = 'private') % parameters
         M = 100; % dictionary size
         c = 1E-4; % regularization parameter
         kerneltype = 'gauss'; % kernel type
         kernelpar = 1; % kernel parameter
     end
     
-    properties (GetAccess = 'public', SetAccess = 'private')
+    properties (GetAccess = 'public', SetAccess = 'private') % variables
         dict = []; % dictionary
         dicty = []; % output dictionary
         alpha = []; % expansion coefficients
@@ -29,11 +29,12 @@ classdef swkrls
     methods
         
         function kaf = swkrls(parameters) % constructor
-            if (nargin > 0)
-                kaf.M = parameters.M;
-                kaf.c = parameters.c;
-                kaf.kerneltype = parameters.kerneltype;
-                kaf.kernelpar = parameters.kernelpar;
+            if (nargin > 0) % copy valid parameters
+                for fn = fieldnames(parameters)',
+                    if strmatch(fn,fieldnames(kaf),'exact'),
+                        kaf.(fn{1}) = parameters.(fn{1});
+                    end
+                end
             end
         end
         

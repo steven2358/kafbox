@@ -5,6 +5,8 @@
 % algorithm," IEEE Transactions on Signal Processing, vol. 52, no. 8, pp. 
 % 2275-2285, Aug. 2004, http://dx.doi.org/10.1109/TSP.2004.830985
 %
+% Comment: implementation includes a maximum dictionary size M
+%
 % This file is part of the Kernel Adaptive Filtering Toolbox for Matlab.
 % http://sourceforge.net/projects/kafbox/
 
@@ -12,6 +14,7 @@ classdef aldkrls
     
     properties (GetAccess = 'public', SetAccess = 'private')
         nu = 1E-4; % ALD threshold
+        M = 1000; % maximum dictionary size
         kerneltype = 'gauss'; % kernel type
         kernelpar = 1; % kernel parameter
     end
@@ -27,10 +30,12 @@ classdef aldkrls
     methods
         
         function kaf = aldkrls(parameters) % constructor
-            if (nargin > 0)
-                kaf.nu = parameters.nu;
-                kaf.kerneltype = parameters.kerneltype;
-                kaf.kernelpar = parameters.kernelpar;
+            if (nargin > 0) % copy valid parameters
+                for fn = fieldnames(parameters)',
+                    if strmatch(fn,fieldnames(kaf),'exact'),
+                        kaf.(fn{1}) = parameters.(fn{1});
+                    end
+                end
             end
         end
         
@@ -56,7 +61,7 @@ classdef aldkrls
                 at = kaf.Kinv*kt;
                 delta = ktt - kt'*at;
                 
-                if (delta>kaf.nu) % expand dictionary
+                if (delta>kaf.nu && size(kaf.dict,1)<kaf.M), % expand
                     kaf.grow = true;
                     kaf.dict = [kaf.dict; x];
                     kaf.Kinv = 1/delta*[delta*kaf.Kinv + at*at', -at; -at', 1];

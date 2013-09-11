@@ -29,12 +29,12 @@ classdef knlms
     methods
         
         function kaf = knlms(parameters) % constructor
-            if (nargin > 0)
-                kaf.mu0 = parameters.mu0;
-                kaf.eta = parameters.eta;
-                kaf.eps = parameters.eps;
-                kaf.kerneltype = parameters.kerneltype;
-                kaf.kernelpar = parameters.kernelpar;
+            if (nargin > 0) % copy valid parameters
+                for fn = fieldnames(parameters)',
+                    if strmatch(fn,fieldnames(kaf),'exact'),
+                        kaf.(fn{1}) = parameters.(fn{1});
+                    end
+                end
             end
         end
         

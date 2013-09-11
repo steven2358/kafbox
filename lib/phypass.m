@@ -32,14 +32,12 @@ classdef phypass
     methods
         
         function kaf = phypass(parameters) % constructor
-            if (nargin > 0)
-                kaf.mu = parameters.mu;
-                kaf.s = parameters.s;
-                kaf.p = parameters.p;
-                kaf.sigma = parameters.sigma;
-                kaf.kerneltype = parameters.kerneltype;
-                kaf.kernelpar = parameters.kernelpar;
-                kaf.omega = parameters.omega;
+            if (nargin > 0) % copy valid parameters
+                for fn = fieldnames(parameters)',
+                    if strmatch(fn,fieldnames(kaf),'exact'),
+                        kaf.(fn{1}) = parameters.(fn{1});
+                    end
+                end
             end
         end
         
