@@ -8,15 +8,15 @@ Algorithm code structure
 
 Quick steps to code an algorithm in the toolbox' format
 -------------------------------------------------------
-1. Make a copy of `lib/dummy.m` and name it `MY_ALGORITHM.m`.
-2. Open the file and replace all mentions of "dummy" to MY_ALGORITHM.
+1. Make a copy of `lib/kafbox_template.m` and name it `MY_ALGORITHM.m`.
+2. Open the file and replace all mentions of "kafbox_template" to MY_ALGORITHM.
 3. In the first properties section, fill in the parameter values used by the algorithm with their corresponding default values.
 4. In the second properties section, fill in the variables that will be calculated by the algorithm.
 5. [optional] Adjust the `evaluate` method.
 6. Add the code for training the algorithm to the `train` method. It may be useful to rely on "helper" functions to keep the code modular. For coding style, see below.
 7. Clean up the file header.
 
-Check if the code is formatted correctly by running the script `unit_test('MY_ALGORITHM')` in the folder `lib/test/`.
+Check if the code is formatted correctly by running the script `unit_test('MY_ALGORITHM')`.
 
 
 How to contribute an algorithm to the toolbox
