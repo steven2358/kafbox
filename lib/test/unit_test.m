@@ -2,31 +2,34 @@
 %
 % The input arguments contains the algorithms to be tested, as separate
 % strings. If no argument is provided, or a single 'all' argument, all
-% algorithms are tested.
-% USAGE: unit_test('klms','krlst')
+% algorithms from the 'lib' folder are tested.
+% USAGE: unit_test('klms')
 %
 % This file is part of the Kernel Adaptive Filtering Toolbox for Matlab.
 % http://sourceforge.net/projects/kafbox/
 
 function unit_test(varargin)
 
+% get list of algorithms in 'lib' folder
+pathstr = fileparts(which('unit_test.m'));
+fdir = [pathstr '/..']; % lib folder
+files = dir(fullfile(fdir,'*.m'));
+[~,allfiles] = cellfun(@fileparts, {files.name}, 'UniformOutput',0);
+
 % get list of algorithms to run
 if isempty(varargin) || (length(varargin)==1 && strcmp(varargin{1},'all'))
-    pathstr = fileparts(which('unit_test.m'));
-    fdir = [pathstr '/..']; % lib folder
-    files = dir(fullfile(fdir,'*.m'));
-    [~,files] = cellfun(@fileparts, {files.name}, 'UniformOutput',false);
-    algorithms = files;
+    algorithms = allfiles;
 else
     fdir = ''; % local folder
     files = dir(fullfile(fdir,'*.m'));
-    [~,files] = cellfun(@fileparts, {files.name}, 'UniformOutput',false);
+    [~,localfiles] = cellfun(@fileparts, {files.name}, 'UniformOutput',0);
     algorithms = lower(varargin);
+    allfiles = horzcat(allfiles,localfiles);
 end
 
 % check for invalid names
 for a=algorithms,
-    unexisting = isempty(find(ismember(files,a{1}),1));
+    unexisting = isempty(find(ismember(allfiles,a{1}),1));
     if unexisting
         error('Algorithm not found: %s.',a{1});
     end
@@ -35,6 +38,7 @@ end
 % perform test for each specified algorithm
 fprintf('\n')
 for ii=1:length(algorithms)
+    t1 = tic;
     algorithm = algorithms{ii};
     
     fprintf('%d. %s:\n',ii,upper(algorithm));
@@ -115,7 +119,8 @@ for ii=1:length(algorithms)
     colormap('spring'); view(20,70);
     drawnow;
     
-    fprintf('OK.\n\n');
+    t2 = toc(t1);
+    fprintf('OK. %.2fs\n\n',t2);
 end
 
 if length(algorithms)>1
