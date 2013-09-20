@@ -8,7 +8,7 @@
 % This file is part of the Kernel Adaptive Filtering Toolbox for Matlab.
 % http://sourceforge.net/projects/kafbox/
 
-classdef dummy
+classdef kafbox_template
     
     properties (GetAccess = 'public', SetAccess = 'private') % parameters
         param1 = 1;
@@ -17,14 +17,14 @@ classdef dummy
         kernelpar = 1; % kernel parameter
     end
     
-    properties (GetAccess = 'private', SetAccess = 'private') % variables
+    properties (GetAccess = 'protected', SetAccess = 'private') % variables
         dict = []; % dictionary
         alpha = []; % expansion coefficients
     end
     
     methods
         
-        function kaf = dummy(parameters) % constructor
+        function kaf = kafbox_template(parameters) % constructor
             if (nargin > 0) % copy valid parameters
                 for fn = fieldnames(parameters)',
                     if strmatch(fn,fieldnames(kaf),'exact'),
