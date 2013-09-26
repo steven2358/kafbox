@@ -28,9 +28,9 @@ Option 2: fork the toolbox on GitHub (https://github.com/steven2358/kafbox), pus
 
 Coding style
 ------------
-**Code** should be
-1. as human-readable as possible, in the first place;
-2. short and structured, in the second place.
+**Code** should be  
+1. as human-readable as possible, in the first place;  
+2. short and structured, in the second place.  
 
 **Algorithm structure** should follow the pseudocode from the corresponding publication.
 

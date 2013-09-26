@@ -100,7 +100,7 @@ Included algorithms
 - Recursive Least-Squares algorithm with exponential weighting (RLS), as described in S. Haykin, "Adaptive Filtering Theory (3rd Ed.)", Prentice Hall, Chapter 13.
 - Multikernel Normalized Least Mean Square algorithm with Coherence-based Sparsification (MKNLMS-CS), as proposed in M. Yukawa, "Multikernel Adaptive Filtering", IEEE Transactions on Signal Processing, vol.60, no.9, pp.4672-4682, Sept. 2012.
 - Parallel HYperslab Projection along Affine SubSpace (PHYPASS) algorithm, as proposed in M. Takizawa and M. Yukawa, "An Efficient Data-Reusing Kernel Adaptive Filtering Algorithm Based on Parallel Hyperslab Projection Along Affine Subspace," 2013 IEEE International Conference on Acoustics, Speech, and Signal Processing (ICASSP), pp.3557-3561, May 2013.
-- Fixed-budget kernel least mean squares (FB-KLMS) algorithm, as proposed in Rzepka, D., "Fixed-budget kernel least mean squares," 2012 IEEE 17th Conference on Emerging Technologies & Factory Automation (ETFA), vol., no., pp.1,4, 17-21 Sept. 2012.
+- Fixed-budget kernel least mean squares (FB-KLMS) algorithm, as proposed in Rzepka, D., "Fixed-budget kernel least mean squares," 2012 IEEE 17th Conference on Emerging Technologies & Factory Automation (ETFA), Krakow, Poland, Sept. 2012.
 
 How to contribute code to the toolbox
 -------------------------------------
