@@ -1,5 +1,4 @@
 % Time-series prediction with a kernel adaptive filtering algorithm.
-% Author: Steven Van Vaerenbergh, 2013
 %
 % This file is part of the Kernel Adaptive Filtering Toolbox for Matlab.
 % http://sourceforge.net/projects/kafbox/
@@ -23,6 +22,7 @@ kaf = aldkrls(struct('nu',1E-4,'kerneltype','gauss','kernelpar',32)); % achieves
 % kaf = qklms(struct('eta',0.6,'epsu',2,'kerneltype','gauss','kernelpar',32)); % achieves -10.73 dB
 % kaf = lms(struct('mu',1E-4)); % achieves -5.98 dB
 % kaf = klms(struct('eta',0.1,'M',5000,'kerneltype','gauss','kernelpar',32)); % achieves -3.07 dB
+% kaf = fbklms(struct('M',10,'nu',.1,'eta',.4,'kernelpar',35)); % achieves -1.56 dB
 % kaf = mknlms_cs(struct('mu0',0.9,'eta',0.5,'rho',1E-6,'kerneltype','gauss','kernelpars',[32 33])); % achieves -1.26 dB
 % kaf = knlms(struct('mu0',0.9,'eta',0.5,'eps',1E-6,'kerneltype','gauss','kernelpar',32)); % achieves -1.17 dB
 % kaf = norma(struct('lambda',1E-4,'tau',500,'eta',0.1,'kerneltype','gauss','kernelpar',32)); % achieves 10.96 dB

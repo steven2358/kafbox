@@ -1,8 +1,8 @@
 % Fixed-budget kernel least mean squares (FB-KLMS) algorithm.
 %
 % Rzepka, D., "Fixed-budget kernel least mean squares," 2012 IEEE 17th
-% Conference on Emerging Technologies & Factory Automation (ETFA), Sept.
-% 2012, http://dx.doi.org/10.1109/ETFA.2012.6489767
+% Conference on Emerging Technologies & Factory Automation (ETFA), Krakow,
+% Poland, Sept. 2012, http://dx.doi.org/10.1109/ETFA.2012.6489767
 %
 % Comment: code contributed by Dominik Rzepka
 %
