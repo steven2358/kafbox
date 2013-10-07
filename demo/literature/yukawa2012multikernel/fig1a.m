@@ -1,7 +1,8 @@
 % Almost reproduces figure 1a from "Multikernel Adaptive Filtering".
 %
 % Comparison of the performance of LMS, KNLMS and MKNLMS-CS in nonlinear 
-% channel equalization. Execution time: < 1 minute (Pentium Core2 Duo).
+% channel equalization. Execution time: < 1 minute (Intel Pentium Core2
+% Duo).
 % 
 % Masahiro Yukawa, "Multikernel Adaptive Filtering", IEEE Transactions on
 % Signal Processing, vol.60, no.9, pp.4672-4682, Sept. 2012.

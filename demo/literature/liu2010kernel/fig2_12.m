@@ -2,7 +2,7 @@
 % Introduction".
 %
 % Comparison of the performance of LMS and KLMS in nonlinear channel
-% equalization. Execution time: < 1 minute (Pentium Core2 Duo).
+% equalization. Execution time: < 1 minute (Intel Pentium Core2 Duo).
 % 
 % Weifeng Liu, Jose C. Principe and Simon Haykin, "Kernel  Adaptive
 % Filtering: A Comprehensive Introduction", Wiley, 2010.

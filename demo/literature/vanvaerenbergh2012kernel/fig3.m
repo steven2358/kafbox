@@ -3,7 +3,7 @@
 %
 % MSE performance comparison of different tracking algorithms on a
 % communications channel that shows an abrupt change at iteration 500.
-% Execution time: < 1 minute (Pentium Core2 Duo).
+% Execution time: < 1 minute (Intel Pentium Core2 Duo).
 %
 % S. Van Vaerenbergh, M. Lazaro-Gredilla, and I. Santamaria, "Kernel
 % Recursive Least-Squares Tracker for Time-Varying Regression," IEEE
@@ -31,8 +31,6 @@ embedding = 5; % time-embedding
 setups{1} = swkrls(struct('c',1E-2,'M',50,'kerneltype','gauss','kernelpar',1));
 setups{2} = krlst(struct('lambda',.999,'M',50,'sn2',1E-2,'kerneltype','gauss','kernelpar',1));
 setups{3} = norma(struct('lambda',1E-2,'tau',1500,'eta',0.1,'kerneltype','gauss','kernelpar',1)); % large tau -> very slow
-
-numsim = 1;
 
 %% PREPARE DATA
 
