@@ -15,15 +15,16 @@ classdef norma
         tau = 200; % memory size (terms retained in truncation)
         lambda = 1E-4; % regularization parameter
         eta = .5; % learning rate
+        tcoeff = 0; % learning rate coefficient: eta_t = eta * t^tcoeff
         kerneltype = 'gauss'; % kernel type
         kernelpar = 1; % kernel parameter
     end
     
     properties (GetAccess = 'public', SetAccess = 'private')
+        t = 0; % time index
         mem = []; % memory
         alpha = []; % expansion coefficients
-        beta = []; % forgetting coefficients
-        prune = false; % flag
+        % beta = []; % forgetting coefficients
     end
     
     methods
@@ -36,13 +37,13 @@ classdef norma
                     end
                 end
             end
-            kaf.beta = (1-kaf.eta*kaf.lambda).^(0:kaf.tau-1)';
+            % kaf.beta = (1-kaf.eta*kaf.lambda).^(0:kaf.tau-1)';
         end
         
         function y_est = evaluate(kaf,x) % evaluate the algorithm
             if size(kaf.mem,1)>0
                 k = kernel(kaf.mem,x,kaf.kerneltype,kaf.kernelpar);
-                y_est = k'*(kaf.alpha.*kaf.beta(length(kaf.alpha):-1:1));
+                y_est = k'*kaf.alpha;
             else
                 y_est = 0;
             end
@@ -52,11 +53,11 @@ classdef norma
             y_est = kaf.evaluate(x);
             err = y - y_est;
             
+            kaf.t = kaf.t + 1;
+            kaf.alpha = (1-kaf.lambda*kaf.eta*kaf.t^kaf.tcoeff)*kaf.alpha;
             kaf.alpha = [kaf.alpha; kaf.eta*err]; % grow
             kaf.mem = [kaf.mem; x]; % grow
-            kaf.prune = false;
             if length(kaf.alpha)>kaf.tau
-                kaf.prune = true;
                 kaf.alpha(1) = []; % prune
                 kaf.mem(1,:) = []; % prune
             end
