@@ -1,4 +1,4 @@
-% Kernel Affine Projection algorithm with Coherence Criterion
+% Kernel Affine Projection (KAP) algorithm with Coherence Criterion
 %
 % C. Richard, J.C.M. Bermudez, and P. Honeine, "Online Prediction of Time
 % Series Data With Kernels," IEEE Transactions on Signal Processing,
@@ -10,10 +10,10 @@
 % This file is part of the Kernel Adaptive Filtering Toolbox for Matlab.
 % http://sourceforge.net/projects/kafbox/
 
-classdef kapcc
+classdef kap
     
     properties (GetAccess = 'public', SetAccess = 'private')
-        mu0 = 1; % coherence criterion threshold
+        mu0 = .9; % coherence criterion threshold
         eta = .1; % step size
         eps = 1E-4; % regularization
         p = 10; % memory length
@@ -22,17 +22,17 @@ classdef kapcc
     end
     
     properties (GetAccess = 'public', SetAccess = 'private')
-        mem = []; % memory
+        memx = []; % input memory
+        memd = []; % output memory
         dict = []; % dictionary
         alpha = []; % expansion coefficients
-        d = []; % output window
         growmem = false; % flag
         growdict = false; % flag
     end
     
     methods
         
-        function kaf = kapcc(parameters) % constructor
+        function kaf = kap(parameters) % constructor
             if (nargin > 0) % copy valid parameters
                 for fn = fieldnames(parameters)',
                     if strmatch(fn,fieldnames(kaf),'exact'),
@@ -52,35 +52,30 @@ classdef kapcc
         end
         
         function kaf = train(kaf,x,y) % train the algorithm
-            if (length(kaf.d) < kaf.p)
-                kaf.mem = [kaf.mem; x]; % grow the memory
-                kaf.d = [kaf.d; y]; % grow the memory
-                kaf.growmem = true;
+            if (length(kaf.memd) < kaf.p)
+                kaf.memx = [kaf.memx; x]; % grow the memory
+                kaf.memd = [kaf.memd; y]; % grow the memory
             else
-                kaf.mem = [kaf.mem(2:end,:); x]; % sliding window
-                kaf.d = [kaf.d(2:end); y]; % sliding window
-                kaf.growmem = false;
+                kaf.memx = [kaf.memx(2:end,:); x]; % sliding memory
+                kaf.memd = [kaf.memd(2:end); y]; % sliding memory
             end
             
             if size(kaf.dict,2)==0 % initialize
                 kaf.dict = x;
                 kaf.alpha = 0;
-                kaf.growdict = true;
             else
                 k = kernel(x,kaf.dict,kaf.kerneltype,kaf.kernelpar);
-                kaf.growdict = false;
                 if (max(k) <= kaf.mu0), % coherence criterion
-                    kaf.growdict = true;
                     kaf.dict = [kaf.dict; x]; % order increase
                     kaf.alpha = [kaf.alpha; 0]; % order increase
                 end
             end
             
-            H = kernel(kaf.mem,kaf.dict,kaf.kerneltype,kaf.kernelpar);
+            H = kernel(kaf.memx,kaf.dict,kaf.kerneltype,kaf.kernelpar);
             kaf.alpha = kaf.alpha + ...
                 kaf.eta*H'/...
                 (kaf.eps*eye(size(H,1)) + H*H')*...
-                (kaf.d - H*kaf.alpha);
+                (kaf.memd - H*kaf.alpha);
         end
         
     end

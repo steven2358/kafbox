@@ -101,7 +101,7 @@ for ii=1:length(algorithms)
     end
     
     fprintf('Testing long training')
-    for i=1:N,
+    for i=2:N,
         if ~mod(i,floor(N/10)), fprintf('.'); end
         kaf = kaf.train(x(i,:),y(i));
         % y_test = kaf.evaluate(x(i+1,:));
