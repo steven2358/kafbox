@@ -16,14 +16,19 @@ fdir = [pathstr '/..']; % lib folder
 files = dir(fullfile(fdir,'*.m'));
 [~,allfiles] = cellfun(@fileparts, {files.name}, 'UniformOutput',0);
 
+% remove files that do not contain classes
+allfiles = filter_classes(allfiles);
+
 % get list of algorithms to run
 if isempty(varargin) || (length(varargin)==1 && strcmp(varargin{1},'all'))
     algorithms = allfiles;
 else
+    algorithms = lower(varargin);
     fdir = ''; % local folder
     files = dir(fullfile(fdir,'*.m'));
     [~,localfiles] = cellfun(@fileparts, {files.name}, 'UniformOutput',0);
-    algorithms = lower(varargin);
+    % remove files that do not contain classes
+    localfiles = filter_classes(localfiles);
     allfiles = horzcat(allfiles,localfiles);
 end
 
@@ -85,7 +90,7 @@ for ii=1:length(algorithms)
     x = rand(N,2)*c;
     y = sin(3*x(:,1)).*cos(x(:,1)+x(:,2));
     
-    fprintf('Testing 1 training step........\n')
+    fprintf('1 training step................\n')
     for i=1,
         try
             kaf = kaf.train(x(i,:),y(i));
@@ -99,9 +104,17 @@ for ii=1:length(algorithms)
                 err.message);
         end
     end
+
+    fprintf('Training with repeated data....')
+    for i=1:10,
+        if ~mod(i,floor(N/10)), fprintf('.'); end
+        kaf = kaf.train(x(1,:),y(1));
+        % y_test = kaf.evaluate(x(i+1,:));
+    end
+    fprintf('\n')
     
-    fprintf('Testing long training')
-    for i=2:N,
+    fprintf('Long training........')
+    for i=1:N,
         if ~mod(i,floor(N/10)), fprintf('.'); end
         kaf = kaf.train(x(i,:),y(i));
         % y_test = kaf.evaluate(x(i+1,:));
@@ -115,7 +128,7 @@ for ii=1:length(algorithms)
     z = reshape(yt,size(x1,1),size(x2,1));
     close; figure;
     surf(x1,x2,z);
-    title(sprintf('%s',upper(algorithm)));
+    title(sprintf('%s',upper(strrep(algorithm,'_','\_'))));
     colormap('spring'); view(20,70);
     drawnow;
     
@@ -126,3 +139,14 @@ end
 if length(algorithms)>1
     fprintf('All OK.\n\n')
 end
+
+
+% remove files that do not contain classes
+function files = filter_classes(files)
+inds = [];
+for i=1:length(files)
+    if ~exist(files{i},'class')
+        inds = [inds i]; %#ok<AGROW>
+    end
+end
+files(inds) = [];
