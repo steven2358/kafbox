@@ -7,18 +7,20 @@ classdef qklms_profiler < qklms
     
     properties (GetAccess = 'public', SetAccess = 'private')
         elapsed = 0; % elapsed time
+        prev_mem_size = 0; % previous dictionary size for growth check
     end
     
     methods
         
         function kaf = qklms_profiler(parameters) % constructor
+            if nargin<1, parameters = struct(); end
             kaf = kaf@qklms(parameters);
         end
         
         function flops = lastflops(kaf) % flops for last iteration
             m = size(kaf.mem,1);
             
-            if kaf.grow
+            if kaf.prev_mem_size < m, % growing
                 m1 = m-1;
                 n4 = 1;
                 n5 = 1;
@@ -67,7 +69,8 @@ classdef qklms_profiler < qklms
         
         %%
         
-        function kaf = train_elapsed(kaf,x,y) % measures elapsed time of training
+        function kaf = train_profiled(kaf,x,y)
+            kaf.prev_mem_size = size(kaf.mem,1);
             t1 = tic;
             kaf = kaf.train(x,y);
             t2 = toc(t1);

@@ -12,6 +12,7 @@ classdef krlst_profiler < krlst
     methods
         
         function kaf = krlst_profiler(parameters) % constructor
+            if nargin<1, parameters = struct(); end
             kaf = kaf@krlst(parameters);
         end
         
@@ -112,7 +113,8 @@ classdef krlst_profiler < krlst
         
         %%
         
-        function kaf = train_elapsed(kaf,x,y) % measures elapsed time of training
+        function kaf = train_profiled(kaf,x,y)
+            % kaf.prev_dict_size = size(kaf.dict,1);
             t1 = tic;
             kaf = kaf.train(x,y);
             t2 = toc(t1);

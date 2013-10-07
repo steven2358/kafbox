@@ -8,23 +8,25 @@ classdef aldkrls_profiler < aldkrls
     
     properties (GetAccess = 'public', SetAccess = 'private')
         elapsed = 0; % elapsed time
+        prev_dict_size = 0; % previous dictionary size for growth check
     end
     
     methods
         
         function kaf = aldkrls_profiler(parameters) % constructor
+            if nargin<1, parameters = struct(); end
             kaf = kaf@aldkrls(parameters);
         end
         
         function flops = lastflops(kaf) % flops for last iteration
             m = size(kaf.dict,1);
-            if kaf.grow
+            if kaf.prev_dict_size < m, % growing
                 m1 = m;
                 m2 = m - 1;
                 m3 = m - 1;
                 floptions = struct(...
                     'sum', m2^2 - m2 + m2 + m3^2 + m3 + m3, ...
-                    'mult', m2^2 + m2 + m3^2 + m3 + m3 + 1 + m3, ...
+                    'mult', m2^2 + m2 + m3^2 + 2*m3 + m3 + 1 + m3, ...
                     'div', 1, ...
                     sprintf('%s_kernel',kaf.kerneltype), [m1,1,size(kaf.dict,2)]);
             else
@@ -32,11 +34,13 @@ classdef aldkrls_profiler < aldkrls
                 m2 = m;
                 m4 = m;
                 floptions = struct(...
-                    'sum', m2^2 - m2 + m2 + m4^2 + 2*m4^2 - m4 + m4^2 + m4, ...
-                    'mult', m2^2 + m2 + 2*m4^2 + m4 + 2*m4^2 + m4^2 + 2*m4, ...
+                    'sum', m2^2 - m2 + m2 + m4^2 + m4^2 + m4^2 + m4, ...
+                    'mult', m2^2 + m2 + m4^2 + m4 + m4^2 + m4^2 + 2*m4, ...
                     'div', 1, ...
                     sprintf('%s_kernel',kaf.kerneltype), [m1,1,size(kaf.dict,2)]);
             end
+            % note: update with dictionary changed has 2*m^2 operations,
+            % while update with dictionary unchanged has 8*m^2 operations.
             
             flops = kflops(floptions);
         end
@@ -56,7 +60,7 @@ classdef aldkrls_profiler < aldkrls
         
         % kaf.Kinv = 1/delta*[delta*kaf.Kinv + at*at', -at; -at', 1]; % grow Kinv
         % sum: m3^2
-        % mult: m3^2 + m3
+        % mult: m3^2 + 2*m3 + 1
         % div: 1
         
         % ode = 1/delta*(y-kt'*kaf.alpha); % grow Kinv
@@ -69,20 +73,21 @@ classdef aldkrls_profiler < aldkrls
         
         % q = kaf.P*at/(1+at'*kaf.P*at); % only update alpha
         % sum: m4^2
-        % mult: 2*m4^2 + m4
+        % mult: m4^2 + m4
         % div: 1
         
         % kaf.P = kaf.P - q*(at'*kaf.P); % only update alpha
-        % sum: 2*m4^2 - m4
-        % mult: 2*m4^2
+        % sum: m4^2
+        % mult: m4^2
         
         % kaf.alpha = kaf.alpha + kaf.Kinv*q*(y-kt'*kaf.alpha); % only update alpha
         % sum: m4^2 + m4
         % mult: m4^2 + 2*m4
         
         %%
-        
-        function kaf = train_elapsed(kaf,x,y) % measures elapsed time of training
+
+        function kaf = train_profiled(kaf,x,y)
+            kaf.prev_dict_size = size(kaf.dict,1);
             t1 = tic;
             kaf = kaf.train(x,y);
             t2 = toc(t1);

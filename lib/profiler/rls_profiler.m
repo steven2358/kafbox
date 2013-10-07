@@ -12,6 +12,7 @@ classdef rls_profiler < rls
     methods
         
         function obj = rls_profiler(parameters) % constructor
+            if nargin<1, parameters = struct(); end
             obj = obj@rls(parameters);
         end
         
@@ -46,7 +47,7 @@ classdef rls_profiler < rls
         
         %%
         
-        function obj = train_elapsed(obj,x,y) % measures elapsed time of training
+        function obj = train_profiled(obj,x,y) % measures elapsed time of training
             t1 = tic;
             obj = obj.train(x,y);
             t2 = toc(t1);

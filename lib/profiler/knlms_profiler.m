@@ -8,13 +8,19 @@ classdef knlms_profiler < knlms
     
     properties (GetAccess = 'public', SetAccess = 'private')
         elapsed = 0; % elapsed time
+        prev_dict_size = 0; % previous dictionary size for growth check
     end
     
     methods
         
+        function kaf = knlms_profiler(parameters) % constructor
+            if nargin<1, parameters = struct(); end
+            kaf = kaf@knlms(parameters);
+        end
+        
         function flops = lastflops(kaf) % flops for last iteration
             m = size(kaf.dict,1);
-            if kaf.grow
+            if kaf.prev_dict_size < m, % growing
                 m1 = m - 1;
                 n2 = 1;
             else
@@ -44,6 +50,14 @@ classdef knlms_profiler < knlms
         % div: 1
         
         %%
+        
+        function kaf = train_profiled(kaf,x,y)
+            kaf.prev_dict_size = size(kaf.dict,1);
+            t1 = tic;
+            kaf = kaf.train(x,y);
+            t2 = toc(t1);
+            kaf.elapsed = kaf.elapsed + t2;
+        end
         
         function bytes = lastbytes(kaf) % bytes used in last iteration
             m = size(kaf.dict,1);

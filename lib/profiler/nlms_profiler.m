@@ -12,6 +12,7 @@ classdef nlms_profiler < nlms
     methods
         
         function obj = nlms_profiler(parameters) % constructor
+            if nargin<1, parameters = struct(); end
             obj = obj@nlms(parameters);
         end
         
@@ -33,7 +34,7 @@ classdef nlms_profiler < nlms
         
         %%
         
-        function obj = train_elapsed(obj,x,y) % measures elapsed time of training
+        function obj = train_profiled(obj,x,y)
             t1 = tic;
             obj = obj.train(x,y);
             t2 = toc(t1);

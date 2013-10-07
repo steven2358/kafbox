@@ -7,17 +7,19 @@ classdef swkrls_profiler < swkrls
     
     properties (GetAccess = 'public', SetAccess = 'private')
         elapsed = 0; % elapsed time
+        prev_dict_size = 0; % previous dictionary size for growth check
     end
     
     methods
         
         function kaf = swkrls_profiler(parameters) % constructor
+            if nargin<1, parameters = struct(); end
             kaf = kaf@swkrls(parameters);
         end
         
         function flops = lastflops(kaf) % flops for last iteration
             m = size(kaf.dict,1);
-            if ~kaf.prune
+            if kaf.prev_dict_size < m, % growing
                 m1 = m;
                 m2 = m - 1;
                 floptions = struct(...
@@ -73,7 +75,8 @@ classdef swkrls_profiler < swkrls
         
         %%
         
-        function kaf = train_elapsed(kaf,x,y) % measures elapsed time of training
+        function kaf = train_profiled(kaf,x,y)
+            kaf.prev_dict_size = size(kaf.dict,1);
             t1 = tic;
             kaf = kaf.train(x,y);
             t2 = toc(t1);

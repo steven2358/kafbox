@@ -8,24 +8,28 @@ classdef norma_profiler < norma
     
     properties (GetAccess = 'public', SetAccess = 'private')
         elapsed = 0; % elapsed time
+        prev_mem_size = 0; % previous memory size for prune check
     end
     
     methods
         
         function kaf = norma_profiler(parameters) % constructor
+            if nargin<1, parameters = struct(); end
             kaf = kaf@norma(parameters);
         end
         
         function flops = lastflops(kaf) % flops for last iteration
+            
             m = size(kaf.mem,1);
-            if ~kaf.prune
+            if kaf.prev_mem_size < m, % growing (no pruning)
                 m1 = m-1;
             else
                 m1 = m;
             end
             floptions = struct(...
-                'sum', m1 - 1 + 1, ...
-                'mult', 2*m1 + 1, ...
+                'sum', m1 - 1 + 1 + 1, ...
+                'mult', 2*m1 + 3 + 1, ...
+                'exp', 1, ...
                 sprintf('%s_kernel',kaf.kerneltype), [m1,1,size(kaf.mem,2)]);
             
             flops = kflops(floptions);
@@ -43,12 +47,18 @@ classdef norma_profiler < norma
         % err = y - y_est;
         % sum: 1
         
+        % kaf.alpha = (1-kaf.lambda*kaf.eta*kaf.t^kaf.tcoeff)*kaf.alpha;
+        % sum: 1
+        % mult: 3
+        % exp: 1
+        
         % kaf.alpha = [kaf.alpha; kaf.mu*err];
         % mult: 1
         
         %%
         
-        function kaf = train_elapsed(kaf,x,y) % measures elapsed time of training
+        function kaf = train_profiled(kaf,x,y)
+            kaf.prev_mem_size = size(kaf.mem,1);
             t1 = tic;
             kaf = kaf.train(x,y);
             t2 = toc(t1);
@@ -57,8 +67,8 @@ classdef norma_profiler < norma
         
         function bytes = lastbytes(kaf) % bytes used in last iteration
             m = size(kaf.mem,1);
-            bytes = 8*(m + m*size(kaf.mem,2) + kaf.tau); % 8 bytes for double precision
-            % alpha, mem, tau
+            bytes = 4 + 8*(m + m*size(kaf.mem,2)); % 8 bytes for double precision, 4 for uint32
+            % t, alpha, mem
         end
         
     end
