@@ -24,7 +24,6 @@ classdef fbkrls
         dicty = []; % output dictionary
         alpha = []; % expansion coefficients
         Kinv = []; % inverse kernel matrix
-        prune = false; % flag
     end
     
     methods
@@ -54,9 +53,7 @@ classdef fbkrls
             kaf = kaf.grow_kernel_matrix(x); % grow
             
             kaf.alpha = kaf.Kinv*kaf.dicty;
-            kaf.prune = false;
             if (size(kaf.dict,1) > kaf.M)
-                kaf.prune = true;
                 ape = abs(kaf.alpha)./diag(kaf.Kinv); % a posteriori error
                 [~,ind] = min(ape);
                 

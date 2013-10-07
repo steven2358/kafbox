@@ -23,7 +23,6 @@ classdef knlms
     properties (GetAccess = 'public', SetAccess = 'private') % variables
         dict = []; % dictionary
         alpha = []; % expansion coefficients
-        grow = false; % flag
     end
     
     methods
@@ -51,12 +50,9 @@ classdef knlms
             if size(kaf.dict,2)==0 % initialize
                 kaf.dict = x;
                 kaf.alpha = 0;
-                kaf.grow = true;
             else
                 k = kernel(x,kaf.dict,kaf.kerneltype,kaf.kernelpar);
-                kaf.grow = false;
                 if (max(k) <= kaf.mu0), % coherence criterion
-                    kaf.grow = true;
                     kaf.dict = [kaf.dict; x]; % order increase
                     kaf.alpha = [kaf.alpha; 0]; % order increase
                 end

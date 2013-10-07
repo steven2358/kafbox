@@ -20,7 +20,6 @@ classdef qklms
     properties (GetAccess = 'public', SetAccess = 'private')
         mem = []; % codebook
         alpha = []; % expansion coefficients
-        grow = false; % flag
     end
     
     methods
@@ -55,10 +54,8 @@ classdef qklms
                 [d2,j] = min(sum((kaf.mem - repmat(x,m,1)).^2,2));
             end
             if d2 <= kaf.epsu^2, 
-                kaf.grow = false;
                 kaf.alpha(j) = kaf.alpha(j) + kaf.eta*err;
             else
-                kaf.grow = true;
                 kaf.mem = [kaf.mem; x]; % add to codebook
                 kaf.alpha = [kaf.alpha; kaf.eta*err];
             end

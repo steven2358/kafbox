@@ -29,7 +29,6 @@ classdef exkrls
         Q = [];
         i = 0; % iteration number;
         alpha = []; % expansion coefficients, "a" in publication
-        grow = false; % flag
     end
     
     methods
@@ -58,13 +57,11 @@ classdef exkrls
             k = kernel([kaf.mem; x],x,kaf.kerneltype,kaf.kernelpar);
             kt = k(1:end-1);
             ktt = k(end);
-            kaf.grow = false;
             if numel(kt)==0 % initialize
                 kaf.alpha = kaf.alphaf*y/(kaf.lambda*kaf.beta+ktt);
                 kaf.rho = kaf.lambda*kaf.beta/(kaf.alphaf^2*kaf.beta + kaf.lambda*kaf.q);
                 kaf.Q = kaf.alphaf^2/((kaf.beta*kaf.lambda+ktt)*(kaf.alphaf^2+kaf.beta*kaf.lambda*kaf.q));
                 kaf.mem = x;
-                kaf.grow = true;
             else
                 if (size(kaf.mem,1)<kaf.M), % avoid infinite growth
                     z = kaf.Q*kt;
@@ -77,7 +74,6 @@ classdef exkrls
                     kaf.rho = kaf.rho/dummy;
                     kaf.Q = kaf.alphaf^2/(r*dummy)*...
                         [kaf.Q*r + z*z', -z; -z', 1];
-                    kaf.grow = true;
                 end
             end
         end

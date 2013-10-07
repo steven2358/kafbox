@@ -1,4 +1,4 @@
-% Kernel Affine Projection (KAP) algorithm with Coherence Criterion
+% Kernel Affine Projection (KAP) algorithm with coherence criterion
 %
 % C. Richard, J.C.M. Bermudez, and P. Honeine, "Online Prediction of Time
 % Series Data With Kernels," IEEE Transactions on Signal Processing,

@@ -24,7 +24,6 @@ classdef aldkrls
         alpha = []; % expansion coefficients
         P = []; % inverse A'*A
         Kinv = []; % inverse kernel matrix
-        grow = false; % flag
     end
     
     methods
@@ -62,7 +61,6 @@ classdef aldkrls
                 delta = ktt - kt'*at;
                 
                 if (delta>kaf.nu && size(kaf.dict,1)<kaf.M), % expand
-                    kaf.grow = true;
                     kaf.dict = [kaf.dict; x];
                     kaf.Kinv = 1/delta*[delta*kaf.Kinv + at*at', -at; -at', 1];
                     Z = zeros(size(kaf.P,1),1);
@@ -70,7 +68,6 @@ classdef aldkrls
                     ode = 1/delta*(y-kt'*kaf.alpha);
                     kaf.alpha = [kaf.alpha - at*ode; ode];
                 else % only update alpha
-                    kaf.grow = false;
                     q = kaf.P*at/(1+at'*kaf.P*at);
                     kaf.P = kaf.P - q*(at'*kaf.P);
                     kaf.alpha = kaf.alpha + kaf.Kinv*q*(y-kt'*kaf.alpha);

@@ -21,7 +21,6 @@ classdef klms
     properties (GetAccess = 'public', SetAccess = 'private')
         mem = []; % memory
         alpha = []; % expansion coefficients
-        grow = false; % flag
     end
     
     methods
@@ -46,13 +45,11 @@ classdef klms
         end
         
         function kaf = train(kaf,x,y) % train the algorithm
-            kaf.grow = false;
             if (size(kaf.mem,1)<kaf.M), % avoid infinite growth
                 y_est = kaf.evaluate(x);
                 err = y - y_est;
                 kaf.alpha = [kaf.alpha; kaf.eta*err]; % grow
                 kaf.mem = [kaf.mem; x]; % grow
-                kaf.grow = true;
             end
         end
         

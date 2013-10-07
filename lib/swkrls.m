@@ -23,7 +23,6 @@ classdef swkrls
         dicty = []; % output dictionary
         alpha = []; % expansion coefficients
         Kinv = []; % inverse kernel matrix
-        prune = false; % flag
     end
     
     methods
@@ -52,9 +51,7 @@ classdef swkrls
             kaf.dicty = [kaf.dicty; y];	% grow
             kaf = kaf.grow_kernel_matrix(x); % grow
             
-            kaf.prune = false;
             if (size(kaf.dict,1) > kaf.M)
-                kaf.prune = true;
                 kaf.dict(1,:) = []; % prune
                 kaf.dicty(1) = []; % prune
                 kaf = kaf.prune_kernel_matrix(); % prune
