@@ -1,5 +1,5 @@
 % This is the template used for kernel adaptive filtering algorithms in
-% the kernel adaptive filtering toolbox.
+% the kernel adaptive filtering toolbox. Delete this line.
 %
 % The name of the algorithm goes here.
 %
