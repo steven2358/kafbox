@@ -1,5 +1,5 @@
 function [v,d,dref] = generate_doddbench(N)
-% Generate GENERATE_DODDBENCH signal.
+% Generate DODDBENCH signal.
 %
 % Benchmark signal introduced in Dodd, T.J., Kadirkamanathan, V. and
 % Harrison, R.F., "Function estimation in Hilbert space using sequential

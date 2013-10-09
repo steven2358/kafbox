@@ -1,5 +1,5 @@
 function [u,d,dref] = generate_richardbench(N)
-% Generate GENERATE_RICHARDBENCH signal.
+% Generate RICHARDBENCH signal.
 %
 % Benchmark signal introduced in C. Richard, J.C.M. Bermudez, P. Honeine,
 % "Online Prediction of Time Series Data With Kernels," IEEE Transactions
