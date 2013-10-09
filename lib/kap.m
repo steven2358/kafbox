@@ -13,10 +13,10 @@
 classdef kap
     
     properties (GetAccess = 'public', SetAccess = 'private')
-        mu0 = .9; % coherence criterion threshold
-        eta = .1; % step size
-        eps = 1E-4; % regularization
-        p = 10; % memory length
+        mu0 = .95; % coherence criterion threshold
+        eta = .5; % step size
+        eps = 1E-2; % regularization
+        p = 20; % memory length
         kerneltype = 'gauss'; % kernel type
         kernelpar = 1; % kernel parameter
     end

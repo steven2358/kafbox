@@ -12,8 +12,8 @@
 classdef norma
     
     properties (GetAccess = 'public', SetAccess = 'private')
-        tau = 200; % memory size (terms retained in truncation)
-        lambda = 1E-4; % regularization parameter
+        tau = 500; % memory size (terms retained in truncation)
+        lambda = 1E-2; % regularization parameter
         eta = .5; % learning rate
         tcoeff = 0; % learning rate coefficient: eta_t = eta * t^tcoeff
         kerneltype = 'gauss'; % kernel type

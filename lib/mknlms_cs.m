@@ -13,11 +13,11 @@
 classdef mknlms_cs
     
     properties (GetAccess = 'public', SetAccess = 'private') % parameters
-        delta = .9; % coherence criterion threshold
-        eta = .1; % step size
-        rho = 1E-4; % regularization
+        delta = .95; % coherence criterion threshold
+        eta = .5; % step size
+        rho = 1E-2; % regularization
         kerneltype = 'gauss'; % kernel type
-        kernelpars = [.01 .1 1 10 100 1000]; % kernel parameters
+        kernelpars = .5:.5:2; % kernel parameters
     end
         properties (GetAccess = 'private', SetAccess = 'private') % variables
         dict = []; % dictionary

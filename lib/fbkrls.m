@@ -14,7 +14,7 @@ classdef fbkrls
     
     properties (GetAccess = 'public', SetAccess = 'private')
         M = 100; % dictionary size
-        lambda = 1E-4; % regularization parameter
+        lambda = 1E-2; % regularization parameter
         kerneltype = 'gauss'; % kernel type
         kernelpar = 1; % kernel parameter
     end

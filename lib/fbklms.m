@@ -12,8 +12,8 @@
 classdef fbklms
     
     properties (GetAccess = 'public', SetAccess = 'private') % parameters
-        nu = .2; % growth criterion threshold
-        M = 100; % dictionary size
+        nu = .05; % growth criterion threshold
+        M = 500; % dictionary size
         eta = .5; % learning rate
         kerneltype = 'gauss'; % kernel type
         kernelpar = 1; % kernel parameter

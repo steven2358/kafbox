@@ -13,7 +13,7 @@
 classdef phypass
     
     properties (GetAccess = 'public', SetAccess = 'private')
-        mu = 0.6; % step size
+        mu = 0.5; % step size
         s = 1; % number of update coefficients (dictionary size)
         sigma = 0.95; % threshold for dictionary
         p = 8; % number of hyper slabs

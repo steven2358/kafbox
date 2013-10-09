@@ -13,9 +13,9 @@
 classdef knlms
     
     properties (GetAccess = 'public', SetAccess = 'private') % parameters
-        mu0 = .9; % coherence criterion threshold
-        eta = .1; % step size
-        eps = 1E-4; % regularization
+        mu0 = .95; % coherence criterion threshold
+        eta = .5; % step size
+        eps = 1E-2; % regularization
         kerneltype = 'gauss'; % kernel type
         kernelpar = 1; % kernel parameter
     end

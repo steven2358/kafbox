@@ -11,8 +11,8 @@
 classdef qklms
     
     properties (GetAccess = 'public', SetAccess = 'private')
-        eta = .5; % learning rate
-        epsu = 1;
+        eta = .9; % learning rate
+        epsu = .1;
         kerneltype = 'gauss'; % kernel type
         kernelpar = 1; % kernel parameter
     end

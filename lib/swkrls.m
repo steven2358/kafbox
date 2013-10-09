@@ -12,8 +12,8 @@
 classdef swkrls
     
     properties (GetAccess = 'public', SetAccess = 'private') % parameters
-        M = 100; % dictionary size
-        c = 1E-4; % regularization parameter
+        M = 250; % dictionary size
+        c = 1E-2; % regularization parameter
         kerneltype = 'gauss'; % kernel type
         kernelpar = 1; % kernel parameter
     end

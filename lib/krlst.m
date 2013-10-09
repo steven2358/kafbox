@@ -14,7 +14,7 @@ classdef krlst
     
     properties (GetAccess = 'public', SetAccess = 'private')
         lambda = .999; % forgetting factor
-        sn2 = 1E-4; % noise to signal ratio
+        sn2 = 1E-2; % noise to signal ratio
         M = 100; % dictionary size
         kerneltype = 'gauss'; % kernel type
         kernelpar = 1; % kernel parameter

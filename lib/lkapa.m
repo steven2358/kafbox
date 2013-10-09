@@ -14,10 +14,10 @@
 classdef lkapa
     
     properties (GetAccess = 'public', SetAccess = 'private') % parameters
-        eta = .001; % learning rate
-        lambda = 1E-4; % Tikhonov regularization
+        eta = .05; % learning rate
+        lambda = 1E-2; % Tikhonov regularization
         M = 1000; % maximum dictionary size
-        P = 5; % number of regressors
+        P = 20; % number of regressors
         kerneltype = 'gauss'; % kernel type
         kernelpar = 1; % kernel parameter
     end
