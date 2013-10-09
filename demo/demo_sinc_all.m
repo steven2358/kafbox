@@ -6,7 +6,7 @@
 
 close all
 clear all
-% rs = 1; randn('state',rs); rand('state',rs); %#ok<RAND>
+rs = 1; randn('state',rs); rand('state',rs); %#ok<RAND>
 
 %% PARAMETERS
 
