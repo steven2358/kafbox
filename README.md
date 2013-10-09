@@ -83,6 +83,22 @@ Result:
 
     MSE after first 1000 samples: -40.17dB
 
+Citing KAFBOX
+============
+
+If you use this toolbox in your research please cite the following publication:  
+S. Van Vaerenbergh, and I. Santamaria, "A Comparative Study of Kernel Adaptive Filtering Algorithms", 2013 IEEE Digital Signal Processing (DSP) Workshop and IEEE Signal Processing Education (SPE), August, 2013.
+
+Bibtext format:  
+
+    @conference{vanvaerenbergh2013comparative,
+      author = {Steven Van Vaerenbergh and Santamar{\'\i}a, Ignacio},
+      booktitle = {2013 IEEE Digital Signal Processing (DSP) Workshop and IEEE Signal Processing Education (SPE)},
+      title = {A Comparative Study of Kernel Adaptive Filtering Algorithms},
+      year = {2013},
+      note = {Software available at \url{http://sourceforge.net/projects/kafbox/}}
+    }
+	
 Included algorithms
 -------------------
 - Approximate Linear Dependency Kernel Recursive Least-Squares (ALD-KRLS), as proposed in Y. Engel, S. Mannor, and R. Meir. "The kernel recursive least-squares algorithm", IEEE Transactions on Signal Processing, volume 52, no. 8, pages 2275-2285, 2004.
