@@ -84,12 +84,9 @@ Result:
     MSE after first 1000 samples: -40.17dB
 
 Citing KAFBOX
-============
+-------------
 
-If you use this toolbox in your research please cite the following publication:  
-S. Van Vaerenbergh, and I. Santamaria, "A Comparative Study of Kernel Adaptive Filtering Algorithms", 2013 IEEE Digital Signal Processing (DSP) Workshop and IEEE Signal Processing Education (SPE), August, 2013.
-
-Bibtext format:  
+If you use this toolbox in your research please cite ["A Comparative Study of Kernel Adaptive Filtering Algorithms"](http://gtas.unican.es/pub/356):
 
     @conference{vanvaerenbergh2013comparative,
       author = {Steven Van Vaerenbergh and Santamar{\'\i}a, Ignacio},
