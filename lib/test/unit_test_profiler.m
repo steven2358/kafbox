@@ -17,7 +17,7 @@ fdir = [pathstr '/../profiler']; % profiler folder
 files = dir(fullfile(fdir,'*.m'));
 [~,allfiles] = cellfun(@fileparts, {files.name}, 'UniformOutput',0);
 
-% remove files that do not contain classes
+% remove files that do not represent classes
 allfiles = filter_classes(allfiles);
 
 % get list of algorithms to run
@@ -141,7 +141,7 @@ if length(algorithms)>1
 end
 
 
-% remove files that do not contain classes
+% remove files that do not represent classes
 function files = filter_classes(files)
 inds = [];
 for i=1:length(files)
