@@ -12,41 +12,108 @@
 % This file is part of the Kernel Adaptive Filtering Toolbox for Matlab.
 % http://sourceforge.net/projects/kafbox/
 
-function [X,Y] = kafbox_data(options)
+function [X,Y,X_test,Y_test] = kafbox_data(options)
 
 if isfield(options,'file')
     
-    raw = load(options.file);
+    data = load(options.file);
     
-    if size(raw,2)==1 % time series
-        ydim = 1;
-        if isfield(options,'horizon')
-            horizon = options.horizon;
-        else
-            horizon = 1;
-        end
-    elseif size(raw,2)==2 % input output system, input is time series
-        ydim = 2;
-        horizon = 0;
+    switch class(data)
+        case 'double' % raw numeric data
+            
+            % time embedding
+            embedding = 0;
+            if isfield(options,'embedding')
+                embedding = options.embedding;
+            end
+            
+            if size(data,2)==1 % time series
+                
+                % prediction horizon
+                horizon = 1;
+                if isfield(options,'horizon')
+                    horizon = options.horizon;
+                end
+                
+                % construct signal
+                X = time_embedding(data,embedding);
+                Y = data(1+horizon:end); % desired output
+                
+            elseif size(data,2)==2 % input output system; input is time series
+                
+                % construct signal
+                X = time_embedding(data(:,1),embedding);
+                Y = data(1:end,2); % desired output
+                
+            end
+            
+            % apply offset
+            if isfield(options,'offset')
+                X = X(1+options.offset:end,:);
+                Y = Y(1+options.offset:end);
+            end
+            
+            % crop
+            N = length(Y);
+            if isfield(options,'N')
+                N = min(options.N,N);
+            end
+            X = X(1:N,:);
+            Y = Y(1:N);
+            
+            X_test = [];
+            Y_test = [];
+            
+        case 'struct'
+            
+            X = data.X_train;
+            Y = data.Y_train;
+            X_test = data.X_test;
+            Y_test=  data.Y_test;
+            
+            if isfield(options,'permutation')
+                if options.permutation ~= 0,
+                    
+                    randseed = options.permutation;
+                    randn('state',randseed); %#ok<RAND>
+                    rand('state',randseed); %#ok<RAND>
+                    
+                    N = size(X,1);
+                    rp = randperm(N);
+                    X = X(rp,:);
+                    Y = Y(rp);
+                    
+                end
+            end
+            
+            % crop
+            N = length(Y);
+            if isfield(options,'N')
+                N = min(options.N,N);
+            end
+            X = X(1:N,:);
+            Y = Y(1:N);
+            
+        otherwise
+            error('unknown data type');
     end
-    
-    if isfield(options,'N')
-        N = min(options.N,size(raw,1)) - horizon;
-    else
-        N = size(raw,1) - horizon;
-    end
-    
-    L = options.embedding;
-    X = zeros(N,L);
-    for i = 1:L,
-        X(i:N,i) = raw(1:N-i+1,1); % time embedding
-    end
-    Y = raw(1+horizon:N+horizon,ydim); % desired output
-   
 elseif isfield(options,'generate')
     
-    eval(sprintf('[X,Y] = generate_%s(options);',options.generate));
+    if isfield(options,'N_test')
+        eval(sprintf('[X,Y,y_ref,X_test,Y_test] = generate_%s(options);',...
+            options.generate));
+    else
+        eval(sprintf('[X,Y] = generate_%s(options);',options.generate));
+        X_test = [];
+        Y_test = [];
+    end
     
 end
 
 
+function X_embedded = time_embedding(X,L)
+N = size(X,1);
+X_embedded = zeros(N,L);
+for i = 1:L,
+    X_embedded(i:N,i) = X(1:N-i+1,1); % time embedding
+end
