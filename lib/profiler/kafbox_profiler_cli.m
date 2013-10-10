@@ -4,14 +4,11 @@
 % http://sourceforge.net/projects/kafbox/
 
 function [results,setups] = kafbox_profiler_cli(config_file,output_dir) %#ok<STOUT>
-% KAF_PROFILER_CLI Summary
-%   Details
 
 fprintf(sprintf('Sweep on %s configuration.\n',config_file));
 eval(sprintf('%s',config_file));
 
 num_setup = length(setups);
-% titles = cell(num_setup,1);
 results.flops = cell(num_setup,1);
 results.bytes = cell(num_setup,1);
 results.msedb = cell(num_setup,1);
@@ -19,7 +16,6 @@ results.msedb = cell(num_setup,1);
 for setup_ind = 1:length(setups)
     
     setup = setups{setup_ind};
-    %     titles{setup_ind} = setup.algo.name;
     sweep_par = setup.algo.options.sweep_par;
     sweep_val = setup.algo.options.sweep_val;
     num_sw = length(sweep_val);	% number of iterations in sweep
@@ -31,7 +27,6 @@ for setup_ind = 1:length(setups)
     
     for sw_ind = 1:num_sw,
         fprintf('%s %s=%.3f ',setup.algo.name,sweep_par,sweep_val(sw_ind));
-        % pd = setup.data;
         
         eval(sprintf('setup.algo.options.%s = sweep_val(sw_ind);',sweep_par));
         
@@ -57,7 +52,7 @@ for setup_ind = 1:length(setups)
                 all_fl(i) = kaf.lastflops();
                 all_bytes(i) = kaf.lastbytes();
                 
-                SE(i) = (Y(i)-y_est)^2; % calcalate test error
+                SE(i) = (Y(i)-y_est)^2; % calculate test error
             end
             
             setupresults.elapsed = kaf.elapsed;
