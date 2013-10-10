@@ -46,23 +46,24 @@ for algo_ind=1:num_alg
     algorithm = algorithms{algo_ind};
     fprintf('%2d. %9s: ',algo_ind,upper(algorithm));
     titles{algo_ind} = strrep(upper(algorithm),'_','\_');
-
+    
     kaf = feval(algorithm);
     for i=1:N,
         if ~mod(i,floor(N/10)), fprintf('.'); end
         
         y_est = kaf.evaluate(X_test);
-		if i<=N_switch
-			MSE(i,algo_ind) = mean((y_test(:,1)-y_est).^2);
-		else
-			MSE(i,algo_ind) = mean((y_test(:,2)-y_est).^2);
-		end			
+        if i<=N_switch
+            MSE(i,algo_ind) = mean((y_test(:,1)-y_est).^2);
+        else
+            MSE(i,algo_ind) = mean((y_test(:,2)-y_est).^2);
+        end
         
         kaf = kaf.train(X(i,:),y(i));
     end
     MSE_final(algo_ind) = mean(MSE(N-500:N,algo_ind));
     
-    fprintf(' %.2fs. Final MSE=%3.2fdB\n',toc(t1),10*log10(MSE_final(algo_ind)))
+    fprintf(' %.2fs. Final MSE=%3.2fdB\n',toc(t1),...
+        10*log10(MSE_final(algo_ind)))
 end
 
 %% OUTPUT

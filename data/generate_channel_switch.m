@@ -1,9 +1,10 @@
-function [x_embed,y,y_ref,x_test_embed,y_test_ref,H] = generate_channel_switch(opt)
+function [x_embed,y,y_ref,x_test_embed,y_test_ref,H] = ...
+    generate_channel_switch(opt)
 % Generate CHANNEL_SWITCH data set: input-output data of a nonlinear
 % channel whose linear part is changed abruptly at a chosen point. The
 % nonlinear channel is a Wiener system with a randomly chosen linear part.
-% 
-% Input options: "opt" is a structure with the following fields: 
+%
+% Input options: "opt" is a structure with the following fields:
 %   - N: total number of training data points
 %   - N_switch: iteration after which the channel switch occurs
 %   - N_test: number of test data points (before and after switch)
@@ -50,7 +51,7 @@ N_all = N+N_test+chlen-1;
 x_all = .5*randn(N_all,1);
 x_all_embed = zeros(N_all,chlen);
 for i = 1:chlen,
-    x_all_embed(i:N_all,i) = x_all(1:N_all-i+1);	% time-embedding, each row is a datum
+    x_all_embed(i:N_all,i) = x_all(1:N_all-i+1); % time-embedding
 end
 x_all_embed = x_all_embed(chlen:N_all,:);
 
