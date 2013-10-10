@@ -1,10 +1,12 @@
+% Handles storage and retrieval of profiler results.
+%
 % Checks if the results for a given configuration were stored before, and
 % saves new results if necessary.
 %
 % This file is part of the Kernel Adaptive Filtering Toolbox for Matlab.
 % http://sourceforge.net/projects/kafbox/
 
-function results = kafbox_resultshandler(data,config,output_dir,results)
+function results = kafbox_profiler_storet(data,config,output_dir,results)
 
 if nargin<4
     option = 'check';

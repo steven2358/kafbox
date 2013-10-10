@@ -20,7 +20,7 @@ else
 end
 
 % check if results for this simulation have been stored before
-simresults = kafbox_resultshandler(simdata,algo_config,output_dir);
+simresults = kafbox_profiler_storet(simdata,algo_config,output_dir);
 
 if isempty(simresults), % perform simulation
     [X,Y,X_test,Y_test] = kafbox_data(simdata); % load data
@@ -75,9 +75,9 @@ if isempty(simresults), % perform simulation
         eval(sprintf('simresults.%s = %s;',results2store{j},results2store{j}))
     end
     
-    kafbox_resultshandler(simdata,algo_config,output_dir,simresults);
+    kafbox_profiler_storet(simdata,algo_config,output_dir,simresults);
     
     fprintf('calculated');
 else
-    fprintf('loaded    ');
+    fprintf('retrieved ');
 end
