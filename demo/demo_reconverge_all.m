@@ -35,14 +35,12 @@ for i=length(algorithms):-1:1,
     end
 end
 
-% algorithms = {'krlst'};
-
 % perform online learning for each algorithm
 fprintf('\n')
 num_alg = length(algorithms);
 titles = cell(num_alg,1);
 MSE = zeros(N,num_alg);
-MSE_avg = zeros(1,num_alg);
+MSE_final = zeros(1,num_alg);
 for algo_ind=1:num_alg
     t1 = tic;
     algorithm = algorithms{algo_ind};
@@ -62,15 +60,15 @@ for algo_ind=1:num_alg
         
         kaf = kaf.train(X(i,:),y(i));
     end
-    MSE_avg(algo_ind) = mean(MSE(:,algo_ind));
+    MSE_final(algo_ind) = mean(MSE(N-500:N,algo_ind));
     
-    fprintf(' %.2fs. Average MSE=%3.2fdB\n',toc(t1),10*log10(MSE_avg(algo_ind)))
+    fprintf(' %.2fs. Final MSE=%3.2fdB\n',toc(t1),10*log10(MSE_final(algo_ind)))
 end
 
 %% OUTPUT
 
 % plot results in different "leagues"
-[MSE_avg_sorted,ind] = sort(MSE_avg,'descend');
+[MSE_final_sorted,ind] = sort(MSE_final,'descend');
 num_fig = ceil(num_alg/5);
 counter = [rem(num_alg,5) rem(num_alg,5)+1];
 for fig_ind=num_fig:-1:1
