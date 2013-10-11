@@ -37,10 +37,10 @@ classdef mknlms_cs
             end
         end
         
-        function y_est = evaluate(kaf,X) % evaluate the algorithm
-            N = size(X,1);
+        function y_est = evaluate(kaf,x) % evaluate the algorithm
+            N = size(x,1);
             if size(kaf.dict,1)>0
-                K = multikernel_dict(kaf,X);
+                K = multikernel_dict(kaf,x);
                 y_est = reshape(K,N,[])*kaf.alpha(:);
             else
                 y_est = zeros(size(x,1),1);

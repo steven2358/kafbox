@@ -67,7 +67,6 @@ titles{num_alg+1} = 'data';
 for fig_ind=num_fig:-1:1
     figure; hold all
     plot(x,y(1:N),'.')
-    % plot(x_test,y_test,'-','LineWidth',2)
     for i=1:counter(1),
         counter(2) = counter(2) - 1;
         plot(x_test,Y_est(:,ind(counter(2))),'LineWidth',2)
