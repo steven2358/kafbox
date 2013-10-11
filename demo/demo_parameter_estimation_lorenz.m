@@ -52,13 +52,13 @@ toc
 fprintf('\n');
 fprintf('        Estimated\n');
 fprintf('sigma:  %.4f\n',sigma_est)
-fprintf('c:      %.4f\n',reg_est)
+fprintf('c:      %e\n',reg_est)
 fprintf('lambda: %.4f\n\n',lambda_est)
 
 fprintf('Average MSE after first 100 samples: %.2fdB\n\n',...
     10*log10(mean(SE(101:end))));
 
 figure; hold all; plot(Y); plot(Y_est);
-legend('original','prediction');
+legend({'original','prediction'},'Location','SE');
 title(sprintf('%d-step ahead prediction %s on Lorenz time series',...
     horizon,upper(class(kaf))));
