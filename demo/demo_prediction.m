@@ -1,4 +1,8 @@
-% Demo: 1-step ahead prediction on Lorenz attractor time-series data
+% 1-step ahead prediction on Lorenz attractor time-series data
+%
+% This file is part of the Kernel Adaptive Filtering Toolbox for Matlab.
+% http://sourceforge.net/projects/kafbox/
+
 [X,Y] = kafbox_data(struct('file','lorenz.dat','embedding',6));
 
 % make a kernel adaptive filter object of class aldkrls with options: 
