@@ -5,4 +5,4 @@ This folder contains excerpts from the GPML toolbox v2.0. The full toolbox is av
 
 Prefixes have been added to the files in order to avoid interference with newer versions of GPML located on the same system.
 
-The files included here are used for the parameter estimation of kernel adaptive filters. A demo can be found in `demo/demo_parameter_estimation`.
+The files included here are used for the parameter estimation of kernel adaptive filters. Demos can be found in `demo/demo_parameter_estimation_lorenz.m` and `demo/demo_parameter_estimation_nonstationary.m`.
