@@ -71,16 +71,20 @@ end
 % plot results in different "leagues"
 [MSE_final_sorted,ind] = sort(MSE_final,'descend');
 num_fig = ceil(num_alg/5);
-counter = [rem(num_alg,5) rem(num_alg,5)+1];
+
+remaining = num_alg;
 for fig_ind=num_fig:-1:1
     figure; hold all
-    for i=1:counter(1),
-        counter(2) = counter(2) - 1;
-        plot(10*log10(MSE(:,ind(counter(2)))),'LineWidth',1)
+    rm = rem(remaining,5);
+    num_in_league = (rm==0)*5 + rm;
+    % plot the results for the num_in_league worst results
+    league_inds = num_alg-remaining+num_in_league:-1:num_alg-remaining+1;
+    for i=league_inds,
+        plot(10*log10(MSE(:,i)),'LineWidth',1)
     end
     title(sprintf('League %d',fig_ind))
-    legend(titles(ind(counter(2)+counter(1)-1:-1:counter(2))))
-    counter(2) = counter(2)+counter(1)+5;
-    counter(1) = 5;
+    legend(titles(ind(league_inds)))
+
     axis([0 N 5*floor(min(10*log10(MSE(:)))/5) 0]);
+    remaining = remaining - num_in_league;
 end
