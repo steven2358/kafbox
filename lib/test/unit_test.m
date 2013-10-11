@@ -89,6 +89,16 @@ for ii=1:length(algorithms)
     N = 10000;
     x = rand(N,2)*c;
     y = sin(3*x(:,1)).*cos(x(:,1)+x(:,2));
+
+    fprintf('Evaluating before training.....')
+    y_est = kaf.evaluate(x(1:2,:));
+    if length(y_est)<2
+        error(['Warning: '...
+            '<a href="matlab: opentoline(which(''%s''),1)">%s</a>',...
+            ' does not allow evaluation on multiple data',...
+            'before training'],algorithm, algorithm);
+    end
+    fprintf('\n')
     
     fprintf('1 training step................\n')
     for i=1,

@@ -46,7 +46,7 @@ classdef lkapa
                 k = kernel(kaf.dict,x,kaf.kerneltype,kaf.kernelpar);
                 y_est = k'*kaf.alpha;
             else
-                y_est = 0;
+                y_est = zeros(size(x,1),1);
             end
         end
         

@@ -59,7 +59,7 @@ classdef krlst
                     var_test = kaf.s02*(kaf.sn2 + sf2); % predictive variance
                 end
             else
-                mean_test = 0; % prior
+                mean_test = zeros(size(x,1),1); % prior
                 % var_test % prior
             end
         end

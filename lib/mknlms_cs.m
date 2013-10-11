@@ -43,7 +43,7 @@ classdef mknlms_cs
                 K = multikernel_dict(kaf,X);
                 y_est = reshape(K,N,[])*kaf.alpha(:);
             else
-                y_est = zeros(N,1);
+                y_est = zeros(size(x,1),1);
             end
         end
         

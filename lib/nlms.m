@@ -33,7 +33,7 @@ classdef nlms
             if numel(obj.w)>0
                 y_est = x*obj.w;
             else
-                y_est = 0;
+                y_est = zeros(size(x,1),1);
             end
         end
         

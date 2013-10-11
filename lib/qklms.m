@@ -39,7 +39,7 @@ classdef qklms
                 k = kernel(kaf.mem,x,kaf.kerneltype,kaf.kernelpar);
                 y_est = k'*kaf.alpha;
             else
-                y_est = 0;
+                y_est = zeros(size(x,1),1);
             end
         end
         
