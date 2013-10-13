@@ -13,14 +13,14 @@ end
 N = size(X,1);
 e = zeros(N,1);
 
-for i=1:N,
-    if ~mod(i,floor(N/10)) && vb,
+for n=1:N,
+    if ~mod(n,floor(N/10)) && vb,
         fprintf('.'); % progress indicator (10 dots)
     end
     
-    y_est = kaf.evaluate(X(i,:)); % predict the next output
-    e(i) = y(i)-y_est; % store error
-    kaf = kaf.train(X(i,:),y(i)); % train with one input-output pair
+    y_est = kaf.evaluate(X(n,:)); % predict the next output
+    e(n) = y(n)-y_est; % store error
+    kaf = kaf.train(X(n,:),y(n)); % train with one input-output pair
 end
 
 if vb,
