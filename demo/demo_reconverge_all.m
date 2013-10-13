@@ -65,6 +65,7 @@ for algo_ind=1:num_alg
     fprintf(' %.2fs. Final MSE=%3.2fdB\n',toc(t1),...
         10*log10(MSE_final(algo_ind)))
 end
+fprintf('\n');
 
 %% OUTPUT
 
