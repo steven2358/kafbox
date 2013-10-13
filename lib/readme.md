@@ -10,13 +10,12 @@ Quick steps to code an algorithm in the toolbox' format
 -------------------------------------------------------
 1. Make a copy of `lib/kafbox_template.m` and name it `MY_ALGORITHM.m`.
 2. Open the file and replace all mentions of "kafbox_template" to MY_ALGORITHM.
-3. In the first properties section, fill in the parameter values used by the algorithm with their corresponding default values. Default values should be chosen such that the algorithm performs well on a whitened input signal (see `demo/demo_sinc_all.m`).
-4. In the second properties section, fill in the variables that will be calculated by the algorithm.
-5. [optional] Adjust the `evaluate` method.
-6. Add the code for training the algorithm to the `train` method. It may be useful to rely on "helper" functions to keep the code modular. For coding style, see below.
-7. Clean up the file header.
-
-Check if the code is formatted correctly by running the script `unit_test('MY_ALGORITHM')`.
+3. Clean up the file header by replacing all text between square brackets.
+4. In the first properties section, fill in the parameter values used by the algorithm with their corresponding default values. Default values should be chosen such that the algorithm performs well on a whitened input signal (see `demo/demo_sinc_all.m`).
+5. In the second properties section, fill in the variables that will be calculated by the algorithm.
+6. [optional] Adjust the `evaluate` method.
+7. Add the code for training the algorithm to the `train` method. It may be useful to rely on "helper" functions to keep the code modular. For coding style, see below.
+8. Check if the code is formatted correctly by running the script `unit_test('MY_ALGORITHM')`.
 
 
 How to contribute an algorithm to the toolbox

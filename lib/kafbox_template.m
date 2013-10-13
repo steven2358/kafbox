@@ -1,9 +1,10 @@
 % This is the template used for kernel adaptive filtering algorithms in
-% the kernel adaptive filtering toolbox. Delete this line.
+% the kernel adaptive filtering toolbox. [Delete this line.]
 %
-% The name of the algorithm goes here.
+% [The name of the algorithm goes here]
 %
-% A reference to the original publication of the algorithm goes here.
+% [A reference to the original publication of the algorithm goes here, 
+% including a link to its DOI url: http://dx.doi.org/xxx]
 %
 % This file is part of the Kernel Adaptive Filtering Toolbox for Matlab.
 % http://sourceforge.net/projects/kafbox/
@@ -17,7 +18,7 @@ classdef kafbox_template
         kernelpar = 1; % kernel parameter
     end
     
-    properties (GetAccess = 'protected', SetAccess = 'private') % variables
+    properties (GetAccess = 'public', SetAccess = 'private') % variables
         dict = []; % dictionary
         alpha = []; % expansion coefficients
     end
@@ -49,9 +50,9 @@ classdef kafbox_template
                 kaf.alpha = 0;
             else
                 
-                % main algorithm training goes here
+                % [main algorithm training goes here]
                 
-                % example of a helper function
+                % [example of a helper function]
                 kaf = helper1(kaf,x,y);
             end
             
@@ -59,7 +60,7 @@ classdef kafbox_template
         
     end
     
-    methods (Access = 'private') % helper functions go here
+    methods (Access = 'private') % [helper functions go here]
         
         function kaf = helper1(kaf,x,y)
             % operations
