@@ -50,7 +50,8 @@ classdef fbkrls
         function kaf = train(kaf,x,y) % train the algorithm
             kaf.dict = [kaf.dict; x]; % grow
             kaf.dicty = [kaf.dicty; y];	% grow
-            kaf = kaf.grow_kernel_matrix(x); % grow
+            k = kernel(kaf.dict,x,kaf.kerneltype,kaf.kernelpar);
+            kaf.Kinv = kaf.grow_kernel_matrix(kaf.Kinv,k,kaf.lambda);% grow
             
             kaf.alpha = kaf.Kinv*kaf.dicty;
             if (size(kaf.dict,1) > kaf.M)
@@ -59,7 +60,7 @@ classdef fbkrls
                 
                 kaf.dict(ind,:) = []; % prune
                 kaf.dicty(ind) = []; % prune
-                kaf = kaf.prune_kernel_matrix(ind); % prune
+                kaf.Kinv = kaf.prune_kernel_matrix(kaf.Kinv,ind); % prune
             end
             
             kaf.alpha = kaf.Kinv*kaf.dicty;
@@ -67,33 +68,32 @@ classdef fbkrls
         
     end
     
-    methods (Access = 'private')
+    methods (Static = true)
         
-        function kaf = grow_kernel_matrix(kaf,x)
+        function Kinv = grow_kernel_matrix(Kinv,k,c)
             % calculate inverse of expanded matrix K = [K_inv b;b' d]
-            k = kernel(kaf.dict,x,kaf.kerneltype,kaf.kernelpar);
             b = k(1:end-1);
-            d = k(end) + kaf.lambda; % add regularization
+            d = k(end) + c; % add regularization
             if numel(b)>0
-                g_inv = d - b'*kaf.Kinv*b;
+                g_inv = d - b'*Kinv*b;
                 g = 1/g_inv;
-                f = -kaf.Kinv*b*g;
-                E = kaf.Kinv - kaf.Kinv*b*f';
-                kaf.Kinv = [E f;f' g];
+                f = -Kinv*b*g;
+                E = Kinv - Kinv*b*f';
+                Kinv = [E f;f' g];
             else
-                kaf.Kinv = 1/d;
+                Kinv = 1/d;
             end
         end
         
-        function kaf = prune_kernel_matrix(kaf,ind)
+        function Kinv = prune_kernel_matrix(Kinv,ind)
             % calculate inverse of pruned kernel matrix
-            m = size(kaf.Kinv,1);
+            m = size(Kinv,1);
             noind = 1:m;
             noind(ind) = [];
-            G = kaf.Kinv(noind,noind);
-            f = kaf.Kinv(noind,ind);
-            e = kaf.Kinv(ind,ind);
-            kaf.Kinv = G - f*f'/e;
+            G = Kinv(noind,noind);
+            f = Kinv(noind,ind);
+            e = Kinv(ind,ind);
+            Kinv = G - f*f'/e;
         end
     end
 end

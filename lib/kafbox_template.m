@@ -3,7 +3,7 @@
 %
 % [The name of the algorithm goes here]
 %
-% [A reference to the original publication of the algorithm goes here, 
+% [A reference to the original publication of the algorithm goes here,
 % including a link to its DOI url: http://dx.doi.org/xxx]
 %
 % This file is part of the Kernel Adaptive Filtering Toolbox for Matlab.
@@ -53,16 +53,17 @@ classdef kafbox_template
                 % [main algorithm training goes here]
                 
                 % [example of a helper function]
-                kaf = helper1(kaf,x,y);
+                z = kaf.helper1(x,y);
             end
             
         end
         
     end
     
-    methods (Access = 'private') % [helper functions go here]
+    methods (Static = true) % [helper functions go here]
         
-        function kaf = helper1(kaf,x,y)
+        function z = helper1(x,y)
+            z = x*y;
             % operations
         end
         
