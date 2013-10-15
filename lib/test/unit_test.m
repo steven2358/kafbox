@@ -8,7 +8,7 @@
 % This file is part of the Kernel Adaptive Filtering Toolbox for Matlab.
 % http://sourceforge.net/projects/kafbox/
 
-function unit_test(varargin)
+function kaf = unit_test(varargin)
 
 % get list of algorithms in 'lib' folder
 pathstr = fileparts(which('unit_test.m'));
