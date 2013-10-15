@@ -13,8 +13,8 @@
 classdef knlms
     
     properties (GetAccess = 'public', SetAccess = 'private') % parameters
-        mu0 = .95; % coherence criterion threshold
         eta = .5; % step size
+        mu0 = .95; % coherence criterion threshold
         eps = 1E-2; % regularization
         kerneltype = 'gauss'; % kernel type
         kernelpar = 1; % kernel parameter
@@ -22,6 +22,7 @@ classdef knlms
     
     properties (GetAccess = 'public', SetAccess = 'private') % variables
         dict = []; % dictionary
+        modict = []; % modulus of the dictionary elements
         alpha = []; % expansion coefficients
     end
     
@@ -48,12 +49,17 @@ classdef knlms
         
         function kaf = train(kaf,x,y) % train the algorithm
             if size(kaf.dict,2)==0 % initialize
+                k = kernel(x,x,kaf.kerneltype,kaf.kernelpar);
                 kaf.dict = x;
+                kaf.modict = sqrt(k);
                 kaf.alpha = 0;
             else
-                k = kernel(x,kaf.dict,kaf.kerneltype,kaf.kernelpar);
-                if (max(k) <= kaf.mu0), % coherence criterion
+                k = kernel(kaf.dict,x,kaf.kerneltype,kaf.kernelpar);
+                kx = kernel(x,x,kaf.kerneltype,kaf.kernelpar);
+                C = k./(sqrt(kx)*kaf.modict); % coherence
+                if (max(C) <= kaf.mu0), % coherence criterion
                     kaf.dict = [kaf.dict; x]; % order increase
+                    kaf.modict = [kaf.modict; sqrt(kx)];
                     kaf.alpha = [kaf.alpha; 0]; % order increase
                 end
             end

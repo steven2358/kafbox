@@ -23,11 +23,10 @@ classdef kap
     
     properties (GetAccess = 'public', SetAccess = 'private')
         memx = []; % input memory
-        memd = []; % output memory
+        memy = []; % output memory
         dict = []; % dictionary
+        modict = []; % modulus of the dictionary elements
         alpha = []; % expansion coefficients
-        growmem = false; % flag
-        growdict = false; % flag
     end
     
     methods
@@ -52,20 +51,24 @@ classdef kap
         end
         
         function kaf = train(kaf,x,y) % train the algorithm
-            if (length(kaf.memd) < kaf.p)
+            if (length(kaf.memy) < kaf.p)
                 kaf.memx = [kaf.memx; x]; % grow the memory
-                kaf.memd = [kaf.memd; y]; % grow the memory
+                kaf.memy = [kaf.memy; y]; % grow the memory
             else
                 kaf.memx = [kaf.memx(2:end,:); x]; % sliding memory
-                kaf.memd = [kaf.memd(2:end); y]; % sliding memory
+                kaf.memy = [kaf.memy(2:end); y]; % sliding memory
             end
             
             if size(kaf.dict,2)==0 % initialize
+                k = kernel(x,x,kaf.kerneltype,kaf.kernelpar);
                 kaf.dict = x;
+                kaf.modict = sqrt(k);
                 kaf.alpha = 0;
             else
-                k = kernel(x,kaf.dict,kaf.kerneltype,kaf.kernelpar);
-                if (max(k) <= kaf.mu0), % coherence criterion
+                k = kernel(kaf.dict,x,kaf.kerneltype,kaf.kernelpar);
+                kx = kernel(x,x,kaf.kerneltype,kaf.kernelpar);
+                C = k./(sqrt(kx)*kaf.modict); % coherence
+                if (max(C) <= kaf.mu0), % coherence criterion
                     kaf.dict = [kaf.dict; x]; % order increase
                     kaf.alpha = [kaf.alpha; 0]; % order increase
                 end
@@ -75,7 +78,7 @@ classdef kap
             kaf.alpha = kaf.alpha + ...
                 kaf.eta*H'/...
                 (kaf.eps*eye(size(H,1)) + H*H')*...
-                (kaf.memd - H*kaf.alpha);
+                (kaf.memy - H*kaf.alpha);
         end
         
     end
