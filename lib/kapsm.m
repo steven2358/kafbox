@@ -92,8 +92,8 @@ classdef kapsm
             
             % L2-ball forgetting: update function norm
             K = kernel(kaf.xmem,kaf.xmem,kaf.kerneltype,kaf.kernelpar);
-            R_sum = beta(end-q+1:end)'*K*beta(end-q+1:end);            
-            sum2 = beta(1:end-q)'*d_hat(1:end-q);            
+            R_sum = beta(end-q+1:end)'*K*beta(end-q+1:end);
+            sum2 = beta(1:end-q)'*d_hat(1:end-q);
             kaf.norm_f = sqrt(kaf.norm_f*kaf.norm_f + 2*sum2 + R_sum);
             if kaf.norm_f > kaf.Delta
                 kaf.alpha = kaf.Delta/kaf.norm_f * kaf.alpha;
