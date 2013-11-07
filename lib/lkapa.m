@@ -57,7 +57,7 @@ classdef lkapa
                 kaf.xmem = x;
                 kaf.ymem = y;
             else
-                if size(kaf.dict,2) < kaf.M,
+                if size(kaf.dict,1) < kaf.M,
                     if size(kaf.xmem,1)<kaf.P
                         % grow memory
                         kaf.xmem = [kaf.xmem; x];
