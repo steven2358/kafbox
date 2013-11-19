@@ -17,10 +17,10 @@ classdef klms_csal1
     properties (GetAccess = 'public', SetAccess = 'private') % parameters
         eta = .1; % step-size
         mu0 = .95; % threshold for coherence criterion
-        lambda = 5E-4; % sparsification threshold
+        lambda = 5E-5; % sparsification threshold
         eps_alpha = 1E-6; % constant to prevent denominator from vanishing
         kerneltype = 'gauss'; % kernel type
-        kernelpar = 1; % kernel parameter
+        kernelpar = .5; % kernel parameter
     end
     
     properties (GetAccess = 'public', SetAccess = 'private') % variables
