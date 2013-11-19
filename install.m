@@ -2,10 +2,10 @@
 
 fprintf('Adding KAFBOX folders to Matlab path... ')
 
-addpath(genpath([pwd filesep 'data']));
-addpath(genpath([pwd filesep 'lib']));
+addpath(genpath(fullfile(pwd,'data')));
+addpath(genpath(fullfile(pwd,'lib')));
 
-addpath([pwd filesep 'demo']);
+addpath((fullfile(pwd,'demo')));
 
 fprintf('done.\n')
 disp('Type "savepath" if you wish to store changes.')
