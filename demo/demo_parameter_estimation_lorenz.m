@@ -36,6 +36,7 @@ fprintf(1,'Running KRLS-T with estimated parameters...\n')
 Y_est = zeros(N,1);
 kaf = krlst(struct('lambda',lambda_est,'M',100,'sn2',reg_est,...
     'kerneltype','gauss','kernelpar',sigma_est));
+
 for i=1:N,
     if ~mod(i,floor(N/10)), fprintf('.'); end % progress indicator, 10 dots
     
