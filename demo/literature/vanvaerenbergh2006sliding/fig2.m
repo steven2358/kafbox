@@ -82,5 +82,7 @@ for algo_ind=1:num_alg
     
     axis([0 N 5*floor(min(10*log10(MSE(:)))/5) 0]);
 end
+xlabel('iteration')
+ylabel('MSE (dB)')
 legend(titles)
     
