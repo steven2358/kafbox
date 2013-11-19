@@ -21,7 +21,7 @@ classdef kapsm
         loss = 'l2'; % loss function type
         loss_param = 2; % Huber loss parameter
         kerneltype = 'gauss'; % kernel type
-        kernelpar = 1; % kernel parameter
+        kernelpar = .5; % kernel parameter
     end
     
     properties (GetAccess = 'public', SetAccess = 'private') % variables
