@@ -25,6 +25,8 @@ kaf = aldkrls(struct('nu',1E-4,'kerneltype','gauss','kernelpar',32)); % achieves
 % kaf = fbklms(struct('M',10,'nu',.1,'eta',.4,'kernelpar',35)); % achieves -1.56 dB
 % kaf = mknlms_cs(struct('mu0',0.9,'eta',0.5,'rho',1E-6,'kerneltype','gauss','kernelpars',[32 33])); % achieves -1.26 dB
 % kaf = knlms(struct('mu0',0.9,'eta',0.5,'eps',1E-6,'kerneltype','gauss','kernelpar',32)); % achieves -1.17 dB
+% kaf = klms_csl1(struct('mu0',0.95,'eta',0.1,'lambda',5E-4,'kerneltype','gauss','kernelpar',32)); % achieves -1.41 dB
+% kaf = klms_csal1(struct('mu0',0.95,'eta',0.1,'lambda',5E-4,'kerneltype','gauss','kernelpar',32)); % achieves 3.31 dB
 % kaf = norma(struct('lambda',1E-4,'tau',500,'eta',0.1,'kerneltype','gauss','kernelpar',32)); % achieves 10.96 dB
 
 % kaf = kapsm(struct('epsilon',10^(-10),'Delta',5,...
@@ -75,8 +77,8 @@ toc
 fprintf('MSE after first 1000: %.2fdB\n\n',10*log10(mean(SE(1001:end))));
 
 figure; plot(10*log10(SE)); xlabel('samples'); ylabel('squared error (dB)');
-title(sprintf('%s on %s',upper(class(kaf)),datafile));
+title(sprintf('%s on %s',strrep(upper(class(kaf)),'_','\_'),datafile));
 
 figure; hold all; plot(Y); plot(Y_est);
 legend('original','prediction');
-title(sprintf('%s on %s',upper(class(kaf)),datafile));
+title(sprintf('%s on %s',strrep(upper(class(kaf)),'_','\_'),datafile));
