@@ -14,6 +14,7 @@ N = 1500; % number of training data
 N_switch = 500; % iteration after which the channel switch occurs
 N_test = 100; % number of test data
 SNR = 30; % SNR in dB
+sigpower = 0.5^2; % input signal power
 
 %% PROGRAM
 
