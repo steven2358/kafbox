@@ -8,6 +8,7 @@ function [x_embed,y,y_ref,x_test_embed,y_test_ref,H] = ...
 %   - N: total number of training data points
 %   - N_switch: iteration after which the channel switch occurs
 %   - N_test: number of test data points (before and after switch)
+%   - sigpower: input signal power
 %   - chlen: linear channel length
 %   - fun: nonlinear function
 %   - SNR: signal-to-noise ratio of additve output noise
@@ -26,7 +27,7 @@ function [x_embed,y,y_ref,x_test_embed,y_test_ref,H] = ...
 %% DEFAULT PARAMETER VALUES
 
 options = struct('N',1500,'N_test',500,'N_switch',500,'chlen',5,...
-    'fun','tanh(x)','SNR',20);
+    'sigpower',1,'fun','tanh(x)','SNR',20);
 
 %% CUSTOM PARAMETER VALUES
 for opt_name = fieldnames(opt)',
@@ -38,17 +39,17 @@ end
 N = options.N;
 N_test = options.N_test;
 N_switch = options.N_switch;
+sigpower = options.sigpower;
 chlen = options.chlen;
 fun = options.fun;
 SNR = options.SNR;
-
 
 %% PROGRAM
 
 f = inline(fun); % Wiener system nonlinearity
 
 N_all = N+N_test+chlen-1;
-x_all = .5*randn(N_all,1);
+x_all = sqrt(sigpower)*randn(N_all,1);
 x_all_embed = zeros(N_all,chlen);
 for i = 1:chlen,
     x_all_embed(i:N_all,i) = x_all(1:N_all-i+1); % time-embedding
