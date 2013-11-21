@@ -10,10 +10,10 @@ clear all;
 % Instructions: 1. Uncomment one datafile and one kaf algorithm; 2. Execute.
 
 datafile = 'lorenz.dat'; L = 6; horizon = 1; % 10000 points
-% kaf = krlst(struct('lambda',1,'M',100,'sn2',1E-6,'kerneltype','gauss','kernelpar',32)); % achieves -65.07 dB
-% kaf = fbkrls(struct('lambda',1E-6,'M',100,'kerneltype','gauss','kernelpar',32)); % achieves -54.71 dB
+% kaf = krlst(struct('jitter',1E-6,'lambda',1,'M',100,'sn2',1E-6,'kerneltype','gauss','kernelpar',32)); % achieves -56.82 dB
+% kaf = fbkrls(struct('lambda',1E-6,'M',100,'kerneltype','gauss','kernelpar',32)); % achieves -55.00 dB
 % kaf = rls(struct('lambda',.99,'c',1E-6)); % achieves -48.16 dB
-% kaf = kapcc(struct('mu0',0.995,'eta',0.95,'eps',1E-6,'p',8,'kerneltype','gauss','kernelpar',32)); % achieves -40.40 dB
+% kaf = kap(struct('mu0',0.995,'eta',0.95,'eps',1E-6,'p',8,'kerneltype','gauss','kernelpar',32)); % achieves -40.40 dB
 kaf = aldkrls(struct('nu',1E-4,'kerneltype','gauss','kernelpar',32)); % achieves -40.17 dB
 % kaf = swkrls(struct('c',1E-6,'M',100,'kerneltype','gauss','kernelpar',32)); % achieves -37.85dB
 % kaf = nlms(struct('mu',1.99,'eps',1E-6)); % achieves -24.58 dB
