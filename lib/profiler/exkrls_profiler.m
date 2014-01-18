@@ -1,5 +1,4 @@
 % Profiler extension for Extended Kernel Recursive Least Squares algorithm
-% Linear Dependency
 %
 % This file is part of the Kernel Adaptive Filtering Toolbox for Matlab.
 % http://sourceforge.net/projects/kafbox/
