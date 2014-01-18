@@ -75,7 +75,7 @@ for algo_ind = 1:length(algorithms)
         r.flops = flops;
         r.bytes = bytes;
         r.ssmse = ss;
-        % keyboard
+
         clear target_mse
         for i=1:2,
             switch pmeasures{i}
@@ -96,8 +96,6 @@ for algo_ind = 1:length(algorithms)
         xdata(config_ind) = r.(pmeasures{1});
         ydata(config_ind) = r.(pmeasures{2});
     end
-    
-    %starts(algo_ind,:) = [xdata(1),ydata(1)];
     
     titles{algo_ind} = algo.name;
     
