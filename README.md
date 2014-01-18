@@ -30,7 +30,9 @@ Directories included in the toolbox
 Setup
 -----
 
-Run install.m
+1. Run `install.m` to add the toolbox folders to the path.
+2. Type `savepath` to save the changes to the path.
+
 
 Octave / Matlab pre-2008a
 -------------------------
