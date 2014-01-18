@@ -1,20 +1,16 @@
 % Convergence analysis. Returns steady state MSE, numbers of iterations to
-% reach certain MSE values and MSEs reached after certain numbers of
+% reach specified MSE value and MSE reached after specified number of
 % iterations.
 %
 % Input:
-% - results: either a configresults cell or a simresults structure produced
-%   by kafbox_profiler.
-% - target_mse: target mse value
+% - MSE_curve: array containing MSE curve
+% - target_mse: target MSE value
+% - target_it: target number of iterations
 %
 % Output:
-% - ss: steady-state MSE level over last 1000 samples
-% - mse_marks: structure containing
-%       - labels: array indicating target mse values
-%       - iterations: array with numbers of iterations to reach these mses
-% - iter_marks: structure containing
-%       - labels: array indicating iteration numbers values
-%       - MSEs: array with mses reached after these iterations
+% - ss: steady-state MSE level calculated over the last 1000 samples
+% - it_reached: number of iterations it takes to reach the specified MSE
+% - mse_reached: mse reached after the specified number of iterations
 %
 % This file is part of the Kernel Adaptive Filtering Toolbox for Matlab.
 % http://sourceforge.net/projects/kafbox/
