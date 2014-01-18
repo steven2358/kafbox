@@ -1,4 +1,13 @@
-% Returns a structure containing averaged out MSE curves.
+% Proces MSE results into MSE curves: average out and/or limit to a
+% subset of temporal indices.
+%
+% Input:
+% - results: a configresults cell produced by kafbox_profiler.
+% - inds: array of indices for which to calculate output
+%
+% Output:
+% - MSE_avg_setups: cell containing averaged out MSE curves, structure
+% corresponds to "results" cell structure.
 %
 % This file is part of the Kernel Adaptive Filtering Toolbox for Matlab.
 % http://sourceforge.net/projects/kafbox/
