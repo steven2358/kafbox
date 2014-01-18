@@ -1,4 +1,6 @@
-% Profiler extension for Kernel Recursive Least-Squares Tracker algorithm
+% Profiler extension template.
+%
+% Profiler extension for [algorithm]
 %
 % This file is part of the Kernel Adaptive Filtering Toolbox for Matlab.
 % http://sourceforge.net/projects/kafbox/
@@ -34,7 +36,7 @@ classdef kafbox_template_profiler < kafbox_template
         
         %% flops breakdown
         
-        % space for comments on number of operations used above
+        % [space for comments on number of operations used above]
         
         %%
         
@@ -47,8 +49,9 @@ classdef kafbox_template_profiler < kafbox_template
         
         function bytes = lastbytes(kaf) % bytes used in last iteration
             m = size(kaf.dict,1);
-            bytes = 8*(m^2 + m^2 + m + 2 + m*size(kaf.dict,2)); % 8 bytes for double precision
-            % Q, Sigma, mu, nums02ML, dens02ML, dict
+            m2 = 1;
+            bytes = (m2 + m*size(kaf.dict,2)); % 8 bytes for double precision
+            % [list variables]
         end
         
     end
