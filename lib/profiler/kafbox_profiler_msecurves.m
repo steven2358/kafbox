@@ -26,14 +26,18 @@ for setup_ind = 1:num_setups,
     for config_ind = 1:num_configs,
         config_results = setup_results{config_ind};
         
-        N = length(config_results{1}.MSE);
+        if isfield(config_results{1},'NMSE')
+            N = length(config_results{1}.NMSE); % temporary
+        else
+            N = length(config_results{1}.MSE);
+        end
         MSE = zeros(N,1);
         
         num_sim = length(config_results);
         for sim_ind = 1:num_sim,
             simresults = config_results{sim_ind};
             
-            if isfield(simresults,'NMSE')
+            if isfield(simresults,'NMSE') % temporary
                 simresults.MSE = simresults.NMSE;
             end
             if nargin<2
