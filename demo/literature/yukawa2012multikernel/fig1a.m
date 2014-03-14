@@ -31,7 +31,7 @@ mk_kernelpars = [.2 2]; % kernel parameter values from paper
 setups{1} = lms(struct('mu',.01));
 setups{2} = knlms(struct('mu0',mk_thresh^(.2/min(mk_kernelpars)),'eta',0.2,'eps',3E-2,'kerneltype','gauss','kernelpar',1/sqrt(.2)));
 setups{3} = knlms(struct('mu0',mk_thresh^(.5/min(mk_kernelpars)),'eta',0.2,'eps',3E-2,'kerneltype','gauss','kernelpar',1/sqrt(.5)));
-setups{4} = mknlmscs(struct('delta',mk_thresh,'eta',0.2,'rho',6E-2,'kerneltype','gauss','kernelpars',1./sqrt(mk_kernelpars)));
+setups{4} = mknlms_cs(struct('delta',mk_thresh,'eta',0.2,'rho',6E-2,'kerneltype','gauss','kernelpars',1./sqrt(mk_kernelpars)));
 
 %% PREPARE DATA
 

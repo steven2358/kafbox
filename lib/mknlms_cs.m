@@ -19,7 +19,7 @@ classdef mknlms_cs
         kerneltype = 'gauss'; % kernel type
         kernelpars = .5:.5:2; % kernel parameters
     end
-        properties (GetAccess = 'private', SetAccess = 'private') % variables
+        properties (GetAccess = 'public', SetAccess = 'private') % variables
         dict = []; % dictionary
         alpha = []; % expansion coefficients, H in the original article
         grow = false; % flag
