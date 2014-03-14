@@ -22,7 +22,6 @@ classdef mknlms_cs
         properties (GetAccess = 'public', SetAccess = 'private') % variables
         dict = []; % dictionary
         alpha = []; % expansion coefficients, H in the original article
-        grow = false; % flag
     end
     
     methods
@@ -52,12 +51,9 @@ classdef mknlms_cs
             if size(kaf.dict,2)==0 % initialize
                 kaf.dict = x;
                 kaf.alpha = zeros(1,M); % row with coefficients for all kernels
-                kaf.grow = true;
             else
-                kaf.grow = false;
                 K = multikernel_dict(kaf,x);
                 if (max(K(:)) <= kaf.delta), % coherence criterion
-                    kaf.grow = true;
                     kaf.dict = [kaf.dict; x]; % order increase
                     kaf.alpha = [kaf.alpha; zeros(1,M)]; % order increase
                 end
