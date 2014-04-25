@@ -108,7 +108,7 @@ Included algorithms
 - Fixed-Budget Kernel Recursive Least-Squares (FB-KRLS), as proposed in S. Van Vaerenbergh, I. Santamaria, W. Liu and J. C. Principe, "Fixed-Budget Kernel Recursive Least-Squares", 2010 IEEE International Conference on Acoustics, Speech, and Signal Processing (ICASSP 2010), Dallas, Texas, U.S.A., March 2010.
 - Kernel Recursive Least-Squares Tracker (KRLS-T), as proposed in S. Van Vaerenbergh, M. Lazaro-Gredilla, and I. Santamaria, "Kernel Recursive Least-Squares Tracker for Time-Varying Regression," Neural Networks and Learning Systems, IEEE Transactions on , vol.23, no.8, pp.1313-1326, Aug. 2012.
 - Quantized Kernel Least Mean Squares (QKLMS), as proposed in Chen B., Zhao S., Zhu P., Principe J.C., "Quantized Kernel Least Mean Square Algorithm," IEEE Transactions on Neural Networks and Learning Systems, vol.23, no.1, Jan. 2012, pages 22-32.
-- Random Fourier Feature Kernel Least Mean Square (RFF-KLMS) algorithm, as proposed in Abhishek Singh, Narendra Ahuja and Pierre Moulin, "Online learning with kernels: Overcoming the growing sum problem," 2012 IEEE International Workshop on Machine Learning for Signal Processing (MLSP), Sept. 2012
+- Random Fourier Feature Kernel Least Mean Square (RFF-KLMS) algorithm, as proposed in Abhishek Singh, Narendra Ahuja and Pierre Moulin, "Online learning with kernels: Overcoming the growing sum problem," 2012 IEEE International Workshop on Machine Learning for Signal Processing (MLSP), Sept. 2012.
 - Extended Kernel Recursive Least Squares (EX-KRLS), as proposed in W. Liu and I. Park and Y. Wang and J.C. Principe, "Extended kernel recursive least squares algorithm", IEEE Transactions on Signal Processing, volume 57, number 10, pp. 3801-3814, oct. 2009.
 - Gaussian-Process based estimation of the parameters of KRLS-T, as proposed in Steven Van Vaerenbergh, Ignacio Santamaria, and Miguel Lazaro-Gredilla, "Estimation of the forgetting factor in kernel recursive least squares," 2012 IEEE International Workshop on Machine Learning for Signal Processing (MLSP), Sept. 2012.
 - Kernel Affine Projection (KAP) algorithm with Coherence Criterion, as proposed in C. Richard, J.C.M. Bermudez, P. Honeine, "Online Prediction of Time Series Data With Kernels," IEEE Transactions on Signal Processing, vol.57, no.3, pp.1058,1067, March 2009.
@@ -119,13 +119,14 @@ Included algorithms
 - Fixed-budget kernel least mean squares (FB-KLMS) algorithm, as proposed in D. Rzepka, "Fixed-budget kernel least mean squares," 2012 IEEE 17th Conference on Emerging Technologies & Factory Automation (ETFA), Krakow, Poland, Sept. 2012.
 - Leaky Kernel Affine Projection Algorithm (LKAPA, including KAPA-1 and KAPA-3) and Normalized Leaky Kernel Affine Projection Algorithm (NLKAPA, including KAPA-2 and KAPA-4), as proposed in W. Liu and J.C. Principe, "Kernel Affine Projection Algorithms", EURASIP Journal on Advances in Signal Processing, Volume 2008, Article ID 784292, 12 pages.
 - Kernel Affine Projection Subgradient Method (KAPSM), as proposed in K. Slavakis, S. Theodoridis, and I. Yamada, "Online kernel-based classification using adaptive projection algorithms," IEEE Transactions on Signal Processing, Vol. 56, No. 7, pp. 2781-2796, 2008.
-- Kernel Least Mean Squares algorithm with Coherence-Sparsification criterion and L1-norm regularization (KLMS-CSL1) and with active L1-norm regularization (KLMS-CSAL1), as proposed in Wei Gao, Jie Chen, Cédric Richard, Jianguo Huang, and Rémi Flamary, "Kernel LMS algorithm with forward-backward splitting for dictionary learning,", 2013 IEEE International Conference on Acoustics, Speech, and Signal Processing (ICASSP 2013), Vancouver, Canada, March 2013.
+- Kernel Least Mean Squares algorithm with Coherence-Sparsification criterion and L1-norm regularization (KLMS-CSL1) and with active L1-norm regularization (KLMS-CSAL1), as proposed in Wei Gao, Jie Chen, Cédric Richard, Jianguo Huang, and Rémi Flamary, "Kernel LMS algorithm with forward-backward splitting for dictionary learning," 2013 IEEE International Conference on Acoustics, Speech, and Signal Processing (ICASSP 2013), Vancouver, Canada, March 2013.
+-  Mixture Kernel Least Mean Square (MXKLMS) algorithm, as proposed in R. Pokharel, S. Seth, and J.C. Principe, "Mixture kernel least mean square," The 2013 International Joint Conference on Neural Networks (IJCNN), pp.1-7, 4-9 Aug. 2013.
 
 How to contribute code to the toolbox
 -------------------------------------
 Option 1: email it to me (steven@gtas.dicom.unican.es)
 
-Option 2: [fork the toolbox on GitHub](https://github.com/steven2358/kafbox), push your change to a named branch, then send me a pull request.
+Option 2: [fork the toolbox on GitHub](https://github.com/steven2358/kafbox), push your changes, then send me a pull request.
 
 License
 -------
