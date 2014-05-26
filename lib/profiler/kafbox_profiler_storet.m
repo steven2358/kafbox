@@ -54,11 +54,6 @@ for i = 1:length(skiplist),
     end
 end
 
-% results = kafbox_resultshandler6(data,config,'output');
-% if ~isempty(results)
-%     option = 'save';
-% end
-
 switch option
     case 'check'
         if exist(index_path,'file')==2
@@ -84,7 +79,6 @@ switch option
 end
 
 
-
 % check if config was already processed and return corresponding results
 function r = find_results(my_config,configs,results_path)
 
@@ -101,14 +95,16 @@ end
 r = [];
 
 
-
 function save_results(results,results_path,id) %#ok<INUSL>
 fname = sprintf('%s/%s',results_path,id);
 save(fname,'results');
 
 
-
 function results = load_results(results_path,id)
-fname = sprintf('%s/%s',results_path,id);
-r = load(fname);
-results = r.results;
+fname = sprintf('%s/%s.mat',results_path,id);
+if exist(fname,'file')==2
+    r = load(fname);
+    results = r.results;
+else
+    results = [];
+end
