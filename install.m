@@ -8,5 +8,5 @@ addpath(genpath(fullfile(pwd,'lib')));
 addpath((fullfile(pwd,'demo')));
 
 fprintf('done.\n')
-disp('Type "savepath" if you wish to store changes.')
+disp('Type "savepath" if you wish to store the changes.')
 % savepath;

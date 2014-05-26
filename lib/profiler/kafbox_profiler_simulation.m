@@ -23,6 +23,7 @@ end
 simresults = kafbox_profiler_storet(simdata,algo_config,output_dir);
 
 if isempty(simresults), % perform simulation
+
     [X,Y,X_test,Y_test] = kafbox_data(simdata); % load data
     
     every = 1;
@@ -53,6 +54,16 @@ if isempty(simresults), % perform simulation
         all_fl(i) = kaf.lastflops();
         all_bytes(i) = kaf.lastbytes();
         
+        if isfield(data,'test_every_conv')
+            de = data.test_every_conv;
+            if i<10*data.test_every_conv
+                % start from 1 at i=1 and go exponentially to every at
+                % i=10*every
+                every = max(1,round(10^(log10(de)/10/de*i)));
+            else
+                every = data.test_every_conv;
+            end
+        end
         if mod(i,every) == 0
             if isempty(X_test)
                 Y_test = Y(i); % test prediction
