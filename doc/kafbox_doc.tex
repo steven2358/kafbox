@@ -59,12 +59,12 @@
 
 \begin{document}
 
-\title{Kernel Adaptive Filtering Toolbox for Matlab}
+\title{Documentation for \\Kernel Adaptive Filtering Toolbox}
 \author{Steven Van Vaerenbergh}
 \maketitle
 
 \begin{abstract}
-The Kernel Adaptive Filtering Toolbox is a benchmarking toolbox to evaluate and compare kernel adaptive filtering algorithms in Matlab. Kernel adaptive filtering algorithms are online techniques suitable for nonlinear filtering, prediction, tracking and regression. This toolbox contains implementations of all major kernel adaptive filtering algorithms, and tools to measure and compare the performance, memory usage, speed and other variables.
+The Kernel Adaptive Filtering Toolbox is a benchmarking toolbox to evaluate and compare kernel adaptive filtering algorithms in Matlab. Kernel adaptive filtering algorithms are online techniques suitable for nonlinear filtering, prediction, tracking and regression. This toolbox contains implementations of all major kernel adaptive filtering algorithms, and tools to measure and compare the performance, memory usage, speed and other properties.
 \end{abstract}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -81,7 +81,7 @@ This document is a work in progress.
 The goals of this toolbox are twofold:
 \begin{enumerate}
 \item To provide a repository for Matlab implementations of kernel adaptive filtering algorithms;
-\item To provide tools that allow to compare all aspects of the different algorithms
+\item To provide tools that allow to compare all aspects of the different algorithms.
 \end{enumerate}
 A list of the included algorithms and tools can be found in Chapter \ref{chap:algos}.
 
@@ -101,6 +101,7 @@ A list of the included algorithms and tools can be found in Chapter \ref{chap:al
 \begin{itemize}
 \item \verb"data/" contains data sets.
 \item \verb"demo/" contains demos and test files.
+\item \verb"doc/" contains the documentation for the toolbox.
 \item \verb"lib/" contains the algorithm libraries and utilities.
 \end{itemize}
 
@@ -198,8 +199,9 @@ Furthermore, efforts are made to make the code
 \item As human-readable as possible, in the first place;
 \item Short and structured, in the second place.
 \end{enumerate}
+As far as possible, algorithm structure should follow the pseudocode from the corresponding publication.
 
-As far as possible, algorithm structure should follow the pseudocode from the corresponding publication. And, finally, the following best practices for scientific computing are taken into account \cite{wilson2014best}:
+Finally, the following best practices for scientific computing are taken into account \cite{wilson2014best}:
 \begin{itemize}
 \item Variable naming should correspond to the nomenclature used in the corresponding publication whenever possible;
 \item Comments should be used sparingly. Document the design and purpose of the code rather than its mechanics.
@@ -288,7 +290,7 @@ Matlab implementations of the following algorithms are included in the toolbox:
 \item {\bf Collaborators:} Miguel Lazaro-Gredilla, Sohan Seth, Masahiro Yukawa, Masa-aki Takizawa, Osamu Toda, Dominik Rzepka, Pantelis Bouboulis
 \item {\bf URL:} \url{https://github.com/steven2358/kafbox}
 \item {\bf Citing:} Published reports of research using this code (or a modified version) should cite \cite{vanvaerenbergh2013comparative}.
-\item {\bf Environments:} Matlab\footnote{\url{http://www.mathworks.com/products/matlab/}}.
+\item {\bf Environment:} Matlab\footnote{\url{http://www.mathworks.com/products/matlab/}}.
 \item {\bf Origin:} KAFBOX is a fork of Kernel Methods Toolbox (KMBOX) v0.6 (\url{http://sourceforge.net/p/kmbox/})
 \item {\bf Extending the code:} Template files are provided to encourage external authors to include their own code into the toolbox. Contributions can be made through Github's fork and pull system.
 \item {\bf License:} FreeBSD
