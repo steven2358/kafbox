@@ -30,12 +30,14 @@ options = struct('N',1500,'N_test',500,'N_switch',500,'chlen',5,...
     'sigpower',1,'fun','tanh(x)','SNR',20);
 
 %% CUSTOM PARAMETER VALUES
-for opt_name = fieldnames(opt)',
-    if strmatch(opt_name,fieldnames(options),'exact'),
-        options.(opt_name{1}) = opt.(opt_name{1});
+if nargin >= 1,
+    for opt_name = fieldnames(opt)',
+        if strmatch(opt_name,fieldnames(options),'exact'),
+            options.(opt_name{1}) = opt.(opt_name{1});
+        end
     end
 end
-
+    
 N = options.N;
 N_test = options.N_test;
 N_switch = options.N_switch;
