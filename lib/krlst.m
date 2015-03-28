@@ -54,7 +54,7 @@ classdef krlst
                 
                 if nargout>1
                     ktt = kernel(x,x,[kaf.kerneltype '-diag'],kaf.kernelpar);
-                    sf2 = ktt + kaf.jitter + sum(k.*((kaf.Q*kaf.Sigma*kaf.Q-kaf.Q)*kbs),1)';
+                    sf2 = ktt + kaf.jitter + sum(k.*((kaf.Q*kaf.Sigma*kaf.Q-kaf.Q)*k),1)';
                     sf2(sf2<0) = 0;
                     var_test = kaf.s02*(kaf.sn2 + sf2); % predictive variance
                 end
