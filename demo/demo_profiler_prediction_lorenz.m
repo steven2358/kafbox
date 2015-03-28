@@ -79,7 +79,7 @@ fprintf('Elapsed time: %d seconds\n',ceil(t2));
 
 mse_curves = kafbox_profiler_msecurves(results);
 
-resinds = [1,1;2,1;3,10;4,7;5,9];
+resinds = [1,1;2,1;3,10;4,7;5,9]; % result indices
 [f0,h0] = kafbox_profiler_plotconvergence(algorithms,mse_curves,resinds);
 
 [f1,h1] = kafbox_profiler_plotresults(algorithms,mse_curves,results,{'bytes','flops'});
