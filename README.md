@@ -7,13 +7,14 @@ Kernel adaptive filtering algorithms are online and adaptive regression algorith
 
 Maintainer: [Steven Van Vaerenbergh](http://gtas.unican.es/people/steven)  
 Contributors:  
-- [Miguel Lazaro-Gredilla](http://www.tsc.uc3m.es/~miguel)  
-- [Sohan Seth](http://www.sohanseth.com/)  
-- [Masahiro Yukawa](http://www.ykw.elec.keio.ac.jp/yukawa/)  
-- [Masa-aki Takizawa](http://www.ykw.elec.keio.ac.jp/member.html)  
-- [Osamu Toda](http://www.ykw.elec.keio.ac.jp/member.html)  
-- [Dominik Rzepka](http://home.agh.edu.pl/~drzepka/)  
-- [Pantelis Bouboulis](http://bouboulis.mysch.gr/)  
+- [Miguel Lazaro-Gredilla](http://www.tsc.uc3m.es/~miguel), Universidad Carlos III de Madrid, Spain.  
+- [Sohan Seth](http://www.sohanseth.com/), University of Edinburgh, UK.  
+- [Masahiro Yukawa](http://www.ykw.elec.keio.ac.jp/yukawa/), Keio University, Japan.  
+- [Masa-aki Takizawa](http://www.ykw.elec.keio.ac.jp/member.html), Keio University, Japan.  
+- [Osamu Toda](http://www.ykw.elec.keio.ac.jp/member.html), Keio University, Japan.  
+- [Dominik Rzepka](http://home.agh.edu.pl/~drzepka/), AGH University of Science and Technology, Poland.  
+- [Pantelis Bouboulis](http://bouboulis.mysch.gr/), University of Athens, Greece.  
+- [Stephan Rhode](https://www.fast.kit.edu/lff/1011_3295.php), Karlsruher Institut f&uuml;r Technologie, Germany.  
 
 Official web: https://sourceforge.net/projects/kafbox  
 
