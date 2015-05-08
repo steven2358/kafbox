@@ -95,7 +95,7 @@ Citing KAFBOX
 If you use this toolbox in your research please cite ["A Comparative Study of Kernel Adaptive Filtering Algorithms"](http://gtas.unican.es/pub/356):
 
     @conference{vanvaerenbergh2013comparative,
-      author = {Steven Van Vaerenbergh and Santamar{\'\i}a, Ignacio},
+      author = {Van Vaerenbergh, Steven and Santamar{\'\i}a, Ignacio},
       booktitle = {2013 IEEE Digital Signal Processing (DSP) Workshop and IEEE Signal Processing Education (SPE)},
       title = {A Comparative Study of Kernel Adaptive Filtering Algorithms},
       year = {2013},
