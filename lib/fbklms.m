@@ -67,7 +67,7 @@ classdef fbklms
                 if min(dependency) >= kaf.nu, % expand dictionary
                     kaf.dict = [kaf.dict; x];
                     kaf.diagkdict = [kaf.diagkdict; kx];
-                    kaf.alpha = [kaf.alpha; kaf.nu*e];
+                    kaf.alpha = [kaf.alpha; kaf.eta*e/(k'*k)];
                     
                     if length(kaf.alpha) > kaf.M, % prune dictionary
                         [~, id] = min(abs(kaf.alpha));
