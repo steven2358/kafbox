@@ -121,8 +121,10 @@ for algo_ind = 1:length(algorithms)
         'LineWidth',2); %#ok<NASGU>
     
     cursorMode = datacursormode(gcf);
-    set(cursorMode, 'enable','on', 'UpdateFcn',...
-        @setDataTipTxt, 'NewDataCursorOnClick',false);
+    set(cursorMode, 'enable','on', 'UpdateFcn',@setDataTipTxt);
+    if verLessThan('matlab', '8.4')
+        set(cursorMode, 'NewDataCursorOnClick',false);
+    end
     
 end
 h = legend(titles);
@@ -193,5 +195,5 @@ end
 function b = str2log10(a)
 b = cell(length(a),1);
 for i=1:length(a),
-    b{i} = ['1E' strtrim(a(i,:))];
+    b{i} = ['1E' strtrim(a{i,:})];
 end
