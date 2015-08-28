@@ -98,7 +98,7 @@ If you use this toolbox in your research please cite ["A Comparative Study of Ke
       author = {Van Vaerenbergh, Steven and Santamar{\'\i}a, Ignacio},
       booktitle = {2013 IEEE Digital Signal Processing (DSP) Workshop and IEEE Signal Processing Education (SPE)},
       title = {A Comparative Study of Kernel Adaptive Filtering Algorithms},
-      doi={10.1109/DSP-SPE.2013.6642587},
+      doi = {10.1109/DSP-SPE.2013.6642587},
       year = {2013},
       note = {Software available at \url{http://sourceforge.net/projects/kafbox/}}
     }

@@ -14,10 +14,9 @@ else
     option = 'save';
 end
 
-if isfield(data,'file')
-    [pathstr,dataset] = fileparts(data.file); %#ok<ASGLU>
-elseif isfield(data,'generate')
-    dataset = data.generate;
+dataset = lower(data.name);
+if isfield(data,'class')
+    dataset = sprintf('%s_%s',lower(data.class),dataset);
 end
 index_path = [output_dir filesep dataset '_' config.class '_index.mat'];
 results_path = [output_dir filesep 'results' filesep dataset '_' config.class];

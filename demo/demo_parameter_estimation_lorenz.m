@@ -24,15 +24,15 @@ N = 500; % number of data
 %% PROGRAM
 tic
 
-fprintf(1,'Loading Lorenz attractor time-series...\n')
-[X,Y] = kafbox_data(struct('file','lorenz.dat','horizon',horizon,...
+fprintf('Loading Lorenz attractor time-series...\n')
+[X,Y] = kafbox_data(struct('name','lorenz','horizon',horizon,...
     'embedding',embedding,'N',N));
 
-fprintf(1,'Estimating KRLS-T parameters for %d-step prediction...\n\n',...
+fprintf('Estimating KRLS-T parameters for %d-step prediction...\n\n',...
     horizon)
 [sigma_est,reg_est,lambda_est] = kafbox_parameter_estimation(X,Y);
 
-fprintf(1,'Running KRLS-T with estimated parameters...\n')
+fprintf('Running KRLS-T with estimated parameters...\n')
 Y_est = zeros(N,1);
 kaf = krlst(struct('lambda',lambda_est,'M',100,'sn2',reg_est,...
     'kerneltype','gauss','kernelpar',sigma_est));

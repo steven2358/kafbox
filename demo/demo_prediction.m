@@ -3,7 +3,7 @@
 % This file is part of the Kernel Adaptive Filtering Toolbox for Matlab.
 % http://sourceforge.net/projects/kafbox/
 
-[X,Y] = kafbox_data(struct('file','lorenz.dat','embedding',6));
+[X,Y] = kafbox_data(struct('name','Lorenz','embedding',6));
 
 % make a kernel adaptive filter object of class aldkrls with options: 
 % ALD threshold 1E-4, Gaussian kernel, and kernel width 32

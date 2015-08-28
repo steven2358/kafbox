@@ -1,16 +1,16 @@
-% Profiler program. Runs through different algorithms, each with a
-% number of configurations, each for a number of simulations.
+% KAFBOX_PROFILER Profiler program. Runs through different algorithms, each
+% with a number of configurations, each for a number of simulations.
 %
 % This file is part of the Kernel Adaptive Filtering Toolbox for Matlab.
 % http://sourceforge.net/projects/kafbox/
 
 function [data,algorithms,results] = ...
-    kafbox_profiler(data,algorithms,outputdir)
+    kafbox_profiler(data,sim_opts,algorithms,outputdir)
 
 num_algo = length(algorithms);
 numsim = 1;
-if isfield(data,'numsim'),
-    numsim = data.numsim;
+if isfield(sim_opts,'numsim'),
+    numsim = sim_opts.numsim;
 end
 
 % pre-allocate structure
@@ -43,7 +43,8 @@ for sim_ind = 1:numsim, % process simulations
             eval(sprintf('algo_config.options.%s = sweep_val(config_ind);',sweep_par));
             
             % perform one simulations for this configuration
-            simresults = kafbox_profiler_simulation(data,algo_config,sim_ind,outputdir);
+            simresults = kafbox_profiler_simulation(data,sim_opts,...
+                algo_config,sim_ind,outputdir);
             
             results{algo_ind}{config_ind}{sim_ind} = simresults;
             

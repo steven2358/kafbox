@@ -3,7 +3,8 @@
 % This file is part of the Kernel Adaptive Filtering Toolbox for Matlab.
 % http://sourceforge.net/projects/kafbox/
 
-function simresults = kafbox_profiler_simulation(data,algo_config,sim_ind,output_dir)
+function simresults = kafbox_profiler_simulation(data,sim_opts,...
+    algo_config,sim_ind,output_dir)
 
 simdata = data;
 
@@ -34,7 +35,7 @@ if isempty(simresults), % perform simulation
     N = size(X,1);
     all_fl = zeros(N,1); %  flops per iteration
     all_bytes = zeros(N,1); %  flops per iteration
-    erm = data.error_measure; % error measure
+    erm = sim_opts.error_measure; % error measure
     eval(sprintf('%s = nan*zeros(N,1);',erm));
     var_test = var(Y_test); % for NMSE
     

@@ -1,114 +1,41 @@
-% KAFBOX_DATA Returns input-output data specified in the options. Either
-% load a raw data file or synthetically generate a data set.
-%
-% The single input argument is a structure that contains the options as
-% fields. Possible options:
-%   - file: if present, its value is the filename of the data to load.
-%   - generate: if present, its value is the name of the function used to
-%   generate the data.
-%   - horizon: prediction horizon
-%   - N: number of data to load. Limited by the number of data available
+% KAFBOX_DATA Data handler. Returns input-output data specified in the
+% options.
 %
 % This file is part of the Kernel Adaptive Filtering Toolbox for Matlab.
 % http://sourceforge.net/projects/kafbox/
 
-function [X,Y,X_test,Y_test] = kafbox_data(options)
+function [X,Y,X_test,Y_test] = kafbox_data(data_options)
 
-if isfield(options,'file')
-    
-    data = load(options.file);
-    
-    switch class(data)
-        case 'double' % raw numeric data
-            
-            % time embedding
-            embedding = 0;
-            if isfield(options,'embedding')
-                embedding = options.embedding;
-            end
-            
-            if size(data,2)==1 % time series
-                
-                % prediction horizon
-                horizon = 1;
-                if isfield(options,'horizon')
-                    horizon = options.horizon;
-                end
-                
-                % construct signal
-                X = time_embedding(data,embedding);
-                Y = data(1+horizon:end); % desired output
-                
-            elseif size(data,2)==2 % input output system; input is time series
-                
-                % construct signal
-                X = time_embedding(data(:,1),embedding);
-                Y = data(1:end,2); % desired output
-                
-            end
-            
-            % apply offset
-            if isfield(options,'offset')
-                X = X(1+options.offset:end,:);
-                Y = Y(1+options.offset:end);
-            end
-            
-            % crop
-            N = length(Y);
-            if isfield(options,'N')
-                N = min(options.N,N);
-            end
-            X = X(1:N,:);
-            Y = Y(1:N);
-            
-            X_test = [];
-            Y_test = [];
-            
-        case 'struct'
-            
-            X = data.X_train;
-            Y = data.Y_train;
-            X_test = data.X_test;
-            Y_test=  data.Y_test;
-            
-            if isfield(options,'permutation')
-                if options.permutation ~= 0,
-                    
-                    randseed = options.permutation;
-                    randn('state',randseed); %#ok<RAND>
-                    rand('state',randseed); %#ok<RAND>
-                    
-                    N = size(X,1);
-                    rp = randperm(N);
-                    X = X(rp,:);
-                    Y = Y(rp);
-                    
-                end
-            end
-            
-            % crop
-            N = length(Y);
-            if isfield(options,'N')
-                N = min(options.N,N);
-            end
-            X = X(1:N,:);
-            Y = Y(1:N);
-            
-        otherwise
-            error('unknown data type');
-    end
-elseif isfield(options,'generate')
-    
-    if isfield(options,'N_test')
-        eval(sprintf('[X,Y,y_ref,X_test,Y_test] = generate_%s(options);',...
-            options.generate));
-    else
-        eval(sprintf('[X,Y] = generate_%s(options);',options.generate));
-        X_test = [];
-        Y_test = [];
-    end
-    
+if isfield(data_options,'class')
+    data_name = lower(data_options.class);
+elseif isfield(data_options,'name')
+    data_name = lower(data_options.name);
+else
+    error('Unknown data.');
 end
+
+dataset_handle = str2func(['kafbox_data_' data_name]);
+
+[X,Y,X_test,Y_test] = feval(dataset_handle, data_options);
+
+% time embedding
+if isfield(data_options,'embedding')
+    X = time_embedding(X,data_options.embedding);
+end
+
+% apply offset
+if isfield(data_options,'offset')
+    X = X(1+data_options.offset:end,:);
+    Y = Y(1+data_options.offset:end);
+end
+
+% crop training data
+N = length(Y);
+if isfield(data_options,'N')
+    N = min(data_options.N,N);
+end
+X = X(1:N,:);
+Y = Y(1:N);
 
 
 function X_embedded = time_embedding(X,L)

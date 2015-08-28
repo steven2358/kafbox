@@ -9,7 +9,7 @@ clear all;
 %% PARAMETERS
 % Instructions: 1. Uncomment one datafile and one kaf algorithm; 2. Execute.
 
-datafile = 'lorenz.dat'; L = 6; horizon = 1; % 10000 points
+datafile = 'lorenz.dat'; embedding = 6; horizon = 1; % 10000 points
 % kaf = krlst(struct('jitter',1E-6,'lambda',1,'M',100,'sn2',1E-6,'kerneltype','gauss','kernelpar',32)); % achieves -56.82 dB
 % kaf = fbkrls(struct('lambda',1E-6,'M',100,'kerneltype','gauss','kernelpar',32)); % achieves -55.00 dB
 % kaf = rls(struct('lambda',.99,'c',1E-6)); % achieves -48.16 dB
@@ -55,12 +55,11 @@ kaf = aldkrls(struct('nu',1E-4,'kerneltype','gauss','kernelpar',32)); % achieves
 %% PROGRAM
 tic
 
-data = load(datafile); data = data(:); N = length(data)-horizon;
-X = zeros(N,L);
-for i = 1:L, X(i:N,i) = data(1:N-i+1); end % time embedding
-Y = data(1+horizon:N+horizon); % desired output
+[X,Y] = kafbox_data(struct('name','lorenz','horizon',horizon,...
+    'embedding',embedding));
+N = size(X,1);
 
-fprintf(1,'Running prediction algorithm')
+fprintf('Running prediction algorithm')
 Y_est = zeros(N,1);
 for i=1:N,
     if ~mod(i,floor(N/10)), fprintf('.'); end

@@ -11,12 +11,12 @@ output_dir_default = 'profiler_output';
 
 % data and algorithm setup
 data.name = 'Lorenz';
-data.file = 'lorenz.dat';
 data.N = 10000; % number of data points
 data.embedding = 6; % time embedding
-data.numsim = 5; % 10 minutes per simulation on an Intel Pentium Core2 Duo
 data.offset = 50; % apply offset per simulation
-data.error_measure = 'MSE';
+
+sim_opts.numsim = 5; % 10 minutes per simulation on an Intel Pentium Core2 Duo
+sim_opts.error_measure = 'MSE';
 
 i=0; % initialize setups
 
@@ -70,7 +70,7 @@ if isempty(output_dir),
 end
 
 t1 = tic;
-[data,algorithms,results] = kafbox_profiler(data,algorithms,output_dir);
+[data,algorithms,results] = kafbox_profiler(data,sim_opts,algorithms,output_dir);
 t2 = toc(t1);
 
 fprintf('Elapsed time: %d seconds\n',ceil(t2));

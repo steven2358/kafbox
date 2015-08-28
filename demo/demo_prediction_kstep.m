@@ -2,7 +2,7 @@
 
 k = 10;
 
-[X,Y] = kafbox_data(struct('file','lorenz.dat','horizon',k,...
+[X,Y] = kafbox_data(struct('name','Lorenz','horizon',k,...
     'embedding',6,'N',5000));
 
 % Make a kernel adaptive filter object of class krls-t

@@ -24,7 +24,7 @@ X = zeros(N,L);
 for i = 1:L, X(i:N,i) = data(1:N-i+1); end % time-embedding
 Y = data(:,2); % desired output
 
-fprintf(1,'Running system identification algorithm')
+fprintf('Running system identification algorithm')
 Y_est = zeros(N,1);
 for i=1:N,
     if ~mod(i,floor(N/10)), fprintf('.'); end
