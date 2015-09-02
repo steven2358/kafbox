@@ -124,7 +124,8 @@ Included algorithms
 - Leaky Kernel Affine Projection Algorithm (LKAPA, including KAPA-1 and KAPA-3) and Normalized Leaky Kernel Affine Projection Algorithm (NLKAPA, including KAPA-2 and KAPA-4), as proposed in W. Liu and J.C. Principe, "Kernel Affine Projection Algorithms", EURASIP Journal on Advances in Signal Processing, Volume 2008, Article ID 784292, 12 pages.
 - Kernel Affine Projection Subgradient Method (KAPSM), as proposed in K. Slavakis, S. Theodoridis, and I. Yamada, "Online kernel-based classification using adaptive projection algorithms," IEEE Transactions on Signal Processing, Vol. 56, No. 7, pp. 2781-2796, 2008.
 - Kernel Least Mean Squares algorithm with Coherence-Sparsification criterion and L1-norm regularization (KLMS-CSL1) and with active L1-norm regularization (KLMS-CSAL1), as proposed in Wei Gao, Jie Chen, Cédric Richard, Jianguo Huang, and Rémi Flamary, "Kernel LMS algorithm with forward-backward splitting for dictionary learning," 2013 IEEE International Conference on Acoustics, Speech, and Signal Processing (ICASSP 2013), Vancouver, Canada, March 2013.
--  Mixture Kernel Least Mean Square (MXKLMS) algorithm, as proposed in R. Pokharel, S. Seth, and J.C. Principe, "Mixture kernel least mean square," The 2013 International Joint Conference on Neural Networks (IJCNN), pp.1-7, 4-9 Aug. 2013.
+- Mixture Kernel Least Mean Square (MXKLMS) algorithm, as proposed in R. Pokharel, S. Seth, and J.C. Principe, "Mixture kernel least mean square," The 2013 International Joint Conference on Neural Networks (IJCNN), pp.1-7, 4-9 Aug. 2013.
+- Fixed budget quantized kernel least-mean-square algorithm (QKLMS-FB), as proposed in S. Zhao, B. Chen, P. Zhu, J. C. Príncipe, "Fixed budget quantized kernel least-mean-square algorithm", Signal Processing, Volume 93, Issue 9, September 2013, Pages 2759-2770.
 
 How to contribute code to the toolbox
 -------------------------------------
