@@ -33,7 +33,7 @@ classdef klms_csl1
         function kaf = klms_csl1(parameters) % constructor
             if (nargin > 0) % copy valid parameters
                 for fn = fieldnames(parameters)',
-                    if strmatch(fn,fieldnames(kaf),'exact'),
+                    if ismember(fn,fieldnames(kaf)),
                         kaf.(fn{1}) = parameters.(fn{1});
                     end
                 end
