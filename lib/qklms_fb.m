@@ -100,7 +100,7 @@ classdef qklms_fb
                 else % no room for extra centres
                     [~,L] = min(kaf.E); % centre with lowest significance
                     
-                    % update significance (17)
+                    % update significance for removing L-th centre (17)
                     kaf.E = kaf.E - kaf.lambda(L) * c1*abs(kaf.alpha) .* ...
                         kernel(kaf.mem,kaf.mem(L,:),kaf.kerneltype,kaf.kernelpar);
                     
