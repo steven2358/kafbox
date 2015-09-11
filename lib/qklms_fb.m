@@ -1,6 +1,6 @@
 % Fixed budget quantized kernel least-mean-square algorithm
 %
-% S. Zhao, B. Chen, P. Zhu, J. C. Príncipe, "Fixed budget quantized kernel
+% S. Zhao, B. Chen, P. Zhu, J. C. Principe, "Fixed budget quantized kernel
 % least-mean-square algorithm", Signal Processing, Volume 93, Issue 9,
 % September 2013, Pages 2759-2770,
 % http://dx.doi.org/10.1016/j.sigpro.2013.02.012.

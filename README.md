@@ -1,4 +1,4 @@
-﻿Kernel Adaptive Filtering Toolbox
+Kernel Adaptive Filtering Toolbox
 =================================
 
 A Matlab benchmarking toolbox for kernel adaptive filtering. 
