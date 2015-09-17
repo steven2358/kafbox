@@ -13,7 +13,7 @@
 % This file is part of the Kernel Adaptive Filtering Toolbox for Matlab
 % http://sourceforge.net/projects/kafbox/
 
-clear all
+clear
 close all
 
 %% PARAMETERS
@@ -23,7 +23,7 @@ N_test = 500; % number of test data points
 Nswitch = 500; % switch from model 1 to model 2 after Nswitch iterations
 B1 = [1.0000, -0.3817, -0.1411, 0.5789, 0.191]; % model 1 linear filter
 B2 = [1.0000, -0.0870, 0.9852, -0.2826, -0.1711]; % model 2 linear filter
-f = inline('tanh(x)'); % Wiener system nonlinearity
+f = @(x) tanh(x); % Wiener system nonlinearity
 SNR = 20; % SNR in dB
 
 embedding = 5; % time-embedding

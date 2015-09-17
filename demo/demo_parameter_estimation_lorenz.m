@@ -13,7 +13,7 @@
 % http://sourceforge.net/projects/kafbox/
 
 close all
-clear all
+clear
 
 %% PARAMETERS
 

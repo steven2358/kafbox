@@ -4,7 +4,7 @@
 % http://sourceforge.net/projects/kafbox/
 
 close all
-clear all
+clear
 rs = 1; randn('state',rs); rand('state',rs); %#ok<RAND>
 
 %% PARAMETERS

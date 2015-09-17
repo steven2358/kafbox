@@ -13,7 +13,7 @@
 % http://sourceforge.net/projects/kafbox/
 
 close all
-clear all
+clear
 
 %% PARAMETERS
 
@@ -39,7 +39,7 @@ Z = randn(N,1); % GP generator
 M = zeros(N,1); % output data mean
 Y = chol(K)'*Z + M; % output data
 
-fprintf(1,'Estimating parameters of KRLS-T for these data...\n\n')
+fprintf('Estimating parameters of KRLS-T for these data...\n\n');
 [sigma_est,c_est,lambda_est] = kafbox_parameter_estimation(X,Y);
 
 toc

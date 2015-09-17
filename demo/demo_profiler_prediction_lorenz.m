@@ -2,7 +2,7 @@
 % Compares the cost vs prediction error tradeoffs and convergence speeds
 % for several algorithms on the Lorenz data set.
 
-clear all
+clear
 close all
 
 %% PARAMETERS

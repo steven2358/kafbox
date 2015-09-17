@@ -10,7 +10,7 @@
 % This file is part of the Kernel Adaptive Filtering Toolbox for Matlab
 % http://sourceforge.net/projects/kafbox/
 
-clear all
+clear
 close all
 
 %% PARAMETERS

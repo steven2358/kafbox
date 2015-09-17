@@ -4,7 +4,7 @@
 % http://sourceforge.net/projects/kafbox/
 
 close all;
-clear all;
+clear;
 
 %% PARAMETERS
 % Instructions: 1. Uncomment one datafile and one kaf algorithm; 2. Execute.
