@@ -11,7 +11,7 @@ if isfield(data_opts,'horizon')
 end
 
 % construct signal
-X = data(horizon:end-1); % input
+X = data(1:end-horizon); % input
 Y = data(1+horizon:end); % desired output
 
 X_test = [];
