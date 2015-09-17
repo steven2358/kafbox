@@ -1,13 +1,19 @@
 % Demo: k-step ahead prediction on Lorenz attractor time-series data
 
-k = 10;
+clear
+close all;
 
+%% PARAMETERS
+
+k = 10; % prediction horizon
+
+% load data using helper function
 [X,Y] = kafbox_data(struct('name','Lorenz','horizon',k,...
     'embedding',6,'N',5000));
 
-% Make a kernel adaptive filter object of class krls-t
-kaf = krlst(struct('lambda',1,'M',100,'sn2',1E-6,...
-    'kerneltype','gauss','kernelpar',32));
+% Make a kernel adaptive filter object
+kaf = krlst(struct('lambda',1,'M',100,'sn2',1E-6,'kerneltype','gauss','kernelpar',32));
+% kaf = qklms(struct('eta',0.5,'epsu',.1,'kerneltype','gauss','kernelpar',32));
 
 %% RUN ALGORITHM
 N = size(X,1);
