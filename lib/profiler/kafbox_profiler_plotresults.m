@@ -195,5 +195,10 @@ end
 function b = str2log10(a)
 b = cell(length(a),1);
 for i=1:length(a),
-    b{i} = ['1E' strtrim(a(i,:))];
+    if isa(a,'cell')
+        el = a{i};
+    else
+        el = a(i,:);
+    end
+    b{i} = ['1E' strtrim(el)];
 end
