@@ -54,7 +54,7 @@ for ii=1:length(algorithms)
     fprintf('%d. %s:\n',ii,upper(algorithm));
     fprintf('Constructing object............\n')
     try
-        kaf = feval(algorithm);
+        feval(algorithm);
     catch err
         error('Error: %s object cannot be constructed: %s',...
             upper(algorithm), err.message);
@@ -63,7 +63,7 @@ for ii=1:length(algorithms)
     fprintf('Testing arguments..............\n') % constructor test 1
     opts = struct();
     try
-        kaf = feval(algorithm, opts);
+        feval(algorithm, opts);
     catch err
         me = err.stack(1);
         error(['Error in '...

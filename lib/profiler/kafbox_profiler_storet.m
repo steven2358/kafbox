@@ -70,7 +70,7 @@ switch option
         end
         id = datestr(now,30);
         configs{ind}.id = id;
-        configs{ind}.cstr = struct2str(my_config); %#ok<NASGU>
+        configs{ind}.cstr = struct2str(my_config);
         save(index_path,'configs');
         save_results(results,results_path,id)
     otherwise

@@ -12,7 +12,7 @@
 % This file is part of the Kernel Adaptive Filtering Toolbox for Matlab.
 % http://sourceforge.net/projects/kafbox/
 
-function [X,Y,X_test,Y_test] = kafbox_data(options)
+function [X,Y,X_test,Y_test] = kafbox_data_old(options)
 
 if isfield(options,'file')
     
