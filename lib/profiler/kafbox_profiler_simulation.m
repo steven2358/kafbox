@@ -15,8 +15,8 @@ elseif isfield(data,'permutation')
 else
     % fix random seed per simulation
     rs = sim_ind;
-    randn('state',rs); %#ok<RAND>
-    rand('state',rs); %#ok<RAND>
+    rng('default');
+    rng(sim_ind);
     simdata.rs = rs;
 end
 

@@ -21,8 +21,8 @@ kaf = krlst(struct('lambda',1,'M',100,'sn2',1E-4,'kerneltype','gauss','kernelpar
 %% RUN ALGORITHM
 
 % init random generator
-s = RandStream('mt19937ar','Seed',seed);
-RandStream.setGlobalStream(s);
+rng('default')
+rng(seed);
 
 % corrupt outputs with noise
 Y = Y + 3*randn(size(Y));
