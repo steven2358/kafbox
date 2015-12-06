@@ -18,16 +18,16 @@ fprintf('\n')
 for i=1:length(allfiles)
     close all
     clear eval
-    save('run_temp','i','allfiles','t1');
+    save(fullfile(tempdir,'temp.mat'),'i','allfiles','t1'); % memory map
     
     % run script
     fname_demo = allfiles{i};
     fprintf('\nRunning %s\n',fname_demo);
     eval(fname_demo);
-    
-    load run_temp
+
+    load(fullfile(tempdir,'temp.mat'));
 end
-delete run_temp.mat
+delete(fullfile(tempdir,'temp.mat'));
 toc(t1)
 
 close all
