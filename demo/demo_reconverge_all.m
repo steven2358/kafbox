@@ -82,7 +82,7 @@ for fig_ind=num_fig:-1:1
     % plot the results for the num_in_league worst results
     league_inds = num_alg-remaining+num_in_league:-1:num_alg-remaining+1;
     for i=league_inds,
-        plot(10*log10(MSE(:,i)),'LineWidth',1)
+        plot(10*log10(MSE(:,ind(i))),'LineWidth',1)
     end
     title(sprintf('League %d',fig_ind))
     legend(titles(ind(league_inds)))
