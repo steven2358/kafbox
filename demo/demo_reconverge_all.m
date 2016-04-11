@@ -6,7 +6,7 @@
 
 close all
 clear
-% rs = 1; randn('state',rs); rand('state',rs); %#ok<RAND>
+rng('default'); rng(1); % for reproducibility
 
 %% PARAMETERS
 
