@@ -63,7 +63,7 @@ for algo_ind=1:num_alg
     end
     MSE_final(algo_ind) = mean(MSE(N-500:N,algo_ind));
     
-    fprintf(' %.2fs. Final MSE=%3.2fdB\n',toc(t1),...
+    fprintf(' %.2fs. Final MSE=%.2fdB\n',toc(t1),...
         10*log10(MSE_final(algo_ind)))
 end
 fprintf('\n');

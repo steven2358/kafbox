@@ -1,6 +1,9 @@
-function [x_embed,y,y_ref,x_test_embed,y_test_ref,H] = ...
-    generate_channel_switch(opt)
-% Generate CHANNEL_SWITCH data set: input-output data of a nonlinear
+function [x_embed,y,x_test_embed,y_test_ref,H] = ...
+    kafbox_data_channel_switch(opt)
+
+% KAFBOX_DATA_CHANNEL_SWITCH Data generator for channel switch data
+%
+% CHANNEL_SWITCH data set: input-output data of a nonlinear
 % channel whose linear part is changed abruptly at a chosen point. The
 % nonlinear channel is a Wiener system with a randomly chosen linear part.
 %
@@ -12,6 +15,8 @@ function [x_embed,y,y_ref,x_test_embed,y_test_ref,H] = ...
 %   - chlen: linear channel length
 %   - fun: nonlinear function
 %   - SNR: signal-to-noise ratio of additve output noise
+%   - H: the channels to be used (each row is a channel impulse response).
+%   If not provided these channels are generated randomly.
 %
 % Outputs:
 %   - x_embed: system input with time embedding (each datum is a row)
@@ -27,12 +32,12 @@ function [x_embed,y,y_ref,x_test_embed,y_test_ref,H] = ...
 %% DEFAULT PARAMETER VALUES
 
 options = struct('N',1500,'N_test',500,'N_switch',500,'chlen',5,...
-    'sigpower',1,'fun','tanh(x)','SNR',20);
+    'sigpower',1,'fun','tanh(x)','SNR',20);%,'H',0);
 
 %% CUSTOM PARAMETER VALUES
 if nargin >= 1,
     for opt_name = fieldnames(opt)',
-        if strmatch(opt_name,fieldnames(options),'exact'),
+        if ismember(opt_name,fieldnames(options)),
             options.(opt_name{1}) = opt.(opt_name{1});
         end
     end
@@ -45,10 +50,15 @@ sigpower = options.sigpower;
 chlen = options.chlen;
 fun = options.fun;
 SNR = options.SNR;
+% H = options.H;
 
 %% PROGRAM
 
-H = [ones(2,1) randn(2,chlen-1)]; % linear channel coefficients
+% if numel(H)==1
+%     if assert(H,0)
+        H = [ones(2,1) randn(2,chlen-1)]; % linear channel coefficients
+%     end
+% end
 
 f = inline(fun); % Wiener system nonlinearity
 
