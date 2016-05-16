@@ -14,11 +14,16 @@ for i=1:size(resinds,1)
         ls = algo.figstyle.line;
     end
     
+    lw = 1; % line width
+    if isfield(algo.figstyle,'linewidth')
+        lw = algo.figstyle.linewidth;
+    end
+    
     curve = mse_curves{resinds(i,1)}{resinds(i,2)};
     xs= ~isnan(curve);
     inds = 1:length(mse_curves{resinds(i,1)}{resinds(i,2)});
     plot(inds(xs),10*log10(curve(xs)),'color',algo.figstyle.color,...
-        'LineWidth',1,'LineStyle',ls)
+        'LineWidth',lw,'LineStyle',ls)
     
     titles{i} = algo.name;
 end
