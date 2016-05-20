@@ -21,10 +21,8 @@ classdef norma
     end
     
     properties (GetAccess = 'public', SetAccess = 'private')
-        t = 0; % time index
         mem = []; % memory
         alpha = []; % expansion coefficients
-        % beta = []; % forgetting coefficients
     end
     
     methods
@@ -37,7 +35,6 @@ classdef norma
                     end
                 end
             end
-            % kaf.beta = (1-kaf.eta*kaf.lambda).^(0:kaf.tau-1)';
         end
         
         function y_est = evaluate(kaf,x) % evaluate the algorithm
@@ -50,11 +47,11 @@ classdef norma
         end
         
         function kaf = train(kaf,x,y) % train the algorithm
+            kaf.alpha = (1-kaf.lambda*kaf.eta)*kaf.alpha;
+            
             y_est = kaf.evaluate(x);
             err = y - y_est;
             
-            kaf.t = kaf.t + 1;
-            kaf.alpha = (1-kaf.lambda*kaf.eta*kaf.t^kaf.tcoeff)*kaf.alpha;
             kaf.alpha = [kaf.alpha; kaf.eta*err]; % grow
             kaf.mem = [kaf.mem; x]; % grow
             if length(kaf.alpha)>kaf.tau
