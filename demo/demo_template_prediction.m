@@ -18,6 +18,7 @@ kaf = aldkrls(struct('nu',1E-4,'kerneltype','gauss','kernelpar',32)); % achieves
 % kaf = swkrls(struct('c',1E-6,'M',100,'kerneltype','gauss','kernelpar',32)); % achieves -37.85dB
 % kaf = nlms(struct('mu',1.99,'eps',1E-6)); % achieves -24.58 dB
 % kaf = exkrls(struct('alphaf',1,'beta',.99,'lambda',1E-6,'q',1E-6,'M',500,'kerneltype','gauss','kernelpar',32)); % achieves -22.48 dB
+% kaf = problms(struct('sigma2_n',1E-6,'sigma2_d',1E-2)); % achieves -15.86 dB
 % kaf = phypass(struct('mu',0.6,'s',15,'sigma',0.95,'p',8,'omega',1/8,'kerneltype','gauss','kernelpar',32)); % achieves -15.05 dB
 % kaf = qklms(struct('eta',0.6,'epsu',2,'kerneltype','gauss','kernelpar',32)); % achieves -10.73 dB
 % kaf = qklms_fb(struct('M',300,'eta',0.6,'epsu',2,'kerneltype','gauss','kernelpar',32)); % achieves -10.73 dB
