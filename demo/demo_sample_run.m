@@ -78,8 +78,8 @@ for i=1:n,
         figure(1); clf
         set(gcf,'Position',[500 400 papersize(1)*100 papersize(2)*100])
         hold all
-        f = [y_star_est+2*sqrt(y_star_var); flip(y_star_est-2*sqrt(y_star_var),1)];
-        p0 = fill([x_star; flip(x_star,1)], f, [7 7 7]/8,'EdgeColor','none');
+        f = [y_star_est+2*sqrt(y_star_var); flipud(y_star_est-2*sqrt(y_star_var))];
+        p0 = fill([x_star; flipud(x_star)], f, [7 7 7]/8,'EdgeColor','none');
         p1 = plot(x_star,y_star_est,'r','LineWidth',1.5);
         p2 = plot(x_dict,y_dict,'ro','LineWidth',2,'MarkerSize',8);
         p3 = plot(x(1:i),y(1:i),'bx','LineWidth',2,'MarkerSize',8);
