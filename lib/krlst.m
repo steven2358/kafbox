@@ -60,7 +60,7 @@ classdef krlst
                 end
             else
                 mean_test = zeros(size(x,1),1); % prior
-                % var_test % prior
+                var_test = nan(size(x,1),1); % signal scale is unknown
             end
         end
         
