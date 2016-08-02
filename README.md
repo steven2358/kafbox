@@ -3,7 +3,7 @@ Kernel Adaptive Filtering Toolbox
 
 A Matlab benchmarking toolbox for kernel adaptive filtering. 
 
-Kernel adaptive filtering algorithms are online and adaptive regression algorithms based on kernels. They are suitable for nonlinear filtering, prediction, tracking and nonlinear regression in general. This toolbox includes algorithms, demos, and tools to compare their performance.
+Kernel adaptive filters are online machine learning algorithms based on kernel methods. Typical applications include time-series prediction, nonlinear adaptive filtering, tracking and online learning for nonlinear regression. This toolbox includes algorithms, demos, and tools to compare their performance.
 
 <p align="center">
 <img src="doc/kaf_diagram.png" width="60%">
