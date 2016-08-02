@@ -40,3 +40,7 @@
 *.toc
 *.vrb
 *.xdy
+*.dpth
+*.auxlock
+
+*.md5

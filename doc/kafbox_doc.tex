@@ -16,6 +16,9 @@
 \tikzstyle{input} = []
 \tikzstyle{node} = [coordinate, node distance=2em]
 
+\usetikzlibrary{external}
+\tikzexternalize % activate
+
 \definecolor{matgreen}{rgb}{0,0.6,0}
 \definecolor{matpurple}{rgb}{0.625,0.125,0.9375}
 \definecolor{gray}{rgb}{0.5,0.5,0.5}
@@ -63,6 +66,7 @@
 
 \title{Documentation for \\Kernel Adaptive Filtering Toolbox}
 \author{Steven Van Vaerenbergh}
+\date{2014}
 \maketitle
 
 \begin{abstract}
@@ -76,8 +80,6 @@ The Kernel Adaptive Filtering Toolbox is a benchmarking toolbox to evaluate and 
 \chapter{Introduction}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-This document is a work in progress.
 
 \section{Goals of the toolbox}
 The goals of this toolbox are twofold:
@@ -109,7 +111,7 @@ A list of the included algorithms and tools can be found in Chapter \ref{chap:al
 
 \section{Octave / Matlab pre-2008a}
 
-This toolbox uses the \verb"classdef" command which is not supported in Matlab pre-2008a and not yet in Octave. The older 0.x versions of this toolbox do not use classdef and can therefore be used with all versions of Matlab and Octave. \verb"http://sourceforge.net/projects/kafbox/files/"
+This toolbox uses the \verb"classdef" command which is not supported in Matlab pre-2008a and not yet in Octave. The older 0.x versions of this toolbox do not use classdef and can therefore be used with all versions of Matlab and Octave. \url{https://github.com/steven2358/kafbox/releases/}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -126,10 +128,11 @@ Online learning methods update their solution iteratively. In the standard onlin
 \item Finally, the solution is updated.
 \end{enumerate}
 
- A typical setup for online system identification with a kernel-based method is depicted in Fig. \ref{ork:fig:diagram}. It represents an unknown nonlinear system, whose input data $\x_n$ and response $y_n$ (including additive noise $r_n$) can be measured at different time steps, and an adaptive kernel-based algorithm, which is used to identify the system's response.
+A typical setup for online system identification with a kernel-based method is depicted in Fig. \ref{ork:fig:diagram}. It represents an unknown nonlinear system, whose input data $\x_n$ and response $y_n$ (including additive noise $r_n$) can be measured at different time steps, and an adaptive kernel-based algorithm, which is used to identify the system's response.
 
 \begin{figure}[h]
 \centering
+\tikzsetnextfilename{kaf_diagram}
 \begin{tikzpicture}[auto, node distance=2cm,>=latex]
     \node [input, name=input] {$\mathbf{x}_n$};
     \node [node, right of=input] (node1) {};
@@ -174,7 +177,7 @@ Online algorithms should be capable of operating during extended periods of time
 
 \section{Kernel adaptive filtering algorithms}
 
-Kernel adaptive filtering algorithms are online regression algorithms. While early kernel adaptive filtering algorithms had a clear connection to classical adaptive filters, such as LMS, RLS and KAPA filters, later implementations explored Gaussian Process and projections based algorithms.
+Kernel adaptive filtering algorithms are online regression algorithms. While early kernel adaptive filtering algorithms had a clear connection to classical adaptive filters, such as LMS, RLS and KAPA filters, later implementations explored Gaussian process and projections based algorithms.
 
 The different kernel adaptive filtering algorithms proposed in the literature vary in several aspects:
 \begin{itemize}
@@ -290,7 +293,7 @@ Matlab implementations of the following algorithms are included in the toolbox:
   \item Affiliation: Advanced Signal Processing Group, Department of Communications Engineering, University of Cantabria, Spain.
   \end{itemize}
 \item {\bf Collaborators:} Miguel Lazaro-Gredilla, Sohan Seth, Masahiro Yukawa, Masa-aki Takizawa, Osamu Toda, Dominik Rzepka, Pantelis Bouboulis
-\item {\bf URL:} \url{https://github.com/steven2358/kafbox}
+\item {\bf URL:} \url{https://github.com/steven2358/kafbox/}
 \item {\bf Citing:} Published reports of research using this code (or a modified version) should cite \cite{vanvaerenbergh2013comparative}.
 \item {\bf Environment:} Matlab\footnote{\url{http://www.mathworks.com/products/matlab/}}.
 \item {\bf Origin:} KAFBOX is a fork of Kernel Methods Toolbox (KMBOX) v0.6 (\url{http://sourceforge.net/p/kmbox/})
