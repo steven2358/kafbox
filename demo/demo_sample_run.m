@@ -56,12 +56,12 @@ for i=1:n,
         switch stage
             case 1 % stage 1: after including a sample
                 stage_string = 'after inclusion';
-                fname_i = sprintf('fig/sample_run_%02da',i);
+                fname_i = sprintf('fig/kafbox_sample_run_%02da',i);
             case 2 % stage 2: after pruning
                 if length(kaf.mu) > budget
                     kaf = kaf.prune(Qold,1);
                     stage_string = 'after pruning  ';
-                    fname_i = sprintf('fig/sample_run_%02db',i);
+                    fname_i = sprintf('fig/kafbox_sample_run_%02db',i);
                 end
         end
         
@@ -115,7 +115,7 @@ for i=1:n,
             % write individual png
             print('-dpng','-r100',fname_i);
             % write animated gif
-            fname = 'fig/sample_run.gif';
+            fname = 'fig/kafbox_sample_run.gif';
             frame = getframe(1);
             im = frame2im(frame);
             [imind,cm] = rgb2ind(im,256);
