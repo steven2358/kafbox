@@ -2,7 +2,7 @@
 % options.
 %
 % This file is part of the Kernel Adaptive Filtering Toolbox for Matlab.
-% http://sourceforge.net/projects/kafbox/
+% https://github.com/steven2358/kafbox/
 
 function [X,Y,X_test,Y_test] = kafbox_data(data_options)
 

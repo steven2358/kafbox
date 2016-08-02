@@ -7,7 +7,7 @@
 % including a link to its DOI url: http://dx.doi.org/xxx]
 %
 % This file is part of the Kernel Adaptive Filtering Toolbox for Matlab.
-% http://sourceforge.net/projects/kafbox/
+% https://github.com/steven2358/kafbox/
 
 classdef kafbox_template
     

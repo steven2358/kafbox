@@ -15,7 +15,7 @@ function [v,d,dref] = generate_doddbench(N)
 %          dref: noise-free desired output
 %
 % This file is part of the Kernel Adaptive Filtering Toolbox for Matlab.
-% http://sourceforge.net/projects/kafbox/
+% https://github.com/steven2358/kafbox/
 
 dref = zeros(1,N+2);
 dref(1:2)=[0.1 0.1];

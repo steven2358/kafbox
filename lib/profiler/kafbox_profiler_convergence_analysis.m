@@ -13,7 +13,7 @@
 % - mse_reached: mse reached after the specified number of iterations
 %
 % This file is part of the Kernel Adaptive Filtering Toolbox for Matlab.
-% http://sourceforge.net/projects/kafbox/
+% https://github.com/steven2358/kafbox/
 
 function [ss,it_reached,mse_reached] = ...
     kafbox_profiler_convergence_analysis(MSE_curve, target_mse, target_it)

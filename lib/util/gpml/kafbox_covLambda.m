@@ -13,7 +13,7 @@ function [A, B] = kafbox_covLambda(logtheta, xt, z)
 % Author: Miguel Lazaro Gredilla, 2012
 %
 % This file is part of the Kernel Adaptive Filtering Toolbox for Matlab.
-% http://sourceforge.net/projects/kafbox/
+% https://github.com/steven2358/kafbox/
 
 if nargin == 0, A = '1'; return; end              % report number of parameters
 

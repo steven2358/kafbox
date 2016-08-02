@@ -1,7 +1,7 @@
 % 1-step ahead prediction on Lorenz attractor time-series data
 %
 % This file is part of the Kernel Adaptive Filtering Toolbox for Matlab.
-% http://sourceforge.net/projects/kafbox/
+% https://github.com/steven2358/kafbox/
 
 [X,Y] = kafbox_data(struct('name','Lorenz','embedding',6));
 

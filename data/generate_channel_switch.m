@@ -22,7 +22,7 @@ function [x_embed,y,y_ref,x_test_embed,y_test_ref,H] = ...
 %   - H: channel matrix (each row is a channel impulse response)
 %
 % This file is part of the Kernel Adaptive Filtering Toolbox for Matlab.
-% http://sourceforge.net/projects/kafbox/
+% https://github.com/steven2358/kafbox/
 
 %% DEFAULT PARAMETER VALUES
 

@@ -12,7 +12,7 @@ function [A, B] = kafbox_covSEiso2(loghyper, xt, z)
 % USAGE: [A, B] = kaf_covSEiso2(loghyper, xt, z)
 %
 % This file is part of the Kernel Adaptive Filtering Toolbox for Matlab.
-% http://sourceforge.net/projects/kafbox/
+% https://github.com/steven2358/kafbox/
 %
 % Original covSEiso.m (C) Copyright 2006 by Carl Edward Rasmussen as part
 % of the GPML toolbox version 2.0. The code and associated documentation

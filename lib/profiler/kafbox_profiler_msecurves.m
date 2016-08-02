@@ -10,7 +10,7 @@
 % corresponds to "results" cell structure.
 %
 % This file is part of the Kernel Adaptive Filtering Toolbox for Matlab.
-% http://sourceforge.net/projects/kafbox/
+% https://github.com/steven2358/kafbox/
 
 function MSE_avg_setups = kafbox_profiler_msecurves(results,inds)
 

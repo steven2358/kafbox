@@ -2,7 +2,7 @@
 % Author: Steven Van Vaerenbergh, 2013
 %
 % This file is part of the Kernel Adaptive Filtering Toolbox for Matlab.
-% http://sourceforge.net/projects/kafbox/
+% https://github.com/steven2358/kafbox/
 
 function K = kernel(X1,X2,ktype,kpar)
 N1 = size(X1,1);

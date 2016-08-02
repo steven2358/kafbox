@@ -6,7 +6,7 @@
 % http://dx.doi.org/10.1109/MLSP.2012.6349811
 %
 % This file is part of the Kernel Adaptive Filtering Toolbox for Matlab.
-% http://sourceforge.net/projects/kafbox/
+% https://github.com/steven2358/kafbox/
 
 classdef rffklms
     

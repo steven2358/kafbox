@@ -1,7 +1,7 @@
 % Profiler extension for Kernel Recursive Least-Squares Tracker algorithm
 %
 % This file is part of the Kernel Adaptive Filtering Toolbox for Matlab.
-% http://sourceforge.net/projects/kafbox/
+% https://github.com/steven2358/kafbox/
 
 classdef krlst_profiler < krlst
     

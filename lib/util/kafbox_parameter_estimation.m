@@ -21,7 +21,7 @@ function [sigma,reg,lambda] = ...
 % Author: Steven Van Vaerenbergh, 2013.
 %
 % This file is part of the Kernel Adaptive Filtering Toolbox for Matlab.
-% http://sourceforge.net/projects/kafbox/
+% https://github.com/steven2358/kafbox/
 
 N = size(X,1);
 if nargin<4

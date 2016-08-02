@@ -14,7 +14,7 @@ function [u,d,dref] = generate_richardbench(N)
 %          dref: noise-free desired output
 %
 % This file is part of the Kernel Adaptive Filtering Toolbox for Matlab.
-% http://sourceforge.net/projects/kafbox/
+% https://github.com/steven2358/kafbox/
 
 v = zeros(1,N+1);
 v(1) = 0.5;

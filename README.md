@@ -16,7 +16,7 @@ Contributors:
 - [Pantelis Bouboulis](http://bouboulis.mysch.gr/), University of Athens, Greece.  
 - [Stephan Rhode](https://www.fast.kit.edu/lff/1011_3295.php), Karlsruher Institut f&uuml;r Technologie, Germany.  
 
-Official web: https://sourceforge.net/projects/kafbox  
+Official web: https://github.com/steven2358/kafbox/  
 
 This toolbox is a collaborative effort: every developer wishing to contribute code or suggestions can do so. More info below.
 
@@ -100,7 +100,7 @@ If you use this toolbox in your research please cite ["A Comparative Study of Ke
       title = {A Comparative Study of Kernel Adaptive Filtering Algorithms},
       doi = {10.1109/DSP-SPE.2013.6642587},
       year = {2013},
-      note = {Software available at \url{http://sourceforge.net/projects/kafbox/}}
+      note = {Software available at \url{https://github.com/steven2358/kafbox/}}
     }
 	
 Included algorithms
@@ -130,7 +130,7 @@ Included algorithms
 
 How to contribute code to the toolbox
 -------------------------------------
-Option 1: email it to me (steven@gtas.dicom.unican.es)
+Option 1: email it to me (steven.vanvaerenbergh@unican.es)
 
 Option 2: [fork the toolbox on GitHub](https://github.com/steven2358/kafbox), push your changes, then send me a pull request.
 

@@ -9,7 +9,7 @@
 % M=Inf and lambda=0 it is equivalent to KAPA-2.
 %
 % This file is part of the Kernel Adaptive Filtering Toolbox for Matlab.
-% http://sourceforge.net/projects/kafbox/
+% https://github.com/steven2358/kafbox/
 
 classdef nlkapa
     

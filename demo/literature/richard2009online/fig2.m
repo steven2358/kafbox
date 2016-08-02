@@ -10,7 +10,7 @@
 % http://dx.doi.org/10.1109/TSP.2008.2009895
 %
 % This file is part of the Kernel Adaptive Filtering Toolbox for Matlab
-% http://sourceforge.net/projects/kafbox/
+% https://github.com/steven2358/kafbox/
 
 clear
 close all

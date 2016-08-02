@@ -8,7 +8,7 @@
 % Contributor for this code: Masa-aki Takizawa
 %
 % This file is part of the Kernel Adaptive Filtering Toolbox for Matlab.
-% http://sourceforge.net/projects/kafbox/
+% https://github.com/steven2358/kafbox/
 
 classdef phypass
     

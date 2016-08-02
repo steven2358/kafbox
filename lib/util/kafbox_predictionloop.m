@@ -2,7 +2,7 @@
 % and calls adaptive filter during each iteration.
 %
 % This file is part of the Kernel Adaptive Filtering Toolbox for Matlab.
-% http://sourceforge.net/projects/kafbox/
+% https://github.com/steven2358/kafbox/
 
 function [e,kaf] = kafbox_predictionloop(kaf,X,y,vb)
 

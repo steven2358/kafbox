@@ -7,7 +7,7 @@
 % Comment: code contributed by Dominik Rzepka
 %
 % This file is part of the Kernel Adaptive Filtering Toolbox for Matlab.
-% http://sourceforge.net/projects/kafbox/
+% https://github.com/steven2358/kafbox/
 
 classdef fbklms
     

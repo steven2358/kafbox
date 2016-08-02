@@ -2,7 +2,7 @@ function fl = kflops(operations)
 % Calculate the number of FLOPS needed to perform the specified operations.
 %
 % This file is part of the Kernel Adaptive Filtering Toolbox for Matlab.
-% http://sourceforge.net/projects/kafbox/
+% https://github.com/steven2358/kafbox/
 
 % values for x86 processor, change as desired
 flops_sum = 1;

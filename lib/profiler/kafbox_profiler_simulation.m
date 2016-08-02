@@ -1,7 +1,7 @@
 % Perform a single profiler simulation.
 %
 % This file is part of the Kernel Adaptive Filtering Toolbox for Matlab.
-% http://sourceforge.net/projects/kafbox/
+% https://github.com/steven2358/kafbox/
 
 function simresults = kafbox_profiler_simulation(data,sim_opts,...
     algo_config,sim_ind,output_dir)

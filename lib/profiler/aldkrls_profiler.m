@@ -2,7 +2,7 @@
 % Linear Dependency
 %
 % This file is part of the Kernel Adaptive Filtering Toolbox for Matlab.
-% http://sourceforge.net/projects/kafbox/
+% https://github.com/steven2358/kafbox/
 
 classdef aldkrls_profiler < aldkrls
     
