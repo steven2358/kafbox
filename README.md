@@ -1,5 +1,5 @@
 Kernel Adaptive Filtering Toolbox
-=================================
+===
 
 A Matlab benchmarking toolbox for kernel adaptive filtering. 
 
@@ -26,7 +26,7 @@ Official web: https://github.com/steven2358/kafbox/
 This toolbox is a collaborative effort: every developer wishing to contribute code or suggestions can do so. More info below.
 
 Directories included in the toolbox
------------------------------------
+---
 `data/` - data sets
 
 `demo/` - demos and test files
@@ -36,7 +36,7 @@ Directories included in the toolbox
 `lib/` - algorithm libraries and utilities
 
 Setup
------
+---
 
 1. Run `install.m` to add the toolbox folders to the path.
 2. Type `savepath` to save the changes to the path.
@@ -47,7 +47,7 @@ Octave / Matlab pre-2008a
 This toolbox uses the `classdef` command which is not supported in Matlab pre-2008a and not yet in Octave. The older 0.x versions of this toolbox do not use `classdef` and can therefore be used with all versions of Matlab and Octave. http://sourceforge.net/projects/kafbox/files/
 
 Usage
------
+---
 Each kernel adaptive filtering algorithm is implemented as a Matlab class. To use one, first define its options:
 ```matlab
 options = struct('nu',1E-4,'kerneltype','gauss','kernelpar',32);
@@ -66,7 +66,7 @@ Y_test = kaf.evaluate(X_test);
 ```
 
 Example: time-series prediction
--------------------------------
+---
 Code from `demo/demo_prediction.m`
 ```matlab
 % Demo: 1-step ahead prediction on Lorenz attractor time-series data
@@ -95,7 +95,7 @@ Result:
     MSE after first 1000 samples: -40.17dB
 
 Citing KAFBOX
--------------
+---
 
 If you use this toolbox in your research please cite ["A Comparative Study of Kernel Adaptive Filtering Algorithms"](http://gtas.unican.es/pub/356):
 
@@ -109,7 +109,7 @@ If you use this toolbox in your research please cite ["A Comparative Study of Ke
     }
 	
 Included algorithms
--------------------
+---
 - Approximate Linear Dependency Kernel Recursive Least-Squares (ALD-KRLS), as proposed in Y. Engel, S. Mannor, and R. Meir. "The kernel recursive least-squares algorithm", IEEE Transactions on Signal Processing, volume 52, no. 8, pages 2275-2285, 2004.
 - Sliding-Window Kernel Recursive Least-Squares (SW-KRLS), as proposed in S. Van Vaerenbergh, J. Via, and I. Santamaria. "A sliding-window kernel RLS algorithm and its application to nonlinear channel identification", 2006 IEEE International Conference on Acoustics, Speech, and Signal Processing (ICASSP), Toulouse, France, 2006.
 - Naive Online Regularized Risk Minimization Algorithm (NORMA), as proposed in J. Kivinen, A. Smola and C. Williamson. "Online Learning with Kernels", IEEE Transactions on Signal Processing, volume 52, no. 8, pages 2165-2176, 2004.
@@ -134,11 +134,11 @@ Included algorithms
 - Probabilistic Least-Mean-Squares (ProbLMS) algorithm, as proposed in J. Fernandez-Bes, V. Elvira, and S. Van Vaerenbergh, "A probabilistic least-mean-squares filter," 2015 IEEE International Conference on Acoustics, Speech and Signal Processing (ICASSP), Brisbane, Australia, 2015.
 
 How to contribute code to the toolbox
--------------------------------------
+---
 Option 1: email it to me (steven.vanvaerenbergh@unican.es)
 
 Option 2: [fork the toolbox on GitHub](https://github.com/steven2358/kafbox), push your changes, then send me a pull request.
 
 License
--------
+---
 This source code is released under the FreeBSD License.
