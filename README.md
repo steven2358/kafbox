@@ -5,6 +5,11 @@ A Matlab benchmarking toolbox for kernel adaptive filtering.
 
 Kernel adaptive filtering algorithms are online and adaptive regression algorithms based on kernels. They are suitable for nonlinear filtering, prediction, tracking and nonlinear regression in general. This toolbox includes algorithms, demos, and tools to compare their performance.
 
+<p align="center">
+<img src="doc/kaf_diagram.png" width="60%">
+<div align="center"><i>Nonlinear system identification using kernel adaptive filtering.</i></div>
+</p>  
+
 Maintainer: [Steven Van Vaerenbergh](http://gtas.unican.es/people/steven), University of Cantabria, Spain.  
 Contributors:  
 - [Miguel Lazaro-Gredilla](http://www.tsc.uc3m.es/~miguel), Universidad Carlos III de Madrid, Spain.  
