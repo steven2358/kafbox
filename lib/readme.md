@@ -20,7 +20,7 @@ Quick steps to code an algorithm in the toolbox' format
 
 How to contribute an algorithm to the toolbox
 ---------------------------------------------
-Option 1: email it to me (steven@gtas.dicom.unican.es).
+Option 1: email it to me (steven.vanvaerenbergh@unican.es).
 
 Option 2: fork the toolbox on GitHub (https://github.com/steven2358/kafbox), push your change to a named branch, then send me a pull request.
 
