@@ -93,14 +93,13 @@ for i=1:n,
         
         title(sprintf('KRLS-T iteration %d: %s',i,stage_string));
         
+        set(gca, 'Position', get(gca, 'OuterPosition') - ...
+            get(gca, 'TightInset') * [-1 0 1 0; 0 -1 0 1; 0 0 1 0; 0 0 0 1]);
+        
         set(gcf, 'PaperUnits', 'inches');
         set(gcf, 'PaperSize', papersize);
         set(gcf, 'PaperPositionMode', 'manual');
         set(gcf, 'PaperPosition', [0 0 papersize(1) papersize(2)]);
-        
-        style = hgexport('factorystyle');
-        style.Bounds = 'tight';
-        hgexport(figure(1),'-clipboard',style,'applystyle', true);
         set(gcf, 'renderer', 'painters');
         
         drawnow
@@ -114,6 +113,7 @@ for i=1:n,
             end
             % write individual png
             print('-dpng','-r100',fname_i);
+            print('-dpdf','-r100',fname_i);
             % write animated gif
             fname = 'fig/kafbox_sample_run.gif';
             frame = getframe(1);
