@@ -14,7 +14,7 @@ classdef krlst
     
     properties (GetAccess = 'public', SetAccess = 'private')
         lambda = .999; % forgetting factor
-        sn2 = 1E-2; % noise to signal ratio
+        sn2 = 1E-2; % noise to signal ratio (regularization parameter)
         M = 100; % dictionary size
         kerneltype = 'gauss'; % kernel type
         kernelpar = 1; % kernel parameter
@@ -79,7 +79,7 @@ classdef krlst
                 kaf.s02 = kaf.nums02ML / kaf.dens02ML;
             else
                 % forget
-                K = kernel(kaf.dict,kaf.dict,kaf.kerneltype,kaf.kernelpar);
+                K = kernel(kaf.dict,kaf.dict,kaf.kerneltype,kaf.kernelpar) + kaf.jitter*eye(m);
                 kaf.Sigma = kaf.lambda*kaf.Sigma + (1-kaf.lambda)*K; % forget
                 kaf.mu = sqrt(kaf.lambda)*kaf.mu; % forget
                 
