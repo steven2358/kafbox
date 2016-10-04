@@ -8,8 +8,6 @@ function K = kernel(X1,X2,ktype,kpar)
 N1 = size(X1,1);
 N2 = size(X2,1);
 
-persistent k_prev; % used by recursive kernels
-
 switch ktype
     case 'gauss' % RBF kernel
         norms1 = sum(X1.^2,2);
@@ -60,32 +58,6 @@ switch ktype
         kpar2 = kpar.kpar2;
         
         K = a*kernel(X1,X2,ktype1,kpar1) + b*kernel(X1,X2,ktype2,kpar2);
-        
-    case 'gauss-recursive'
-        sigma_i = kpar(1); % kernel width on input
-        sigma = kpar(2); % kernel width on state
-        
-        if isempty(k_prev), % initialize persistent variable
-            k_prev = 0;
-        end
-        
-        K1 = kernel(X1,X2,'gauss',sigma_i);
-        K = K1*exp((k_prev-1)/(2*sigma^2));
-        
-        k_prev = K(1); % store persistent variable
-        
-    case 'poly-recursive',
-        p = kpar(1); % polynome order
-        c = kpar(2); % additive constant
-        sigma = kpar(3); % scaling for the state vector
-        
-        if isempty(k_prev), % initialize persistent variable
-            k_prev = 0;
-        end
-        
-        K = (X1*X2' + c + sigma*k_prev).^p;
-        
-        k_prev = K(1); % store persistent variable
         
     otherwise	% default case
         error ('unknown kernel type')
