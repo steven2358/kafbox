@@ -27,7 +27,7 @@ switch ktype
         mat2 = repmat(norms2',N1,1);
         
         dist2 = mat1 + mat2 - 2*X1*X2';	% full distance matrix
-        K = exp(-sqrt(dist2)/(2*kpar^2));     
+        K = exp(-sqrt(dist2)/(2*kpar^2));
         
     case 'gauss-diag' % diagonal of RBF kernel
         K = exp(-sum((X1-X2).^2,2)/(2*kpar^2));
@@ -39,7 +39,7 @@ switch ktype
         X2 = X2*D;
         
         K = kernel(X1,X2,'gauss',1);
-
+        
     case 'poly'	% polynomial kernel
         p = kpar(1); % polynome order
         c = kpar(2); % additive constant
