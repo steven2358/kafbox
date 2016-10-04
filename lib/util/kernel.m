@@ -16,7 +16,7 @@ switch ktype
         mat1 = repmat(norms1,1,N2);
         mat2 = repmat(norms2',N1,1);
         
-        dist2 = mat1 + mat2 - 2*X1*X2';	% full distance matrix
+        dist2 = mat1 + mat2 - 2*X1*X2'; % full distance matrix
         K = exp(-dist2/(2*kpar^2));
         
     case 'laplace' % Laplace kernel
@@ -26,7 +26,7 @@ switch ktype
         mat1 = repmat(norms1,1,N2);
         mat2 = repmat(norms2',N1,1);
         
-        dist2 = mat1 + mat2 - 2*X1*X2';	% full distance matrix
+        dist2 = mat1 + mat2 - 2*X1*X2'; % full distance matrix
         K = exp(-sqrt(dist2)/(2*kpar^2));
         
     case 'gauss-diag' % diagonal of RBF kernel
@@ -40,7 +40,7 @@ switch ktype
         
         K = kernel(X1,X2,'gauss',1);
         
-    case 'poly'	% polynomial kernel
+    case 'poly' % polynomial kernel
         p = kpar(1); % polynome order
         c = kpar(2); % additive constant
         
@@ -59,6 +59,6 @@ switch ktype
         
         K = a*kernel(X1,X2,ktype1,kpar1) + b*kernel(X1,X2,ktype2,kpar2);
         
-    otherwise	% default case
+    otherwise % default case
         error ('unknown kernel type')
 end
