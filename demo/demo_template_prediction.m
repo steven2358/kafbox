@@ -67,7 +67,7 @@ for i=1:N,
     if ~mod(i,floor(N/10)), fprintf('.'); end
     
     Y_est(i) = kaf.evaluate(X(i,:)); % make prediction
-    kaf = kaf.train(X(i,:),Y(i)); % train
+    kaf.train(X(i,:),Y(i)); % train
 end
 fprintf('\n');
 

@@ -10,7 +10,7 @@
 % This file is part of the Kernel Adaptive Filtering Toolbox for Matlab.
 % https://github.com/steven2358/kafbox/
 
-classdef phypass
+classdef phypass < handle
     
     properties (GetAccess = 'public', SetAccess = 'private')
         mu = 0.5; % step size
@@ -50,7 +50,7 @@ classdef phypass
             end
         end
         
-        function kaf = train(kaf,x,y) % train the algorithm
+        function train(kaf,x,y) % train the algorithm
             if (length(kaf.d) < kaf.p) % grow the memory
                 kaf.mem = [kaf.mem; x];
                 kaf.d = [kaf.d; y];

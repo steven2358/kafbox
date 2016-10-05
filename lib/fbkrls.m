@@ -10,7 +10,7 @@
 % This file is part of the Kernel Adaptive Filtering Toolbox for Matlab.
 % https://github.com/steven2358/kafbox/
 
-classdef fbkrls
+classdef fbkrls < handle
     
     properties (GetAccess = 'public', SetAccess = 'private')
         M = 100; % dictionary size
@@ -47,7 +47,7 @@ classdef fbkrls
             end
         end
         
-        function kaf = train(kaf,x,y) % train the algorithm
+        function train(kaf,x,y) % train the algorithm
             kaf.dict = [kaf.dict; x]; % grow
             kaf.dicty = [kaf.dicty; y];	% grow
             k = kernel(kaf.dict,x,kaf.kerneltype,kaf.kernelpar);

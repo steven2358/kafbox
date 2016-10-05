@@ -59,7 +59,7 @@ for algo_ind=1:num_alg
             MSE(i,algo_ind) = mean((y_test(:,2)-y_est).^2);
         end
         
-        kaf = kaf.train(X(i,:),y(i));
+        kaf.train(X(i,:),y(i));
     end
     MSE_final(algo_ind) = mean(MSE(N-500:N,algo_ind));
     

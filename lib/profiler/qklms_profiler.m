@@ -69,10 +69,10 @@ classdef qklms_profiler < qklms
         
         %%
         
-        function kaf = train_profiled(kaf,x,y)
+        function train_profiled(kaf,x,y)
             kaf.prev_mem_size = size(kaf.mem,1);
             t1 = tic;
-            kaf = kaf.train(x,y);
+            kaf.train(x,y);
             t2 = toc(t1);
             kaf.elapsed = kaf.elapsed + t2;
         end

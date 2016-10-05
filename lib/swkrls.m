@@ -9,7 +9,7 @@
 % This file is part of the Kernel Adaptive Filtering Toolbox for Matlab.
 % https://github.com/steven2358/kafbox/
 
-classdef swkrls
+classdef swkrls < handle
     
     properties (GetAccess = 'public', SetAccess = 'private') % parameters
         M = 250; % dictionary size
@@ -46,7 +46,7 @@ classdef swkrls
             end
         end
         
-        function kaf = train(kaf,x,y) % train the algorithm
+        function train(kaf,x,y) % train the algorithm
             kaf.dict = [kaf.dict; x]; % grow
             kaf.dicty = [kaf.dicty; y];	% grow
             k = kernel(kaf.dict,x,kaf.kerneltype,kaf.kernelpar);
@@ -79,7 +79,7 @@ classdef swkrls
                 Kinv = 1/d;
             end
         end
-
+        
         function Kinv = prune_kernel_matrix(Kinv)
             % calculate inverse of pruned kernel matrix Kp, K = [a b';b Kp]
             m = size(Kinv,1);

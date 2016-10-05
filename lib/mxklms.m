@@ -10,7 +10,7 @@
 % This file is part of the Kernel Adaptive Filtering Toolbox for Matlab.
 % https://github.com/steven2358/kafbox/
 
-classdef mxklms
+classdef mxklms < handle
     
     properties (GetAccess = 'public', SetAccess = 'private') % parameters
         mu = 2; % learning rate for gradient descent update of v
@@ -50,7 +50,7 @@ classdef mxklms
             end
         end
         
-        function kaf = train(kaf,x,y) % train the algorithm
+        function train(kaf,x,y) % train the algorithm
             if (size(kaf.dict,1)<kaf.M), % avoid infinite growth
                 if size(kaf.dict,2)==0 % initialize
                     P = length(kaf.kernelpars);

@@ -50,7 +50,7 @@ if isempty(simresults), % perform simulation
     
     for i=1:N,
         Y_est = kaf.evaluate(X(i,:)); % predict
-        kaf = kaf.train_profiled(X(i,:),Y(i)); % train
+        kaf.train_profiled(X(i,:),Y(i)); % train
         
         all_fl(i) = kaf.lastflops();
         all_bytes(i) = kaf.lastbytes();

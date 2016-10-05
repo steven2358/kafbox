@@ -6,7 +6,7 @@
 % This file is part of the Kernel Adaptive Filtering Toolbox for Matlab.
 % https://github.com/steven2358/kafbox/
 
-classdef rls
+classdef rls < handle
     
     properties (GetAccess = 'public', SetAccess = 'private')
         lambda = .99; % forgetting factor
@@ -38,7 +38,7 @@ classdef rls
             end
         end
         
-        function obj = train(obj,x,y) % train the algorithm
+        function train(obj,x,y) % train the algorithm
             if numel(obj.w)==0, % initialize
                 m = length(x);
                 obj.w = zeros(m,1);

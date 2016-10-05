@@ -12,7 +12,7 @@
 % This file is part of the Kernel Adaptive Filtering Toolbox for Matlab.
 % https://github.com/steven2358/kafbox/
 
-classdef klms_csal1
+classdef klms_csal1 < handle
     
     properties (GetAccess = 'public', SetAccess = 'private') % parameters
         eta = .1; % step-size
@@ -50,7 +50,7 @@ classdef klms_csal1
             end
         end
         
-        function kaf = train(kaf,x,y) % train the algorithm
+        function train(kaf,x,y) % train the algorithm
             if size(kaf.dict,2)==0 % initialize
                 kd = kernel(x,x,kaf.kerneltype,kaf.kernelpar);
                 kaf.dict = x;

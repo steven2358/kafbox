@@ -9,7 +9,7 @@
 % This file is part of the Kernel Adaptive Filtering Toolbox for Matlab.
 % https://github.com/steven2358/kafbox/
 
-classdef klms
+classdef klms < handle
     
     properties (GetAccess = 'public', SetAccess = 'private')
         eta = .5; % learning rate
@@ -44,7 +44,7 @@ classdef klms
             end
         end
         
-        function kaf = train(kaf,x,y) % train the algorithm
+        function train(kaf,x,y) % train the algorithm
             if (size(kaf.mem,1)<kaf.M), % avoid infinite growth
                 y_est = kaf.evaluate(x);
                 err = y - y_est;

@@ -6,7 +6,7 @@
 % This file is part of the Kernel Adaptive Filtering Toolbox for Matlab.
 % https://github.com/steven2358/kafbox/
 
-classdef nlms
+classdef nlms < handle
     
     properties (GetAccess = 'public', SetAccess = 'private')
         mu = .9; % step size
@@ -37,7 +37,7 @@ classdef nlms
             end
         end
         
-        function obj = train(obj,x,y) % train the algorithm
+        function train(obj,x,y) % train the algorithm
             if numel(obj.w)==0, % initialize
                 obj.w = zeros(length(x),1);
             end

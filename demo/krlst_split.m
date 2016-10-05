@@ -12,7 +12,7 @@
 % This file is part of the Kernel Adaptive Filtering Toolbox for Matlab.
 % https://github.com/steven2358/kafbox/
 
-classdef krlst_split
+classdef krlst_split < handle
     
     properties (GetAccess = 'public', SetAccess = 'private')
         lambda = .999; % forgetting factor
@@ -66,7 +66,7 @@ classdef krlst_split
             end
         end
         
-        function kaf = train(kaf,x,y) % train the algorithm
+        function train(kaf,x,y) % train the algorithm
             m = size(kaf.Sigma,1);
             
             if m<1 % initialize

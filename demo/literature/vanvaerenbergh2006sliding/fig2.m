@@ -62,7 +62,7 @@ for sim_ind = 1:num_sim,
                 mse(i) = mean((y_test(:,2)-y_est).^2);
             end
             
-            kaf = kaf.train(X(i,:),y(i));
+            kaf.train(X(i,:),y(i));
         end
         MSE(:,algo_ind) = MSE(:,algo_ind) + mse/num_sim;
         mse_final = mean(mse(N-500:N));

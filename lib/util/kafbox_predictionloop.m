@@ -20,7 +20,7 @@ for n=1:N,
     
     y_est = kaf.evaluate(X(n,:)); % predict the next output
     e(n) = y(n)-y_est; % store error
-    kaf = kaf.train(X(n,:),y(n)); % train with one input-output pair
+    kaf.train(X(n,:),y(n)); % train with one input-output pair
 end
 
 if vb,

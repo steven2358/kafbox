@@ -6,7 +6,7 @@
 % This file is part of the Kernel Adaptive Filtering Toolbox for Matlab.
 % https://github.com/steven2358/kafbox/
 
-classdef lms
+classdef lms < handle
     
     properties (GetAccess = 'public', SetAccess = 'private')
         mu = 0.001; % learning rate
@@ -36,11 +36,11 @@ classdef lms
             end
         end
         
-        function obj = train(obj,x,y) % train the algorithm
+        function train(obj,x,y) % train the algorithm
             if numel(obj.w)==0, % initialize
                 obj.w = zeros(length(x),1);
             end
-
+            
             % Algorithm 5.2.1 in reference
             err = y - x*obj.w;
             obj.w = obj.w + obj.mu*x'*err;

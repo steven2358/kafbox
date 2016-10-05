@@ -2,14 +2,14 @@
 %
 % J. Kivinen, A.J. Smola, and R.C. Williamson, "Online learning with
 % kernels," IEEE Transactions on Signal Processing, vol. 52, no. 8,
-% pp. 2165-2176, Aug. 2004, http://dx.doi.org/10.1109/TSP.2004.830991   
+% pp. 2165-2176, Aug. 2004, http://dx.doi.org/10.1109/TSP.2004.830991
 %
 % Comment: using squared loss function
 %
 % This file is part of the Kernel Adaptive Filtering Toolbox for Matlab.
 % https://github.com/steven2358/kafbox/
 
-classdef norma
+classdef norma < handle
     
     properties (GetAccess = 'public', SetAccess = 'private')
         tau = 500; % memory size (terms retained in truncation)
@@ -46,7 +46,7 @@ classdef norma
             end
         end
         
-        function kaf = train(kaf,x,y) % train the algorithm
+        function train(kaf,x,y) % train the algorithm
             kaf.alpha = (1-kaf.lambda*kaf.eta)*kaf.alpha;
             
             y_est = kaf.evaluate(x);
@@ -60,5 +60,5 @@ classdef norma
             end
         end
         
-    end    
+    end
 end

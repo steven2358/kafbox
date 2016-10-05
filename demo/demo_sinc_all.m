@@ -48,7 +48,7 @@ for algo_ind=1:num_alg
     kaf = feval(algorithm);
     for i=1:N,
         if ~mod(i,floor(N/10)), fprintf('.'); end
-        kaf = kaf.train(x(i),y(i));
+        kaf.train(x(i),y(i));
     end
     y_est = kaf.evaluate(x_test);
     Y_est(:,algo_ind) = y_est;

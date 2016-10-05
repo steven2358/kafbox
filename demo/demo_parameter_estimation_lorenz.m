@@ -41,7 +41,7 @@ for i=1:N,
     if ~mod(i,floor(N/10)), fprintf('.'); end % progress indicator, 10 dots
     
     Y_est(i) = kaf.evaluate(X(i,:)); % predict the next output
-    kaf = kaf.train(X(i,:),Y(i)); % train with one input-output pair
+    kaf.train(X(i,:),Y(i)); % train with one input-output pair
     
 end
 fprintf('\n');

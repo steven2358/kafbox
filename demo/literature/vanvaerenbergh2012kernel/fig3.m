@@ -88,7 +88,7 @@ for setup_ind=1:length(setups)
         err = Y_test - Y_est;
         MSE(n,setup_ind) = mean(err.^2);
         
-        kaf = kaf.train(s_train(n,:),Y(n)); % train with one input-output pair
+        kaf.train(s_train(n,:),Y(n)); % train with one input-output pair
     end
     fprintf(' %.2f seconds\n',toc(t2));
 end

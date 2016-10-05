@@ -11,7 +11,7 @@
 % This file is part of the Kernel Adaptive Filtering Toolbox for Matlab.
 % https://github.com/steven2358/kafbox/
 
-classdef lkapa
+classdef lkapa < handle
     
     properties (GetAccess = 'public', SetAccess = 'private') % parameters
         eta = .05; % learning rate
@@ -50,7 +50,7 @@ classdef lkapa
             end
         end
         
-        function kaf = train(kaf,x,y) % train the algorithm
+        function train(kaf,x,y) % train the algorithm
             if size(kaf.dict,2)==0 % initialize
                 kaf.dict = x;
                 kaf.alpha = kaf.eta*y;

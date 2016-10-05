@@ -8,7 +8,7 @@
 % This file is part of the Kernel Adaptive Filtering Toolbox for Matlab.
 % https://github.com/steven2358/kafbox/
 
-classdef rffklms
+classdef rffklms < handle
     
     properties (GetAccess = 'public', SetAccess = 'private') % parameters
         mu = .9; % step size
@@ -44,7 +44,7 @@ classdef rffklms
             end
         end
         
-        function kaf = train(kaf,x,y) % train the algorithm
+        function train(kaf,x,y) % train the algorithm
             if ~numel(kaf.omega)
                 kaf.omega = 1/kaf.kernelpar*randn(kaf.D,size(x,2));
                 kaf.b = 2*pi*rand(kaf.D,1);

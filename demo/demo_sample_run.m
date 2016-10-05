@@ -50,7 +50,7 @@ t1 = tic;
 for i=1:n,
     if ~mod(i,floor(n/10)), fprintf('.'); end
     Qold = kaf.Q;
-    kaf = kaf.train(x(i),y(i));
+    kaf.train(x(i),y(i));
     
     for stage = 1:2
         switch stage

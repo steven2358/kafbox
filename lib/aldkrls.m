@@ -2,7 +2,7 @@
 % Dependency criterion
 %
 % Y. Engel, S. Mannor, and R. Meir, "The kernel recursive least-squares
-% algorithm," IEEE Transactions on Signal Processing, vol. 52, no. 8, pp. 
+% algorithm," IEEE Transactions on Signal Processing, vol. 52, no. 8, pp.
 % 2275-2285, Aug. 2004, http://dx.doi.org/10.1109/TSP.2004.830985
 %
 % Comment: implementation includes a maximum dictionary size M
@@ -10,7 +10,7 @@
 % This file is part of the Kernel Adaptive Filtering Toolbox for Matlab.
 % https://github.com/steven2358/kafbox/
 
-classdef aldkrls
+classdef aldkrls < handle
     
     properties (GetAccess = 'public', SetAccess = 'private')
         nu = 1E-4; % ALD threshold
@@ -47,7 +47,7 @@ classdef aldkrls
             end
         end
         
-        function kaf = train(kaf,x,y) % train the algorithm
+        function train(kaf,x,y) % train the algorithm
             k = kernel([kaf.dict; x],x,kaf.kerneltype,kaf.kernelpar);
             kt = k(1:end-1);
             ktt = k(end);

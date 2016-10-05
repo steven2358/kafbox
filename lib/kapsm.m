@@ -11,7 +11,7 @@
 % This file is part of the Kernel Adaptive Filtering Toolbox for Matlab.
 % https://github.com/steven2358/kafbox/
 
-classdef kapsm
+classdef kapsm < handle
     
     properties (GetAccess = 'public', SetAccess = 'private') % parameters
         M = 200; % dictionary size
@@ -53,7 +53,7 @@ classdef kapsm
             end
         end
         
-        function kaf = train(kaf,x,y) % train the algorithm
+        function train(kaf,x,y) % train the algorithm
             if size(kaf.xmem,1)<kaf.Q
                 % grow memory
                 kaf.xmem = [kaf.xmem; x];

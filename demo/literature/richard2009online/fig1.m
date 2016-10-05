@@ -52,7 +52,7 @@ for sim_ind = 1:numsim,
             err = yref(n) - y_est;
             MSE(n,setup_ind) = MSE(n,setup_ind) + err.^2/numsim;
             
-            kaf = kaf.train(X(n,:),y(n)); % train with one input-output pair
+            kaf.train(X(n,:),y(n)); % train with one input-output pair
         end
         fprintf('\n');
     end
