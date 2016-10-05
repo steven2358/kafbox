@@ -8,24 +8,56 @@
 clear
 close all
 
-% get list of test functions
+% get list of demo scripts
 fdir = fileparts(which('run_all_demos.m'));
-files = dir(fullfile(fdir,'demo_*.m'));
-[~,allfiles] = cellfun(@fileparts, {files.name}, 'UniformOutput',0);
+files_demo = dir(fullfile(fdir,'demo_*.m'));
+files = files_demo;
+folders = repmat({fdir},length(files),1);
+
+% get list of literature scripts
+folders_literature = dir(fullfile(fdir,'literature','*2*'));
+for i=1:length(folders_literature);
+    folder_i = fullfile(fdir,'literature',folders_literature(i).name);
+    files_i = dir(fullfile(folder_i,'fig*.m'));
+    folders_i = repmat({folder_i},length(files_i),1);
+    
+    files = [files; files_i]; %#ok<AGROW>
+    folders = [folders; folders_i]; %#ok<AGROW>
+end
+
+[~,files] = cellfun(@fileparts, {files.name}, 'UniformOutput',0);
 
 t1 = tic;
 fprintf('\n')
-for i=1:length(allfiles)
+for i=1:length(files)
     close all
     clear eval
-    save(fullfile(tempdir,'temp.mat'),'i','allfiles','t1'); % memory map
+    save(fullfile(tempdir,'temp.mat'),'i','folders','files','fdir',...
+        't1'); % memory map
     
-    % run script
-    fname_demo = allfiles{i};
-    fprintf('\nRunning %s\n',fname_demo);
-    eval(fname_demo);
+    try
+        % run script
+        cd(folders{i})
+        fname_demo = files{i};
+        fprintf('\nRunning %s\n',fname_demo);
+        eval(fname_demo);
+    catch err
+        % return to demo folder
+        load(fullfile(tempdir,'temp.mat'));
+        cd(fdir);
+        
+        % report error
+        me = err.stack(1);
+        error(['Error in ',...
+            '<a href="matlab: opentoline(''%s'',%d)">',...
+            '%s at %d</a>\n',...
+            '%s'],...
+           me.file, me.line, me.name, me.line,...
+            err.message);
+    end
 
     load(fullfile(tempdir,'temp.mat'));
+    cd(fdir);
 end
 delete(fullfile(tempdir,'temp.mat'));
 toc(t1)
