@@ -31,6 +31,8 @@ setups{2} = struct('M',150,'c',1E-2,'kerneltype','gauss','kernelpar',5);
 titles = {'SW-KRLS, M=75','SW-KRLS, M=150'};
 
 %% PREPARE DATA
+fprintf('Fig. 2 from "A sliding-window kernel RLS algorithm and its \n');
+fprintf('application to nonlinear channel identification".\n');
 
 % perform online learning for each algorithm
 fprintf('\n')

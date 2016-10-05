@@ -23,7 +23,7 @@ noisevar = .02; % noise variance
 
 budget = 5; % KRLS-T budget
 
-savefig = 1;
+savefig = 0;
 manual = 0;
 
 %% GENERATE DATA
