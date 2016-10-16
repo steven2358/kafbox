@@ -143,9 +143,9 @@ Included algorithms
 
 How to contribute code to the toolbox
 ---
-Option 1: email it to me (steven.vanvaerenbergh@unican.es)
+Option 1: email it to steven.vanvaerenbergh@unican.es
 
-Option 2: [fork the toolbox on GitHub](https://github.com/steven2358/kafbox), push your changes, then send me a pull request.
+Option 2: [fork the toolbox on GitHub](https://github.com/steven2358/kafbox), push your changes, then send a pull request.
 
 License
 ---
