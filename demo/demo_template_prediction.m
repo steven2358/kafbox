@@ -14,7 +14,7 @@ datafile = 'lorenz.dat'; embedding = 6; horizon = 1; % 10000 points
 % kaf = fbkrls(struct('lambda',1E-6,'M',100,'kerneltype','gauss','kernelpar',32)); % achieves -55.00 dB
 % kaf = rls(struct('lambda',.99,'c',1E-6)); % achieves -48.16 dB
 % kaf = kap(struct('mu0',0.995,'eta',0.95,'eps',1E-6,'p',8,'kerneltype','gauss','kernelpar',32)); % achieves -40.40 dB
-kaf = aldkrls(struct('nu',1E-4,'kerneltype','gauss','kernelpar',32)); % achieves -40.17 dB
+kaf = krls(struct('nu',1E-4,'kerneltype','gauss','kernelpar',32)); % achieves -40.17 dB
 % kaf = swkrls(struct('c',1E-6,'M',100,'kerneltype','gauss','kernelpar',32)); % achieves -37.85dB
 % kaf = nlms(struct('mu',1.99,'eps',1E-6)); % achieves -24.58 dB
 % kaf = exkrls(struct('alphaf',1,'beta',.99,'lambda',1E-6,'q',1E-6,'M',500,'kerneltype','gauss','kernelpar',32)); % achieves -22.48 dB
@@ -39,7 +39,7 @@ kaf = aldkrls(struct('nu',1E-4,'kerneltype','gauss','kernelpar',32)); % achieves
 %     'sparse_flag',0,'sparse_params',5));
 
 % datafile = 'mg30.dat'; L = 11; horizon = 1; % 5000 points
-% kaf = aldkrls(struct('nu',5E-3,'kerneltype','gauss','kernelpar',.6)); % achieves -45.61 dB
+% kaf = krls(struct('nu',5E-3,'kerneltype','gauss','kernelpar',.6)); % achieves -45.61 dB
 % kaf = krlst(struct('lambda',1,'M',200,'sn2',1E-5,'kerneltype','gauss','kernelpar',.6)); % achieves -44.26 dB
 % kaf = fbkrls(struct('lambda',1E-6,'M',200,'kerneltype','gauss','kernelpar',.6)); % achieves -41.09 dB
 % kaf = swkrls(struct('c',1E-6,'M',200,'kerneltype','gauss','kernelpar',.6)); % achieves -35.43 dB
@@ -47,7 +47,7 @@ kaf = aldkrls(struct('nu',1E-4,'kerneltype','gauss','kernelpar',32)); % achieves
 
 % datafile = 'santafe.dat'; L = 10; horizon = 1; % Santa Fe chaotic laser time-series (data set A)
 % kaf = krlst(struct('lambda',1,'M',100,'sn2',1E-5,'kerneltype','gauss','kernelpar',50)); % achieves 15.83 dB
-% kaf = aldkrls(struct('nu',9E-1,'kerneltype','gauss','kernelpar',50)); % achieves 22.06 dB
+% kaf = krls(struct('nu',9E-1,'kerneltype','gauss','kernelpar',50)); % achieves 22.06 dB
 % kaf = fbkrls(struct('lambda',1E-5,'M',150,'kerneltype','gauss','kernelpar',50)); % achieves 23.68 dB
 % kaf = rls(struct('lambda',.999,'c',1E-4)); % achieves 26.33 dB
 % kaf = nlms(struct('mu',.1,'eps',1E-6)); % achieves 27.30 dB

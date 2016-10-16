@@ -13,7 +13,7 @@ N = 1000; % number of training data
 N_test = 500; % number of test data
 SNR = 20; % SNR in dB
 
-algorithm = 'aldkrls';
+algorithm = 'krls';
 
 %% GENERATE DATA
 x = randn(N,1);

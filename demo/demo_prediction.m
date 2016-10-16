@@ -5,9 +5,9 @@
 
 [X,Y] = kafbox_data(struct('name','Lorenz','embedding',6));
 
-% make a kernel adaptive filter object of class aldkrls with options: 
+% make a kernel adaptive filter object of class krls with options: 
 % ALD threshold 1E-4, Gaussian kernel, and kernel width 32
-kaf = aldkrls(struct('nu',1E-4,'kerneltype','gauss','kernelpar',32));
+kaf = krls(struct('nu',1E-4,'kerneltype','gauss','kernelpar',32));
 
 %% RUN ALGORITHM
 N = size(X,1);

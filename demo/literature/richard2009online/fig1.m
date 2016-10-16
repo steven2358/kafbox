@@ -1,4 +1,4 @@
-% Partly reproduces figure 1 from "Online Prediction of Time Series Data
+% Partially reproduces figure 1 from "Online Prediction of Time Series Data
 % With Kernels". (3 algorithms, 25 MC simulations.)
 %
 % Learning curves for KNLMS, NORMA, and KRLS on a nonlinear system.
@@ -23,7 +23,7 @@ kpar = 1/sqrt(2*3.73);
 
 setups{1} = norma(struct('lambda',0.98,'tau',38,'eta',1,'tcoeff',-1/2,'kerneltype',ktype,'kernelpar',kpar));
 setups{2} = knlms(struct('eta',.09,'eps',0.03,'mu0',0.5,'kerneltype',ktype,'kernelpar',kpar));
-setups{3} = aldkrls(struct('nu',.6,'kerneltype',ktype,'kernelpar',kpar));
+setups{3} = krls(struct('nu',.6,'kerneltype',ktype,'kernelpar',kpar));
 
 numsim = 25;
 

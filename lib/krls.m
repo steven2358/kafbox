@@ -10,7 +10,7 @@
 % This file is part of the Kernel Adaptive Filtering Toolbox for Matlab.
 % https://github.com/steven2358/kafbox/
 
-classdef aldkrls < handle
+classdef krls < handle
     
     properties (GetAccess = 'public', SetAccess = 'private')
         nu = 1E-4; % ALD threshold
@@ -28,7 +28,7 @@ classdef aldkrls < handle
     
     methods
         
-        function kaf = aldkrls(parameters) % constructor
+        function kaf = krls(parameters) % constructor
             if (nargin > 0) % copy valid parameters
                 for fn = fieldnames(parameters)',
                     if ismember(fn,fieldnames(kaf)),

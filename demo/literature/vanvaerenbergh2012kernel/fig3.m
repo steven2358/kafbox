@@ -1,5 +1,6 @@
-% Partly reproduces figure 3 from "Kernel Recursive Least-Squares Tracker
-% for Time-Varying Regression". (Only 3 algorithms, only 1 MC simulation.)
+% Partially reproduces figure 3 from "Kernel Recursive Least-Squares
+% Tracker for Time-Varying Regression". (Only 3 algorithms, only 1 MC
+% simulation.)
 %
 % MSE performance comparison of different tracking algorithms on a
 % communications channel that shows an abrupt change at iteration 500.
