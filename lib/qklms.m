@@ -18,7 +18,7 @@ classdef qklms < handle
     end
     
     properties (GetAccess = 'public', SetAccess = 'private')
-        mem = []; % codebook
+        dict = []; % codebook (dictionary)
         alpha = []; % expansion coefficients
     end
     
@@ -35,8 +35,8 @@ classdef qklms < handle
         end
         
         function y_est = evaluate(kaf,x) % evaluate the algorithm
-            if size(kaf.mem,1)>0
-                k = kernel(kaf.mem,x,kaf.kerneltype,kaf.kernelpar);
+            if size(kaf.dict,1)>0
+                k = kernel(kaf.dict,x,kaf.kerneltype,kaf.kernelpar);
                 y_est = k'*kaf.alpha;
             else
                 y_est = zeros(size(x,1),1);
@@ -47,16 +47,16 @@ classdef qklms < handle
             y_est = kaf.evaluate(x);
             err = y - y_est;
           
-            m = size(kaf.mem,1);
+            m = size(kaf.dict,1);
             if m==0
                 d2 = kaf.epsu^2 + 1;
             else
-                [d2,j] = min(sum((kaf.mem - repmat(x,m,1)).^2,2));
+                [d2,j] = min(sum((kaf.dict - repmat(x,m,1)).^2,2));
             end
             if d2 <= kaf.epsu^2, 
                 kaf.alpha(j) = kaf.alpha(j) + kaf.eta*err;
             else
-                kaf.mem = [kaf.mem; x]; % add to codebook
+                kaf.dict = [kaf.dict; x]; % add to codebook
                 kaf.alpha = [kaf.alpha; kaf.eta*err];
             end
         end

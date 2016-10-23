@@ -24,7 +24,7 @@ classdef exkrls < handle
     end
     
     properties (GetAccess = 'public', SetAccess = 'private')
-        mem = []; % memory
+        dict = []; % dictionary
         rho = [];
         Q = [];
         i = 0; % iteration number;
@@ -44,8 +44,8 @@ classdef exkrls < handle
         end
         
         function y_est = evaluate(kaf,x) % evaluate the algorithm
-            if size(kaf.mem,1)>0
-                k = kernel(kaf.mem,x,kaf.kerneltype,kaf.kernelpar);
+            if size(kaf.dict,1)>0
+                k = kernel(kaf.dict,x,kaf.kerneltype,kaf.kernelpar);
                 y_est = k'*kaf.alpha;
             else
                 y_est = zeros(size(x,1),1);
@@ -54,22 +54,22 @@ classdef exkrls < handle
         
         function train(kaf,x,y) % train the algorithm
             kaf.i = kaf.i + 1;
-            k = kernel([kaf.mem; x],x,kaf.kerneltype,kaf.kernelpar);
+            k = kernel([kaf.dict; x],x,kaf.kerneltype,kaf.kernelpar);
             kt = k(1:end-1);
             ktt = k(end);
             if numel(kt)==0 % initialize
                 kaf.alpha = kaf.alphaf*y/(kaf.lambda*kaf.beta+ktt);
                 kaf.rho = kaf.lambda*kaf.beta/(kaf.alphaf^2*kaf.beta + kaf.lambda*kaf.q);
                 kaf.Q = kaf.alphaf^2/((kaf.beta*kaf.lambda+ktt)*(kaf.alphaf^2+kaf.beta*kaf.lambda*kaf.q));
-                kaf.mem = x;
+                kaf.dict = x;
             else
-                if (size(kaf.mem,1)<kaf.M), % avoid infinite growth
+                if (size(kaf.dict,1)<kaf.M), % avoid infinite growth
                     z = kaf.Q*kt;
                     r = kaf.beta^kaf.i*kaf.rho + ktt - kt'*z;
                     err = y - kt'*kaf.alpha;
                     
                     kaf.alpha = kaf.alphaf*[kaf.alpha - z*err/r; err/r]; % grow
-                    kaf.mem = [kaf.mem; x];
+                    kaf.dict = [kaf.dict; x];
                     dummy = kaf.alphaf^2 + kaf.beta^kaf.i*kaf.q*kaf.rho;
                     kaf.rho = kaf.rho/dummy;
                     kaf.Q = kaf.alphaf^2/(r*dummy)*...

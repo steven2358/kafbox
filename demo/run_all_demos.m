@@ -1,6 +1,6 @@
 % Script to run all demos consecutively.
 %
-% Author: Steven Van Vaerenbergh (steven.vanvaerenbergh *at* unican.es), 2015.
+% Author: Steven Van Vaerenbergh, 2015.
 %
 % This file is part of the Kernel Adaptive Filtering Toolbox for Matlab.
 % https://github.com/steven2358/kafbox

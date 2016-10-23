@@ -19,7 +19,7 @@ classdef klms < handle
     end
     
     properties (GetAccess = 'public', SetAccess = 'private')
-        mem = []; % memory
+        dict = []; % dictionary
         alpha = []; % expansion coefficients
     end
     
@@ -36,8 +36,8 @@ classdef klms < handle
         end
         
         function y_est = evaluate(kaf,x) % evaluate the algorithm
-            if size(kaf.mem,1)>0
-                k = kernel(kaf.mem,x,kaf.kerneltype,kaf.kernelpar);
+            if size(kaf.dict,1)>0
+                k = kernel(kaf.dict,x,kaf.kerneltype,kaf.kernelpar);
                 y_est = k'*kaf.alpha;
             else
                 y_est = zeros(size(x,1),1);
@@ -45,11 +45,11 @@ classdef klms < handle
         end
         
         function train(kaf,x,y) % train the algorithm
-            if (size(kaf.mem,1)<kaf.M), % avoid infinite growth
+            if (size(kaf.dict,1)<kaf.M), % avoid infinite growth
                 y_est = kaf.evaluate(x);
                 err = y - y_est;
                 kaf.alpha = [kaf.alpha; kaf.eta*err]; % grow
-                kaf.mem = [kaf.mem; x]; % grow
+                kaf.dict = [kaf.dict; x]; % grow
             end
         end
         
