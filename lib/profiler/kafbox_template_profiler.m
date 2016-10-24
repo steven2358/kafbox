@@ -36,7 +36,7 @@ classdef kafbox_template_profiler < kafbox_template
         
         %% flops breakdown
         
-        % [space for comments on number of operations used above]
+        % [space for remarks on number of operations used above]
         
         %%
         

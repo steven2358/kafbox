@@ -7,7 +7,7 @@
 % Signal Processing (ICASSP 2013), Vancouver, Canada, March 2013.
 % http://dx.doi.org/10.1109/ICASSP.2013.6638763
 %
-% Comment: Code contributed by Wei Gao and Cedric Richard.
+% Remark: Code contributed by Wei Gao and Cedric Richard.
 %
 % This file is part of the Kernel Adaptive Filtering Toolbox for Matlab.
 % https://github.com/steven2358/kafbox/

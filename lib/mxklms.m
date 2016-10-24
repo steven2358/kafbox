@@ -5,7 +5,7 @@
 % The 2013 International Joint Conference on Neural Networks (IJCNN),
 % pp.1-7, 4-9 Aug. 2013. http://dx.doi.org/10.1109/IJCNN.2013.6706867
 %
-% Comment: implementation includes a maximum dictionary size M
+% Remark: implementation includes a maximum dictionary size M
 %
 % This file is part of the Kernel Adaptive Filtering Toolbox for Matlab.
 % https://github.com/steven2358/kafbox/

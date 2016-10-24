@@ -4,7 +4,7 @@
 % Filtering Algorithm Based on Parallel Hyperslab Projection Along Affine
 % Subspace," in Proc. ICASSP, May. 2013, pp.3557-3561.
 %
-% Comment: version01, August 2013
+% Remark: version01, August 2013
 % Contributor for this code: Masa-aki Takizawa
 %
 % This file is part of the Kernel Adaptive Filtering Toolbox for Matlab.

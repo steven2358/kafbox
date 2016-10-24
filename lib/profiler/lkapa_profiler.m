@@ -34,7 +34,7 @@ classdef lkapa_profiler < lkapa
         
         %% flops breakdown
         
-        % [space for comments on number of operations used above]
+        % [space for remarks on number of operations used above]
         
         %%
         

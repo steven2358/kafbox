@@ -4,7 +4,7 @@
 % Conference on Emerging Technologies & Factory Automation (ETFA), Krakow,
 % Poland, Sept. 2012, http://dx.doi.org/10.1109/ETFA.2012.6489767
 %
-% Comment: code contributed by Dominik Rzepka
+% Remark: code contributed by Dominik Rzepka
 %
 % This file is part of the Kernel Adaptive Filtering Toolbox for Matlab.
 % https://github.com/steven2358/kafbox/

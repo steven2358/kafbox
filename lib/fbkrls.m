@@ -5,7 +5,7 @@
 % Conference on Acoustics Speech and Signal Processing (ICASSP), pp. 1882-
 % 1885, 14-19 March 2010, http://dx.doi.org/10.1109/ICASSP.2010.5495350
 %
-% Comment: label update is not implemented (mu=0)
+% Remark: label update is not implemented (mu=0)
 %
 % This file is part of the Kernel Adaptive Filtering Toolbox for Matlab.
 % https://github.com/steven2358/kafbox/

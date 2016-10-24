@@ -5,7 +5,7 @@
 % September 2013, Pages 2759-2770,
 % http://dx.doi.org/10.1016/j.sigpro.2013.02.012.
 %
-% Comment: significance calculation only implemented for Gaussian kernel.
+% Remark: significance calculation only implemented for Gaussian kernel.
 %
 % This file is part of the Kernel Adaptive Filtering Toolbox for Matlab.
 % https://github.com/steven2358/kafbox/

@@ -5,7 +5,7 @@
 % on Signal Processing, Vol. 56, No. 7, pp. 2781-2796, 2008.
 % http://dx.doi.org/10.1109/TSP.2008.917376
 %
-% Comment: implemented with L2-ball forgetting. Code contributed by
+% Remark: implemented with L2-ball forgetting. Code contributed by
 % Pantelis Bouboulis.
 %
 % This file is part of the Kernel Adaptive Filtering Toolbox for Matlab.

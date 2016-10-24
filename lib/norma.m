@@ -4,7 +4,7 @@
 % kernels," IEEE Transactions on Signal Processing, vol. 52, no. 8,
 % pp. 2165-2176, Aug. 2004, http://dx.doi.org/10.1109/TSP.2004.830991
 %
-% Comment: using squared loss function
+% Remark: using squared loss function
 %
 % This file is part of the Kernel Adaptive Filtering Toolbox for Matlab.
 % https://github.com/steven2358/kafbox/

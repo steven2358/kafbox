@@ -4,7 +4,7 @@
 % Algorithm," IEEE Transactions on Signal Processing, vol. 56, no. 2, pp.
 % 543-554, Feb. 2008, http://dx.doi.org/10.1109/TSP.2007.907881
 %
-% Comment: implementation includes a maximum dictionary size M
+% Remark: implementation includes a maximum dictionary size M
 %
 % This file is part of the Kernel Adaptive Filtering Toolbox for Matlab.
 % https://github.com/steven2358/kafbox/

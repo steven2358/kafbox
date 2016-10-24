@@ -5,7 +5,7 @@
 % Transactions on Neural Networks and Learning Systems, vol. 23, no. 8, pp.
 % 1313-1326, Aug. 2012, http://dx.doi.org/10.1109/TNNLS.2012.2200500
 %
-% Comment: using back-to-the-prior forgetting
+% Remark: using back-to-the-prior forgetting
 %
 % This file is part of the Kernel Adaptive Filtering Toolbox for Matlab.
 % https://github.com/steven2358/kafbox/

@@ -5,7 +5,7 @@
 % vol. 57, no. 3, pp. 1058-1067, March 2009,
 % http://dx.doi.org/10.1109/TSP.2008.2009895
 %
-% Comment: memories are initialized empty in this implementation
+% Remark: memories are initialized empty in this implementation
 %
 % This file is part of the Kernel Adaptive Filtering Toolbox for Matlab.
 % https://github.com/steven2358/kafbox/

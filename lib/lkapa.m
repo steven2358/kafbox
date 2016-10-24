@@ -4,7 +4,7 @@
 % Journal on Advances in Signal Processing, Volume 2008, Article ID 784292,
 % 12 pages. http://dx.doi.org/10.1155/2008/784292
 %
-% Comment: This implementation includes a maximum dictionary size M. With
+% Remark: This implementation includes a maximum dictionary size M. With
 % M=Inf this algorithm is equivalent to KAPA-3 from the publication. With
 % M=Inf and lambda=0 it is equivalent to KAPA-1.
 %

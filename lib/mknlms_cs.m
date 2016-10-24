@@ -5,7 +5,7 @@
 % Processing, vol.60, no.9, pp.4672,4682, Sept. 2012,
 % http://dx.doi.org/10.1109/TSP.2012.2200889
 %
-% Comment: version01, August 2013
+% Remark: version01, August 2013
 %
 % This file is part of the Kernel Adaptive Filtering Toolbox for Matlab.
 % https://github.com/steven2358/kafbox/
