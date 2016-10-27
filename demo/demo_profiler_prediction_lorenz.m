@@ -28,9 +28,9 @@ algorithms{i}.figstyle = struct('color',[.75  0 .75],'marker','^');
 algorithms{i}.options = struct('sweep_par','nu','sweep_val',[1E-4 2E-4 1E-3 .01 .05 .1],...
     'kerneltype','gauss','kernelpar',32);
 
-%% Q-KLMS
+%% QKLMS
 i=i+1;
-algorithms{i}.name = 'Q-KLMS';
+algorithms{i}.name = 'QKLMS';
 algorithms{i}.class = 'qklms';
 algorithms{i}.figstyle = struct('color',[1  0  0],'marker','o');
 algorithms{i}.options = struct('eta',0.5,'sweep_par','epsu','sweep_val',[1 2 5 10 12 15 18],...

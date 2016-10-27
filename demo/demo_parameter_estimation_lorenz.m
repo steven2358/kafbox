@@ -1,10 +1,10 @@
 % DEMO_PARAMETER_ESTIMATION_LORENZ Estimation of the parameters of the
 % KRLS-T algorithm for predicting the Lorenz attractor time-series.
 %
-% This estimates the optimal parameters of the KRLS-T when applied to
-% predict the Lorenz attractor time-series. The estimated parameters are:
-% forgetting factor lambda, regularization c and Gaussian kernel width.
-% Kernels other than the Gaussian can be used by modifying
+% This demo estimates the optimal parameters of the KRLS-T algorithm when
+% applied to predict the Lorenz attractor time-series. The estimated
+% parameters are: forgetting factor lambda, regularization c and Gaussian
+% kernel width. Kernels other than the Gaussian can be used by modifying
 % kafbox_parameter_estimation.m.
 %
 % Author: Steven Van Vaerenbergh, 2013.
