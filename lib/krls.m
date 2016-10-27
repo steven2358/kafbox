@@ -57,19 +57,20 @@ classdef krls < handle
                 kaf.P = 1;
                 kaf.dict = x;
             else
-                at = kaf.Kinv*kt;
-                delta = ktt - kt'*at;
+                at = kaf.Kinv*kt; % coefficients of best linear combination
+                delta = ktt - kt'*at; % residual of linear approximation
                 
-                if (delta>kaf.nu && size(kaf.dict,1)<kaf.M), % expand
-                    kaf.dict = [kaf.dict; x];
-                    kaf.Kinv = 1/delta*[delta*kaf.Kinv + at*at', -at; -at', 1];
+                if (delta>kaf.nu && size(kaf.dict,1)<kaf.M), % not ALD
+                    kaf.dict = [kaf.dict; x]; % add base to dictionary
+                    kaf.Kinv = 1/delta*... % update inverse kernel matrix
+                        [delta*kaf.Kinv + at*at', -at; -at', 1];
                     Z = zeros(size(kaf.P,1),1);
-                    kaf.P = [kaf.P Z; Z' 1];
+                    kaf.P = [kaf.P Z; Z' 1]; % extend projection matrix
                     ode = 1/delta*(y-kt'*kaf.alpha);
-                    kaf.alpha = [kaf.alpha - at*ode; ode];
-                else % only update alpha
+                    kaf.alpha = [kaf.alpha - at*ode; ode]; % full update
+                else % perform reduced update of coefficients
                     q = kaf.P*at/(1+at'*kaf.P*at);
-                    kaf.P = kaf.P - q*(at'*kaf.P);
+                    kaf.P = kaf.P - q*(at'*kaf.P); % update proj. matrix
                     kaf.alpha = kaf.alpha + kaf.Kinv*q*(y-kt'*kaf.alpha);
                 end
             end

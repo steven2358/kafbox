@@ -47,14 +47,14 @@ classdef swkrls < handle
         end
         
         function train(kaf,x,y) % train the algorithm
-            kaf.dict = [kaf.dict; x]; % grow
-            kaf.dicty = [kaf.dicty; y];	% grow
+            kaf.dict = [kaf.dict; x];  % add base to dictionary
+            kaf.dicty = [kaf.dicty; y];	% add y to output dictionary
             k = kernel(kaf.dict,x,kaf.kerneltype,kaf.kernelpar);
             kaf.Kinv = kaf.grow_kernel_matrix(kaf.Kinv,k,kaf.c); % grow
             
-            if (size(kaf.dict,1) > kaf.M)
-                kaf.dict(1,:) = []; % prune
-                kaf.dicty(1) = []; % prune
+            if (size(kaf.dict,1) > kaf.M) % prune
+                kaf.dict(1,:) = []; % remove oldest base from dictionary
+                kaf.dicty(1) = []; % prune output dictionary
                 kaf.Kinv = kaf.prune_kernel_matrix(kaf.Kinv); % prune
             end
             

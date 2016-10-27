@@ -60,13 +60,13 @@ classdef knlms < handle
                 if (max(C) <= kaf.mu0), % coherence criterion
                     kaf.dict = [kaf.dict; x]; % order increase
                     kaf.modict = [kaf.modict; sqrt(kx)];
-                    kaf.alpha = [kaf.alpha; 0]; % order increase
+                    kaf.alpha = [kaf.alpha; 0]; % reserve spot
                 end
             end
             
-            h = kernel(x,kaf.dict,kaf.kerneltype,kaf.kernelpar);
-            kaf.alpha = kaf.alpha + ...
-                kaf.eta / (kaf.eps + h*h') * (y - h*kaf.alpha) * h';
+            k = kernel(kaf.dict,x,kaf.kerneltype,kaf.kernelpar);
+            kaf.alpha = kaf.alpha + ... % update coefficients
+                kaf.eta / (kaf.eps + k'*k) * (y - k'*kaf.alpha) * k';
         end
         
     end

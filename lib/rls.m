@@ -14,7 +14,7 @@ classdef rls < handle
     end
     
     properties (GetAccess = 'public', SetAccess = 'private')
-        P = []; % inverse correlation matrix
+        P = []; % inverse autocorrelation matrix
         w = []; % filter coefficients
     end
     
@@ -45,10 +45,10 @@ classdef rls < handle
                 obj.P = obj.c\eye(m);
             end
             
-            k = obj.P*x'/(obj.lambda+x*obj.P*x');
-            z = y - x*obj.w;
-            obj.w = obj.w + k*z;
-            obj.P = obj.lambda\(obj.P - k*x*obj.P);
+            g = obj.P*x'/(obj.lambda+x*obj.P*x'); % gain vector
+            err = y - x*obj.w; % instantaneous error
+            obj.w = obj.w + g*err; % update filter coefficients
+            obj.P = obj.lambda\(obj.P - g*x*obj.P); % update inv. autocorr.
         end
         
     end

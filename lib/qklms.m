@@ -39,25 +39,25 @@ classdef qklms < handle
                 k = kernel(kaf.dict,x,kaf.kerneltype,kaf.kernelpar);
                 y_est = k'*kaf.alpha;
             else
-                y_est = zeros(size(x,1),1);
+                y_est = zeros(size(x,1),1); % zeros if not initialized
             end
         end
         
         function train(kaf,x,y) % train the algorithm
-            y_est = kaf.evaluate(x);
-            err = y - y_est;
+            y_est = kaf.evaluate(x); % evaluate function output
+            err = y - y_est; % instantaneous error
           
             m = size(kaf.dict,1);
             if m==0
-                d2 = kaf.epsu^2 + 1;
-            else
+                d2 = kaf.epsu^2 + 1; % force addition of initial base
+            else % find distance to closest dictionary element
                 [d2,j] = min(sum((kaf.dict - repmat(x,m,1)).^2,2));
             end
-            if d2 <= kaf.epsu^2, 
+            if d2 <= kaf.epsu^2, % reduced coefficient update
                 kaf.alpha(j) = kaf.alpha(j) + kaf.eta*err;
             else
-                kaf.dict = [kaf.dict; x]; % add to codebook
-                kaf.alpha = [kaf.alpha; kaf.eta*err];
+                kaf.dict = [kaf.dict; x]; % add base to dictionary
+                kaf.alpha = [kaf.alpha; kaf.eta*err]; % add new coefficient
             end
         end
         

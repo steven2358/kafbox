@@ -40,16 +40,16 @@ classdef klms < handle
                 k = kernel(kaf.dict,x,kaf.kerneltype,kaf.kernelpar);
                 y_est = k'*kaf.alpha;
             else
-                y_est = zeros(size(x,1),1);
+                y_est = zeros(size(x,1),1); % zeros if not initialized
             end
         end
         
         function train(kaf,x,y) % train the algorithm
             if (size(kaf.dict,1)<kaf.M), % avoid infinite growth
                 y_est = kaf.evaluate(x);
-                err = y - y_est;
-                kaf.alpha = [kaf.alpha; kaf.eta*err]; % grow
-                kaf.dict = [kaf.dict; x]; % grow
+                err = y - y_est; % instantaneous error
+                kaf.dict = [kaf.dict; x]; % add base to dictionary
+                kaf.alpha = [kaf.alpha; kaf.eta*err]; % add new coefficient
             end
         end
         

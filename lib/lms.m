@@ -42,8 +42,8 @@ classdef lms < handle
             end
             
             % Algorithm 5.2.1 in reference
-            err = y - x*obj.w;
-            obj.w = obj.w + obj.mu*x'*err;
+            err = y - x*obj.w; % instantaneous error
+            obj.w = obj.w + obj.mu*x'*err; % update filter coefficients
         end
         
     end

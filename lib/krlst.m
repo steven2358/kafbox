@@ -95,8 +95,8 @@ classdef krlst < handle
                 sy2 = kaf.sn2 + sf2;
                 % y_var = s02*sy2; % predictive variance
                 
-                % include new sample and add a basis
-                Qold = kaf.Q;
+                % include a new sample and add a basis
+                Qold = kaf.Q; % old inverse kernel matrix
                 p = [q; -1];
                 kaf.Q = [kaf.Q zeros(m,1);zeros(1,m) 0] + 1/gamma2*(p*p');
                 
