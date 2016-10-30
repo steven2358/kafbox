@@ -13,7 +13,7 @@ classdef klms < handle
     
     properties (GetAccess = 'public', SetAccess = 'private')
         eta = .5; % learning rate
-        M = 1000; % maximum dictionary size
+        M = 10000; % maximum dictionary size
         kerneltype = 'gauss'; % kernel type
         kernelpar = 1; % kernel parameter
     end
