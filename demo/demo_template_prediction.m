@@ -16,6 +16,7 @@ datafile = 'lorenz.dat'; embedding = 6; horizon = 1; % 10000 points
 % kaf = kap(struct('mu0',0.995,'eta',0.95,'eps',1E-6,'p',8,'kerneltype','gauss','kernelpar',32)); % achieves -40.40 dB
 kaf = krls(struct('nu',1E-4,'kerneltype','gauss','kernelpar',32)); % achieves -40.17 dB
 % kaf = swkrls(struct('c',1E-6,'M',100,'kerneltype','gauss','kernelpar',32)); % achieves -37.85dB
+% kaf = kalman(struct('R',1E-4)); % achieves -33.41 dB
 % kaf = nlms(struct('mu',1.99,'eps',1E-6)); % achieves -24.58 dB
 % kaf = exkrls(struct('alphaf',1,'beta',.99,'lambda',1E-6,'q',1E-6,'M',500,'kerneltype','gauss','kernelpar',32)); % achieves -22.48 dB
 % kaf = problms(struct('sigma2_n',1E-6,'sigma2_d',1E-2)); % achieves -15.86 dB

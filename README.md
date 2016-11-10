@@ -140,6 +140,7 @@ Included algorithms
 - Mixture Kernel Least Mean Square (MXKLMS) algorithm, as proposed in R. Pokharel, S. Seth, and J.C. Principe, "Mixture kernel least mean square," The 2013 International Joint Conference on Neural Networks (IJCNN), pp.1-7, 4-9 Aug. 2013.
 - Fixed budget quantized kernel least-mean-square algorithm (QKLMS-FB), as proposed in S. Zhao, B. Chen, P. Zhu, J. C. Príncipe, "Fixed budget quantized kernel least-mean-square algorithm", Signal Processing, Volume 93, Issue 9, September 2013, Pages 2759-2770.
 - Probabilistic Least-Mean-Squares (ProbLMS) algorithm, as proposed in J. Fernandez-Bes, V. Elvira, and S. Van Vaerenbergh, "A probabilistic least-mean-squares filter," 2015 IEEE International Conference on Acoustics, Speech and Signal Processing (ICASSP), Brisbane, Australia, 2015.
+- Discrete-time Kalman filter, as proposed in R. E. Kalman, "A New Approach to Linear Filtering and Prediction Problems", ASME Journal of Basic Engineering, 1960, 82(1), pp. 35-45.
 
 How to contribute code to the toolbox
 ---
