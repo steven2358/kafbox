@@ -65,8 +65,8 @@ classdef knlms < handle
             end
             
             k = kernel(kaf.dict,x,kaf.kerneltype,kaf.kernelpar);
-            kaf.alpha = kaf.alpha + ... % update coefficients
-                kaf.eta / (kaf.eps + k'*k) * (y - k'*kaf.alpha) * k';
+            kaf.alpha = kaf.alpha + ... % update coefficients 
+                kaf.eta / (kaf.eps + k'*k) * (y - k'*kaf.alpha) * k;
         end
         
     end
