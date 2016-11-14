@@ -18,10 +18,13 @@ kaf = krlst(struct('lambda',1,'M',100,'sn2',1E-6,'kerneltype','gauss','kernelpar
 %% RUN ALGORITHM
 N = size(X,1);
 Y_est = zeros(N,1);
-for i=1:N,
+for i=k:N,
     if ~mod(i,floor(N/10)), fprintf('.'); end % progress indicator, 10 dots
     Y_est(i) = kaf.evaluate(X(i,:)); % predict the next output
-    kaf = kaf.train(X(i,:),Y(i)); % train with one input-output pair
+    
+    % Train on input-output data. Use the pair from (horizon-1) steps ago
+    % since the newest output available at step i is Y(i-horizon+1).
+    kaf = kaf.train(X(i-k+1,:),Y(i-k+1));
 end
 fprintf('\n');
 SE = (Y-Y_est).^2; % test error
