@@ -25,6 +25,7 @@ kaf = krls(struct('nu',1E-4,'kerneltype','gauss','kernelpar',32)); % achieves -4
 % kaf = qklms_fb(struct('M',300,'eta',0.6,'epsu',2,'kerneltype','gauss','kernelpar',32)); % achieves -10.73 dB
 % kaf = lms(struct('mu',1E-4)); % achieves -5.98 dB
 % kaf = klms(struct('eta',0.1,'M',5000,'kerneltype','gauss','kernelpar',32)); % achieves -3.07 dB
+% kaf = memory_cell(); % achieves -2.37 dB
 % kaf = fbklms(struct('M',10,'nu',.1,'eta',.4,'kernelpar',35)); % achieves -1.56 dB
 % kaf = knlms(struct('mu0',0.95,'eta',0.5,'eps',1E-6,'kerneltype','gauss','kernelpar',32)); % achieves -1.32 dB
 % kaf = mxklms(struct('mu',1,'eta',0.8,'M',5,'kerneltype','gauss','kernelpars',.5:.5:2)); % achieves ??? dB
