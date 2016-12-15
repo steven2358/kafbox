@@ -63,3 +63,5 @@ delete(fullfile(tempdir,'temp.mat'));
 toc(t1)
 
 close all
+
+fprintf('\nAll tests finished.\n')
