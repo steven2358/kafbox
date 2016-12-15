@@ -60,9 +60,9 @@ Each kernel adaptive filtering algorithm is implemented as a Matlab class. To us
 ```matlab
 options = struct('nu',1E-4,'kerneltype','gauss','kernelpar',32);
 ```
-Next, create an instance of the filter. E.g., for an instance of the KRLS algorithm that uses the ALD criterion run:
+Next, create an instance of the filter. E.g., for an instance of the original KRLS algorithm run:
 ```matlab
-kaf = aldkrls(options);
+kaf = krls(options);
 ```
 One iteration of training is performed by feeding one input-output data pair to the filter:
 ```matlab
@@ -80,9 +80,9 @@ Code from `demo/demo_prediction.m`
 % Demo: 1-step ahead prediction on Lorenz attractor time-series data
 [X,Y] = kafbox_data(struct('file','lorenz.dat','embedding',6));
 
-% make a kernel adaptive filter object of class aldkrls with options: 
+% make a kernel adaptive filter object of class krls with options: 
 % ALD threshold 1E-4, Gaussian kernel, and kernel width 32
-kaf = aldkrls(struct('nu',1E-4,'kerneltype','gauss','kernelpar',32));
+kaf = krls(struct('nu',1E-4,'kerneltype','gauss','kernelpar',32));
 
 %% RUN ALGORITHM
 N = size(X,1);
@@ -118,7 +118,7 @@ If you use this toolbox in your research please cite ["A Comparative Study of Ke
 	
 Included algorithms
 ---
-- Approximate Linear Dependency Kernel Recursive Least-Squares (ALD-KRLS), as proposed in Y. Engel, S. Mannor, and R. Meir. "The kernel recursive least-squares algorithm", IEEE Transactions on Signal Processing, volume 52, no. 8, pages 2275-2285, 2004.
+- Kernel Recursive Least-Squares (KRLS) algorithm with approximate linear dependency criterion, as proposed in Y. Engel, S. Mannor, and R. Meir. "The kernel recursive least-squares algorithm", IEEE Transactions on Signal Processing, volume 52, no. 8, pages 2275-2285, 2004.
 - Sliding-Window Kernel Recursive Least-Squares (SW-KRLS), as proposed in S. Van Vaerenbergh, J. Via, and I. Santamaria. "A sliding-window kernel RLS algorithm and its application to nonlinear channel identification", 2006 IEEE International Conference on Acoustics, Speech, and Signal Processing (ICASSP), Toulouse, France, 2006.
 - Naive Online Regularized Risk Minimization Algorithm (NORMA), as proposed in J. Kivinen, A. Smola and C. Williamson. "Online Learning with Kernels", IEEE Transactions on Signal Processing, volume 52, no. 8, pages 2165-2176, 2004.
 - Kernel Least-Mean-Square (KLMS), as proposed in W. Liu, P.P. Pokharel, and J.C. Principe, "The Kernel Least-Mean-Square Algorithm," IEEE Transactions on Signal Processing, vol.56, no.2, pp.543-554, Feb. 2008.
