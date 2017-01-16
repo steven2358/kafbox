@@ -4,14 +4,14 @@
 % Journal on Advances in Signal Processing, Volume 2008, Article ID 784292,
 % 12 pages. http://dx.doi.org/10.1155/2008/784292
 %
-% Comment: This implementation includes a maximum dictionary size M. With
+% Remark: This implementation includes a maximum dictionary size M. With
 % M=Inf this algorithm is equivalent to KAPA-4 from the publication. With
 % M=Inf and lambda=0 it is equivalent to KAPA-2.
 %
 % This file is part of the Kernel Adaptive Filtering Toolbox for Matlab.
 % https://github.com/steven2358/kafbox/
 
-classdef nlkapa
+classdef nlkapa < handle
     
     properties (GetAccess = 'public', SetAccess = 'private') % parameters
         eta = .05; % learning rate
@@ -31,7 +31,6 @@ classdef nlkapa
     end
     
     methods
-        
         function kaf = nlkapa(parameters) % constructor
             if (nargin > 0) % copy valid parameters
                 for fn = fieldnames(parameters)',
@@ -51,7 +50,7 @@ classdef nlkapa
             end
         end
         
-        function kaf = train(kaf,x,y) % train the algorithm
+        function train(kaf,x,y) % train the algorithm
             if size(kaf.dict,2)==0 % initialize
                 kaf.dict = x;
                 kaf.alpha = kaf.eta*y;
@@ -83,11 +82,10 @@ classdef nlkapa
                     
                     % update p last coefficients
                     kaf.alpha(m-p+1:m) = kaf.alpha(m-p+1:m) + ...
-                       kaf.eta*inv(G+kaf.eps*eye(p))*e; %#ok<MINV> 
-                       % prefer inv to \ to avoid instability
+                        kaf.eta*inv(G+kaf.eps*eye(p))*e; %#ok<MINV>
+                    % prefer inv to \ to avoid instability
                 end
             end
         end
-        
     end
 end

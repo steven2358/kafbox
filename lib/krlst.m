@@ -5,12 +5,12 @@
 % Transactions on Neural Networks and Learning Systems, vol. 23, no. 8, pp.
 % 1313-1326, Aug. 2012, http://dx.doi.org/10.1109/TNNLS.2012.2200500
 %
-% Comment: using back-to-the-prior forgetting
+% Remark: using back-to-the-prior forgetting
 %
 % This file is part of the Kernel Adaptive Filtering Toolbox for Matlab.
 % https://github.com/steven2358/kafbox/
 
-classdef krlst
+classdef krlst < handle
     
     properties (GetAccess = 'public', SetAccess = 'private')
         lambda = .999; % forgetting factor
@@ -64,7 +64,7 @@ classdef krlst
             end
         end
         
-        function kaf = train(kaf,x,y) % train the algorithm
+        function train(kaf,x,y) % train the algorithm
             m = size(kaf.Sigma,1);
             
             if m<1 % initialize
@@ -95,8 +95,8 @@ classdef krlst
                 sy2 = kaf.sn2 + sf2;
                 % y_var = s02*sy2; % predictive variance
                 
-                % include new sample and add a basis
-                Qold = kaf.Q;
+                % include a new sample and add a basis
+                Qold = kaf.Q; % old inverse kernel matrix
                 p = [q; -1];
                 kaf.Q = [kaf.Q zeros(m,1);zeros(1,m) 0] + 1/gamma2*(p*p');
                 

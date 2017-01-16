@@ -62,7 +62,7 @@ for setup_ind = 1:num_setup,
         err = T_te - t_te;
         MSE(n,setup_ind) = mean(err.^2);
         
-        kaf = kaf.train(X_tr(n,:),T_tr(n)); % train with one input-output pair
+        kaf.train(X_tr(n,:),T_tr(n)); % train with one input-output pair
     end
     fprintf('\n');
 end

@@ -34,13 +34,13 @@ classdef lkapa_profiler < lkapa
         
         %% flops breakdown
         
-        % [space for comments on number of operations used above]
+        % [space for remarks on number of operations used above]
         
         %%
         
-        function kaf = train_profiled(kaf,x,y)
+        function train_profiled(kaf,x,y)
             t1 = tic;
-            kaf = kaf.train(x,y);
+            kaf.train(x,y);
             t2 = toc(t1);
             kaf.elapsed = kaf.elapsed + t2;
         end

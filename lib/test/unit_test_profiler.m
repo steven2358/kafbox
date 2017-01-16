@@ -100,7 +100,7 @@ for ii=1:length(algorithms)
     fprintf('1 training step................\n')
     for i=1,
         try
-            kaf = kaf.train_profiled(x(i,:),y(i));
+            kaf.train_profiled(x(i,:),y(i));
         catch err
             me = err.stack(1);
             %             keyboard
@@ -120,7 +120,7 @@ for ii=1:length(algorithms)
     bytes_all = zeros(N,1);
     for i=1:N,
         if ~mod(i,floor(N/10)), fprintf('.'); end
-        kaf = kaf.train_profiled(x(i,:),y(i));
+        kaf.train_profiled(x(i,:),y(i));
         
         flops_all(i) = kaf.lastflops();
         bytes_all(i) = kaf.lastbytes();

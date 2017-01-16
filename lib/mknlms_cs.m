@@ -5,12 +5,12 @@
 % Processing, vol.60, no.9, pp.4672,4682, Sept. 2012,
 % http://dx.doi.org/10.1109/TSP.2012.2200889
 %
-% Comment: version01, August 2013
+% Remark: version01, August 2013
 %
 % This file is part of the Kernel Adaptive Filtering Toolbox for Matlab.
 % https://github.com/steven2358/kafbox/
 
-classdef mknlms_cs
+classdef mknlms_cs < handle
     
     properties (GetAccess = 'public', SetAccess = 'private') % parameters
         delta = .95; % coherence criterion threshold
@@ -19,7 +19,7 @@ classdef mknlms_cs
         kerneltype = 'gauss'; % kernel type
         kernelpars = .5:.5:2; % kernel parameters
     end
-        properties (GetAccess = 'public', SetAccess = 'private') % variables
+    properties (GetAccess = 'public', SetAccess = 'private') % variables
         dict = []; % dictionary
         alpha = []; % expansion coefficients, H in the original article
     end
@@ -46,7 +46,7 @@ classdef mknlms_cs
             end
         end
         
-        function kaf = train(kaf,x,y) % train the algorithm
+        function train(kaf,x,y) % train the algorithm
             M = length(kaf.kernelpars); % number of distinct kernels
             if size(kaf.dict,2)==0 % initialize
                 kaf.dict = x;

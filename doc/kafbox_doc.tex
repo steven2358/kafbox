@@ -66,11 +66,30 @@
 
 \title{Documentation for \\Kernel Adaptive Filtering Toolbox}
 \author{Steven Van Vaerenbergh}
-\date{2014}
+\date{~\\[1em]\includegraphics[width=4cm]{fig/kafbox_logo}\\[1em]
+{\Large Technical Report} \\[1em]
+TR-KAFBOX-02 \\[1em]
+January 2017\\[5em]
+\begin{minipage}[t]{\textwidth}
+\centering
+\begin{minipage}[t]{0.2\textwidth}
+~\\
+\includegraphics[width=1.65cm]{fig/unican_logo}
+\end{minipage}
+%
+\begin{minipage}[t]{0.7\textwidth}
+~\\
+Advanced Signal Processing Group\\
+Department of Communications Engineering\\
+University of Cantabria, Spain
+\\
+\end{minipage}
+\end{minipage}
+}
 \maketitle
 
 \begin{abstract}
-The Kernel Adaptive Filtering Toolbox is a benchmarking toolbox to evaluate and compare kernel adaptive filtering algorithms in Matlab. Kernel adaptive filtering algorithms are online techniques suitable for nonlinear filtering, prediction, tracking and regression. This toolbox contains implementations of all major kernel adaptive filtering algorithms, and tools to measure and compare the performance, memory usage, speed and other properties.
+The Kernel Adaptive Filtering Toolbox is a benchmarking toolbox to evaluate and compare kernel adaptive filtering algorithms in Matlab. Kernel adaptive filtering algorithms are online machine learning techniques suitable for nonlinear filtering, prediction, tracking and regression. This toolbox contains implementations of all major kernel adaptive filtering algorithms, and tools to measure and compare the performance, memory usage, speed and other properties.
 \end{abstract}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -109,9 +128,11 @@ A list of the included algorithms and tools can be found in Chapter \ref{chap:al
 \item \verb"lib/" contains the algorithm libraries and utilities.
 \end{itemize}
 
-\section{Octave / Matlab pre-2008a}
+\section{Versions and compatibility}
 
-This toolbox uses the \verb"classdef" command which is not supported in Matlab pre-2008a and not yet in Octave. The older 0.x versions of this toolbox do not use classdef and can therefore be used with all versions of Matlab and Octave. \url{https://github.com/steven2358/kafbox/releases/}
+KAFBOX uses the \verb"classdef" command which is not supported in Matlab pre-2008a and not yet in Octave. The older 0.x versions of this toolbox do not use \verb"classdef" and can therefore be used with all versions of Matlab and Octave. \url{https://github.com/steven2358/kafbox/releases/}
+
+The current version of KAFBOX is v2.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -177,7 +198,7 @@ Online algorithms should be capable of operating during extended periods of time
 
 \section{Kernel adaptive filtering algorithms}
 
-Kernel adaptive filtering algorithms are online regression algorithms. While early kernel adaptive filtering algorithms had a clear connection to classical adaptive filters, such as LMS, RLS and KAPA filters, later implementations explored Gaussian process and projections based algorithms.
+Kernel adaptive filtering algorithms are online machine learning algorithms that build the solution to a regression or classification problem. While early kernel adaptive filtering algorithms had a clear connection to classical adaptive filters, such as LMS, RLS and KAPA filters, later implementations explored Gaussian process, projections-based and multi-kernel algorithms.
 
 The different kernel adaptive filtering algorithms proposed in the literature vary in several aspects:
 \begin{itemize}
@@ -228,7 +249,7 @@ kaf = aldkrls(options);
 \end{shortlisting}
 One iteration of training is performed by feeding one input-output data pair to the filter:
 \begin{shortlisting}
-kaf = kaf.train(x,y);
+kaf.train(x,y);
 \end{shortlisting}
 The outputs for one or more test inputs are evaluated as follows:
 \begin{shortlisting}
@@ -275,7 +296,11 @@ Matlab implementations of the following algorithms are included in the toolbox:
 \item Leaky Kernel Affine Projection Algorithm (LKAPA, including KAPA-1 and KAPA-3) and Normalized Leaky Kernel Affine Projection Algorithm (NLKAPA, including KAPA-2 and KAPA-4) \cite{liu2008kernel}.
 \item Kernel Affine Projection Subgradient Method (KAPSM) \cite{slavakis2008online}.
 \item Kernel Least Mean Squares algorithm with Coherence-Sparsification criterion and L1-norm regularization (KLMS-CSL1) and with active L1-norm regularization (KLMS-CSAL1) \cite{gao2013kernel}.
-\item  Mixture Kernel Least Mean Square (MxKLMS) algorithm \cite{pokharel2013mixture}.
+\item Mixture Kernel Least Mean Square (MxKLMS) algorithm \cite{pokharel2013mixture}.
+\item Fixed budget quantized kernel least-mean-square algorithm (QKLMS-FB) \cite{zhao2013fixed}
+\item Probabilistic Least-Mean-Squares (ProbLMS) algorithm \cite{fernandez2015probabilistic}.
+\item Discrete-time Kalman filter \cite{kalman1960new}.
+
 \end{itemize}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -285,6 +310,7 @@ Matlab implementations of the following algorithms are included in the toolbox:
 \begin{itemize}
 \item {\bf Name:} Kernel Adaptive Filtering Toolbox
 \item {\bf Abbreviation:} KAFBOX
+\item {\bf Current version:} v2
 \item {\bf Punchline:} a Matlab benchmarking toolbox for kernel adaptive filtering
 \item {\bf Author:} Steven Van Vaerenbergh
   \begin{itemize}
@@ -292,7 +318,7 @@ Matlab implementations of the following algorithms are included in the toolbox:
   \item Email: \url{steven.vanvaerenbergh@unican.es}
   \item Affiliation: Advanced Signal Processing Group, Department of Communications Engineering, University of Cantabria, Spain.
   \end{itemize}
-\item {\bf Collaborators:} Miguel Lazaro-Gredilla, Sohan Seth, Masahiro Yukawa, Masa-aki Takizawa, Osamu Toda, Dominik Rzepka, Pantelis Bouboulis
+\item {\bf Collaborators:} Miguel Lazaro-Gredilla, Sohan Seth, Masahiro Yukawa, Masa-aki Takizawa, Osamu Toda, Dominik Rzepka, Pantelis Bouboulis, Stephan Rhode
 \item {\bf URL:} \url{https://github.com/steven2358/kafbox/}
 \item {\bf Citing:} Published reports of research using this code (or a modified version) should cite \cite{vanvaerenbergh2013comparative}.
 \item {\bf Environment:} Matlab\footnote{\url{http://www.mathworks.com/products/matlab/}}.

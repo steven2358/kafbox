@@ -2,15 +2,15 @@
 % Dependency criterion
 %
 % Y. Engel, S. Mannor, and R. Meir, "The kernel recursive least-squares
-% algorithm," IEEE Transactions on Signal Processing, vol. 52, no. 8, pp. 
+% algorithm," IEEE Transactions on Signal Processing, vol. 52, no. 8, pp.
 % 2275-2285, Aug. 2004, http://dx.doi.org/10.1109/TSP.2004.830985
 %
-% Comment: implementation includes a maximum dictionary size M
+% Remark: implementation includes a maximum dictionary size M
 %
 % This file is part of the Kernel Adaptive Filtering Toolbox for Matlab.
 % https://github.com/steven2358/kafbox/
 
-classdef aldkrls
+classdef krls < handle
     
     properties (GetAccess = 'public', SetAccess = 'private')
         nu = 1E-4; % ALD threshold
@@ -28,7 +28,7 @@ classdef aldkrls
     
     methods
         
-        function kaf = aldkrls(parameters) % constructor
+        function kaf = krls(parameters) % constructor
             if (nargin > 0) % copy valid parameters
                 for fn = fieldnames(parameters)',
                     if ismember(fn,fieldnames(kaf)),
@@ -47,7 +47,7 @@ classdef aldkrls
             end
         end
         
-        function kaf = train(kaf,x,y) % train the algorithm
+        function train(kaf,x,y) % train the algorithm
             k = kernel([kaf.dict; x],x,kaf.kerneltype,kaf.kernelpar);
             kt = k(1:end-1);
             ktt = k(end);
@@ -57,23 +57,23 @@ classdef aldkrls
                 kaf.P = 1;
                 kaf.dict = x;
             else
-                at = kaf.Kinv*kt;
-                delta = ktt - kt'*at;
+                at = kaf.Kinv*kt; % coefficients of best linear combination
+                delta = ktt - kt'*at; % residual of linear approximation
                 
-                if (delta>kaf.nu && size(kaf.dict,1)<kaf.M), % expand
-                    kaf.dict = [kaf.dict; x];
-                    kaf.Kinv = 1/delta*[delta*kaf.Kinv + at*at', -at; -at', 1];
+                if (delta>kaf.nu && size(kaf.dict,1)<kaf.M), % not ALD
+                    kaf.dict = [kaf.dict; x]; % add base to dictionary
+                    kaf.Kinv = 1/delta*... % update inverse kernel matrix
+                        [delta*kaf.Kinv + at*at', -at; -at', 1];
                     Z = zeros(size(kaf.P,1),1);
-                    kaf.P = [kaf.P Z; Z' 1];
+                    kaf.P = [kaf.P Z; Z' 1]; % extend projection matrix
                     ode = 1/delta*(y-kt'*kaf.alpha);
-                    kaf.alpha = [kaf.alpha - at*ode; ode];
-                else % only update alpha
+                    kaf.alpha = [kaf.alpha - at*ode; ode]; % full update
+                else % perform reduced update of coefficients
                     q = kaf.P*at/(1+at'*kaf.P*at);
-                    kaf.P = kaf.P - q*(at'*kaf.P);
+                    kaf.P = kaf.P - q*(at'*kaf.P); % update proj. matrix
                     kaf.alpha = kaf.alpha + kaf.Kinv*q*(y-kt'*kaf.alpha);
                 end
             end
         end
-        
     end
 end

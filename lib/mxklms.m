@@ -5,12 +5,12 @@
 % The 2013 International Joint Conference on Neural Networks (IJCNN),
 % pp.1-7, 4-9 Aug. 2013. http://dx.doi.org/10.1109/IJCNN.2013.6706867
 %
-% Comment: implementation includes a maximum dictionary size M
+% Remark: implementation includes a maximum dictionary size M
 %
 % This file is part of the Kernel Adaptive Filtering Toolbox for Matlab.
 % https://github.com/steven2358/kafbox/
 
-classdef mxklms
+classdef mxklms < handle
     
     properties (GetAccess = 'public', SetAccess = 'private') % parameters
         mu = 2; % learning rate for gradient descent update of v
@@ -28,7 +28,6 @@ classdef mxklms
     end
     
     methods
-        
         function kaf = mxklms(parameters) % constructor
             if (nargin > 0) % copy valid parameters
                 for fn = fieldnames(parameters)',
@@ -50,7 +49,7 @@ classdef mxklms
             end
         end
         
-        function kaf = train(kaf,x,y) % train the algorithm
+        function train(kaf,x,y) % train the algorithm
             if (size(kaf.dict,1)<kaf.M), % avoid infinite growth
                 if size(kaf.dict,2)==0 % initialize
                     P = length(kaf.kernelpars);

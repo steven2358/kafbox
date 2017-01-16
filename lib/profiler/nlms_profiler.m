@@ -34,9 +34,9 @@ classdef nlms_profiler < nlms
         
         %%
         
-        function obj = train_profiled(obj,x,y)
+        function train_profiled(obj,x,y)
             t1 = tic;
-            obj = obj.train(x,y);
+            obj.train(x,y);
             t2 = toc(t1);
             obj.elapsed = obj.elapsed + t2;
         end

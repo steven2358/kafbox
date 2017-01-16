@@ -5,7 +5,7 @@
 
 close all
 clear
-rs = 1; randn('state',rs); rand('state',rs); %#ok<RAND>
+rng('default'); rng(1)
 
 %% PARAMETERS
 
@@ -13,7 +13,7 @@ N = 1000; % number of training data
 N_test = 500; % number of test data
 SNR = 20; % SNR in dB
 
-algorithm = 'aldkrls';
+algorithm = 'krls';
 
 %% GENERATE DATA
 x = randn(N,1);
@@ -29,7 +29,7 @@ kaf = feval(algorithm);
 t1 = tic;
 for i=1:N,
     if ~mod(i,floor(N/10)), fprintf('.'); end
-    kaf = kaf.train(x(i),y(i));
+    kaf.train(x(i),y(i));
 end
 y_est = kaf.evaluate(x_test);
 MSE = mean((y_test-y_est).^2);

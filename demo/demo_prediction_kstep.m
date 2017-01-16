@@ -24,7 +24,7 @@ for i=k:N,
     
     % Train on input-output data. Use the pair from (horizon-1) steps ago
     % since the newest output available at step i is Y(i-horizon+1).
-    kaf = kaf.train(X(i-k+1,:),Y(i-k+1));
+    kaf.train(X(i-k+1,:),Y(i-k+1));
 end
 fprintf('\n');
 SE = (Y-Y_est).^2; % test error

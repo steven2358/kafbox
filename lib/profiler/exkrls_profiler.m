@@ -7,26 +7,26 @@ classdef exkrls_profiler < exkrls
     
     properties (GetAccess = 'public', SetAccess = 'private')
         elapsed = 0; % elapsed time
-        prev_mem_size = 0; % previous dictionary size for growth check
+        prev_dict_size = 0; % previous dictionary size for growth check
     end
     
     methods
-
+        
         function kaf = exkrls_profiler(parameters) % constructor
             if nargin<1, parameters = struct(); end
             kaf = kaf@exkrls(parameters);
         end
         
         function flops = lastflops(kaf) % flops for last iteration
-            m = size(kaf.mem,1);
-            if kaf.prev_mem_size < m, % growing
+            m = size(kaf.dict,1);
+            if kaf.prev_dict_size < m, % growing
                 m1 = m;
                 m2 = m - 1;
                 floptions = struct(...
                     'sum', 1 + m2 - 1 + m2 + 1 + m2 + 2*m2 - 1 + 1 + m2^2 + m2 - 1, ...
                     'mult', m2 + m2 + 2 + m2 + m2 + 2 + 4 + 2*m2^2 + m2 + 2, ...
                     'div', 1 + 1, ...
-                    sprintf('%s_kernel',kaf.kerneltype), [m1, 1, size(kaf.mem,2)]);
+                    sprintf('%s_kernel',kaf.kerneltype), [m1, 1, size(kaf.dict,2)]);
             else
                 floptions = struct('sum', 1); % no kernel calculation
             end
@@ -35,7 +35,7 @@ classdef exkrls_profiler < exkrls
         
         %% flops breakdown
         
-        % k = kernel([kaf.mem; x],x,kaf.kerneltype,kaf.kernelpar);
+        % k = kernel([kaf.dict; x],x,kaf.kerneltype,kaf.kernelpar);
         % kernel: m1
         
         % kaf.i = kaf.i + 1;
@@ -72,18 +72,18 @@ classdef exkrls_profiler < exkrls
         
         %%
         
-        function kaf = train_profiled(kaf,x,y)
-            kaf.prev_mem_size = size(kaf.mem,1);
+        function train_profiled(kaf,x,y)
+            kaf.prev_dict_size = size(kaf.dict,1);
             t1 = tic;
-            kaf = kaf.train(x,y);
+            kaf.train(x,y);
             t2 = toc(t1);
             kaf.elapsed = kaf.elapsed + t2;
         end
         
         function bytes = lastbytes(kaf) % bytes used in last iteration
-            m = size(kaf.mem,1);
-            bytes = 8*(m^2 + m + 1 + m*size(kaf.mem,2)) + 4; % 8 bytes for double precision, 4 for uint32
-            % Q, alpha, rho, mem, i
+            m = size(kaf.dict,1);
+            bytes = 8*(m^2 + m + 1 + m*size(kaf.dict,2)) + 4; % 8 bytes for double precision, 4 for uint32
+            % Q, alpha, rho, dict, i
         end
         
     end

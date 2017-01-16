@@ -1,4 +1,4 @@
-Copyright (c) 2012-2015, Steven Van Vaerenbergh.
+Copyright (c) 2012-2017, Steven Van Vaerenbergh.
 All rights reserved.
 
 The code is released under the FreeBSD License.

@@ -7,12 +7,12 @@
 % Signal Processing (ICASSP 2013), Vancouver, Canada, March 2013.
 % http://dx.doi.org/10.1109/ICASSP.2013.6638763
 %
-% Comment: Code contributed by Wei Gao and Cedric Richard.
+% Remark: Code contributed by Wei Gao and Cedric Richard.
 %
 % This file is part of the Kernel Adaptive Filtering Toolbox for Matlab.
 % https://github.com/steven2358/kafbox/
 
-classdef klms_csl1
+classdef klms_csl1 < handle
     
     properties (GetAccess = 'public', SetAccess = 'private') % parameters
         eta = .1; % step-size
@@ -29,7 +29,6 @@ classdef klms_csl1
     end
     
     methods
-        
         function kaf = klms_csl1(parameters) % constructor
             if (nargin > 0) % copy valid parameters
                 for fn = fieldnames(parameters)',
@@ -49,7 +48,7 @@ classdef klms_csl1
             end
         end
         
-        function kaf = train(kaf,x,y) % train the algorithm
+        function train(kaf,x,y) % train the algorithm
             if size(kaf.dict,2)==0 % initialize
                 kd = kernel(x,x,kaf.kerneltype,kaf.kernelpar);
                 kaf.dict = x;

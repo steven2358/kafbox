@@ -47,9 +47,9 @@ classdef rls_profiler < rls
         
         %%
         
-        function obj = train_profiled(obj,x,y) % measures elapsed time of training
+        function train_profiled(obj,x,y) % measures elapsed time of training
             t1 = tic;
-            obj = obj.train(x,y);
+            obj.train(x,y);
             t2 = toc(t1);
             obj.elapsed = obj.elapsed + t2;
         end

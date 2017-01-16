@@ -9,7 +9,7 @@
 % This file is part of the Kernel Adaptive Filtering Toolbox for Matlab.
 % https://github.com/steven2358/kafbox/
 
-classdef kafbox_template
+classdef kafbox_template < handle
     
     properties (GetAccess = 'public', SetAccess = 'private') % parameters
         param1 = 1;
@@ -24,7 +24,6 @@ classdef kafbox_template
     end
     
     methods
-        
         function kaf = kafbox_template(parameters) % constructor
             if (nargin > 0) % copy valid parameters
                 for fn = fieldnames(parameters)',
@@ -44,7 +43,7 @@ classdef kafbox_template
             end
         end
         
-        function kaf = train(kaf,x,y) % train the algorithm
+        function train(kaf,x,y) % train the algorithm
             if size(kaf.dict,2)==0 % initialize
                 kaf.dict = x;
                 kaf.alpha = 0;
@@ -57,15 +56,12 @@ classdef kafbox_template
             end
             
         end
-        
     end
     
     methods (Static = true) % [helper functions go here]
-        
         function z = helper1(x,y)
             z = x*y;
             % operations
         end
-        
     end
 end

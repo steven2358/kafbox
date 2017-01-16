@@ -103,7 +103,7 @@ for ii=1:length(algorithms)
     fprintf('1 training step................\n')
     for i=1,
         try
-            kaf = kaf.train(x(i,:),y(i));
+            kaf.train(x(i,:),y(i));
         catch err
             me = err.stack(1);
             error(['Error in %s training: ',...
@@ -118,7 +118,7 @@ for ii=1:length(algorithms)
     fprintf('Training with repeated data....')
     for i=1:10,
         if ~mod(i,floor(N/10)), fprintf('.'); end
-        kaf = kaf.train(x(1,:),y(1));
+        kaf.train(x(1,:),y(1));
         % y_test = kaf.evaluate(x(i+1,:));
     end
     fprintf('\n')
@@ -126,7 +126,7 @@ for ii=1:length(algorithms)
     fprintf('Long training........')
     for i=1:N,
         if ~mod(i,floor(N/10)), fprintf('.'); end
-        kaf = kaf.train(x(i,:),y(i));
+        kaf.train(x(i,:),y(i));
         % y_test = kaf.evaluate(x(i+1,:));
     end
     fprintf('\n')

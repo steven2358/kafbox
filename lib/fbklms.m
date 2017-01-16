@@ -4,12 +4,12 @@
 % Conference on Emerging Technologies & Factory Automation (ETFA), Krakow,
 % Poland, Sept. 2012, http://dx.doi.org/10.1109/ETFA.2012.6489767
 %
-% Comment: code contributed by Dominik Rzepka
+% Remark: code contributed by Dominik Rzepka
 %
 % This file is part of the Kernel Adaptive Filtering Toolbox for Matlab.
 % https://github.com/steven2358/kafbox/
 
-classdef fbklms
+classdef fbklms < handle
     
     properties (GetAccess = 'public', SetAccess = 'private') % parameters
         nu = .05; % growth criterion threshold
@@ -25,8 +25,7 @@ classdef fbklms
         alpha = []; % expansion coefficients
     end
     
-    methods
-        
+    methods        
         function kaf = fbklms(parameters) % constructor
             if (nargin > 0) % copy valid parameters
                 for fn = fieldnames(parameters)',
@@ -46,7 +45,7 @@ classdef fbklms
             end
         end
         
-        function kaf = train(kaf,x,y) % train the algorithm
+        function train(kaf,x,y) % train the algorithm
             if size(kaf.dict,2)==0 % initialize
                 kaf.dict = x;
                 k = kernel(kaf.dict,x,kaf.kerneltype,kaf.kernelpar);
@@ -77,7 +76,6 @@ classdef fbklms
                     end
                 end
             end
-            
         end
     end
 end

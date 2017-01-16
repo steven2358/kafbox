@@ -42,7 +42,7 @@ for sim_ind = 1:numsim, % process simulations
             % set sweep parameter value
             eval(sprintf('algo_config.options.%s = sweep_val(config_ind);',sweep_par));
             
-            % perform one simulations for this configuration
+            % perform one simulation for this configuration
             simresults = kafbox_profiler_simulation(data,sim_opts,...
                 algo_config,sim_ind,outputdir);
             

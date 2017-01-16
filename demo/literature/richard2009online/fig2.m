@@ -1,4 +1,4 @@
-% Partly reproduces figure 2 from "Online Prediction of Time Series Data
+% Partially reproduces figure 2 from "Online Prediction of Time Series Data
 % With Kernels". (5 algorithms, 20 MC simulations.)
 %
 % Learning curves for KAP, KNLMS, NORMA and KRLS on a nonlinear system.
@@ -25,7 +25,7 @@ setups{1} = norma(struct('lambda',0.09,'tau',35,'eta',0.09,'tcoeff',-1/2,'kernel
 setups{2} = knlms(struct('eta',.01,'eps',9E-4,'mu0',0.3,'kerneltype',ktype,'kernelpar',kpar));
 setups{3} = kap(struct('p',2,'eta',.009,'eps',7e-2,'mu0',0.3,'kerneltype',ktype,'kernelpar',kpar));
 setups{4} = kap(struct('p',3,'eta',.01,'eps',7e-2,'mu0',0.3,'kerneltype',ktype,'kernelpar',kpar));
-setups{5} = aldkrls(struct('nu',.7,'kerneltype',ktype,'kernelpar',kpar));
+setups{5} = krls(struct('nu',.7,'kerneltype',ktype,'kernelpar',kpar));
 
 numsim = 20;
 
@@ -54,7 +54,7 @@ for sim_ind = 1:numsim,
             err = yref(n) - y_est;
             MSE(n,setup_ind) = MSE(n,setup_ind) + err.^2/numsim;
             
-            kaf = kaf.train(X(n,:),y(n)); % train with one input-output pair
+            kaf.train(X(n,:),y(n)); % train with one input-output pair
         end
         fprintf('\n');
     end

@@ -5,12 +5,12 @@
 % Conference on Acoustics Speech and Signal Processing (ICASSP), pp. 1882-
 % 1885, 14-19 March 2010, http://dx.doi.org/10.1109/ICASSP.2010.5495350
 %
-% Comment: label update is not implemented (mu=0)
+% Remark: label update is not implemented (mu=0)
 %
 % This file is part of the Kernel Adaptive Filtering Toolbox for Matlab.
 % https://github.com/steven2358/kafbox/
 
-classdef fbkrls
+classdef fbkrls < handle
     
     properties (GetAccess = 'public', SetAccess = 'private')
         M = 100; % dictionary size
@@ -27,7 +27,6 @@ classdef fbkrls
     end
     
     methods
-        
         function kaf = fbkrls(parameters) % constructor
             if (nargin > 0) % copy valid parameters
                 for fn = fieldnames(parameters)',
@@ -47,7 +46,7 @@ classdef fbkrls
             end
         end
         
-        function kaf = train(kaf,x,y) % train the algorithm
+        function train(kaf,x,y) % train the algorithm
             kaf.dict = [kaf.dict; x]; % grow
             kaf.dicty = [kaf.dicty; y];	% grow
             k = kernel(kaf.dict,x,kaf.kerneltype,kaf.kernelpar);
@@ -65,11 +64,9 @@ classdef fbkrls
             
             kaf.alpha = kaf.Kinv*kaf.dicty;
         end
-        
     end
     
     methods (Static = true)
-        
         function Kinv = grow_kernel_matrix(Kinv,k,c)
             % calculate inverse of expanded matrix K = [K_inv b;b' d]
             b = k(1:end-1);

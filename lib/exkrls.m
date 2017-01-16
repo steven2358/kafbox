@@ -5,13 +5,13 @@
 % 57, no. 10, pp. 3801-3814, Oct. 2009,
 % http://dx.doi.org/10.1109/TSP.2009.2022007
 %
-% Comment: implementation of the tracking model, includes a maximum
+% Remark: implementation of the tracking model, includes a maximum
 % dictionary size M
 %
 % This file is part of the Kernel Adaptive Filtering Toolbox for Matlab.
 % https://github.com/steven2358/kafbox/
 
-classdef exkrls
+classdef exkrls < handle
     
     properties (GetAccess = 'public', SetAccess = 'private')
         alphaf = .999; % state forgetting factor, "alpha" in publication
@@ -24,7 +24,7 @@ classdef exkrls
     end
     
     properties (GetAccess = 'public', SetAccess = 'private')
-        mem = []; % memory
+        dict = []; % dictionary
         rho = [];
         Q = [];
         i = 0; % iteration number;
@@ -32,7 +32,6 @@ classdef exkrls
     end
     
     methods
-        
         function kaf = exkrls(parameters) % constructor
             allpars = {'alphaf','lambda','beta','q','kerneltype','kernelpar','M'};
             if (nargin > 0)
@@ -44,39 +43,38 @@ classdef exkrls
         end
         
         function y_est = evaluate(kaf,x) % evaluate the algorithm
-            if size(kaf.mem,1)>0
-                k = kernel(kaf.mem,x,kaf.kerneltype,kaf.kernelpar);
+            if size(kaf.dict,1)>0
+                k = kernel(kaf.dict,x,kaf.kerneltype,kaf.kernelpar);
                 y_est = k'*kaf.alpha;
             else
                 y_est = zeros(size(x,1),1);
             end
         end
         
-        function kaf = train(kaf,x,y) % train the algorithm
+        function train(kaf,x,y) % train the algorithm
             kaf.i = kaf.i + 1;
-            k = kernel([kaf.mem; x],x,kaf.kerneltype,kaf.kernelpar);
+            k = kernel([kaf.dict; x],x,kaf.kerneltype,kaf.kernelpar);
             kt = k(1:end-1);
             ktt = k(end);
             if numel(kt)==0 % initialize
                 kaf.alpha = kaf.alphaf*y/(kaf.lambda*kaf.beta+ktt);
                 kaf.rho = kaf.lambda*kaf.beta/(kaf.alphaf^2*kaf.beta + kaf.lambda*kaf.q);
                 kaf.Q = kaf.alphaf^2/((kaf.beta*kaf.lambda+ktt)*(kaf.alphaf^2+kaf.beta*kaf.lambda*kaf.q));
-                kaf.mem = x;
+                kaf.dict = x;
             else
-                if (size(kaf.mem,1)<kaf.M), % avoid infinite growth
+                if (size(kaf.dict,1)<kaf.M), % avoid infinite growth
                     z = kaf.Q*kt;
                     r = kaf.beta^kaf.i*kaf.rho + ktt - kt'*z;
                     err = y - kt'*kaf.alpha;
                     
                     kaf.alpha = kaf.alphaf*[kaf.alpha - z*err/r; err/r]; % grow
-                    kaf.mem = [kaf.mem; x];
+                    kaf.dict = [kaf.dict; x];
                     dummy = kaf.alphaf^2 + kaf.beta^kaf.i*kaf.q*kaf.rho;
                     kaf.rho = kaf.rho/dummy;
                     kaf.Q = kaf.alphaf^2/(r*dummy)*...
                         [kaf.Q*r + z*z', -z; -z', 1];
                 end
             end
-        end
-        
+        end        
     end
 end

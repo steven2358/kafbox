@@ -5,12 +5,12 @@
 % September 2013, Pages 2759-2770,
 % http://dx.doi.org/10.1016/j.sigpro.2013.02.012.
 %
-% Comment: significance calculation only implemented for Gaussian kernel.
+% Remark: significance calculation only implemented for Gaussian kernel.
 %
 % This file is part of the Kernel Adaptive Filtering Toolbox for Matlab.
 % https://github.com/steven2358/kafbox/
 
-classdef qklms_fb
+classdef qklms_fb < handle
     
     properties (GetAccess = 'public', SetAccess = 'private')
         eta = .9; % learning rate
@@ -22,7 +22,7 @@ classdef qklms_fb
     end
     
     properties (GetAccess = 'public', SetAccess = 'private')
-        mem = []; % codebook
+        dict = []; % codebook
         alpha = []; % expansion coefficients
         E = []; % significance vector (~ importance)
         lambda = []; % influence vector (~ how many samples are quantized
@@ -30,7 +30,6 @@ classdef qklms_fb
     end
     
     methods
-        
         function kaf = qklms_fb(parameters) % constructor
             if (nargin > 0) % copy valid parameters
                 for fn = fieldnames(parameters)',
@@ -42,23 +41,23 @@ classdef qklms_fb
         end
         
         function y_est = evaluate(kaf,x) % evaluate the algorithm
-            if size(kaf.mem,1)>0
-                k = kernel(kaf.mem,x,kaf.kerneltype,kaf.kernelpar);
+            if size(kaf.dict,1)>0
+                k = kernel(kaf.dict,x,kaf.kerneltype,kaf.kernelpar);
                 y_est = k'*kaf.alpha;
             else
                 y_est = zeros(size(x,1),1);
             end
         end
         
-        function kaf = train(kaf,x,y) % train the algorithm
+        function train(kaf,x,y) % train the algorithm
             y_est = kaf.evaluate(x);
             err = y - y_est;
             
-            m = size(kaf.mem,1);
+            m = size(kaf.dict,1);
             if m==0
                 d2 = kaf.epsu^2 + 1; % force dictionary growth
             else
-                [d2,j] = min(sum((kaf.mem - repmat(x,m,1)).^2,2));
+                [d2,j] = min(sum((kaf.dict - repmat(x,m,1)).^2,2));
             end
             
             c1 = pi*kaf.kernelpar^2/2; % pre-calculate
@@ -71,12 +70,12 @@ classdef qklms_fb
                     inds = 1:m;
                     inds(j) = [];
                     kaf.E(inds) = kaf.beta*kaf.E(inds) + c1*abs(kaf.alpha(inds)).* ...
-                        kernel(kaf.mem(inds,:),kaf.mem(j,:),kaf.kerneltype,kaf.kernelpar);
+                        kernel(kaf.dict(inds,:),kaf.dict(j,:),kaf.kerneltype,kaf.kernelpar);
                 end
                 kaf.E(j) = abs(1 + kaf.eta*err/kaf.alpha(j)) * ...
                     kaf.beta*kaf.E(j) + ...
                     abs(kaf.alpha(j) + kaf.eta*err) * ...
-                    c1*kernel(kaf.mem(j,:),kaf.mem(j,:),kaf.kerneltype,kaf.kernelpar);
+                    c1*kernel(kaf.dict(j,:),kaf.dict(j,:),kaf.kerneltype,kaf.kernelpar);
                 
                 % update influence
                 kaf.lambda = kaf.beta*kaf.lambda;
@@ -84,13 +83,13 @@ classdef qklms_fb
                 
             else % new basis not under quantization threshold
                 if m < kaf.M % still room for extra centres
-                    kaf.mem = [kaf.mem; x]; % add to codebook
+                    kaf.dict = [kaf.dict; x]; % add to codebook
                     kaf.alpha = [kaf.alpha; kaf.eta*err];
                     
                     % update significance for addition of m+1-th centre (15)
                     kaf.E(m+1,1) = 0;
                     kaf.E = kaf.beta*kaf.E + abs(kaf.alpha(m+1)) * ...
-                        kernel(kaf.mem,kaf.mem(m+1,:),kaf.kerneltype,kaf.kernelpar);
+                        kernel(kaf.dict,kaf.dict(m+1,:),kaf.kerneltype,kaf.kernelpar);
                     
                     % update influence
                     kaf.lambda = kaf.beta*kaf.lambda;
@@ -102,10 +101,10 @@ classdef qklms_fb
                     
                     % update significance for removing L-th centre (17)
                     kaf.E = kaf.E - kaf.lambda(L) * c1*abs(kaf.alpha) .* ...
-                        kernel(kaf.mem,kaf.mem(L,:),kaf.kerneltype,kaf.kernelpar);
+                        kernel(kaf.dict,kaf.dict(L,:),kaf.kerneltype,kaf.kernelpar);
                     
                     % prune
-                    kaf.mem(L,:) = [];
+                    kaf.dict(L,:) = [];
                     kaf.alpha(L) = [];
                     kaf.E(L) = [];
                     kaf.lambda(L) = [];
@@ -115,13 +114,13 @@ classdef qklms_fb
                     err = y - y_est;
                     
                     % grow
-                    kaf.mem = [kaf.mem; x];
+                    kaf.dict = [kaf.dict; x];
                     kaf.alpha = [kaf.alpha; kaf.eta*err];
                     
                     % update significance for addition of m-th centre (15)
                     kaf.E(m,1) = 0;
                     kaf.E = kaf.beta*kaf.E + abs(kaf.alpha(m)) * ...
-                        kernel(kaf.mem,kaf.mem(m,:),kaf.kerneltype,kaf.kernelpar);
+                        kernel(kaf.dict,kaf.dict(m,:),kaf.kerneltype,kaf.kernelpar);
                     
                     % update influence
                     kaf.lambda = kaf.beta*kaf.lambda;

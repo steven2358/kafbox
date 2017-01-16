@@ -4,7 +4,7 @@
 % This file is part of the Kernel Adaptive Filtering Toolbox for Matlab.
 % https://github.com/steven2358/kafbox/
 
-classdef aldkrls_profiler < aldkrls
+classdef krls_profiler < krls
     
     properties (GetAccess = 'public', SetAccess = 'private')
         elapsed = 0; % elapsed time
@@ -13,9 +13,9 @@ classdef aldkrls_profiler < aldkrls
     
     methods
         
-        function kaf = aldkrls_profiler(parameters) % constructor
+        function kaf = krls_profiler(parameters) % constructor
             if nargin<1, parameters = struct(); end
-            kaf = kaf@aldkrls(parameters);
+            kaf = kaf@krls(parameters);
         end
         
         function flops = lastflops(kaf) % flops for last iteration
@@ -86,10 +86,10 @@ classdef aldkrls_profiler < aldkrls
         
         %%
 
-        function kaf = train_profiled(kaf,x,y)
+        function train_profiled(kaf,x,y)
             kaf.prev_dict_size = size(kaf.dict,1);
             t1 = tic;
-            kaf = kaf.train(x,y);
+            kaf.train(x,y);
             t2 = toc(t1);
             kaf.elapsed = kaf.elapsed + t2;
         end

@@ -5,7 +5,7 @@
 
 function kafbox_quickrun(kafname,datasetname,kafopt,dataopt)
 
-rs = 1; randn('state',rs); rand('state',rs); %#ok<RAND>
+rng(1)
 
 t1 = tic;
 if nargin > 2,
@@ -35,7 +35,7 @@ for n=1:N,
         MSE(n) = mean((y_test(:,2)-y_est).^2);
     end
     
-    kaf = kaf.train(X(n,:),y(n)); % train with one input-output pair
+    kaf.train(X(n,:),y(n)); % train with one input-output pair
 end
 fprintf(' %.2fs. Final MSE=%3.2fdB.\n',toc(t1),10*log10(mean(MSE(N-500:N,1))));
 

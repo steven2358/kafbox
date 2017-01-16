@@ -6,7 +6,7 @@
 % This file is part of the Kernel Adaptive Filtering Toolbox for Matlab.
 % https://github.com/steven2358/kafbox/
 
-classdef rls
+classdef rls < handle
     
     properties (GetAccess = 'public', SetAccess = 'private')
         lambda = .99; % forgetting factor
@@ -14,7 +14,7 @@ classdef rls
     end
     
     properties (GetAccess = 'public', SetAccess = 'private')
-        P = []; % inverse correlation matrix
+        P = []; % inverse autocorrelation matrix
         w = []; % filter coefficients
     end
     
@@ -38,17 +38,17 @@ classdef rls
             end
         end
         
-        function obj = train(obj,x,y) % train the algorithm
+        function train(obj,x,y) % train the algorithm
             if numel(obj.w)==0, % initialize
                 m = length(x);
                 obj.w = zeros(m,1);
                 obj.P = obj.c\eye(m);
             end
             
-            k = obj.P*x'/(obj.lambda+x*obj.P*x');
-            z = y - x*obj.w;
-            obj.w = obj.w + k*z;
-            obj.P = obj.lambda\(obj.P - k*x*obj.P);
+            g = obj.P*x'/(obj.lambda+x*obj.P*x'); % gain vector
+            err = y - x*obj.w; % instantaneous error
+            obj.w = obj.w + g*err; % update filter coefficients
+            obj.P = obj.lambda\(obj.P - g*x*obj.P); % update inv. autocorr.
         end
         
     end

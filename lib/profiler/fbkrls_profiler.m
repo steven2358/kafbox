@@ -85,10 +85,10 @@ classdef fbkrls_profiler < fbkrls
         
         %%
         
-        function kaf = train_profiled(kaf,x,y)
+        function train_profiled(kaf,x,y)
             kaf.prev_dict_size = size(kaf.dict,1);
             t1 = tic;
-            kaf = kaf.train(x,y);
+            kaf.train(x,y);
             t2 = toc(t1);
             kaf.elapsed = kaf.elapsed + t2;
         end

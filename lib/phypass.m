@@ -4,13 +4,13 @@
 % Filtering Algorithm Based on Parallel Hyperslab Projection Along Affine
 % Subspace," in Proc. ICASSP, May. 2013, pp.3557-3561.
 %
-% Comment: version01, August 2013
+% Remark: version01, August 2013
 % Contributor for this code: Masa-aki Takizawa
 %
 % This file is part of the Kernel Adaptive Filtering Toolbox for Matlab.
 % https://github.com/steven2358/kafbox/
 
-classdef phypass
+classdef phypass < handle
     
     properties (GetAccess = 'public', SetAccess = 'private')
         mu = 0.5; % step size
@@ -30,7 +30,6 @@ classdef phypass
     end
     
     methods
-        
         function kaf = phypass(parameters) % constructor
             if (nargin > 0) % copy valid parameters
                 for fn = fieldnames(parameters)',
@@ -50,7 +49,7 @@ classdef phypass
             end
         end
         
-        function kaf = train(kaf,x,y) % train the algorithm
+        function train(kaf,x,y) % train the algorithm
             if (length(kaf.d) < kaf.p) % grow the memory
                 kaf.mem = [kaf.mem; x];
                 kaf.d = [kaf.d; y];

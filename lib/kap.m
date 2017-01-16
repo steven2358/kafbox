@@ -3,14 +3,14 @@
 % C. Richard, J.C.M. Bermudez, and P. Honeine, "Online Prediction of Time
 % Series Data With Kernels," IEEE Transactions on Signal Processing,
 % vol. 57, no. 3, pp. 1058-1067, March 2009,
-% http://dx.doi.org/10.1109/TSP.2008.2009895 
+% http://dx.doi.org/10.1109/TSP.2008.2009895
 %
-% Comment: memories are initialized empty in this implementation
+% Remark: memories are initialized empty in this implementation
 %
 % This file is part of the Kernel Adaptive Filtering Toolbox for Matlab.
 % https://github.com/steven2358/kafbox/
 
-classdef kap
+classdef kap < handle
     
     properties (GetAccess = 'public', SetAccess = 'private')
         mu0 = .95; % coherence criterion threshold
@@ -30,7 +30,6 @@ classdef kap
     end
     
     methods
-        
         function kaf = kap(parameters) % constructor
             if (nargin > 0) % copy valid parameters
                 for fn = fieldnames(parameters)',
@@ -50,7 +49,7 @@ classdef kap
             end
         end
         
-        function kaf = train(kaf,x,y) % train the algorithm
+        function train(kaf,x,y) % train the algorithm
             if (length(kaf.memy) < kaf.p)
                 kaf.memx = [kaf.memx; x]; % grow the memory
                 kaf.memy = [kaf.memy; y]; % grow the memory
@@ -80,6 +79,5 @@ classdef kap
                 (kaf.eps*eye(size(H,1)) + H*H')*...
                 (kaf.memy - H*kaf.alpha);
         end
-        
     end
 end

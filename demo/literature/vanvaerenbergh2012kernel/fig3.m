@@ -1,5 +1,6 @@
-% Partly reproduces figure 3 from "Kernel Recursive Least-Squares Tracker
-% for Time-Varying Regression". (Only 3 algorithms, only 1 MC simulation.)
+% Partially reproduces figure 3 from "Kernel Recursive Least-Squares
+% Tracker for Time-Varying Regression". (Only 3 algorithms, only 1 MC
+% simulation.)
 %
 % MSE performance comparison of different tracking algorithms on a
 % communications channel that shows an abrupt change at iteration 500.
@@ -88,7 +89,7 @@ for setup_ind=1:length(setups)
         err = Y_test - Y_est;
         MSE(n,setup_ind) = mean(err.^2);
         
-        kaf = kaf.train(s_train(n,:),Y(n)); % train with one input-output pair
+        kaf.train(s_train(n,:),Y(n)); % train with one input-output pair
     end
     fprintf(' %.2f seconds\n',toc(t2));
 end

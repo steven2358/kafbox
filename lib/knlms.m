@@ -5,12 +5,12 @@
 % vol. 57, no. 3, pp. 1058-1067, March 2009,
 % http://dx.doi.org/10.1109/TSP.2008.2009895
 %
-% Comment: memories are initialized empty in this implementation
+% Remark: memories are initialized empty in this implementation
 %
 % This file is part of the Kernel Adaptive Filtering Toolbox for Matlab.
 % https://github.com/steven2358/kafbox/
 
-classdef knlms
+classdef knlms < handle
     
     properties (GetAccess = 'public', SetAccess = 'private') % parameters
         eta = .5; % step size
@@ -27,7 +27,6 @@ classdef knlms
     end
     
     methods
-        
         function kaf = knlms(parameters) % constructor
             if (nargin > 0) % copy valid parameters
                 for fn = fieldnames(parameters)',
@@ -47,7 +46,7 @@ classdef knlms
             end
         end
         
-        function kaf = train(kaf,x,y) % train the algorithm
+        function train(kaf,x,y) % train the algorithm
             if size(kaf.dict,2)==0 % initialize
                 k = kernel(x,x,kaf.kerneltype,kaf.kernelpar);
                 kaf.dict = x;
@@ -60,14 +59,13 @@ classdef knlms
                 if (max(C) <= kaf.mu0), % coherence criterion
                     kaf.dict = [kaf.dict; x]; % order increase
                     kaf.modict = [kaf.modict; sqrt(kx)];
-                    kaf.alpha = [kaf.alpha; 0]; % order increase
+                    kaf.alpha = [kaf.alpha; 0]; % reserve spot
                 end
             end
             
-            h = kernel(x,kaf.dict,kaf.kerneltype,kaf.kernelpar);
-            kaf.alpha = kaf.alpha + ...
-                kaf.eta / (kaf.eps + h*h') * (y - h*kaf.alpha) * h';
+            k = kernel(kaf.dict,x,kaf.kerneltype,kaf.kernelpar);
+            kaf.alpha = kaf.alpha + ... % update coefficients 
+                kaf.eta / (kaf.eps + k'*k) * (y - k'*kaf.alpha) * k;
         end
-        
     end
 end

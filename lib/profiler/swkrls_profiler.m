@@ -26,7 +26,7 @@ classdef swkrls_profiler < swkrls
                     'sum', m2^2 + m2^2 - m2 + m2^2 + m^2 - m, ...
                     'mult', m2^2 + m2 + m2^2 + m^2, ...
                     'div', 1, ...
-                   sprintf('%s_kernel',kaf.kerneltype), [m1,1,size(kaf.dict,2)]);
+                    sprintf('%s_kernel',kaf.kerneltype), [m1,1,size(kaf.dict,2)]);
             else
                 m1 = m + 1;
                 m2 = m;
@@ -75,10 +75,10 @@ classdef swkrls_profiler < swkrls
         
         %%
         
-        function kaf = train_profiled(kaf,x,y)
+        function train_profiled(kaf,x,y)
             kaf.prev_dict_size = size(kaf.dict,1);
             t1 = tic;
-            kaf = kaf.train(x,y);
+            kaf.train(x,y);
             t2 = toc(t1);
             kaf.elapsed = kaf.elapsed + t2;
         end

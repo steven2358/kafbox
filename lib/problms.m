@@ -8,7 +8,7 @@
 % This file is part of the Kernel Adaptive Filtering Toolbox for Matlab.
 % https://github.com/steven2358/kafbox/
 
-classdef problms
+classdef problms < handle
     
     properties (GetAccess = 'public', SetAccess = 'private')
         sigma2_n = 1E-6; % variance of observation noise
@@ -22,12 +22,11 @@ classdef problms
     end
     
     methods
-        
-        function kaf = problms(parameters) % constructor
+        function obj = problms(parameters) % constructor
             if (nargin > 0) % copy valid parameters
                 for fn = fieldnames(parameters)',
-                    if ismember(fn,fieldnames(kaf)),
-                        kaf.(fn{1}) = parameters.(fn{1});
+                    if ismember(fn,fieldnames(obj)),
+                        obj.(fn{1}) = parameters.(fn{1});
                     end
                 end
             end
@@ -41,7 +40,7 @@ classdef problms
             end
         end
         
-        function obj = train(obj,x,y) % train the algorithm
+        function train(obj,x,y) % train the algorithm
             m = length(x);
             if numel(obj.w)==0, % initialize
                 obj.w = zeros(m,1);

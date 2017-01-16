@@ -8,9 +8,10 @@
 % This file is part of the Kernel Adaptive Filtering Toolbox for Matlab.
 % https://github.com/steven2358/kafbox/
 
-classdef rffklms
+classdef rffklms < handle
     
     properties (GetAccess = 'public', SetAccess = 'private') % parameters
+        seed = 1;
         mu = .9; % step size
         D = 1000; % RFF dimension
         kerneltype = 'gauss'; % kernel type
@@ -23,8 +24,7 @@ classdef rffklms
         b = 0; %
     end
     
-    methods
-        
+    methods        
         function kaf = rffklms(parameters) % constructor
             if (nargin > 0) % copy valid parameters
                 for fn = fieldnames(parameters)',
@@ -44,8 +44,10 @@ classdef rffklms
             end
         end
         
-        function kaf = train(kaf,x,y) % train the algorithm
+        function train(kaf,x,y) % train the algorithm
             if ~numel(kaf.omega)
+                rng('default');
+                rng(kaf.seed);
                 kaf.omega = 1/kaf.kernelpar*randn(kaf.D,size(x,2));
                 kaf.b = 2*pi*rand(kaf.D,1);
                 kaf.Omega = zeros(kaf.D,1);
@@ -55,7 +57,6 @@ classdef rffklms
             y_est = kaf.Omega'*Psi/kaf.D;
             err = y - y_est;
             kaf.Omega = kaf.Omega + kaf.mu*err*Psi;
-        end
-        
+        end        
     end
 end

@@ -2,14 +2,14 @@
 %
 % J. Kivinen, A.J. Smola, and R.C. Williamson, "Online learning with
 % kernels," IEEE Transactions on Signal Processing, vol. 52, no. 8,
-% pp. 2165-2176, Aug. 2004, http://dx.doi.org/10.1109/TSP.2004.830991   
+% pp. 2165-2176, Aug. 2004, http://dx.doi.org/10.1109/TSP.2004.830991
 %
-% Comment: using squared loss function
+% Remark: using squared loss function
 %
 % This file is part of the Kernel Adaptive Filtering Toolbox for Matlab.
 % https://github.com/steven2358/kafbox/
 
-classdef norma
+classdef norma < handle
     
     properties (GetAccess = 'public', SetAccess = 'private')
         tau = 500; % memory size (terms retained in truncation)
@@ -21,12 +21,11 @@ classdef norma
     end
     
     properties (GetAccess = 'public', SetAccess = 'private')
-        mem = []; % memory
+        dict = []; % dictionary
         alpha = []; % expansion coefficients
     end
     
-    methods
-        
+    methods        
         function kaf = norma(parameters) % constructor
             if (nargin > 0) % copy valid parameters
                 for fn = fieldnames(parameters)',
@@ -38,27 +37,26 @@ classdef norma
         end
         
         function y_est = evaluate(kaf,x) % evaluate the algorithm
-            if size(kaf.mem,1)>0
-                k = kernel(kaf.mem,x,kaf.kerneltype,kaf.kernelpar);
+            if size(kaf.dict,1)>0
+                k = kernel(kaf.dict,x,kaf.kerneltype,kaf.kernelpar);
                 y_est = k'*kaf.alpha;
             else
                 y_est = zeros(size(x,1),1);
             end
         end
         
-        function kaf = train(kaf,x,y) % train the algorithm
+        function train(kaf,x,y) % train the algorithm
             kaf.alpha = (1-kaf.lambda*kaf.eta)*kaf.alpha;
             
             y_est = kaf.evaluate(x);
             err = y - y_est;
             
             kaf.alpha = [kaf.alpha; kaf.eta*err]; % grow
-            kaf.mem = [kaf.mem; x]; % grow
+            kaf.dict = [kaf.dict; x]; % grow
             if length(kaf.alpha)>kaf.tau
                 kaf.alpha(1) = []; % prune
-                kaf.mem(1,:) = []; % prune
+                kaf.dict(1,:) = []; % prune
             end
         end
-        
-    end    
+    end
 end
