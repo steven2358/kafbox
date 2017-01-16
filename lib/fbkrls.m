@@ -27,7 +27,6 @@ classdef fbkrls < handle
     end
     
     methods
-        
         function kaf = fbkrls(parameters) % constructor
             if (nargin > 0) % copy valid parameters
                 for fn = fieldnames(parameters)',
@@ -65,11 +64,9 @@ classdef fbkrls < handle
             
             kaf.alpha = kaf.Kinv*kaf.dicty;
         end
-        
     end
     
     methods (Static = true)
-        
         function Kinv = grow_kernel_matrix(Kinv,k,c)
             % calculate inverse of expanded matrix K = [K_inv b;b' d]
             b = k(1:end-1);

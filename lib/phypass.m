@@ -30,7 +30,6 @@ classdef phypass < handle
     end
     
     methods
-        
         function kaf = phypass(parameters) % constructor
             if (nargin > 0) % copy valid parameters
                 for fn = fieldnames(parameters)',

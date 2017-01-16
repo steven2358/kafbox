@@ -17,7 +17,6 @@ classdef lms < handle
     end
     
     methods
-        
         function obj = lms(parameters) % constructor
             if (nargin > 0) % copy valid parameters
                 for fn = fieldnames(parameters)',

@@ -23,6 +23,9 @@ kaf = krls(struct('nu',1E-4,'kerneltype','gauss','kernelpar',32)); % achieves -4
 % kaf = phypass(struct('mu',0.6,'s',15,'sigma',0.95,'p',8,'omega',1/8,'kerneltype','gauss','kernelpar',32)); % achieves -15.05 dB
 % kaf = qklms(struct('eta',0.6,'epsu',2,'kerneltype','gauss','kernelpar',32)); % achieves -10.73 dB
 % kaf = qklms_fb(struct('M',300,'eta',0.6,'epsu',2,'kerneltype','gauss','kernelpar',32)); % achieves -10.73 dB
+% kaf = rffklms(struct('mu',.9,'D',1000,'kerneltype','gauss','kernelpar',32)); % achieves -10.86 dB
+% kaf = nlkapa(struct('eta',.09,'eps',1E-8,'lambda',1E-6,'M',1000,'P',20,'kerneltype','gauss','kernelpar',32)); % achieves -7.89 dB
+% kaf = lkapa(struct('eta',.09,'lambda',1E-6,'M',1000,'P',20,'kerneltype','gauss','kernelpar',32)); % achieves -7.62 dB
 % kaf = lms(struct('mu',1E-4)); % achieves -5.98 dB
 % kaf = klms(struct('eta',0.1,'M',5000,'kerneltype','gauss','kernelpar',32)); % achieves -3.07 dB
 % kaf = memory_cell(); % achieves -2.37 dB
@@ -33,6 +36,7 @@ kaf = krls(struct('nu',1E-4,'kerneltype','gauss','kernelpar',32)); % achieves -4
 % kaf = klms_csl1(struct('mu0',0.95,'eta',0.1,'lambda',5E-4,'kerneltype','gauss','kernelpar',32)); % achieves -1.41 dB
 % kaf = klms_csal1(struct('mu0',0.95,'eta',0.1,'lambda',5E-4,'kerneltype','gauss','kernelpar',32)); % achieves 3.31 dB
 % kaf = norma(struct('lambda',1E-4,'tau',500,'eta',0.1,'kerneltype','gauss','kernelpar',32)); % achieves 10.96 dB
+% kaf = kapsm(struct('M',200,'Delta',10,'mu',1.8,'Q',10,'loss','l2','loss_param',2,'kerneltype','gauss','kernelpar',32)); % achieves 21.29 dB
 
 % kaf = kapsm(struct('epsilon',10^(-10),'Delta',5,...
 %     'thresh1',0.1,'thresh2',0.1,'Q',200,...
@@ -63,7 +67,7 @@ tic
     'embedding',embedding));
 N = size(X,1);
 
-fprintf('Running prediction algorithm')
+fprintf('Running prediction algorithm %s',upper(class(kaf)))
 Y_est = zeros(N,1);
 for i=1:N,
     if ~mod(i,floor(N/10)), fprintf('.'); end

@@ -30,7 +30,6 @@ classdef qklms_fb < handle
     end
     
     methods
-        
         function kaf = qklms_fb(parameters) % constructor
             if (nargin > 0) % copy valid parameters
                 for fn = fieldnames(parameters)',

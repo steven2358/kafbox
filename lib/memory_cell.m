@@ -10,16 +10,18 @@ classdef memory_cell < handle
     end
     
     methods
-        function y_est = evaluate(kaf,x) % evaluate the algorithm
-            if ~isempty(kaf.y_mem)
-                y_est = repmat(kaf.y_mem,size(x,1),1);
+        % evaluate the algorithm
+        function y_est = evaluate(obj,x)
+            if ~isempty(obj.y_mem)
+                y_est = repmat(obj.y_mem,size(x,1),1);
             else
                 y_est = zeros(size(x,1),1);
             end
         end
         
-        function train(kaf,~,y) % train the algorithm
-            kaf.y_mem = y;
+        % train the algorithm
+        function train(obj,~,y)
+            obj.y_mem = y;
         end
     end
 end

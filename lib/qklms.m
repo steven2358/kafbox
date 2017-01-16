@@ -23,7 +23,6 @@ classdef qklms < handle
     end
     
     methods
-        
         function kaf = qklms(parameters) % constructor
             if (nargin > 0) % copy valid parameters
                 for fn = fieldnames(parameters)',
@@ -46,7 +45,7 @@ classdef qklms < handle
         function train(kaf,x,y) % train the algorithm
             y_est = kaf.evaluate(x); % evaluate function output
             err = y - y_est; % instantaneous error
-          
+            
             m = size(kaf.dict,1);
             if m==0
                 d2 = kaf.epsu^2 + 1; % force addition of initial base
@@ -60,6 +59,5 @@ classdef qklms < handle
                 kaf.alpha = [kaf.alpha; kaf.eta*err]; % add new coefficient
             end
         end
-        
-    end    
+    end
 end

@@ -18,7 +18,6 @@ classdef nlms < handle
     end
     
     methods
-        
         function obj = nlms(parameters) % constructor
             if (nargin > 0) % copy valid parameters
                 for fn = fieldnames(parameters)',
@@ -46,6 +45,5 @@ classdef nlms < handle
             err = (y-x*obj.w);
             obj.w = obj.w + obj.mu/(obj.eps + x*x')*x'*err;
         end
-        
     end
 end

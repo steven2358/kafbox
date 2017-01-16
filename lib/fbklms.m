@@ -25,8 +25,7 @@ classdef fbklms < handle
         alpha = []; % expansion coefficients
     end
     
-    methods
-        
+    methods        
         function kaf = fbklms(parameters) % constructor
             if (nargin > 0) % copy valid parameters
                 for fn = fieldnames(parameters)',
@@ -77,7 +76,6 @@ classdef fbklms < handle
                     end
                 end
             end
-            
         end
     end
 end

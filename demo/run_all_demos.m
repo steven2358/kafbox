@@ -5,8 +5,9 @@
 % This file is part of the Kernel Adaptive Filtering Toolbox for Matlab.
 % https://github.com/steven2358/kafbox
 
-clear
+clc
 close all
+clear
 
 % get list of demo scripts
 fdir = fileparts(which('run_all_demos.m'));

@@ -24,7 +24,6 @@ classdef kafbox_template < handle
     end
     
     methods
-        
         function kaf = kafbox_template(parameters) % constructor
             if (nargin > 0) % copy valid parameters
                 for fn = fieldnames(parameters)',
@@ -57,15 +56,12 @@ classdef kafbox_template < handle
             end
             
         end
-        
     end
     
     methods (Static = true) % [helper functions go here]
-        
         function z = helper1(x,y)
             z = x*y;
             % operations
         end
-        
     end
 end

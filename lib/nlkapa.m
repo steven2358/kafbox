@@ -31,7 +31,6 @@ classdef nlkapa < handle
     end
     
     methods
-        
         function kaf = nlkapa(parameters) % constructor
             if (nargin > 0) % copy valid parameters
                 for fn = fieldnames(parameters)',
@@ -88,6 +87,5 @@ classdef nlkapa < handle
                 end
             end
         end
-        
     end
 end

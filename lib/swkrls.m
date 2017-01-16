@@ -26,7 +26,6 @@ classdef swkrls < handle
     end
     
     methods
-        
         function kaf = swkrls(parameters) % constructor
             if (nargin > 0) % copy valid parameters
                 for fn = fieldnames(parameters)',
@@ -60,11 +59,9 @@ classdef swkrls < handle
             
             kaf.alpha = kaf.Kinv*kaf.dicty;
         end
-        
     end
     
     methods (Static = true)
-        
         function Kinv = grow_kernel_matrix(Kinv,k,c)
             % calculate inverse of expanded matrix K = [K_inv b;b' d]
             b = k(1:end-1);
@@ -88,6 +85,5 @@ classdef swkrls < handle
             e = Kinv(1,1);
             Kinv = G - f*f'/e;
         end
-        
     end
 end

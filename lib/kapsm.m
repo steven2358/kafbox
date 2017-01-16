@@ -33,7 +33,6 @@ classdef kapsm < handle
     end
     
     methods
-        
         function kaf = kapsm(parameters) % constructor
             if (nargin > 0) % copy valid parameters
                 for fn = fieldnames(parameters)',
@@ -153,7 +152,5 @@ classdef kapsm < handle
                 end
             end
         end
-        
     end
-    
 end

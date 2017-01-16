@@ -28,7 +28,6 @@ classdef mxklms < handle
     end
     
     methods
-        
         function kaf = mxklms(parameters) % constructor
             if (nargin > 0) % copy valid parameters
                 for fn = fieldnames(parameters)',

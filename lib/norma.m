@@ -25,8 +25,7 @@ classdef norma < handle
         alpha = []; % expansion coefficients
     end
     
-    methods
-        
+    methods        
         function kaf = norma(parameters) % constructor
             if (nargin > 0) % copy valid parameters
                 for fn = fieldnames(parameters)',
@@ -59,6 +58,5 @@ classdef norma < handle
                 kaf.dict(1,:) = []; % prune
             end
         end
-        
     end
 end

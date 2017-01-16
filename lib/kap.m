@@ -30,7 +30,6 @@ classdef kap < handle
     end
     
     methods
-        
         function kaf = kap(parameters) % constructor
             if (nargin > 0) % copy valid parameters
                 for fn = fieldnames(parameters)',
@@ -80,6 +79,5 @@ classdef kap < handle
                 (kaf.eps*eye(size(H,1)) + H*H')*...
                 (kaf.memy - H*kaf.alpha);
         end
-        
     end
 end

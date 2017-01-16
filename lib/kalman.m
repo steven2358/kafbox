@@ -28,7 +28,6 @@ classdef kalman < handle
     end
     
     methods
-        
         function obj = kalman(parameters) % constructor
             if (nargin > 0) % copy valid parameters
                 for fn = fieldnames(parameters)',
@@ -50,7 +49,6 @@ classdef kalman < handle
         end
         
         function train(obj,H,z,u) % train the algorithm
-            
             if isempty(obj.x_mean) % initialize
                 [n,m] = size(H); % measurement and state dimensions
                 obj.x_mean = zeros(m,1); % filter coefficients

@@ -30,7 +30,6 @@ classdef klms_csal1 < handle
     end
     
     methods
-        
         function kaf = klms_csal1(parameters) % constructor
             if (nargin > 0) % copy valid parameters
                 for fn = fieldnames(parameters)',
@@ -88,15 +87,12 @@ classdef klms_csal1 < handle
                 kaf.alpha(idx,:) = [];
             end
         end
-        
     end
     
     methods (Static = true)
-        
         % proximal operator for l1 norm
         function alphap = prox(lambda,alpha,w)
             alphap = sign(alpha).*max(abs(alpha) - lambda*w, 0);
         end
-        
     end
 end

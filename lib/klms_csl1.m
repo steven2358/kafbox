@@ -29,7 +29,6 @@ classdef klms_csl1 < handle
     end
     
     methods
-        
         function kaf = klms_csl1(parameters) % constructor
             if (nargin > 0) % copy valid parameters
                 for fn = fieldnames(parameters)',

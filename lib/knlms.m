@@ -27,7 +27,6 @@ classdef knlms < handle
     end
     
     methods
-        
         function kaf = knlms(parameters) % constructor
             if (nargin > 0) % copy valid parameters
                 for fn = fieldnames(parameters)',
@@ -68,6 +67,5 @@ classdef knlms < handle
             kaf.alpha = kaf.alpha + ... % update coefficients 
                 kaf.eta / (kaf.eps + k'*k) * (y - k'*kaf.alpha) * k;
         end
-        
     end
 end

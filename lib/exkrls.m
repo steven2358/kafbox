@@ -32,7 +32,6 @@ classdef exkrls < handle
     end
     
     methods
-        
         function kaf = exkrls(parameters) % constructor
             allpars = {'alphaf','lambda','beta','q','kerneltype','kernelpar','M'};
             if (nargin > 0)
@@ -76,7 +75,6 @@ classdef exkrls < handle
                         [kaf.Q*r + z*z', -z; -z', 1];
                 end
             end
-        end
-        
+        end        
     end
 end
