@@ -10,6 +10,10 @@ classdef memory_cell < handle
     end
     
     methods
+        % dummy constructor
+        function obj = memory_cell(~)
+        end
+        
         % evaluate the algorithm
         function y_est = evaluate(obj,x)
             if ~isempty(obj.y_mem)

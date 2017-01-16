@@ -5,7 +5,7 @@
 
 function kafbox_quickrun(kafname,datasetname,kafopt,dataopt)
 
-rs = 1; randn('state',rs); rand('state',rs); %#ok<RAND>
+rng(1)
 
 t1 = tic;
 if nargin > 2,

@@ -46,6 +46,7 @@ classdef rffklms < handle
         
         function train(kaf,x,y) % train the algorithm
             if ~numel(kaf.omega)
+                rng('default');
                 rng(kaf.seed);
                 kaf.omega = 1/kaf.kernelpar*randn(kaf.D,size(x,2));
                 kaf.b = 2*pi*rand(kaf.D,1);
