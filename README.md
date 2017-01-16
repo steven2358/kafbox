@@ -66,7 +66,7 @@ kaf = krls(options);
 ```
 One iteration of training is performed by feeding one input-output data pair to the filter:
 ```matlab
-kaf = kaf.train(x,y);
+kaf.train(x,y);
 ```
 The outputs for one or more test inputs are evaluated as follows:
 ```matlab
@@ -90,7 +90,7 @@ Y_est = zeros(N,1);
 for i=1:N,
     if ~mod(i,floor(N/10)), fprintf('.'); end % progress indicator, 10 dots
     Y_est(i) = kaf.evaluate(X(i,:)); % predict the next output
-    kaf = kaf.train(X(i,:),Y(i)); % train with one input-output pair
+    kaf.train(X(i,:),Y(i)); % train with one input-output pair
 end
 fprintf('\n');
 SE = (Y-Y_est).^2; % test error
