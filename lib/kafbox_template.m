@@ -35,7 +35,7 @@ classdef kafbox_template < handle
         end
         
         function y_est = evaluate(kaf,x) % evaluate the algorithm
-            if size(kaf.dict,1)>0
+            if ~isempty(kaf.dict)
                 k = kernel(kaf.dict,x,kaf.kerneltype,kaf.kernelpar);
                 y_est = k'*kaf.alpha;
             else
@@ -44,7 +44,7 @@ classdef kafbox_template < handle
         end
         
         function train(kaf,x,y) % train the algorithm
-            if size(kaf.dict,2)==0 % initialize
+            if isempty(kaf.dict) % initialize
                 kaf.dict = x;
                 kaf.alpha = 0;
             else
