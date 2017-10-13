@@ -81,7 +81,7 @@ classdef mknlms_cs < handle
                     for m=1:M,
                         K(:,:,m) = exp(d2*Kalpha(m));
                     end
-                otherwise	% default case
+                otherwise % default case
                     for m=1:M,
                         k = kernel(X,kaf.dict,kaf.kerneltype,kaf.kernelpars(m));
                         K(:,:,m) = k;
