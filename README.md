@@ -17,6 +17,7 @@ Contributors:
 - [Masahiro Yukawa](http://www.ykw.elec.keio.ac.jp/yukawa/), Keio University, Japan.  
 - [Masa-aki Takizawa](http://www.ykw.elec.keio.ac.jp/member.html), Keio University, Japan.  
 - [Osamu Toda](http://www.ykw.elec.keio.ac.jp/member.html), Keio University, Japan.  
+- [Motoya Ohnishi] (http://www.ykw.elec.keio.ac.jp/member.html), Keio University, Japan.  
 - [Dominik Rzepka](http://home.agh.edu.pl/~drzepka/), AGH University of Science and Technology, Poland.  
 - [Pantelis Bouboulis](http://bouboulis.mysch.gr/), University of Athens, Greece.  
 - [Stephan Rhode](https://www.fast.kit.edu/lff/1011_3295.php), Karlsruher Institut f&uuml;r Technologie, Germany.  
@@ -141,6 +142,7 @@ Included algorithms
 - Fixed budget quantized kernel least-mean-square algorithm (QKLMS-FB), as proposed in S. Zhao, B. Chen, P. Zhu, J. C. Príncipe, "Fixed budget quantized kernel least-mean-square algorithm", Signal Processing, Volume 93, Issue 9, September 2013, Pages 2759-2770.
 - Probabilistic Least-Mean-Squares (ProbLMS) algorithm, as proposed in J. Fernandez-Bes, V. Elvira, and S. Van Vaerenbergh, "A probabilistic least-mean-squares filter," 2015 IEEE International Conference on Acoustics, Speech and Signal Processing (ICASSP), Brisbane, Australia, 2015.
 - Discrete-time Kalman filter, as proposed in R. E. Kalman, "A New Approach to Linear Filtering and Prediction Problems", ASME Journal of Basic Engineering, 1960, 82(1), pp. 35-45.
+- L2 algorithm with selective update, as proposed in M. Ohnishi and M. Yukawa, "Online Learning in L2 Space with Multiple Gaussian Kernels", Proceedings of the 25th European Signal Processing Conference (EUSIPCO), Kos, Greece, 2017.
 
 How to contribute code to the toolbox
 ---

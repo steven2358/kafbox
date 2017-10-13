@@ -95,7 +95,7 @@ classdef mxklms < handle
                     for p=1:P,
                         K(:,:,p) = exp(d2*Kalpha(p));
                     end
-                otherwise	% default case
+                otherwise % default case
                     for p=1:P,
                         k = kernel(X,kaf.dict,kaf.kerneltype,kaf.kernelpars(p));
                         K(:,:,p) = k;
