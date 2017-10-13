@@ -17,7 +17,7 @@ Contributors:
 - [Masahiro Yukawa](http://www.ykw.elec.keio.ac.jp/yukawa/), Keio University, Japan.  
 - [Masa-aki Takizawa](http://www.ykw.elec.keio.ac.jp/member.html), Keio University, Japan.  
 - [Osamu Toda](http://www.ykw.elec.keio.ac.jp/member.html), Keio University, Japan.  
-- [Motoya Ohnishi] (http://www.ykw.elec.keio.ac.jp/member.html), Keio University, Japan.  
+- [Motoya Ohnishi](http://www.ykw.elec.keio.ac.jp/member.html), Keio University, Japan.  
 - [Dominik Rzepka](http://home.agh.edu.pl/~drzepka/), AGH University of Science and Technology, Poland.  
 - [Pantelis Bouboulis](http://bouboulis.mysch.gr/), University of Athens, Greece.  
 - [Stephan Rhode](https://www.fast.kit.edu/lff/1011_3295.php), Karlsruher Institut f&uuml;r Technologie, Germany.  
