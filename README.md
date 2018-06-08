@@ -110,10 +110,12 @@ If you use this toolbox in your research please cite ["A Comparative Study of Ke
 
     @inproceedings{vanvaerenbergh2013comparative,
       author = {Van Vaerenbergh, Steven and Santamar{\'i}a, Ignacio},
-      booktitle = {2013 IEEE Digital Signal Processing (DSP) Workshop and IEEE Signal Processing Education (SPE)},
+      booktitle = {2013 IEEE Digital Signal Processing and Signal Processing Education Meeting (DSP/SPE)},
       title = {A Comparative Study of Kernel Adaptive Filtering Algorithms},
       doi = {10.1109/DSP-SPE.2013.6642587},
+      pages = {181--186},
       year = {2013},
+      month = aug,
       note = {Software available at \url{https://github.com/steven2358/kafbox/}}
     }
 	
