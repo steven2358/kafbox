@@ -10,7 +10,7 @@
 % This file is part of the Kernel Adaptive Filtering Toolbox for Matlab.
 % https://github.com/steven2358/kafbox/
 
-classdef krlst < handle
+classdef krlst < kernel_adaptive_filter
     
     properties (GetAccess = 'public', SetAccess = 'private')
         lambda = .999; % forgetting factor

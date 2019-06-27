@@ -10,7 +10,7 @@
 % This file is part of the Kernel Adaptive Filtering Toolbox for Matlab.
 % https://github.com/steven2358/kafbox/
 
-classdef mknlms_cs < handle
+classdef mknlms_cs < kernel_adaptive_filter
     
     properties (GetAccess = 'public', SetAccess = 'private') % parameters
         delta = .95; % coherence criterion threshold

@@ -9,7 +9,7 @@
 % This file is part of the Kernel Adaptive Filtering Toolbox for Matlab.
 % https://github.com/steven2358/kafbox/
 
-classdef norma < handle
+classdef norma < kernel_adaptive_filter
     
     properties (GetAccess = 'public', SetAccess = 'private')
         tau = 500; % memory size (terms retained in truncation)

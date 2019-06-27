@@ -9,7 +9,7 @@
 % This file is part of the Kernel Adaptive Filtering Toolbox for Matlab.
 % https://github.com/steven2358/kafbox/
 
-classdef klms < handle
+classdef klms < kernel_adaptive_filter
     
     properties (GetAccess = 'public', SetAccess = 'private')
         eta = .5; % learning rate

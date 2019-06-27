@@ -11,7 +11,7 @@
 % This file is part of the Kernel Adaptive Filtering Toolbox for Matlab.
 % https://github.com/steven2358/kafbox/
 
-classdef exkrls < handle
+classdef exkrls < kernel_adaptive_filter
     
     properties (GetAccess = 'public', SetAccess = 'private')
         alphaf = .999; % state forgetting factor, "alpha" in publication

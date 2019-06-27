@@ -11,7 +11,7 @@
 % This file is part of the Kernel Adaptive Filtering Toolbox for Matlab.
 % https://github.com/steven2358/kafbox/
 
-classdef lkapa < handle
+classdef lkapa < kernel_adaptive_filter
     
     properties (GetAccess = 'public', SetAccess = 'private') % parameters
         eta = .05; % learning rate

@@ -9,7 +9,7 @@
 % This file is part of the Kernel Adaptive Filtering Toolbox for Matlab.
 % https://github.com/steven2358/kafbox/
 
-classdef swkrls < handle
+classdef swkrls < kernel_adaptive_filter
     
     properties (GetAccess = 'public', SetAccess = 'private') % parameters
         M = 250; % dictionary size

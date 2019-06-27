@@ -12,7 +12,7 @@
 % This file is part of the Kernel Adaptive Filtering Toolbox for Matlab.
 % https://github.com/steven2358/kafbox/
 
-classdef klms_csal1 < handle
+classdef klms_csal1 < kernel_adaptive_filter
     
     properties (GetAccess = 'public', SetAccess = 'private') % parameters
         eta = .1; % step-size

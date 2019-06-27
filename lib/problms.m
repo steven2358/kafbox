@@ -8,7 +8,7 @@
 % This file is part of the Kernel Adaptive Filtering Toolbox for Matlab.
 % https://github.com/steven2358/kafbox/
 
-classdef problms < handle
+classdef problms < matlab.mixin.Copyable
     
     properties (GetAccess = 'public', SetAccess = 'private')
         sigma2_n = 1E-6; % variance of observation noise

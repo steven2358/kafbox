@@ -9,7 +9,7 @@
 % This file is part of the Kernel Adaptive Filtering Toolbox for Matlab.
 % https://github.com/steven2358/kafbox/
 
-classdef L2_s < handle
+classdef L2_s < kernel_adaptive_filter
     
     properties (GetAccess = 'public', SetAccess = 'private') % parameters
         eta = .5; % step size
