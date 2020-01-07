@@ -3,7 +3,7 @@
 % This file is part of the Kernel Adaptive Filtering Toolbox for Matlab.
 % https://github.com/steven2358/kafbox/
 
-classdef memory_cell < matlab.mixin.Copyable
+classdef memory_cell < base_estimator
     
     properties (GetAccess = 'public', SetAccess = 'private') % variables
         y_mem;

@@ -12,7 +12,7 @@
 % This file is part of the Kernel Adaptive Filtering Toolbox for Matlab.
 % https://github.com/steven2358/kafbox/
 
-classdef kalman < matlab.mixin.Copyable
+classdef kalman < linear_filter
     
     properties (GetAccess = 'public', SetAccess = 'private') % parameters
         F; % state transition matrix

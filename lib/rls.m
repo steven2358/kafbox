@@ -6,7 +6,7 @@
 % This file is part of the Kernel Adaptive Filtering Toolbox for Matlab.
 % https://github.com/steven2358/kafbox/
 
-classdef rls < matlab.mixin.Copyable
+classdef rls < linear_filter
     
     properties (GetAccess = 'public', SetAccess = 'private')
         lambda = .99; % forgetting factor

@@ -7,7 +7,6 @@ addpath(genpath(fullfile(pwd,'lib'))); % add lib folder with subfolders
 
 % addpath(fullfile(pwd,'demo')); % add demo folder without subfolders
 
-
 fprintf('done.\n')
 disp('Type "savepath" if you wish to store the changes.')
 % savepath;
