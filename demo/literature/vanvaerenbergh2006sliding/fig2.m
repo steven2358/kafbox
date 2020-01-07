@@ -41,7 +41,7 @@ N_switch = opt.N_switch;
 num_alg = length(setups);
 MSE = zeros(N,num_alg);
 MSE_final = zeros(1,num_alg);
-for sim_ind = 1:num_sim,
+for sim_ind = 1:num_sim
     % generate data
     [X,y,y_ref,X_test,y_test] = generate_channel_switch(opt);
     
@@ -54,7 +54,7 @@ for sim_ind = 1:num_sim,
         fprintf('%9s M=%3d: ',upper(class(kaf)),kaf.M);
         
         mse = zeros(N,1);
-        for i=1:N,
+        for i=1:N
             if ~mod(i,floor(N/10)), fprintf('.'); end
             
             y_est = kaf.evaluate(X_test);

@@ -25,9 +25,9 @@ y_test = y_ref(N+1:N+N_test);
 %% RUN ALGORITHM
 fprintf('%s: ',upper(algorithm));
 Y_est = zeros(N_test,1);
-kaf = feval(algorithm);
+kaf = feval(algorithm); %#ok<FVAL>
 t1 = tic;
-for i=1:N,
+for i=1:N
     if ~mod(i,floor(N/10)), fprintf('.'); end
     kaf.train(x(i),y(i));
 end

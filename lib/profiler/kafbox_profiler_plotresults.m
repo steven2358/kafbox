@@ -64,7 +64,7 @@ for algo_ind = 1:length(algorithms)
         numsim = length(config_results);
         flops = 0;
         bytes = 0;
-        for sim_ind = 1:numsim,
+        for sim_ind = 1:numsim
             sim_results = config_results{sim_ind};
             bytes = max(bytes,sim_results.bytes);
             flops = max(flops,sim_results.flops);
@@ -77,7 +77,7 @@ for algo_ind = 1:length(algorithms)
         r.ssmse = ss;
 
         clear target_mse
-        for i=1:2,
+        for i=1:2
             switch pmeasures{i}
                 case 'ssplus'
                     target_mse = ss + opt;
@@ -132,11 +132,11 @@ grid on; box on
 xlabel(labels{1});
 ylabel(labels{2});
 
-if logaxis(1),
+if logaxis(1)
     xtl = get(gca,'XTickLabel');
     set(gca,'XTickLabel',str2log10(xtl));
 end
-if logaxis(2),
+if logaxis(2)
     ytl = get(gca,'YTickLabel');
     set(gca,'YTickLabel',str2log10(ytl));
 end
@@ -185,7 +185,7 @@ output_txt{4} = print_formatted_value(userstrings.yaxis,userstrings.y(ii));
 
 
 function str = print_formatted_value(s,v)
-if (v-round(v))^2<1E-8,
+if (v-round(v))^2<1E-8
     str = sprintf('%s = %d',s,v);
 else
     str = sprintf('%s = %.2f',s,v);
@@ -194,7 +194,7 @@ end
 % add log10 to string numbers
 function b = str2log10(a)
 b = cell(length(a),1);
-for i=1:length(a),
+for i=1:length(a)
     if isa(a,'cell')
         el = a{i};
     else

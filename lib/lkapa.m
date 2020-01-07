@@ -11,7 +11,7 @@
 % This file is part of the Kernel Adaptive Filtering Toolbox for Matlab.
 % https://github.com/steven2358/kafbox/
 
-classdef lkapa < handle
+classdef lkapa < kernel_adaptive_filter
     
     properties (GetAccess = 'public', SetAccess = 'private') % parameters
         eta = .05; % learning rate
@@ -32,8 +32,8 @@ classdef lkapa < handle
     methods
         function kaf = lkapa(parameters) % constructor
             if (nargin > 0) % copy valid parameters
-                for fn = fieldnames(parameters)',
-                    if ismember(fn,fieldnames(kaf)),
+                for fn = fieldnames(parameters)'
+                    if ismember(fn,fieldnames(kaf))
                         kaf.(fn{1}) = parameters.(fn{1});
                     end
                 end
@@ -56,7 +56,7 @@ classdef lkapa < handle
                 kaf.xmem = x;
                 kaf.ymem = y;
             else
-                if size(kaf.dict,1) < kaf.M,
+                if size(kaf.dict,1) < kaf.M
                     if size(kaf.xmem,1)<kaf.P
                         % grow memory
                         kaf.xmem = [kaf.xmem; x];

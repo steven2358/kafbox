@@ -11,7 +11,7 @@
 % This file is part of the Kernel Adaptive Filtering Toolbox for Matlab.
 % https://github.com/steven2358/kafbox/
 
-classdef kapsm < handle
+classdef kapsm < kernel_adaptive_filter
     
     properties (GetAccess = 'public', SetAccess = 'private') % parameters
         M = 200; % dictionary size
@@ -35,8 +35,8 @@ classdef kapsm < handle
     methods
         function kaf = kapsm(parameters) % constructor
             if (nargin > 0) % copy valid parameters
-                for fn = fieldnames(parameters)',
-                    if ismember(fn,fieldnames(kaf)),
+                for fn = fieldnames(parameters)'
+                    if ismember(fn,fieldnames(kaf))
                         kaf.(fn{1}) = parameters.(fn{1});
                     end
                 end
@@ -100,7 +100,7 @@ classdef kapsm < handle
             end
             
             % sliding-window pruning
-            if length(kaf.alpha)>kaf.M,
+            if length(kaf.alpha)>kaf.M
                 k = kernel(kaf.dict,kaf.dict(1,:),...
                     kaf.kerneltype,kaf.kernelpar);
                 kaf.norm_f = sqrt(kaf.norm_f.^2 + kaf.alpha(1)^2*k(1) - ...
@@ -123,7 +123,7 @@ classdef kapsm < handle
                 case 'huber'
                     sigma = loss_param;
                     loss = zeros(length(ksi),1);
-                    for i=1:length(ksi),
+                    for i=1:length(ksi)
                         if abs(ksi(i)) <= sigma
                             loss(i) = ksi(i)^2/(2*sigma);
                         else

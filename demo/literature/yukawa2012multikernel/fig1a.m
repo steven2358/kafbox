@@ -28,7 +28,7 @@ mk_kernelpars = [.2 2]; % kernel parameter values from paper
 % mk_kernelpars = [.2 .5 1 2 5 10 20 50]; % alternative values
 
 % remark 1 from paper determines mu0
-setups{1} = lms(struct('mu',.01));
+setups{1} = lms(struct('mu',.01)); %#ok<CMLMS>
 setups{2} = knlms(struct('mu0',mk_thresh^(.2/min(mk_kernelpars)),'eta',0.2,'eps',3E-2,'kerneltype','gauss','kernelpar',1/sqrt(.2)));
 setups{3} = knlms(struct('mu0',mk_thresh^(.5/min(mk_kernelpars)),'eta',0.2,'eps',3E-2,'kerneltype','gauss','kernelpar',1/sqrt(.5)));
 setups{4} = mknlms_cs(struct('delta',mk_thresh,'eta',0.2,'rho',6E-2,'kerneltype','gauss','kernelpars',1./sqrt(mk_kernelpars)));
@@ -47,7 +47,7 @@ ns = sqrt(noisevar)*randn(length(u),1); % channel noise
 y = z - 0.9*z.^2 + ns; % output of nonlinear channel
 
 X_all = zeros(N_tr+N_te,embedding); % time-embedding
-for k=1:embedding,
+for k=1:embedding
     X_all(:,k) = y(k:N_tr+N_te+k-1);
 end
 
@@ -63,7 +63,7 @@ tic
 num_setup = length(setups);
 MSE = zeros(N_tr,num_setup);
 
-for setup_ind = 1:num_setup,
+for setup_ind = 1:num_setup
     kaf = setups{setup_ind};
     
     for n=1:N_tr

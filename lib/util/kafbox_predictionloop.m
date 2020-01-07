@@ -6,15 +6,15 @@
 
 function [e,kaf] = kafbox_predictionloop(kaf,X,y,vb)
 
-if nargin<4,
+if nargin<4
     vb = 1;
 end
 
 N = size(X,1);
 e = zeros(N,1);
 
-for n=1:N,
-    if ~mod(n,floor(N/10)) && vb,
+for n=1:N
+    if ~mod(n,floor(N/10)) && vb
         fprintf('.'); % progress indicator (10 dots)
     end
     
@@ -23,6 +23,6 @@ for n=1:N,
     kaf.train(X(n,:),y(n)); % train with one input-output pair
 end
 
-if vb,
+if vb
     fprintf('\n');
-end;
+end

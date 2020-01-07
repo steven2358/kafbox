@@ -10,7 +10,7 @@
 % This file is part of the Kernel Adaptive Filtering Toolbox for Matlab.
 % https://github.com/steven2358/kafbox/
 
-classdef qklms_fb < handle
+classdef qklms_fb < kernel_adaptive_filter
     
     properties (GetAccess = 'public', SetAccess = 'private')
         eta = .9; % learning rate
@@ -32,8 +32,8 @@ classdef qklms_fb < handle
     methods
         function kaf = qklms_fb(parameters) % constructor
             if (nargin > 0) % copy valid parameters
-                for fn = fieldnames(parameters)',
-                    if ismember(fn,fieldnames(kaf)),
+                for fn = fieldnames(parameters)'
+                    if ismember(fn,fieldnames(kaf))
                         kaf.(fn{1}) = parameters.(fn{1});
                     end
                 end
@@ -62,7 +62,7 @@ classdef qklms_fb < handle
             
             c1 = pi*kaf.kernelpar^2/2; % pre-calculate
             
-            if d2 <= kaf.epsu^2, % new basis under quantization threshold
+            if d2 <= kaf.epsu^2 % new basis under quantization threshold
                 kaf.alpha(j) = kaf.alpha(j) + kaf.eta*err;
                 
                 % update significance for quantizing y to j-th centre (16)

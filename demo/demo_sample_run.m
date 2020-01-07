@@ -47,7 +47,7 @@ kaf = krlst_split(struct('kerneltype','gauss','kernelpar',ell,...
 
 fprintf('Running KRLS-T\n');
 t1 = tic;
-for i=1:n,
+for i=1:n
     if ~mod(i,floor(n/10)), fprintf('.'); end
     Qold = kaf.Q;
     kaf.train(x(i),y(i));
@@ -108,7 +108,7 @@ for i=1:n,
         end
         
         if savefig
-            if ~exist('fig','file')
+            if ~exist('fig','file') %#ok<UNRCH>
                 mkdir('fig');
             end
             % write individual png

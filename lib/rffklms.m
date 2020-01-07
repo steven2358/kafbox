@@ -8,7 +8,7 @@
 % This file is part of the Kernel Adaptive Filtering Toolbox for Matlab.
 % https://github.com/steven2358/kafbox/
 
-classdef rffklms < handle
+classdef rffklms < kernel_adaptive_filter
     
     properties (GetAccess = 'public', SetAccess = 'private') % parameters
         seed = 1;
@@ -27,8 +27,8 @@ classdef rffklms < handle
     methods        
         function kaf = rffklms(parameters) % constructor
             if (nargin > 0) % copy valid parameters
-                for fn = fieldnames(parameters)',
-                    if ismember(fn,fieldnames(kaf)),
+                for fn = fieldnames(parameters)'
+                    if ismember(fn,fieldnames(kaf))
                         kaf.(fn{1}) = parameters.(fn{1});
                     end
                 end

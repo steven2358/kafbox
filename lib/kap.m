@@ -10,7 +10,7 @@
 % This file is part of the Kernel Adaptive Filtering Toolbox for Matlab.
 % https://github.com/steven2358/kafbox/
 
-classdef kap < handle
+classdef kap < kernel_adaptive_filter
     
     properties (GetAccess = 'public', SetAccess = 'private')
         mu0 = .95; % coherence criterion threshold
@@ -32,8 +32,8 @@ classdef kap < handle
     methods
         function kaf = kap(parameters) % constructor
             if (nargin > 0) % copy valid parameters
-                for fn = fieldnames(parameters)',
-                    if ismember(fn,fieldnames(kaf)),
+                for fn = fieldnames(parameters)'
+                    if ismember(fn,fieldnames(kaf))
                         kaf.(fn{1}) = parameters.(fn{1});
                     end
                 end
@@ -67,7 +67,7 @@ classdef kap < handle
                 k = kernel(kaf.dict,x,kaf.kerneltype,kaf.kernelpar);
                 kx = kernel(x,x,kaf.kerneltype,kaf.kernelpar);
                 C = k./(sqrt(kx)*kaf.modict); % coherence
-                if (max(C) <= kaf.mu0), % coherence criterion
+                if (max(C) <= kaf.mu0) % coherence criterion
                     kaf.dict = [kaf.dict; x]; % order increase
                     kaf.alpha = [kaf.alpha; 0]; % order increase
                 end

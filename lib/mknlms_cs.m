@@ -10,7 +10,7 @@
 % This file is part of the Kernel Adaptive Filtering Toolbox for Matlab.
 % https://github.com/steven2358/kafbox/
 
-classdef mknlms_cs < handle
+classdef mknlms_cs < kernel_adaptive_filter
     
     properties (GetAccess = 'public', SetAccess = 'private') % parameters
         delta = .95; % coherence criterion threshold
@@ -28,8 +28,8 @@ classdef mknlms_cs < handle
         
         function kaf = mknlms_cs(parameters) % constructor
             if (nargin > 0) % copy valid parameters
-                for fn = fieldnames(parameters)',
-                    if ismember(fn,fieldnames(kaf)),
+                for fn = fieldnames(parameters)'
+                    if ismember(fn,fieldnames(kaf))
                         kaf.(fn{1}) = parameters.(fn{1});
                     end
                 end
@@ -53,7 +53,7 @@ classdef mknlms_cs < handle
                 kaf.alpha = zeros(1,M); % row with coefficients for all kernels
             else
                 K = multikernel_dict(kaf,x);
-                if (max(K(:)) <= kaf.delta), % coherence criterion
+                if (max(K(:)) <= kaf.delta) % coherence criterion
                     kaf.dict = [kaf.dict; x]; % order increase
                     kaf.alpha = [kaf.alpha; zeros(1,M)]; % order increase
                 end
@@ -78,11 +78,11 @@ classdef mknlms_cs < handle
                     
                     d2 = mat1 + mat2 - 2*X*kaf.dict'; % distance matrix
                     Kalpha = -1./(2*kaf.kernelpars.^2);
-                    for m=1:M,
+                    for m=1:M
                         K(:,:,m) = exp(d2*Kalpha(m));
                     end
                 otherwise % default case
-                    for m=1:M,
+                    for m=1:M
                         k = kernel(X,kaf.dict,kaf.kerneltype,kaf.kernelpars(m));
                         K(:,:,m) = k;
                     end

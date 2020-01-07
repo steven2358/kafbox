@@ -26,7 +26,7 @@ Y = data(:,2); % desired output
 
 fprintf('Running system identification algorithm')
 Y_est = zeros(N,1);
-for i=1:N,
+for i=1:N
     if ~mod(i,floor(N/10)), fprintf('.'); end
     
     Y_est(i) = kaf.evaluate(X(i,:)); % make prediction

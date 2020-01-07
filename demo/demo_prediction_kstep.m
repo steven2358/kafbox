@@ -18,7 +18,7 @@ kaf = krlst(struct('lambda',1,'M',100,'sn2',1E-6,'kerneltype','gauss','kernelpar
 %% RUN ALGORITHM
 N = size(X,1);
 Y_est = zeros(N,1);
-for i=k:N,
+for i=k:N
     if ~mod(i,floor(N/10)), fprintf('.'); end % progress indicator, 10 dots
     Y_est(i) = kaf.evaluate(X(i,:)); % predict the next output
     

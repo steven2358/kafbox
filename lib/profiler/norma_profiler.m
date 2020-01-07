@@ -21,7 +21,7 @@ classdef norma_profiler < norma
         function flops = lastflops(kaf) % flops for last iteration
             
             m = size(kaf.dict,1);
-            if kaf.prev_dict_size < m, % growing (no pruning)
+            if kaf.prev_dict_size < m % growing (no pruning)
                 m1 = m-1;
             else
                 m1 = m;

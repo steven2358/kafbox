@@ -17,13 +17,13 @@ function MSE_avg_setups = kafbox_profiler_msecurves(results,inds)
 num_setups = length(results);
 MSE_avg_setups = cell(num_setups,1);
 
-for setup_ind = 1:num_setups,
+for setup_ind = 1:num_setups
     setup_results = results{setup_ind};
     
     num_configs = length(setup_results);
     MSE_avg_configs = cell(num_configs,1);
 
-    for config_ind = 1:num_configs,
+    for config_ind = 1:num_configs
         config_results = setup_results{config_ind};
         
         if isfield(config_results{1},'NMSE')
@@ -34,7 +34,7 @@ for setup_ind = 1:num_setups,
         MSE = zeros(N,1);
         
         num_sim = length(config_results);
-        for sim_ind = 1:num_sim,
+        for sim_ind = 1:num_sim
             simresults = config_results{sim_ind};
             
             if isfield(simresults,'NMSE') % temporary

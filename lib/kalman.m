@@ -12,7 +12,7 @@
 % This file is part of the Kernel Adaptive Filtering Toolbox for Matlab.
 % https://github.com/steven2358/kafbox/
 
-classdef kalman < handle
+classdef kalman < linear_filter
     
     properties (GetAccess = 'public', SetAccess = 'private') % parameters
         F; % state transition matrix
@@ -30,8 +30,8 @@ classdef kalman < handle
     methods
         function obj = kalman(parameters) % constructor
             if (nargin > 0) % copy valid parameters
-                for fn = fieldnames(parameters)',
-                    if ismember(fn,fieldnames(obj)),
+                for fn = fieldnames(parameters)'
+                    if ismember(fn,fieldnames(obj))
                         obj.(fn{1}) = parameters.(fn{1});
                     end
                 end

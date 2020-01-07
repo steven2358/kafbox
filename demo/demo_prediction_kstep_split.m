@@ -34,7 +34,7 @@ X_test = X(N_train+1:N_train+N_test,:);
 Y_test = Y(N_train+1:N_train+N_test);
 
 Y_test_MSE = zeros(N_train,1);
-for i=1:N_train,
+for i=1:N_train
     % train on data set 1
     if ~mod(i,floor(N_train/10)), fprintf('.'); end % progress indicator, 10 dots
     kaf.train(X(i,:),Y(i)); % train with one input-output pair

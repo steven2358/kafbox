@@ -20,7 +20,7 @@ classdef qklms_profiler < qklms
         function flops = lastflops(kaf) % flops for last iteration
             m = size(kaf.dict,1);
             
-            if kaf.prev_dict_size < m, % growing
+            if kaf.prev_dict_size < m % growing
                 m1 = m-1;
                 n4 = 1;
                 n5 = 1;

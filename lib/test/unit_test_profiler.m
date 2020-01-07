@@ -38,7 +38,7 @@ else
 end
 
 % check for invalid names
-for a=algorithms,
+for a=algorithms
     unexisting = isempty(find(ismember(allfiles,a{1}),1));
     if unexisting
         error('Algorithm not found: %s.',a{1});
@@ -98,7 +98,7 @@ for ii=1:length(algorithms)
     y = sin(3*x(:,1)).*cos(x(:,1)+x(:,2));
     
     fprintf('1 training step................\n')
-    for i=1,
+    for i=1
         try
             kaf.train_profiled(x(i,:),y(i));
         catch err
@@ -118,7 +118,7 @@ for ii=1:length(algorithms)
     fprintf('Profiled training....')
     flops_all = zeros(N,1);
     bytes_all = zeros(N,1);
-    for i=1:N,
+    for i=1:N
         if ~mod(i,floor(N/10)), fprintf('.'); end
         kaf.train_profiled(x(i,:),y(i));
         

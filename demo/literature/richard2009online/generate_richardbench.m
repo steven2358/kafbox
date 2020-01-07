@@ -21,7 +21,7 @@ v(1) = 0.5;
 u = 0.25*randn(N+1,1);
 dref = zeros(1,N+1);
 
-for t=2:N+1,
+for t=2:N+1
     v(t) = 1.1*exp(-abs(v(t-1)))+u(t);
     dref(t) = v(t)^2;
 end

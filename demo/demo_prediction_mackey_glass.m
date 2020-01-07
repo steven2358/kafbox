@@ -40,11 +40,11 @@ n_algos = length(algos);
 MSE = zeros(n_train,n_algos);
 y_est_final = zeros(n_test,n_algos);
 titles = cell(n_algos,1);
-for j=1:n_algos,
+for j=1:n_algos
     kaf = algos{j};
     titles{j} = upper(class(kaf)); % store algorithm name
     fprintf('Training %s',titles{j})
-    for i=1:n_train,
+    for i=1:n_train
         if ~mod(i,floor(n_train/10)), fprintf('.'); end % progress indicator
         
         kaf.train(X_train(i,:),y_train(i)); % train with one input-output pair
@@ -69,7 +69,7 @@ figure; hold all;
 plot(y_test,'LineWidth',2);
 titles2 = {'original'};
 line_styles = {'--','-.'};
-for j=1:n_algos,
+for j=1:n_algos
     plot(y_est_final(:,j),'LineWidth',2,'LineStyle',line_styles{j});
 end
 titles2(2:n_algos+1) = titles;

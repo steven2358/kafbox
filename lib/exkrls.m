@@ -11,7 +11,7 @@
 % This file is part of the Kernel Adaptive Filtering Toolbox for Matlab.
 % https://github.com/steven2358/kafbox/
 
-classdef exkrls < handle
+classdef exkrls < kernel_adaptive_filter
     
     properties (GetAccess = 'public', SetAccess = 'private')
         alphaf = .999; % state forgetting factor, "alpha" in publication
@@ -35,7 +35,7 @@ classdef exkrls < handle
         function kaf = exkrls(parameters) % constructor
             allpars = {'alphaf','lambda','beta','q','kerneltype','kernelpar','M'};
             if (nargin > 0)
-                for j=1:length(allpars),
+                for j=1:length(allpars)
                     p = allpars{j};
                     if isfield(parameters,p), kaf.(p) = parameters.(p); end
                 end
@@ -62,7 +62,7 @@ classdef exkrls < handle
                 kaf.Q = kaf.alphaf^2/((kaf.beta*kaf.lambda+ktt)*(kaf.alphaf^2+kaf.beta*kaf.lambda*kaf.q));
                 kaf.dict = x;
             else
-                if (size(kaf.dict,1)<kaf.M), % avoid infinite growth
+                if (size(kaf.dict,1)<kaf.M) % avoid infinite growth
                     z = kaf.Q*kt;
                     r = kaf.beta^kaf.i*kaf.rho + ktt - kt'*z;
                     err = y - kt'*kaf.alpha;

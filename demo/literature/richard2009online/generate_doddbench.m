@@ -20,7 +20,7 @@ function [v,d,dref] = generate_doddbench(N)
 dref = zeros(1,N+2);
 dref(1:2)=[0.1 0.1];
 
-for t=3:N+2,
+for t=3:N+2
     dref(t) = (0.8-0.5*exp(-dref(t-1)^2))*dref(t-1) - ...
         (0.3+0.9*exp(-dref(t-1)^2))*dref(t-2)+0.1*sin(pi*dref(t-1));
 end

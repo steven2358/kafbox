@@ -9,7 +9,7 @@ N1 = size(X1,1);
 N2 = size(X2,1);
 
 switch ktype
-    case 'gauss' % RBF kernel
+    case {'gauss','rbf'} % RBF kernel
         norms1 = sum(X1.^2,2);
         norms2 = sum(X2.^2,2);
         
@@ -49,7 +49,7 @@ switch ktype
     case 'linear' % linear kernel
         K = X1*X2';
         
-    case 'sum',
+    case 'sum'
         a = kpar.a;
         ktype1 = kpar.ktype1;
         kpar1 = kpar.kpar1;

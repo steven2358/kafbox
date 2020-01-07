@@ -10,7 +10,7 @@
 % This file is part of the Kernel Adaptive Filtering Toolbox for Matlab.
 % https://github.com/steven2358/kafbox/
 
-classdef phypass < handle
+classdef phypass < kernel_adaptive_filter
     
     properties (GetAccess = 'public', SetAccess = 'private')
         mu = 0.5; % step size
@@ -32,8 +32,8 @@ classdef phypass < handle
     methods
         function kaf = phypass(parameters) % constructor
             if (nargin > 0) % copy valid parameters
-                for fn = fieldnames(parameters)',
-                    if ismember(fn,fieldnames(kaf)),
+                for fn = fieldnames(parameters)'
+                    if ismember(fn,fieldnames(kaf))
                         kaf.(fn{1}) = parameters.(fn{1});
                     end
                 end
@@ -76,7 +76,7 @@ classdef phypass < handle
             Kmemdict = kernel(kaf.mem,kaf.dict,kaf.kerneltype,kaf.kernelpar);
             Kdict = kernel(kaf.dict,kaf.dict,kaf.kerneltype,kaf.kernelpar);
             
-            for k=1:num,
+            for k=1:num
                 d_check = Kmemdict(k,:); % kernel between k'th memory element and full dictionary
                 [mm,ii] = sort(d_check,'descend'); %#ok<ASGLU>
                 dict_id(:,k) = ii(1:num_d); % memory indexes
@@ -95,7 +95,7 @@ classdef phypass < handle
             denominator = zeros(num,1);
             beta = zeros(num,1);
             
-            for k=1:num,
+            for k=1:num
                 numerator(k) = Kmemdict(k,:)*kaf.alpha;
                 denominator(k) = Kmemdict(k,dict_id(:,k))*alpha_new(:,k);
                 beta(k) = (kaf.d(k) - numerator(k))/(denominator(k)); %  progress of the projection onto hyperplanes
@@ -104,11 +104,11 @@ classdef phypass < handle
             end
             
             G = zeros(num,num);
-            for k = 1:num,
+            for k = 1:num
                 Grow =  alpha_new(:,k)'*Kdict(dict_id(:,k),dict_id);
                 sti = 1;
                 ndi = num_d;
-                for l = 1:num,
+                for l = 1:num
                     G(k,l) = Grow(1,sti:ndi)*alpha_new(:,l);
                     sti = ndi + 1;
                     ndi = ndi + num_d;
