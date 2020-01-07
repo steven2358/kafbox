@@ -68,7 +68,7 @@ fprintf('Running profiler for %d algorithms on %s data.\n',i,data.name);
 %     output_dir = output_dir_default;
 %     fprintf('Using default folder "%s" for storing results.\n', output_dir_default);
 % end
-output_dir = fullfile(mfilename('fullpath'),'..','results');
+output_dir = fullfile(fileparts(mfilename('fullpath')),'results');
 
 t1 = tic;
 [data,algorithms,results] = kafbox_profiler(data,sim_opts,algorithms,output_dir);
