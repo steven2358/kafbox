@@ -37,13 +37,13 @@ num_setup = length(setups);
 MSE = zeros(N,num_setup);
 titles = cell(num_setup,1);
 
-for sim_ind = 1:numsim,
+for sim_ind = 1:numsim
     fprintf('SIM %d:\n',sim_ind)
    
     % Generate the data
     [X,y,yref] = generate_richardbench(N);
     
-    for setup_ind = 1:num_setup,
+    for setup_ind = 1:num_setup
         kaf = setups{setup_ind};
         titles{setup_ind} = upper(class(kaf));
         

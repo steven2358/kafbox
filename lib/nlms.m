@@ -20,8 +20,8 @@ classdef nlms < linear_filter
     methods
         function obj = nlms(parameters) % constructor
             if (nargin > 0) % copy valid parameters
-                for fn = fieldnames(parameters)',
-                    if ismember(fn,fieldnames(obj)),
+                for fn = fieldnames(parameters)'
+                    if ismember(fn,fieldnames(obj))
                         obj.(fn{1}) = parameters.(fn{1});
                     end
                 end
@@ -37,7 +37,7 @@ classdef nlms < linear_filter
         end
         
         function train(obj,x,y) % train the algorithm
-            if numel(obj.w)==0, % initialize
+            if numel(obj.w)==0 % initialize
                 obj.w = zeros(length(x),1);
             end
             

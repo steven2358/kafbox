@@ -35,7 +35,7 @@ classdef exkrls < kernel_adaptive_filter
         function kaf = exkrls(parameters) % constructor
             allpars = {'alphaf','lambda','beta','q','kerneltype','kernelpar','M'};
             if (nargin > 0)
-                for j=1:length(allpars),
+                for j=1:length(allpars)
                     p = allpars{j};
                     if isfield(parameters,p), kaf.(p) = parameters.(p); end
                 end
@@ -62,7 +62,7 @@ classdef exkrls < kernel_adaptive_filter
                 kaf.Q = kaf.alphaf^2/((kaf.beta*kaf.lambda+ktt)*(kaf.alphaf^2+kaf.beta*kaf.lambda*kaf.q));
                 kaf.dict = x;
             else
-                if (size(kaf.dict,1)<kaf.M), % avoid infinite growth
+                if (size(kaf.dict,1)<kaf.M) % avoid infinite growth
                     z = kaf.Q*kt;
                     r = kaf.beta^kaf.i*kaf.rho + ktt - kt'*z;
                     err = y - kt'*kaf.alpha;

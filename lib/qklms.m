@@ -25,8 +25,8 @@ classdef qklms < kernel_adaptive_filter
     methods
         function kaf = qklms(parameters) % constructor
             if (nargin > 0) % copy valid parameters
-                for fn = fieldnames(parameters)',
-                    if ismember(fn,fieldnames(kaf)),
+                for fn = fieldnames(parameters)'
+                    if ismember(fn,fieldnames(kaf))
                         kaf.(fn{1}) = parameters.(fn{1});
                     end
                 end
@@ -52,7 +52,7 @@ classdef qklms < kernel_adaptive_filter
             else % find distance to closest dictionary element
                 [d2,j] = min(sum((kaf.dict - repmat(x,m,1)).^2,2));
             end
-            if d2 <= kaf.epsu^2, % reduced coefficient update
+            if d2 <= kaf.epsu^2 % reduced coefficient update
                 kaf.alpha(j) = kaf.alpha(j) + kaf.eta*err;
             else
                 kaf.dict = [kaf.dict; x]; % add base to dictionary

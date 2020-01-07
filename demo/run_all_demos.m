@@ -17,7 +17,7 @@ folders = repmat({fdir},length(files),1);
 
 % get list of literature scripts
 folders_literature = dir(fullfile(fdir,'literature','*2*'));
-for i=1:length(folders_literature);
+for i=1:length(folders_literature)
     folder_i = fullfile(fdir,'literature',folders_literature(i).name);
     files_i = dir(fullfile(folder_i,'fig*.m'));
     folders_i = repmat({folder_i},length(files_i),1);

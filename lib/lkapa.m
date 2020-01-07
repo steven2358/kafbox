@@ -32,8 +32,8 @@ classdef lkapa < kernel_adaptive_filter
     methods
         function kaf = lkapa(parameters) % constructor
             if (nargin > 0) % copy valid parameters
-                for fn = fieldnames(parameters)',
-                    if ismember(fn,fieldnames(kaf)),
+                for fn = fieldnames(parameters)'
+                    if ismember(fn,fieldnames(kaf))
                         kaf.(fn{1}) = parameters.(fn{1});
                     end
                 end
@@ -56,7 +56,7 @@ classdef lkapa < kernel_adaptive_filter
                 kaf.xmem = x;
                 kaf.ymem = y;
             else
-                if size(kaf.dict,1) < kaf.M,
+                if size(kaf.dict,1) < kaf.M
                     if size(kaf.xmem,1)<kaf.P
                         % grow memory
                         kaf.xmem = [kaf.xmem; x];

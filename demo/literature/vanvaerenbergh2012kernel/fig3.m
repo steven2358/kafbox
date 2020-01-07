@@ -41,7 +41,7 @@ fprintf('Time-Varying Regression".\n')
 % generate Gaussian input data s
 s = rand(N+N_test,1);
 s_mem = zeros(N+N_test,embedding);
-for i = 1:embedding,
+for i = 1:embedding
     s_mem(i:N+N_test,i) = s(1:N+N_test-i+1);	% time-embedding
 end
 s = s_mem(1:N+N_test,:);	% input data, stored in columns
@@ -78,9 +78,9 @@ for setup_ind=1:length(setups)
     
     titles{setup_ind} = upper(class(kaf));
     fprintf('%s\t',titles{setup_ind});
-    for n=1:N,
+    for n=1:N
         if ~mod(n,round(N/10)), fprintf('.'); end
-        if n<=Nswitch,
+        if n<=Nswitch
             Y_test = Y_test1;
         else
             Y_test = Y_test2;

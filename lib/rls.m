@@ -22,8 +22,8 @@ classdef rls < linear_filter
         
         function obj = rls(parameters) % constructor
             if (nargin > 0) % copy valid parameters
-                for fn = fieldnames(parameters)',
-                    if ismember(fn,fieldnames(obj)),
+                for fn = fieldnames(parameters)'
+                    if ismember(fn,fieldnames(obj))
                         obj.(fn{1}) = parameters.(fn{1});
                     end
                 end
@@ -39,7 +39,7 @@ classdef rls < linear_filter
         end
         
         function train(obj,x,y) % train the algorithm
-            if numel(obj.w)==0, % initialize
+            if numel(obj.w)==0 % initialize
                 m = length(x);
                 obj.w = zeros(m,1);
                 obj.P = obj.c\eye(m);

@@ -13,7 +13,7 @@ classdef base_estimator < matlab.mixin.Copyable
         % get parameters
         function params = get_params(obj)
             params = struct;
-            for fn = fieldnames(obj)',
+            for fn = fieldnames(obj)'
                 params.(fn{1}) = obj.(fn{1});
             end
         end
@@ -21,8 +21,8 @@ classdef base_estimator < matlab.mixin.Copyable
         % set parameters
         function set_params(obj,params)
             if (nargin > 0) % copy valid parameters
-                for fn = fieldnames(params)',
-                    if ismember(fn{1},fieldnames(obj)),
+                for fn = fieldnames(params)'
+                    if ismember(fn{1},fieldnames(obj))
                         values = params.(fn{1});
                         obj.(fn{1}) = values;
                     else

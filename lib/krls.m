@@ -30,8 +30,8 @@ classdef krls < kernel_adaptive_filter
         
         function kaf = krls(parameters) % constructor
             if (nargin > 0) % copy valid parameters
-                for fn = fieldnames(parameters)',
-                    if ismember(fn,fieldnames(kaf)),
+                for fn = fieldnames(parameters)'
+                    if ismember(fn,fieldnames(kaf))
                         kaf.(fn{1}) = parameters.(fn{1});
                     end
                 end
@@ -51,7 +51,7 @@ classdef krls < kernel_adaptive_filter
             k = kernel([kaf.dict; x],x,kaf.kerneltype,kaf.kernelpar);
             kt = k(1:end-1);
             ktt = k(end);
-            if numel(kt)==0, % initialize
+            if numel(kt)==0 % initialize
                 kaf.Kinv = 1/ktt;
                 kaf.alpha = y/ktt;
                 kaf.P = 1;
@@ -60,7 +60,7 @@ classdef krls < kernel_adaptive_filter
                 at = kaf.Kinv*kt; % coefficients of best linear combination
                 delta = ktt - kt'*at; % residual of linear approximation
                 
-                if (delta>kaf.nu && size(kaf.dict,1)<kaf.M), % not ALD
+                if (delta>kaf.nu && size(kaf.dict,1)<kaf.M) % not ALD
                     kaf.dict = [kaf.dict; x]; % add base to dictionary
                     kaf.Kinv = 1/delta*... % update inverse kernel matrix
                         [delta*kaf.Kinv + at*at', -at; -at', 1];

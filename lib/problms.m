@@ -24,8 +24,8 @@ classdef problms < linear_filter
     methods
         function obj = problms(parameters) % constructor
             if (nargin > 0) % copy valid parameters
-                for fn = fieldnames(parameters)',
-                    if ismember(fn,fieldnames(obj)),
+                for fn = fieldnames(parameters)'
+                    if ismember(fn,fieldnames(obj))
                         obj.(fn{1}) = parameters.(fn{1});
                     end
                 end
@@ -42,7 +42,7 @@ classdef problms < linear_filter
         
         function train(obj,x,y) % train the algorithm
             m = length(x);
-            if numel(obj.w)==0, % initialize
+            if numel(obj.w)==0 % initialize
                 obj.w = zeros(m,1);
             end
             

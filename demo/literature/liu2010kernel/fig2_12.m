@@ -20,7 +20,7 @@ delay = 2; % equalization delay
 N_tr = 1000; % number of training data
 N_te = 50; % number of testing data
 
-setups{1} = lms(struct('mu',.01));
+setups{1} = lms(struct('mu',.01)); %#ok<CMLMS>
 setups{2} = klms(struct('eta',0.2,'M',N_tr,'kerneltype','gauss','kernelpar',1));
 
 %% PREPARE DATA
@@ -36,7 +36,7 @@ ns = 0.4*randn(length(u),1); % channel noise
 y = z - 0.9*z.^2 + ns; % output of nonlinear channel
 
 X_all = zeros(N_tr+N_te,embedding); % time-embedding
-for k=1:embedding,
+for k=1:embedding
     X_all(:,k) = y(k:N_tr+N_te+k-1);
 end
 
@@ -52,7 +52,7 @@ num_setup = length(setups);
 
 MSE = zeros(N_tr,num_setup);
 
-for setup_ind = 1:num_setup,
+for setup_ind = 1:num_setup
     kaf = setups{setup_ind};
     
     for n=1:N_tr

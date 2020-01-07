@@ -33,7 +33,7 @@ else
 end
 
 % check for invalid names
-for a=algorithms,
+for a=algorithms
     unexisting = isempty(find(ismember(allfiles,a{1}),1));
     if unexisting
         error('Algorithm not found: %s.',a{1});
@@ -101,7 +101,7 @@ for ii=1:length(algorithms)
     fprintf('\n')
     
     fprintf('1 training step................\n')
-    for i=1,
+    for i=1
         try
             kaf.train(x(i,:),y(i));
         catch err
@@ -116,7 +116,7 @@ for ii=1:length(algorithms)
     end
 
     fprintf('Training with repeated data....')
-    for i=1:10,
+    for i=1:10
         if ~mod(i,floor(N/10)), fprintf('.'); end
         kaf.train(x(1,:),y(1));
         % y_test = kaf.evaluate(x(i+1,:));
@@ -124,7 +124,7 @@ for ii=1:length(algorithms)
     fprintf('\n')
     
     fprintf('Long training........')
-    for i=1:N,
+    for i=1:N
         if ~mod(i,floor(N/10)), fprintf('.'); end
         kaf.train(x(i,:),y(i));
         % y_test = kaf.evaluate(x(i+1,:));

@@ -28,14 +28,14 @@ end
 % all relevant values in one array
 my_config = config.options;
 fn = fieldnames(data);
-for i = 1:length(fn),
+for i = 1:length(fn)
     if ~strcmp(fn{i},'name')
         my_config.(sprintf('data_%s',fn{i})) = data.(fn{i});
     end
 end
 
 skiplist = {'sweep_par','sweep_val','data_numsim'};
-for i = 1:length(skiplist),
+for i = 1:length(skiplist)
     if isfield(my_config,skiplist{i})
         my_config = rmfield(my_config,skiplist{i});
     end
@@ -71,9 +71,9 @@ function r = find_results(my_config,configs,results_path)
 
 str = struct2str(my_config);
 
-for i=1:length(configs),
+for i=1:length(configs)
     stri = configs{i}.cstr;
-    if strcmp(str,stri),
+    if strcmp(str,stri)
         id = configs{i}.id;
         r = load_results(results_path,id);
         return
@@ -82,7 +82,7 @@ end
 r = [];
 
 
-function save_results(results,results_path,id) %#ok<INUSL>
+function save_results(results,results_path,id)
 fname = sprintf('%s/%s',results_path,id);
 save(fname,'results');
 

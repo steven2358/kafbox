@@ -19,7 +19,7 @@ sigpower = 0.5^2; % input signal power
 %% PROGRAM
 
 w = who;
-for i=1:length(w), % copy all parameters to option structure
+for i=1:length(w) % copy all parameters to option structure
     eval(sprintf('opt.%s = %s;',w{i},w{i}))
 end
 
@@ -30,8 +30,8 @@ end
 fdir = fileparts(which('kafbox_template.m'));
 files = dir(fullfile(fdir,'*.m'));
 [~,algorithms] = cellfun(@fileparts, {files.name}, 'UniformOutput',0);
-for i=length(algorithms):-1:1,
-    if ~exist(algorithms{i},'class'),
+for i=length(algorithms):-1:1
+    if ~exist(algorithms{i},'class')
         algorithms(i) = []; % remove files that do not represent classes
     end
 end
@@ -49,7 +49,7 @@ for algo_ind=1:num_alg
     titles{algo_ind} = strrep(upper(algorithm),'_','\_');
     
     kaf = feval(algorithm);
-    for i=1:N,
+    for i=1:N
         if ~mod(i,floor(N/10)), fprintf('.'); end
         
         y_est = kaf.evaluate(X_test);
@@ -81,7 +81,7 @@ for fig_ind=num_fig:-1:1
     num_in_league = (rm==0)*5 + rm;
     % plot the results for the num_in_league worst results
     league_inds = num_alg-remaining+num_in_league:-1:num_alg-remaining+1;
-    for i=league_inds,
+    for i=league_inds
         plot(10*log10(MSE(:,ind(i))),'LineWidth',1)
     end
     title(sprintf('League %d',fig_ind))

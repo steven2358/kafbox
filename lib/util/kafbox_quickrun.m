@@ -8,7 +8,7 @@ function kafbox_quickrun(kafname,datasetname,kafopt,dataopt)
 rng(1)
 
 t1 = tic;
-if nargin > 2,
+if nargin > 2
     kaf = feval(kafname,kafopt);
 else
     kaf = feval(kafname);
@@ -23,8 +23,8 @@ N = size(X,1);
 N_switch = 500;
 
 MSE = zeros(N,1);
-for n=1:N,
-    if ~mod(n,floor(N/10)),
+for n=1:N
+    if ~mod(n,floor(N/10))
         fprintf('.'); % progress indicator (10 dots)
     end
     

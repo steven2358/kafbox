@@ -39,8 +39,8 @@ classdef krlst_split < handle
         
         function kaf = krlst_split(parameters) % constructor
             if (nargin > 0) % copy valid parameters
-                for fn = fieldnames(parameters)',
-                    if ismember(fn,fieldnames(kaf)),
+                for fn = fieldnames(parameters)'
+                    if ismember(fn,fieldnames(kaf))
                         kaf.(fn{1}) = parameters.(fn{1});
                     end
                 end
@@ -124,7 +124,7 @@ classdef krlst_split < handle
         function kaf = prune(kaf,Qold,gamma2)
             m = size(kaf.Sigma,1);
             
-            if gamma2<kaf.jitter, % to avoid roundoff error
+            if gamma2<kaf.jitter % to avoid roundoff error
                 if gamma2<kaf.jitter/10
                     warning('Numerical roundoff error too high, you should increase jitter noise') %#ok<WNTAG>
                 end
@@ -136,7 +136,7 @@ classdef krlst_split < handle
             [~, r] = min(criterion); % remove element r, which incurs in the minimum error
             smaller = 1:m; smaller(r) = [];
             
-            if r == m, % if we must remove the element we just added, perform reduced update instead
+            if r == m % if we must remove the element we just added, perform reduced update instead
                 kaf.Q = Qold;
                 kaf.reduced = true;
             else

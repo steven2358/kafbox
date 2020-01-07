@@ -19,7 +19,7 @@ classdef exkrls_profiler < exkrls
         
         function flops = lastflops(kaf) % flops for last iteration
             m = size(kaf.dict,1);
-            if kaf.prev_dict_size < m, % growing
+            if kaf.prev_dict_size < m % growing
                 m1 = m;
                 m2 = m - 1;
                 floptions = struct(...

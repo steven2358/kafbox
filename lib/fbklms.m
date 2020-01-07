@@ -28,8 +28,8 @@ classdef fbklms < kernel_adaptive_filter
     methods        
         function kaf = fbklms(parameters) % constructor
             if (nargin > 0) % copy valid parameters
-                for fn = fieldnames(parameters)',
-                    if ismember(fn,fieldnames(kaf)),
+                for fn = fieldnames(parameters)'
+                    if ismember(fn,fieldnames(kaf))
                         kaf.(fn{1}) = parameters.(fn{1});
                     end
                 end
@@ -63,12 +63,12 @@ classdef fbklms < kernel_adaptive_filter
                 % growth criterion
                 kx = kt(end);
                 dependency = kx - k./kaf.diagkdict;
-                if min(dependency) >= kaf.nu, % expand dictionary
+                if min(dependency) >= kaf.nu % expand dictionary
                     kaf.dict = [kaf.dict; x];
                     kaf.diagkdict = [kaf.diagkdict; kx];
                     kaf.alpha = [kaf.alpha; kaf.eta*e/(k'*k)];
                     
-                    if length(kaf.alpha) > kaf.M, % prune dictionary
+                    if length(kaf.alpha) > kaf.M % prune dictionary
                         [~, id] = min(abs(kaf.alpha));
                         kaf.dict(id,:) = [];
                         kaf.diagkdict(id) = [];

@@ -30,8 +30,8 @@ classdef mxklms < kernel_adaptive_filter
     methods
         function kaf = mxklms(parameters) % constructor
             if (nargin > 0) % copy valid parameters
-                for fn = fieldnames(parameters)',
-                    if ismember(fn,fieldnames(kaf)),
+                for fn = fieldnames(parameters)'
+                    if ismember(fn,fieldnames(kaf))
                         kaf.(fn{1}) = parameters.(fn{1});
                     end
                 end
@@ -50,7 +50,7 @@ classdef mxklms < kernel_adaptive_filter
         end
         
         function train(kaf,x,y) % train the algorithm
-            if (size(kaf.dict,1)<kaf.M), % avoid infinite growth
+            if (size(kaf.dict,1)<kaf.M) % avoid infinite growth
                 if size(kaf.dict,2)==0 % initialize
                     P = length(kaf.kernelpars);
                     kaf.v = 1/P*ones(P,1);
@@ -92,11 +92,11 @@ classdef mxklms < kernel_adaptive_filter
                     
                     d2 = mat1 + mat2 - 2*X*kaf.dict'; % distance matrix
                     Kalpha = -1./(2*kaf.kernelpars.^2);
-                    for p=1:P,
+                    for p=1:P
                         K(:,:,p) = exp(d2*Kalpha(p));
                     end
                 otherwise % default case
-                    for p=1:P,
+                    for p=1:P
                         k = kernel(X,kaf.dict,kaf.kerneltype,kaf.kernelpars(p));
                         K(:,:,p) = k;
                     end

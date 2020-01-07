@@ -19,7 +19,7 @@ classdef klms_profiler < klms
         
         function flops = lastflops(kaf) % flops for last iteration
             m = size(kaf.dict,1);
-            if kaf.prev_dict_size < m, % growing
+            if kaf.prev_dict_size < m % growing
                 m1 = m - 1;
                 floptions = struct(...
                     'sum', m1 - 1, ...

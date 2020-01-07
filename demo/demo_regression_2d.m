@@ -13,7 +13,7 @@ opts = struct(); % algorithm options go here (kernel type, parameters, etc)
 
 %% PROGRAM
 
-kaf = feval(algorithm, opts);
+kaf = feval(algorithm, opts); %#ok<FVAL>
 
 % generate some data
 c = 5;
@@ -22,7 +22,7 @@ x = rand(N,2)*c;
 y = sin(3*x(:,1)).*cos(x(:,1)+x(:,2));
 
 fprintf('Training')
-for i=1:N,
+for i=1:N
     if ~mod(i,floor(N/10)), fprintf('.'); end
     kaf.train(x(i,:),y(i));
     % y_test = kaf.evaluate(x(i+1,:));

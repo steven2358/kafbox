@@ -49,7 +49,7 @@ switch ktype
     case 'linear' % linear kernel
         K = X1*X2';
         
-    case 'sum',
+    case 'sum'
         a = kpar.a;
         ktype1 = kpar.ktype1;
         kpar1 = kpar.kpar1;

@@ -23,7 +23,7 @@ end
 % check if results for this simulation have been stored before
 simresults = kafbox_profiler_storet(simdata,algo_config,output_dir);
 
-if isempty(simresults), % perform simulation
+if isempty(simresults) % perform simulation
 
     [X,Y,X_test,Y_test] = kafbox_data(simdata); % load data
     
@@ -48,7 +48,7 @@ if isempty(simresults), % perform simulation
         y_test_ind(data.N_switch:end) = 2;
     end
     
-    for i=1:N,
+    for i=1:N
         Y_est = kaf.evaluate(X(i,:)); % predict
         kaf.train_profiled(X(i,:),Y(i)); % train
         
@@ -72,7 +72,7 @@ if isempty(simresults), % perform simulation
                 Y_est = kaf.evaluate(X_test); % test on multiple data
             end
             erm_val = mean((Y_test(:,y_test_ind(i)) - Y_est).^2);
-            if strcmp(erm,'NMSE'),
+            if strcmp(erm,'NMSE')
                 erm_val = erm_val/var_test; %#ok<NASGU>
             end
             eval(sprintf('%s(i) = erm_val;',erm))
