@@ -7,12 +7,12 @@
 % Notation is taken from: R. Faragher, "Understanding the Basis of the
 % Kalman Filter Via a Simple and Intuitive Derivation [Lecture Notes]," in
 % IEEE Signal Processing Magazine, vol. 29, no. 5, pp. 128-132, Sept. 2012.
-% http://dx.doi.org10.1109/MSP.2012.2203621
+% http://dx.doi.org/10.1109/MSP.2012.2203621
 %
 % This file is part of the Kernel Adaptive Filtering Toolbox for Matlab.
 % https://github.com/steven2358/kafbox/
 
-classdef kalman < linear_filter
+classdef kalman < linear_adaptive_filter
     
     properties (GetAccess = 'public', SetAccess = 'private') % parameters
         F; % state transition matrix
