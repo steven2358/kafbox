@@ -6,7 +6,7 @@
 % This file is part of the Kernel Adaptive Filtering Toolbox for Matlab.
 % https://github.com/steven2358/kafbox/
 
-classdef lms < linear_filter
+classdef lms < linear_adaptive_filter
     
     properties (GetAccess = 'public', SetAccess = 'private')
         mu = 0.001; % learning rate
