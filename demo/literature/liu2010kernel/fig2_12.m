@@ -12,6 +12,7 @@
 
 clear
 close all
+rng('default'); rng(1)
 
 %% PARAMETERS
 embedding = 5; % input embedding

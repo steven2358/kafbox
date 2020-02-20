@@ -5,6 +5,7 @@
 
 close all;
 clear;
+rng('default');rng(0);
 
 %% PARAMETERS
 % Instructions: 1. Uncomment one datafile and one kaf algorithm; 2. Execute.
