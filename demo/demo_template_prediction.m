@@ -5,6 +5,7 @@
 
 close all;
 clear;
+rng('default');rng(0);
 
 %% PARAMETERS
 % Instructions: 1. Uncomment one datafile and one kaf algorithm; 2. Execute.
@@ -28,6 +29,7 @@ kaf = krls(struct('nu',1E-4,'kerneltype','gauss','kernelpar',32)); % achieves -4
 % kaf = lkapa(struct('eta',.09,'lambda',1E-6,'M',1000,'P',20,'kerneltype','gauss','kernelpar',32)); % achieves -7.62 dB
 % kaf = lms(struct('mu',1E-4)); % achieves -5.98 dB
 % kaf = klms(struct('eta',0.1,'M',5000,'kerneltype','gauss','kernelpar',32)); % achieves -3.07 dB
+% kaf = mlp(struct('n_hidden',50,'eta',0.01)); % achieves -2.52 dB
 % kaf = memory_cell(); % achieves -2.37 dB
 % kaf = fbklms(struct('M',10,'nu',.1,'eta',.4,'kernelpar',35)); % achieves -1.56 dB
 % kaf = knlms(struct('mu0',0.95,'eta',0.5,'eps',1E-6,'kerneltype','gauss','kernelpar',32)); % achieves -1.32 dB
