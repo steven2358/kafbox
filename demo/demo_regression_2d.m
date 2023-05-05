@@ -37,3 +37,5 @@ yt = kaf.evaluate([x1(:) x2(:)]);
 z = reshape(yt,size(x1,1),size(x2,1));
 figure;
 surf(x1,x2,z);
+hold;
+plot3(x(:,1), x(:,2), y, "+");  # adding the training data

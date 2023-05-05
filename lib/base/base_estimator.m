@@ -3,13 +3,14 @@
 % This file is part of the Kernel Adaptive Filtering Toolbox for Matlab.
 % https://github.com/steven2358/kafbox/
 
-classdef base_estimator < matlab.mixin.Copyable
+##classdef base_estimator < matlab.mixin.Copyable
+classdef base_estimator < handle
     methods
         % get parameter names for the estimator
         function names = get_param_names(obj)
             names = fieldnames(obj);
         end
-        
+
         % get parameters
         function params = get_params(obj)
             params = struct;
@@ -17,7 +18,7 @@ classdef base_estimator < matlab.mixin.Copyable
                 params.(fn{1}) = obj.(fn{1});
             end
         end
-        
+
         % set parameters
         function set_params(obj,params)
             if (nargin > 0) % copy valid parameters
